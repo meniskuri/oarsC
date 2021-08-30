@@ -1,0 +1,89 @@
+cd (path windows. path linux)
+cd ..
+cd ../.. 
+cd ~/Desktop
+pwd (სად ხარ) 
+
+echo "aq vinaxav teqsts" > text.txt (ში ჩაიწერება ის რაც echo "" ში დავწერე)
+echp "aq vwer axal teqsts" > text.txt (თუ text.txt ში რამე ეწერა ეს ბრძანება წაშლის და თავიდან ახალ ტექსტს)
+echo "aq vamateb teqsts" >> text.txt (ში ჩაამატებს ამ ჩანაწერს)
+
+cat text.txt (დაბეჭდავს text.txt ში რაც წერია)
+cat. text.txt text2.txt ... (დაბეჭდავს ყველა ფაილს რასაც მიუთითებ)
+cat test_?.txt (ყველაფერს რაც cat test_ და აქ ცვლადი.txt სახით არის)
+cat test_* (ყველაფერს რაც cat_test_ ით იწყება) 
+cat output.txt > test.txt (output.txt ში რაც წერია გადაწერს test.txt ში)
+cat output* > test.txt (ყველა output ფაილს გადაიტანს test.txt ში)
+
+dir (ვინდოუსზე- სადაც ხარ იქ ფაილებს და ფოლდერების სიას ჩამოგიწერს)
+ls  (ლინუქსზე- სადაც ხარ იქ ფაილებს და ფოლდერების სიას ჩამოგიწერს)
+ls > output.txt (ფოლდერში სადაც ხარ. ნახავს სიას და ჩაწერს output.txt ში)
+ls -t (ფაილების დროის მიხედვით სორტირება) 
+
+mkdir 1 2 (შექმნის 1 და 2 ფოლდერს)
+mkdir -p gio1/gio2 (შექმნის ჩაშენებულ ფოლდერებს)
+
+rm -r gio (წაშლის ფოლდერ gio -ს)
+rm -r test_* (წაშლის ყველაფერს რაც იწყება test_ ით)
+
+######## ######## #########
+mkdir dir1 (შევქმნათ ფოლდერი)
+mv text.txt dir1 (გადავიტანთ ფაილს ფოლდერში)
+mv dir1/* . (dir1 ფოლდერიდან ყველა ფაილს გადმოიტანს უკან parent ფოლდერში)
+mv dir2/ragac.txt dir3/dir4 (dir2 დან ragac.txt ფაილს გადაიტანს dir4 ში)
+
+mv shargalka_reser.txt dir1 (ში გადავიტანოთ ფაილი)
+cp dir1/shpargalka_reserv.txt . (შემდეგ უკან parent ფოლდერში გავაკეთოთ მისი კოპია)
+cp shargalka.txt shargalka_copy.txt (დავაკოპირებ ჩემს ფაილს)
+mv shpargalka_reserv.txt reserv_shpargalka.txt (ფაილეს შეუცვლის სახელს)
+mv "folder 1" folder_1
+mv "folder 2" folder_2
+mv "folder 3" folder_3
+mv "folder 4" folder_4
+mv "folder 5" folder_5
+mv "folder 6" folder_6
+ls (ესეთი რაღაცეების კეთებაც არის შესაძლებელი)
+
+rmdir folder (წაშლის ფოლდერს თუ ის ცარიელია)
+rm -r folder (წაშლის ყველაფერს) 
+
+wc -l (word count - line count)
+wc -l shpargalka.txt (დათვლის რამდენი ხაზია ჩემს ტექსტურ ფაილში. ასევე შესაძლებელია სიტყვების ბაიტების და ასე შემდეგ დათვლა wc --help)
+
+ls > test.txt (ჩაწერს რამდენი ფაილი და ფოლდერია იქ სადაც ხართ)
+ls ~ > test.txt (ჩაწერს რუთ დირექტორიიდან რამდენი ფოლდერი და ფაილია. მგონი. ნუ სანახავია ზუსტად რას იზავს)
+
+cat shpargalka.txt |uniq|wc -l ( პიპინგი shpargalka.txt ში uniq ბრძანებით და შემდეგ wc -l ით დავითვლით რამდენი უნიკალური ლაინია)
+(ესეთი ჯაჭვი შეგვიძლია ავაგოთ უსასრულოდ დიდი და როგორიც გვჭირდება. ბრძანებების მიმდევრობაა ფაქტიურად) 
+
+cmd //c tree (gnu bash tree windows)
+
+
+########## ################ ####################
+
+unzip python-3.9.6-docs-pdf-a4.zip (unzip ის გაკეთება)
+
+
+########## How to Compile C Program in Command Prompt? ####################
+
+gcc -v (heck if you have a compiler installed)
+
+
+
+########## To run a program in the current directory in bash ####################
+
+./sqlite3.exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
