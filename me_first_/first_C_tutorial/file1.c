@@ -1,5 +1,4 @@
-
-                                      #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "raylib.h"
 
@@ -37,15 +36,17 @@ int main(){
     printf("brzaneba aris %s\n", brzaneba); // space is mere teqsts ar sheiyvans
 
 
-    char brzaneba2;
+    char brzaneba2[50];
 
-    scanf("%c\n",&brzaneba2);
-    printf("brzaneba 2 aris %c\n", brzaneba2);
+    scanf("%s\n",&brzaneba2);
+    printf("brzaneba 2 aris %s\n", brzaneba2);
 
 
     char brzaneba3[50];
 
-    fgets(brzaneba3);
+
+    // fgets(brzaneba3);
+    scanf("%s\n",&brzaneba3);
     printf("brzaneba 3 aris %s\n", brzaneba3);
 
     return 0;

@@ -1,2 +1,5 @@
 logs/
 a.exe
+*.exe
+bin/
+main.log
