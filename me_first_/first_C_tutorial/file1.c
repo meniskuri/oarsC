@@ -4,17 +4,16 @@
 
 
 int main(){
-
+    //----------------------------------------------------------------------------------
     const char myName[] = "giorgi";
     int myAge     = 29;
-
+    //----------------------------------------------------------------------------------
     printf("hello\nxalxno\n");
     printf("   /|\n");
     printf("  / |\n");
     printf(" /  |\n");
     printf("/___|\n");
     printf("vnaxot\"ramoxdeba\n");
-
     printf("my name is %s\n",myName);
     printf("%s my age is %d\n",myName,myAge);
 
@@ -22,29 +21,22 @@ int main(){
     char grade = "B"; // აქ მხოლოდ ერთი სიმბოლოს შენახვა შემიძლია (char grade = "BACD" - არასწორი იქნება)
 
     printf("gio aris %f\n",gio + 3.9); // %c for chars
-
     printf("2 is 3 xarisxi %f\n", pow(2,3));
 
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------------------------------------------------------------
     printf("sheviyvanot klaviaturidan rame brzaneba: ");
 
     char brzaneba[50];
-
     scanf("%s\n",&brzaneba);
     printf("brzaneba aris %s\n", brzaneba); // space is mere teqsts ar sheiyvans
 
 
     char brzaneba2[50];
-
     scanf("%s\n",&brzaneba2);
     printf("brzaneba 2 aris %s\n", brzaneba2);
 
 
     char brzaneba3[50];
-
-
     // fgets(brzaneba3);
     scanf("%s\n",&brzaneba3);
     printf("brzaneba 3 aris %s\n", brzaneba3);
@@ -52,7 +44,7 @@ int main(){
     return 0;
 }
 
-
+//----------------------------------------------------------------------------------
 // #include <stdio.h>
 // int main()
 // {
@@ -72,3 +64,4 @@ int main(){
 // printf("%d is not an Armstrong number.",num);
 // return 0;
 // }
+//----------------------------------------------------------------------------------

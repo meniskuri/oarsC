@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1630600263 source:d:\c\me_first_\first_c_tutorial\debuger_chemi\main.c
+	<stdio.h>
+	<stdlib.h>
+

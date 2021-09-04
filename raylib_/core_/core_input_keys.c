@@ -8,21 +8,40 @@
 *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-
+#include <stdio.h>
+#include <math.h>
 #include "raylib.h"
 
+// Initialization ARRY (კლავიატურიდან როგორც შევუცვლი ბურთს პოზიციას, ეს კოორდინატები მინდა ჩავწერო მასივში)
+//--------------------------------------------------------------------------------------
+
+float tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
+float tailPositionsY[1000000];
+
+
+const int screenWidth  = 800;
+const int screenHeight = 450;
+
+static int framesCounter = 0;
+
+int counter = 0;
+Vector2 ballPosition = { (float)screenWidth/2, (float)screenHeight/2 };
+Color ballColor = DARKBLUE;
+
+
+// ენდ
+//--------------------------------------------------------------------------------------
+
+
+
+
 int main(void)
-{
+{    
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input - Kapana");
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
-
-    Vector2 ballPosition = { (float)screenWidth/2, (float)screenHeight/2 };
-
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second // <<<<< 
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -30,30 +49,104 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
-        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
-        if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
-        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;
-        //----------------------------------------------------------------------------------
-
+        UpdateGame();
+       
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
-
-            ClearBackground(RAYWHITE);
-
-            DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
-
-            DrawCircleV(ballPosition, 50, MAROON);
-
-        EndDrawing();
+        DrawGame();
+        
         //----------------------------------------------------------------------------------
     }
-
+    
+    //--------------------------------------------------------------------------------------
+    for (int i =0;i<=counter;i++) // 
+    {
+        printf("vnaxot --- tailPositionsX[i] = %lf\ni = %d\n",tailPositionsX[i],i);
+    }
+    
+    
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
+
+
+
+void UpdateGame(void)
+{
+    //do 
+    if (IsKeyDown(KEY_RIGHT))
+        {
+            ballPosition.x += 2.0f;
+            ballColor = GREEN;
+            // printf("(marjvniv davachire) ballPosition.x = %f\n",ballPosition.x);
+        }
+        if (IsKeyDown(KEY_LEFT))
+        {
+            ballPosition.x -= 2.0f;
+            ballColor = RED;
+            // printf("(marcxniv davachire) ballPosition.x = %f\n",ballPosition.x);
+        }
+        if (IsKeyDown(KEY_UP))
+        {
+            ballPosition.y -= 2.0f;
+            ballColor = MAGENTA;
+            // printf("(zemot davachire) ballPosition.y %f\n",ballPosition.y);
+        }
+        if (IsKeyDown(KEY_DOWN))
+        {
+            ballPosition.y += 2.0f;
+            ballColor = LIME;
+            // printf("qvemot davachire %f\n",ballPosition.y);
+        }
+        
+        // test (chemi)
+        //----------------------------------------------------------------------------------
+        if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_DOWN))
+        {   
+            printf("//----------------------------------------------------------------------------------");
+            printf("\n");
+
+            printf("counter = %d\n",counter);             
+            
+            printf("Vector2 ballPosition = %lf\n",(ballPosition)); // აი ეს რას მიჩვენებს? )) ???
+            printf("ballPosition.x = %f\n",ballPosition.x);
+            printf("ballPosition.y = %f\n",ballPosition.y);
+            printf("Vector2 magn = %f\n",sqrt(pow(ballPosition.y,2) + pow(ballPosition.x,2)));
+            
+            printf("//----------------------------------------------------------------------------------");
+            printf("\n");
+
+            tailPositionsX[counter] = ballPosition.x;
+            tailPositionsY[counter] = ballPosition.y;
+            
+            printf("tailPositionsX[counter] = %f\n tailPositionsY[counter] = %f\n",tailPositionsX[counter],tailPositionsY[counter]);
+            
+            printf("//----------------------------------------------------------------------------------");
+            printf("\n");
+            
+            counter++;        
+        }
+    
+    framesCounter++;
+    //printf("framesCounter = %d\n",framesCounter);
+}
+
+void DrawGame(void)
+{
+    //do
+    BeginDrawing();
+
+        ClearBackground(DARKGRAY);
+
+        DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
+            
+        DrawFPS(screenWidth/4, screenHeight/4); // ფერი როგორ შევუცვალო? :))
+
+        DrawCircleV(ballPosition, 50, ballColor); // Draw a color-filled circle (Vector version)
+
+    EndDrawing();
 }

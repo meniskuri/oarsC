@@ -55,7 +55,7 @@ static Snake snake[SNAKE_LENGTH] = { 0 };
 static Vector2 snakePosition[SNAKE_LENGTH] = { 0 };
 static bool allowMove = false;
 static Vector2 offset = { 0 };
-static int counterTail = 0;
+static int counterTail = 0; // რამდენი ვაშლიც აქვს ნაჭამი. ეგაა )
 
 //------------------------------------------------------------------------------------
 // Module Functions Declaration (local)
@@ -75,7 +75,7 @@ int main(void)
     //---------------------------------------------------------
     InitWindow(screenWidth, screenHeight, "classic game: snake");
 
-    InitGame();
+    InitGame(); // <<<<<<<<<<<<<<<< მოხსენი კომენტარი
 
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
@@ -89,6 +89,14 @@ int main(void)
         // Update and Draw
         //----------------------------------------------------------------------------------
         UpdateDrawFrame();
+        //----------------------------------------------------------------------------------
+        
+        // Test Kapana
+        //----------------------------------------------------------------------------------
+        // printf("SNAKE_LENGTH = %f\n counterTail %d\n",SNAKE_LENGTH,counterTail);
+        // ravi
+        
+        // ენდ
         //----------------------------------------------------------------------------------
     }
 #endif
@@ -125,8 +133,8 @@ void InitGame(void)
         snake[i].size = (Vector2){ SQUARE_SIZE, SQUARE_SIZE };
         snake[i].speed = (Vector2){ SQUARE_SIZE, 0 };
 
-        if (i == 0) snake[i].color = DARKBLUE;
-        else snake[i].color = BLUE;
+        if (i == 0) snake[i].color = RED; // <<<<<<< 
+        else snake[i].color = GREEN;
     }
 
     for (int i = 0; i < SNAKE_LENGTH; i++)
@@ -223,6 +231,7 @@ void UpdateGame(void)
             {
                 snake[counterTail].position = snakePosition[counterTail - 1];
                 counterTail += 1;
+                
                 fruit.active = false;
             }
 
@@ -260,14 +269,24 @@ void DrawGame(void)
             }
 
             // Draw snake
-            for (int i = 0; i < counterTail; i++) DrawRectangleV(snake[i].position, snake[i].size, snake[i].color);
+            for (int i = 0; i < counterTail; i++){
+                DrawRectangleV(snake[i].position, snake[i].size, snake[i].color);
+                
+                // Test Kapana
+                //----------------------------------------------------------------------------------
+                printf("counterTail %d\n",counterTail); // ვწერ რამდენი ვაშლი აქვს ნაჭამი 
+                // printf("snake position X = ",) // <<<<<< აქ ვარ
+                
+            }
+            
+            
 
             // Draw fruit to pick
             DrawRectangleV(fruit.position, fruit.size, fruit.color);
 
             if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);
         }
-        else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth()/2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20)/2, GetScreenHeight()/2 - 50, 20, GRAY);
+        else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth()/2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20)/2, GetScreenHeight()/2 - 50, 20, GRAY); // <<<<<< game over
 
     EndDrawing();
 }
