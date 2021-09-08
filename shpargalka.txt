@@ -22,7 +22,7 @@ l                 (lisტ)
 q                 (quit)
 
 //----------------------------------------------------------------------------------
-//-- How to Debug C Raylib using gdb in 6 Simple Steps ----------------------------
+//-- How to Debug C Raylib using gdb ----------------------------
 //----------------------------------------------------------------------------------
 ### raylib ### for gdb ### :))) yesss :))) ###
 gcc -o core_input_keys.exe core_input_keys.c C:\\raylib\\raylib\\src\\raylib.rc.data  -std=c99 -Wall -IC:\\raylib\\raylib\\src -Iexternal -DPLATFORM_DESKTOP -ggdb -lraylib -lopengl32 -lgdi32 -lwinmm^C

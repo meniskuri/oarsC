@@ -14,34 +14,31 @@
 
 // Initialization ARRY (კლავიატურიდან როგორც შევუცვლი ბურთს პოზიციას, ეს კოორდინატები მინდა ჩავწერო მასივში)
 //--------------------------------------------------------------------------------------
-
-float tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
+float tailPositionsX[1000000];  // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
 float tailPositionsY[1000000];
 
-
-const int screenWidth  = 800;
-const int screenHeight = 450;
+const int screenWidth    = 800;
+const int screenHeight   = 450;
 
 static int framesCounter = 0;
+float speed              = 3;   // ნაბიჯი წამში. სიჩქარე იქნება speed = x * framesCounter ;
+float x                  = 1.0; // x = speed / framesCounter ;  
 
-int counter = 0;
-Vector2 ballPosition = { (float)screenWidth/2, (float)screenHeight/2 };
-Color ballColor = DARKBLUE;
+int counter = 0;                // რამდენი ნაბიჯი გააკეთა გველმა. მთვლელი 
+
+Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 };
+Color ballColor          = DARKBLUE;
 
 
 // ენდ
 //--------------------------------------------------------------------------------------
-
-
-
-
 int main(void)
 {    
     // Initialization
     //--------------------------------------------------------------------------------------
     InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input - Kapana");
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second // <<<<< 
+    SetTargetFPS(10);               // Set our game to run at 60 frames-per-second // <<<<< 
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -58,18 +55,25 @@ int main(void)
         //----------------------------------------------------------------------------------
     }
     
+    // tailPositions tracker 
     //--------------------------------------------------------------------------------------
-    for (int i =0;i<=counter;i++) // 
+    for (int i =0;i<=counter;i++) 
     {
         printf("vnaxot --- tailPositionsX[i] = %lf\ni = %d\n",tailPositionsX[i],i);
     }
     
+    // Timing-related functions
+    //----------------------------------------------------------------------------------
+    printf("//---------------------------- Timing-related functions ---------------------------------------");
+    printf("\n");
+    printf("GetFramesTime = %f\n",GetFrameTime()); // Returns time in seconds for last frame drawn (delta time)
+    printf("GetTime = %d\n",GetTime());            // Returns elapsed time in seconds since InitWindow() // რას აბრუნებს ვერ გავიგე ???
     
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-
+        
     return 0;
 }
 
@@ -98,12 +102,12 @@ void UpdateGame(void)
         }
         if (IsKeyDown(KEY_DOWN))
         {
-            ballPosition.y += 2.0f;
+            ballPosition.y += 2.0f; // 2.0f არის თითო ნაბიჯის სიგრძე? 
             ballColor = LIME;
             // printf("qvemot davachire %f\n",ballPosition.y);
         }
         
-        // test (chemi)
+        // კლავიატურიდან ბრძანების მიცემის დროს დაიწერება შესაბამისი კოორდინატები 
         //----------------------------------------------------------------------------------
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_DOWN))
         {   
@@ -128,11 +132,11 @@ void UpdateGame(void)
             printf("//----------------------------------------------------------------------------------");
             printf("\n");
             
-            counter++;        
+            counter++; // რამდენი ნაბიჯი გააკეთა გველმა. მთვლელი        
         }
     
-    framesCounter++;
-    //printf("framesCounter = %d\n",framesCounter);
+    framesCounter++;   // რამდენჯერ იხატება ეკრანი წამში 
+    printf("framesCounter = %d\n",framesCounter);
 }
 
 void DrawGame(void)
