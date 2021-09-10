@@ -134,7 +134,6 @@ void UpdateGame(void)
     if (IsKeyDown(KEY_LEFT))
     {
         ballColor = RED;
-        // printf("IsKeyDown(KEY_LEFT) = %d \n",IsKeyDown(KEY_LEFT)); 
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = true; 
         zedaKlaviatura     = false;     
@@ -143,7 +142,6 @@ void UpdateGame(void)
     if (IsKeyDown(KEY_UP))
     {
         ballColor = MAGENTA;
-        // printf("IsKeyDown(KEY_UP) = %d \n",IsKeyDown(KEY_UP));
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = true;     
@@ -152,7 +150,6 @@ void UpdateGame(void)
     if (IsKeyDown(KEY_DOWN))
     {
         ballColor = LIME;
-        // printf("IsKeyDown(KEY_DOWN) = %d \n",IsKeyDown(KEY_DOWN));
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = false;     
@@ -204,16 +201,12 @@ void UpdateGame(void)
         ballPosition.x = 0;
     }
     
-    // ვაშლის ჭამა (პარამეტრები - ბეჭდვა)
+    // ვაშლის ჭამა
     //--------------------------------------------------------------------------------------
-    printf("ballRadius + vashliRadius = %f\n",ballRadius + vashliRadius);
-    printf("",);
+    Vector2 katetebiSheerteba = {abs(ballPosition.x - vashliPosition.x),abs(ballPosition.y - vashliPosition.y)};
+    float hipotenoza          = sqrt(pow(katetebiSheerteba.x,2) + pow(katetebiSheerteba.y,2));
     
-    
-    // ვაშლის ჭამა (დასახვეწია)
-    //--------------------------------------------------------------------------------------
-    if ((ballPosition.y == vashliPosition.y) && (abs(ballPosition.x - vashliPosition.x) <= (ballRadius + vashliRadius)) ||
-       (ballPosition.x == vashliPosition.x) && (abs(ballPosition.y - vashliPosition.y) <= (ballRadius + vashliRadius)))
+    if (hipotenoza <= (ballRadius + vashliRadius)) // ორ წერტილს შორის მანძილი, თავსა და ვაშლს შორის 
     {
         counter_vashlebi++;
         printf("counter_vashlebi = %d\n",counter_vashlebi);
@@ -221,8 +214,7 @@ void UpdateGame(void)
         VashliRandom(); // ვაშლი დავსვა ეკრანზე. ჭამის მერე. ახალ ადგილას გადასმა
     }
     
-    
-    /*
+    /* // ან რეილიბის ფუნქციით // CheckCollisionCircles()
     // Check collision between two circles // CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
     //--------------------------------------------------------------------------------------
     if (CheckCollisionCircles(ballPosition, ballRadius, vashliPosition, vashliRadius) == true)
@@ -241,6 +233,7 @@ void VashliRandom(void)
     //--------------------------------------------------------------------------------------
     vashliPosition.x = GetRandomValue(0,screenWidth);
     vashliPosition.y = GetRandomValue(0,screenHeight);
+    
     // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
 }
 

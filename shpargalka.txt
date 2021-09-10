@@ -198,6 +198,8 @@ cmd //c tree                                   (gnu bash tree windows)
 //----------------------------------------------------------------------------------
 ./BBC.exe                                      (To run a program in the current directory in bash, you put ./ in front of it.) 
 //----------------------------------------------------------------------------------
+
+
 ########## ################ ####################
 //----------------------------------------------------------------------------------
 unzip python-3.9.6-docs-pdf-a4.zip             (unzip ის გაკეთება)
@@ -287,7 +289,12 @@ git log --graph --pretty=oneline --abbrev-commit
 //----------------------------------------------------------------------------------
 
 
-
+########## Getting Python Shell To Work on Git Bash — Windows, Mac, Linux ####################
+//----------------------------------------------------------------------------------
+winpty python                             # Both of these commands will activate the Python shell.
+                                          # for 'winpty python' you can exit the IDLE using CTRL + Z or exit() 
+python -i                                 # Both of these commands will activate the Python shell.
+                                          # for 'python -i' you can exit with only exit()
 
 
 
