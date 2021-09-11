@@ -23,7 +23,7 @@ const  int screenHeight  = 450;
 
 static int framesCounter = 0;
 const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
-float      speed         = 1;    // ნაბიჯი წამში. სიჩქარე
+float      speed         = 2;    // ნაბიჯი წამში. სიჩქარე
 float      iqsi          = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
 
 int        counter       = 0;    // კლავიატურაზე რამდენჯერ მქონდა დაჭერილი წინ ქვემოთ მარჯვნივ მარცხნივ კლავიშები. მაგის მთვლელი 
@@ -74,7 +74,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     VashliRandom(); 
     
-    // ალგორითმი იმისთვის რომ არ დააჯდეს გველს თავზე პირდაპირ. ან ჰმ ეგეც შეიძლება ანუ გაუმართლა? 
+    // ალგორითმი იმისთვის რომ არ დააჯდეს გველს თავზე პირდაპირ ვაშლი. ან ჰმ ეგეც შეიძლება ანუ გაუმართლა? 
     //--------------------------------------------------------------------------------------
     // .... 
     
@@ -223,10 +223,9 @@ void UpdateGame(void)
         pause = !pause;
         printf("GAME PAUSED\n");        
     }
-    
     if (!pause)
     {
-        if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია
+        if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
         if (marcxenaKlaviatura == true) ballPosition.x -= speed;
         if (zedaKlaviatura == true)     ballPosition.y -= speed;
         if (qvedaKlaviatura == true)    ballPosition.y += speed;
@@ -234,12 +233,24 @@ void UpdateGame(void)
     
     // გველის თავის სიარული კედლებში (დასახვეწია გასვლა კედელში) <<< აქ ვარ
     //----------------------------------------------------------------------------------
-    int zero           = 0;
-    int MaxSqreenWidht = screenWidth; 
+    int zero           = 0;           // ჯერ არ ვიყენებ 
+    int MaxSqreenWidht = screenWidth; // ჯერ არ ვიყენებ 
     
-    if (ballPosition.x >= screenWidth)
+    if ((ballPosition.x - ballRadius) >= screenWidth)             // მარჯვნივ სიარული
     {
-        ballPosition.x = 0;
+        ballPosition.x = -ballRadius;
+    }
+    if ((ballPosition.x + ballRadius) <= 0 && marcxenaKlaviatura) // მარცხნივ სიარული
+    {
+        ballPosition.x = (screenWidth + ballRadius);
+    }
+    if ((ballPosition.y - ballRadius) >= screenHeight)            // ქვემოთ სიარული
+    {
+        ballPosition.y = -ballRadius;
+    }
+    if ((ballPosition.y + ballRadius) <= 0 && zedaKlaviatura)     // ზემოთ სიარული
+    {
+        ballPosition.y = (screenHeight + ballRadius);
     }
     
     // ვაშლის ჭამა
