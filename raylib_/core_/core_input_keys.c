@@ -93,13 +93,13 @@ int main(void)
         DrawGame();
     }
     
-    // tailPositions tracker 
+    // snake head position tracker 
     //--------------------------------------------------------------------------------------
-    // for (int i =0;i<counter;i++) 
-    // {
-    //     printf("vnaxot --- tailPositionsX[i] = %lf i = %d\n",tailPositionsX[i],i);
-    //     printf("vnaxot --- counter = %d\n",counter);
-    // }
+    for (int i =0;i<counter;i++) 
+    {
+        printf("vnaxot --- tailPositionsX[i] = %lf i = %d\n",tailPositionsX[i],i);
+        printf("vnaxot --- counter = %d\n",counter);
+    }
     
     // Size-related functions
     //----------------------------------------------------------------------------------
@@ -229,9 +229,16 @@ void UpdateGame(void)
         if (marcxenaKlaviatura == true) ballPosition.x -= speed;
         if (zedaKlaviatura == true)     ballPosition.y -= speed;
         if (qvedaKlaviatura == true)    ballPosition.y += speed;
+        
+        // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებში
+        //----------------------------------------------------------------------------------
+        tailPositionsX[counter] = ballPosition.x;
+        tailPositionsY[counter] = ballPosition.y;
+        
+        counter++;
     } 
     
-    // გველის თავის სიარული კედლებში (დასახვეწია გასვლა კედელში) <<< აქ ვარ
+    // გველის თავის სიარული კედლებში (დასახვეწია გასვლა კედელში) 
     //----------------------------------------------------------------------------------
     int zero           = 0;           // ჯერ არ ვიყენებ 
     int MaxSqreenWidht = screenWidth; // ჯერ არ ვიყენებ 
@@ -277,6 +284,12 @@ void UpdateGame(void)
         VashliRandom();
     }
     */
+}
+
+void tailDraw(void)
+{
+    // აქ ვარ <<<<<<<<<<
+    printf("counter_vashlebi = %d\n",counter_vashlebi);
 }
 
 

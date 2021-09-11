@@ -287,6 +287,20 @@ git lgb
 git log --graph --pretty=oneline --abbrev-commit
 ##
 //----------------------------------------------------------------------------------
+# Learn how to perform Git PUSH and PULL requests through GitHub Desktop and the Command-Line.
+https://www.datacamp.com/community/tutorials/git-push-pull (აქ შეგიძლია ნახე ტუტორიალი)
+
+# The git push command is used to transfer or push the commit, which is made on a local branch in your computer to a remote repository like GitHub. The command used # for pushing to GitHub is given below.
+
+git remote add origin 'your_url_name' (Add the URL copied, which is your remote repository to where your local content from your repository is pushed)
+
+# Push the code in your local repository to GitHub
+
+git push -u origin master (is used for pushing local content to GitHub.  '-u' flag is upstream,)
+                          (git push -u C_Raylib_Snake_os master)
+
+
+
 
 
 ########## Getting Python Shell To Work on Git Bash — Windows, Mac, Linux ####################
