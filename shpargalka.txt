@@ -28,6 +28,11 @@ q                 (quit)
 gcc -o core_input_keys.exe core_input_keys.c C:\\raylib\\raylib\\src\\raylib.rc.data  -std=c99 -Wall -IC:\\raylib\\raylib\\src -Iexternal -DPLATFORM_DESKTOP -ggdb -lraylib -lopengl32 -lgdi32 -lwinmm^C
 
 
+//-- Automatic build with makefile ----------------------------
+//----------------------------------------------------------------------------------
+gcc file1.c -o file1 (დააკომპილირებს და გააკეთებს ეგზე ფაილს)
+
+
 ########## Atom ##########
 //----------------------------------------------------------------------------------
 ctrl shift p     (შეგიძლია ნახო ექსთენშენები რაც გაქვს დაყენებული მაგალითად. აკრიფე Gpp და ამოგიგდებს რომ f5 ით უშვებ სის - GCC)
@@ -288,27 +293,46 @@ git log --graph --pretty=oneline --abbrev-commit
 ##
 //----------------------------------------------------------------------------------
 ############################################################################################# (მნიშვნელოვანია)
-# Learn how to perform Git PUSH and PULL requests through GitHub Desktop and the Command-Line.
+//----------------------------------------------------------------------------------
+// Learn how to perform Git PUSH and PULL requests through GitHub Desktop and the Command-Line
+//----------------------------------------------------------------------------------
 https://www.datacamp.com/community/tutorials/git-push-pull (აქ შეგიძლია ნახე ტუტორიალი)
 
-# The git push command is used to transfer or push the commit, which is made on a local branch in your computer to a remote repository like GitHub. The command used # for pushing to GitHub is given below.
 
+// The git push command is used to transfer or push the commit, which is made on a local branch in your computer to a remote repository like GitHub. The command used # for pushing to GitHub is given below.
+//----------------------------------------------------------------------------------
 git remote add origin 'your_url_name' (Add the URL copied, which is your remote repository to where your local content from your repository is pushed)
 
-# Push the code in your local repository to GitHub
+
+// Push the code in your local repository to GitHub
+//----------------------------------------------------------------------------------
 git push -u origin master (is used for pushing local content to GitHub.  '-u' flag is upstream,)
                           (git push -u C_Raylib_Snake_os master)
 
-# Pushing commits to a remote repository
-# A remote name, for example, origin
-# A branch name, for example, main
+// Pushing commits to a remote repository (ლოკალიდან რემოუთზე აფუშვა)
+// A remote name, for example, origin
+// A branch name, for example, main
+//----------------------------------------------------------------------------------
 git push  <REMOTENAME> <BRANCHNAME> 
 
-# PULL Request through Command Line
+
+// PULL Request through Command Line
+// -- -- -- -- -- -- -- -- -- -- -- --
+// The git pull command is a combination of git fetch which fetches the recent commits in the local repository and git merge, 
+// which will merge the branch from a remote to a local branch also 'remote_name' is the repository name and 'branch_name' is the name of the specific branch.
+//----------------------------------------------------------------------------------
+https://www.datacamp.com/community/tutorials/git-push-pull (შენს რეპოზიტორში შეგიძლია შეცვალო რამე. შემდეგ შექმნა ახალი ბრენჩი. დააკომიტო და აფუშო. შემდეგ შექმნა ფულ რექვესთი)
+(როცა ნებას მოქცემენ და დამერჯავ ცვლილებას, ბრენჩი რომელიც შექმნი ცვლილებისთის შეგიძლია წაშალო)
 
 
-# Cloning a repository
+// Cloning a repository
+//----------------------------------------------------------------------------------
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository (აქ შეგიძლია ნახე ტუტორიალი)
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY (Type git clone, and then paste the URL you copied earlier) (კითხვა მაქვს)
+
+// Connecting to GitHub with SSH 
+//----------------------------------------------------------------------------------
+
 
 ########## Getting Python Shell To Work on Git Bash — Windows, Mac, Linux ####################
 //----------------------------------------------------------------------------------
@@ -318,7 +342,7 @@ python -i                                 # Both of these commands will activate
                                           # for 'python -i' you can exit with only exit()
 
 
-# tamris chveneba #
+# tamris chveneba # aq var
 
 
 
