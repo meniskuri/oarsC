@@ -141,13 +141,15 @@ Alt key, then press the Tab key       (Moving between open windows and applicati
 matlab -nosplash -nodesktop -r "whathever" (მატლაბის გაშვება)
 
 
-######## ######## #########
+######## ######## ######### ბაშ 
 //----------------------------------------------------------------------------------
 cd                                    (path windows. path linux)
 cd ..
 cd ../.. 
 cd ~/Desktop
 pwd                                   (სად ხარ) 
+clear                                 (გაწმენდს ფანჯარას) 
+ctrl + l                              (ჩამოწევს ფანჯარას და ვითომ გაწმინდა)
 //----------------------------------------------------------------------------------
 echo "aq vinaxav teqsts" > text.txt   (ში ჩაიწერება ის რაც echo "" ში დავწერე)
 echo "aq vwer axal teqsts" > text.txt (თუ text.txt ში რამე ეწერა ეს ბრძანება წაშლის და თავიდან ახალ ტექსტს)
@@ -204,6 +206,7 @@ cmd //c tree                                   (gnu bash tree windows)
 //----------------------------------------------------------------------------------
 ./BBC.exe                                      (To run a program in the current directory in bash, you put ./ in front of it.) 
 //----------------------------------------------------------------------------------
+notepad shpargalka.txt &                       (txt ფაილის ან სხვა ტიპის ფაილების გახსნა with bash)
 
 
 ########## ################ ####################
