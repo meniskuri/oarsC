@@ -1,6 +1,3 @@
-BBC: BBC.c 
-     gcc BBC.c -o BBC 
-     gcc -S BBC.c 
-     gcc -c BBC.c
-     rm *.o *.s
-     ./BBC 
+arraysTest1: arraysTest1.c 
+     gcc arraysTest1.c -o arraysTest1 
+     ./arraysTest1

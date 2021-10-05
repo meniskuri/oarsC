@@ -39,7 +39,8 @@ Color ballColor          = DARKBLUE;
 float ballRadius         = 50.0;
 
 // Types and Structures Definition // შესაძლოა ჩავამატო
-typedef struct Snake { 
+typedef struct Snake 
+{ 
     Vector2 position;
     Vector2 size;
     Vector2 speed;
@@ -52,7 +53,8 @@ Color vashliColor        = RED;
 float vashliRadius       = 25.0;
 
 // Types and Structures Definition // შესაძლოა ჩავამატო
-typedef struct Food {    
+typedef struct Food 
+{    
     Vector2 position;
     Vector2 size;
     bool active;
@@ -156,7 +158,7 @@ void UpdateGame(void)
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = true;     
     }
-    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული 
+    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული // შესამცირებელია იფ ელსები ;)
     {
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 

@@ -1,0 +1,11 @@
+Shpargalka C - Kapana
+
+#### დასაწყისი ####
+
+
+
+
+#### Arrays ####
+
+int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
+

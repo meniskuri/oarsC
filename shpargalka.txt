@@ -439,9 +439,3 @@ python -i                                 # Both of these commands will activate
 
 
 # tamris chveneba # aq var
-
-
-
-# matanga.life 
-Nemoo1234
-Sabanika1

@@ -34,9 +34,9 @@ int main(void){
     int   n;
 
     printf("sheviyvanot klaviaturidan rame brzaneba: \n");
-    scanf("%d%f",&n,&a);
+    scanf("%d%f",&n,&a); // %lf >>>> for double
     b = n + a;
-    printf("n aris%d\na aris %f\nn+a = %f\n",n,a,b);
+    printf("n aris %d\na aris %f\nn+a = %f\n",n,a,b);
     
     int k     = 1;
     void *gio = &k;
