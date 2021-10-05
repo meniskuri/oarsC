@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "raylib.h"
+// #include "raylib.h"
 
 
 int main(){
@@ -24,7 +24,8 @@ int main(){
     printf("2 is 3 xarisxi %f\n", pow(2,3));
 
     //----------------------------------------------------------------------------------
-    printf("sheviyvanot klaviaturidan rame brzaneba: ");
+    printf("sheviyvanot klaviaturidan rame brzaneba: \n");
+    puts("puts -- vnaxot\n");
 
     char brzaneba[50];
     scanf("%s\n",&brzaneba);

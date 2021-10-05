@@ -4,3 +4,4 @@ a.exe
 bin/
 main.log
 *.o
+*.s

@@ -1,8 +1,101 @@
-############ shpargalka #############
+############ shpargalka ############# ######## ######## #########
 //----------------------------------------------------------------------------------
 
+########## C and C Raylib ######## ######## #########
+//-- Compilation is the translation of source code (the code we write) into object code (sequence of statements in machine language) by a compiler.
+// The compilation process has four different steps:
+// The preprocessing
+// The compiling
+// The assembling
+// The linking
+// დეტალურად იხილეთ ლინკი: https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052 
+//----------------------------------------------------------------------------------
+//-- როგორ იბილდება? 1.პრე კომპილაცია 2. კომპილაცია 3. ლინკინგი | ასემბლი
+//----------------------------------------------------------------------------------
+// The steps
+1. The preprocessor
+The output of this step will be stored in a file with a “.i” extension  
+>> gcc -E file1.c       (In order to stop the compilation right after this step, we can use the option “-E” with the gcc command on the source file, and press enter.)	
 
-########## GDB ##########  
+2. The compiler
+The compiler will take the preprocessed file and generate IR code (Intermediate Representation), so this will produce a “.s” file. 
+>> gcc -S file1.c       (We can stop after this step with the “-S” option on the gcc command, and press enter. and then >>>>>> cat file1.s)
+
+3. The assembler
+The assembler takes the IR code and transforms it into object code, that is code in machine language (i.e. binary). This will produce a file ending in “.o”.
+(IR code - Intermediate Representation >>>>>> https://en.wikipedia.org/wiki/Intermediate_representation)
+>> gcc -c file1.c        (We can stop the compilation process after this step by using the option “-c” with the gcc command, and pressing enter.)
+>> დაამზადებს ობჯექთ ფაილს. gcc file1.o >>>>>> დაამზადებს a.exe ფაილს
+
+4. The linker
+The linker creates the final executable, in binary, and can play two roles:
+  - linking all the source files together, that is all the other object codes in the project. For example, if I want to compile main.c with another file called         secondary.c and make them into one single program, this is the step where the object code of secondary.c (that is secondary.o) will be linked to the main.c
+    object code (main.o).
+  
+  - linking function calls with their definitions. The linker knows where to look for the function definitions in the static libraries or dynamic libraries. Static     libraries are “the result of the linker making copy of all used library functions to the executable file”, according to geeksforgeeks.org, and dynamic libraries     “don’t require the code to be copied, it is done by just placing the name of the library in the binary file”. Note that gcc uses by default dynamic libraries. In     our example this is when the linker will find the definition of our “puts” function, and link it.
+
+By default, after this fourth and last step, that is when you type the whole “gcc main.c” command without any options, the compiler will create an executable program called a.out, that we can run by typing “./a.out” in the command line.
+>> gcc file1.c -o file1             (We can also choose to create an executable program with the name we want, by adding the “-o”)
+>> gcc –Wall filename.c –o filename (The option -Wall enables all compiler’s warning messages. This option is recommended to generate better code.)
+
+//-- Automatic build with makefile ----------------------------
+//----------------------------------------------------------------------------------
+Tutorial: https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ (how to make simple Makefile)
+
+Let's start off with the following three files, hellomake.c, hellofunc.c, and hellomake.h, which would represent a typical main program, some functional code in a separate file, and an include file, respectively.
+
+hellomake.c hellofunc.c და compile this collection of code და hellomake.h და მიაბი და (რავი ვიმაიმუნე) :)
+
+Normally, you would compile this collection of code by executing the following command:
+>> gcc -o hellomake hellomake.c hellofunc.c -I.    (This compiles the two .c files and names the executable hellomake. The -I. is included so that gcc will look in the                                                                                                                      current directory (.) for the include file hellomake.h. Without a makefile)
+
+The simplest makefile you could create would look something like:
+Makefile 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< პირველი
+hellomake: hellomake.c hellofunc.c
+     gcc -o hellomake hellomake.c hellofunc.c -I.
+
+ make (ბრძანებით გაუშვებ ამ მეიკფაილს)
+
+
+One very important thing to note is that there is a tab before the gcc command in the makefile. There must be a tab at the beginning of any command, and make will not be happy if it's not there.
+
+
+In order to be a bit more efficient, let's try the following:
+Makefile 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეორე
+CC=gcc
+CFLAGS=-I.
+
+hellomake: hellomake.o hellofunc.o
+     $(CC) -o hellomake hellomake.o hellofunc.o
+
+
+Makefile 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მესამე
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: hellomake.o hellofunc.o 
+	$(CC) -o hellomake hellomake.o hellofunc.o 
+
+
+ 
+Makefile 4 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეოთხე 
+
+
+
+Makefile 5 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეხუთე 
+
+
+
+/*
+           აქ ვარ გაჭედილი      */
+
+
+
+########## GDB ###
 //----------------------------------------------------------------------------------
 //-- How to Debug C Program using gdb in 6 Simple Steps ----------------------------
 //----------------------------------------------------------------------------------
@@ -28,20 +121,19 @@ q                 (quit)
 gcc -o core_input_keys.exe core_input_keys.c C:\\raylib\\raylib\\src\\raylib.rc.data  -std=c99 -Wall -IC:\\raylib\\raylib\\src -Iexternal -DPLATFORM_DESKTOP -ggdb -lraylib -lopengl32 -lgdi32 -lwinmm^C
 
 
-//-- Automatic build with makefile ----------------------------
-//----------------------------------------------------------------------------------
-// როგორ იბილდება? 1.პრე კომპილაცია 2. კომპილაცია 3. ლინკინგი // ცალცალკე როგორ ვქნა თვითოეული ნაბიჯი? << გასაგეკეთებელი
-gcc file1.c -o file1 (დააკომპილირებს და გააკეთებს ეგზე ფაილს)
-
-
-########## Atom ##########
+########## Atom ########## ######## ######## #########
 //----------------------------------------------------------------------------------
 ctrl shift p     (შეგიძლია ნახო ექსთენშენები რაც გაქვს დაყენებული მაგალითად. აკრიფე Gpp და ამოგიგდებს რომ f5 ით უშვებ სის - GCC)
 f5               (compile C/C++)
 f6               (compiler GDB - GNU Project Debugger - მაგრამ გამოყენება ჯერ არ ვიცი)
 
 
-########## Cmd commands under Windows ##########
+########## Vim ########## ######## ######## #########
+//----------------------------------------------------------------------------------
+
+
+
+########## Cmd commands under Windows ########## ######## ######## #########
 //----------------------------------------------------------------------------------
 cmd command	Description
 Basics:
@@ -84,6 +176,10 @@ systeminfo	displays computer-specific properties and configurations
 telnet	        establish Telnet connection
 tftp	        transfer files to a TFTP server
 tracert	        trace routes similar to patchping
+
+ncpa.cpl        (opens --> networ connections)                         <<<<<<<<<<<<<----
+ipconfig/all    (in order to find your local DNS server address)       <<<<<<<<<<<<<------
+msconfig        (opems --> system configurations)                      <<<<<<<<<<<<<---
 //----------------------------------------------------------------------------------
 Files:
 attrib	        display file attributes
@@ -125,7 +221,7 @@ prompt	        change command prompt
 reg	        add/read/import/export registry entries
 
 
-########## KEYBOARD SHORTCUTS (windows 10) ####################
+########## KEYBOARD SHORTCUTS (windows 10) #################### ######## ######## #########
 //----------------------------------------------------------------------------------
 Ctrl+Esc                              (Start Start)
 Tab                                   (კლავიატურით დაძვრები ფანჯრებში. და ისრებით შეგიძლია იარო)
@@ -135,13 +231,13 @@ Ctrl and Tab                          (To move left to right between tabs in the
 Ctrl, Shift, and Tab                  (To move right to left between tabs in the currently selected window)
 Alt key, then press the Tab key       (Moving between open windows and applications) !! 
 
-
-######## ######## #########
+			
+######## ######## ######### ######## ######## #########
 //----------------------------------------------------------------------------------
 matlab -nosplash -nodesktop -r "whathever" (მატლაბის გაშვება)
+		
 
-
-######## ######## ######### ბაშ 
+######## ######## ######### ბაშ ######## ######## #########
 //----------------------------------------------------------------------------------
 cd                                    (path windows. path linux)
 cd ..
@@ -209,17 +305,12 @@ cmd //c tree                                   (gnu bash tree windows)
 notepad shpargalka.txt &                       (txt ფაილის ან სხვა ტიპის ფაილების გახსნა with bash)
 
 
-########## ################ ####################
+########## ################ #################### ######## ######## #########
 //----------------------------------------------------------------------------------
 unzip python-3.9.6-docs-pdf-a4.zip             (unzip ის გაკეთება)
 
 
-########## How to Compile C Program in Command Prompt? ####################
-//----------------------------------------------------------------------------------
-gcc -v                                         (Check if you have a compiler installed)
-
-
-########## GIT ####################
+########## GIT #################### ######## ######## #########
 //----------------------------------------------------------------------------------
 Ctrl+L                                         (To clear your screen)
 //----------------------------------------------------------------------------------
@@ -296,7 +387,7 @@ git lgb
 git log --graph --pretty=oneline --abbrev-commit
 ##
 //----------------------------------------------------------------------------------
-############################################################################################# (მნიშვნელოვანია)
+//-- (მნიშვნელოვანია)
 //----------------------------------------------------------------------------------
 // Learn how to perform Git PUSH and PULL requests through GitHub Desktop and the Command-Line
 //----------------------------------------------------------------------------------
@@ -339,7 +430,7 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY (Type git clone, and 
 //----------------------------------------------------------------------------------
 
 
-########## Getting Python Shell To Work on Git Bash — Windows, Mac, Linux ####################
+########## Getting Python Shell To Work on Git Bash — Windows, Mac, Linux #################### ######## ######## #########
 //----------------------------------------------------------------------------------
 winpty python                             # Both of these commands will activate the Python shell.
                                           # for 'winpty python' you can exit the IDLE using CTRL + Z or exit() 
@@ -351,4 +442,6 @@ python -i                                 # Both of these commands will activate
 
 
 
-
+# matanga.life 
+Nemoo1234
+Sabanika1
