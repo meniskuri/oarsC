@@ -65,9 +65,13 @@ int main(){
 int main()
 {
     char ucnauri,vin,movlena;
-    char gamortva = "Q";    // <<<< ===== 
+    char gamortva = "Q";    // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
     
-    int masiviIntebis[3] = {2,5,6};
+    int SIZE     = 3;
+    
+    printf("MasivIntsize = %d\n",SIZE);
+    
+    int masiviIntebis[3] = {2,5,6}; // რატო ატრაკებს? როცა 3 ს ვსვავ მუშაობს. მინდა ჩავსვა SIZE ბლიად 3 ის მაგივრად 
     
     printf("gamosvlistvis daweret -> J \n"); 
     
@@ -95,13 +99,15 @@ int main()
         
     }
     
-    // TEST  (უნდა დავამთავრო ეს უცილობლივ და გადავიდე შემდეგ თასქებზე)
+    // 
     //----------------------------------------------------------------------------------
-    printf("sizeof(masiviIntebis) = %d\n",sizeof(masiviIntebis));
+    printf("sizeof(masiviIntebis) = (bites)%d\n",sizeof(masiviIntebis));
     
-    for (int i = 0; i<= sizeof(masiviIntebis); i++) // sizeof() ბაიტების რაოდენობას აბრუნეს
+    for (int i = 0; i < (sizeof(masiviIntebis)/sizeof(masiviIntebis[0])); i++) // sizeof() ბაიტების რაოდენობას აბრუნეს
     {
         printf("masiviIntebis %d\n",masiviIntebis[i]);
+        
+        printf("memory read : "), show_int(masiviIntebis[i]); // memory read
     }
     
     
