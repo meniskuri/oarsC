@@ -30,46 +30,19 @@ void show_pointer(void *x)
      show_bytes((byte_pointer) &x, sizeof(void *));
 }
   
-void show_char(char x) // ახალი :) <<<<<<< შეიძლება არ იმუშაოს 
+void show_char(char x)       // ახალი :) <<<<<<< შეიძლება არ იმუშაოს 
 {
     show_bytes((byte_pointer) &x, sizeof(void *));
 }
 
-
-/*C - Program to compare two characters.*/
-/* // ტესტ // 
-#include<stdio.h>
-int main(){
-	char c1,c2;
-	char c3 = "m";
-      
-	printf("Enter two characters: ");
-	scanf("%c %c",&c1,&c2); //space b/w %c and %c
-    
-    
-    printf("C1 = %c\n",c1);
-    printf("C2 = %c\n",c2);
-    printf("C3 (with c) = %c\n",c3);
-	
-	if(c1==c3)
-		printf("Characters are equal.\n");
-	else
-		printf("Characters are not equal.\n");
-	
-	return 0;
-}
-*/
-
-
-
 int main()
 {
     char ucnauri,vin,movlena;
-    char gamortva = "Q";    // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
+    char gamortva = "Q";     // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
     
-    int SIZE     = 3;
+    static int SIZE     = 3; // უნდა გავარკვიო რატომ ვერ ვსვავ // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< გასარკვევია 
     
-    printf("MasivIntsize = %d\n",SIZE);
+    printf("MasivIntsize = %d\n",SIZE); // <<<
     
     int masiviIntebis[3] = {2,5,6}; // რატო ატრაკებს? როცა 3 ს ვსვავ მუშაობს. მინდა ჩავსვა SIZE ბლიად 3 ის მაგივრად 
     
@@ -96,21 +69,16 @@ int main()
         {
             printf("giorgi chkviania \n");
         }
-        
     }
     
-    // 
-    //----------------------------------------------------------------------------------
     printf("sizeof(masiviIntebis) = (bites)%d\n",sizeof(masiviIntebis));
     
     for (int i = 0; i < (sizeof(masiviIntebis)/sizeof(masiviIntebis[0])); i++) // sizeof() ბაიტების რაოდენობას აბრუნეს
     {
         printf("masiviIntebis %d\n",masiviIntebis[i]);
-        
-        printf("memory read : "), show_int(masiviIntebis[i]); // memory read
+        printf("memory read : "), show_int(masiviIntebis[i]); // memory read // დასახვეწია 
     }
-    
-    
+ 
     return 0;    
 }
 
