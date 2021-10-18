@@ -2,10 +2,25 @@ Shpargalka C - Kapana
 
 #### დასაწყისი ####
 
-
+C:\raylib\mingw\i686-w64-mingw32\include (ბიბლიოთეკები)
 
 
 #### Arrays ####
 
 int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
 
+#### ints 
+
+DATA TYPE	SIZE (IN BYTES)	           RANGE	      FORMAT SPECIFIER
+int	             4	         -2147483648 to 2147483647	     %d
+unsigned int	     4                     0 to 4294967295	     %u
+short	             2	              -32768 to 32767	             %hd
+unsigned short	     2	                   0 to 65535	             %hu
+long	             8	-9223372036854775808 to 9223372036854775807  %ld
+unsigned long	     8	                   0 to 18446744073709551615 %lu
+long long	     8	-9223372036854775808 to 9223372036854775807  %lld
+unsigned long long   8	                   0 to 18446744073709551615 %llu
+
+
+
+#### Malloc ####

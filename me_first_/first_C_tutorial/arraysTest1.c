@@ -35,12 +35,12 @@ void show_char(char x)       // ახალი :) <<<<<<< შეიძლებ
     show_bytes((byte_pointer) &x, sizeof(void *));
 }
 
+static int SIZE = 3; // უნდა გავარკვიო რატომ ვერ ვსვავ // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< გასარკვევია / malloc() - ით უნდა ვცადო 
+
 int main()
 {
     char ucnauri,vin,movlena;
-    char gamortva = "Q";     // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
-    
-    static int SIZE     = 3; // უნდა გავარკვიო რატომ ვერ ვსვავ // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< გასარკვევია 
+    char gamortva  = "Q";     // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
     
     printf("MasivIntsize = %d\n",SIZE); // <<<
     
