@@ -1,7 +1,7 @@
 // first malloc exampl
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // სწორია :)) 
 
 int main () {
    char *str;

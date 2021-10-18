@@ -44,7 +44,7 @@ int main()
     
     printf("MasivIntsize = %d\n",SIZE); // <<<
     
-    int masiviIntebis[3] = {2,5,6}; // რატო ატრაკებს? როცა 3 ს ვსვავ მუშაობს. მინდა ჩავსვა SIZE ბლიად 3 ის მაგივრად 
+    int masiviIntebis[3] = {2,5,6}; // SIZE
     
     printf("gamosvlistvis daweret -> J \n"); 
     
