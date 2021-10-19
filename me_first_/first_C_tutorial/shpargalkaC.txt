@@ -9,7 +9,12 @@ C:\raylib\mingw\i686-w64-mingw32\include (ბიბლიოთეკები)
 
 int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
 
-#### ints 
+
+
+#### Strings ####
+
+
+#### ints ####
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 DATA TYPE	SIZE (IN BYTES)	           RANGE	      FORMAT SPECIFIER
 int	             4	         -2147483648 to 2147483647	     %d
@@ -18,8 +23,8 @@ short	             2	              -32768 to 32767	             %hd
 unsigned short	     2	                   0 to 65535	             %hu
 long	             8	-9223372036854775808 to 9223372036854775807  %ld
 unsigned long	     8	                   0 to 18446744073709551615 %lu
-long long	     8	-9223372036854775808 to 9223372036854775807  %lld
-unsigned long long   8	                   0 to 18446744073709551615 %llu
+long long	     8	-9223372036854775808 to 9223372036854775807 |%lld
+unsigned long long   8	                   0 to 18446744073709551615|%llu
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -49,8 +54,65 @@ n	     Nothing printed.
                            will write a single % to the stream.
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-
 #### Malloc ####
 
 
+### Pointer ####
 
+                           Adress of variable 
+/*
+int  var1;
+   char var2[10];
+
+   printf("Address of var1 variable: %x\n", &var1  );
+   printf("Address of var2 variable: %x\n", &var2  );
+*/
+
+                         What are Pointers?
+            (hexadecimal number that represents a memory address)
+
+A pointer is a variable whose value is the address of another variable, i.e., direct address of the memory location. Like any variable or constant, you must declare a pointer before using it to store any variable address. The general form of a pointer variable declaration is −
+
+type *var_name;
+
+Here, type is the pointer's base type; it must be a valid C data type and var-name is the name of the pointer variable. The asterisk * used to declare a pointer is the same asterisk used for multiplication. However, in this statement the asterisk is being used to designate a variable as a pointer. Take a look at some of the valid pointer declarations −
+
+int    *ip;    /* pointer to an integer */
+double *dp;    /* pointer to a double */
+float  *fp;    /* pointer to a float */
+char   *ch     /* pointer to a character */
+
+The actual data type of the value of all pointers, whether integer, float, character, or otherwise, is the same, a long hexadecimal number that represents a memory address. The only difference between pointers of different data types is the data type of the variable or constant that the pointer points to.
+
+
+                     How to Use Pointers?
+
+There are a few important operations, which we will do with the help of pointers very frequently. (a) We define a pointer variable, (b) assign the address of a variable to a pointer and (c) finally access the value at the address available in the pointer variable. This is done by using unary operator * that returns the value of the variable located at the address specified by its operand. The following example makes use of these operations −
+
+/*
+#include <stdio.h>
+
+int main () {
+
+   int  var = 20;   /* actual variable declaration */
+   int  *ip;        /* pointer variable declaration */
+
+   ip = &var;  /* store address of var in pointer variable*/
+
+   printf("Address of var variable: %x\n", &var  );
+
+   /* address stored in pointer variable */
+   printf("Address stored in ip variable: %x\n", ip );
+
+   /* access the value using the pointer */
+   printf("Value of *ip variable: %d\n", *ip );
+
+   return 0;
+}
+*/
+
+When the above code is compiled and executed, it produces the following result −
+
+Address of var variable: bffd8b3c
+Address stored in ip variable: bffd8b3c
+Value of *ip variable: 20

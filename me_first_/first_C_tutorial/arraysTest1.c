@@ -15,6 +15,7 @@ void show_bytes(byte_pointer start, int len)
      printf("\n");
 }
   
+  
 void show_int(int x)
 {
      show_bytes((byte_pointer) &x, sizeof(int));
@@ -30,26 +31,64 @@ void show_pointer(void *x)
      show_bytes((byte_pointer) &x, sizeof(void *));
 }
   
-void show_char(char x)       // ახალი :) <<<<<<< შეიძლება არ იმუშაოს 
-{
-    show_bytes((byte_pointer) &x, sizeof(void *));
-}
 
-static int SIZE = 3; // უნდა გავარკვიო რატომ ვერ ვსვავ // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< გასარკვევია / malloc() - ით უნდა ვცადო 
 
 int main()
 {
+    int *SIZE        = 3; // malloc() - ით უნდა ვცადო 
+    
+    // TESTING malloc ||||||||||||||||||||||||||||||||||||||||||||||
+    int array_length = 1;
+    int *array       = (int*) malloc(array_length * sizeof(int));
+    
+    printf("array = %d\n",*array); //  *13241440 and 14043048
+    printf("sizeof = %d\n",sizeof(*array));
+    
+    // from code > firstMalloc.c 
+    char *str;
+      // Initial memory allocation 
+    str = (char *) malloc(21);
+    strcpy(str, "abastumaniobservatory");
+    printf("String = %s,  Address = %u\n", str, str);
+      // Reallocating memory 
+    str = (char *) realloc(str, 25);
+    strcat(str, ".com");
+    printf("String = %s,  Address = %u\n", str, str);
+
+    free(str);
+    
+    // pointers ||||||||||||||||||||||||||||||||||||||||||||||
+    int  var1;
+    char var2[10];
+
+    printf("Address of var1 variable: %x\n", &var1);
+    printf("Address of var2 variable: %x\n", &var2);
+    
+    int *var_pointer1; // pointer ის შექმნა  / pointer variable declaration /
+    var_pointer1 = SIZE;
+    // printf("Value of *var-pointer1 variable: %d\n", *var_pointer1);
+    
+    
+    
+    // >>>>>> 
+    
     char ucnauri,vin,movlena;
-    char gamortva  = "Q";     // <<<< ===== ეს სიმბოლო გადადის J ში. ვნახო ცხრილი 
+    char gamortva  = "Q";    // <<<<< აქ რა ხდება?    
+    // ეს მეცვლება სულ ))))  ესეთ ვორნინგს მიწერს: 
+    //  warning: initialization of 'char' from 'char *' makes integer
+    //  from pointer without a cast [-Wint-conversion]
+    //  char gamortva  = "Q";     // <<<< =====  01;35m^~~
     
-    printf("MasivIntsize = %d\n",SIZE); // <<<
+    // printf("MasivIntsize = %d\n",SIZE); // <<<
     
-    int masiviIntebis[3] = {2,5,6}; // SIZE
+    int masiviIntebis[3] = {2,5,6}; // SIZE pointer ითაც ვერ ჩავსვი 
     
     printf("gamosvlistvis daweret -> J \n"); 
     
     while(1)
     {
+        printf("while\n");
+        
         printf("enter => 'ucnauri', 'vin' da 'movlena'");
         scanf("%c%c%c",&ucnauri,&vin,&movlena); 
     
@@ -81,4 +120,7 @@ int main()
  
     return 0;    
 }
+
+
+
 
