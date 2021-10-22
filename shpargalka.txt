@@ -184,6 +184,9 @@ find	        find files
 hostname	display host name
 pause	        pauses the execution of a batch file and shows a message
 runas	        start a program as another user
+
+systeminfo      a long list of information about your computer
+
 shutdown	shutdown the computer
 sort	        sort the screen output
 start	        start an own window to execute a program or command

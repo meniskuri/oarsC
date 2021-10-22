@@ -6,17 +6,25 @@ C does not hide the complexity and the capabilities of
 the machine underneath. You have a lot of power,
 once you know what you can do.
 
-
-
 #### დასაწყისი ####
 
 C:\raylib\mingw\i686-w64-mingw32\include (ბიბლიოთეკები)
 
+                   CHAPTER 1: A Tutorial Introduction
+
+1.1 Getting Started
+Now for some explanations about the program itself.
+ A C program, whatever its size, consists of functions and variables.
+
+ A function contains statements that specify the computing operations to be done, and variables store values used during the computation.
+
+ C functions are like the subroutines and functions of Fortran or the procedures and functions of Pascal. 
+ 
+ Our example is a function named main. Normally you are at liberty to give functions whatever names you like, but “main” is special—your program begins executing at the beginning of main. This means that every program must have a main somewhere.
 
 
-
-
-
+1.2 Variables and Arithmetic Expressions
+1.3 The for statement 
 
 
 
@@ -37,7 +45,7 @@ int	             4	         -2147483648 to 2147483647	     %d
 unsigned int	     4                     0 to 4294967295	     %u
 short	             2	              -32768 to 32767	             %hd
 unsigned short	     2	                   0 to 65535	             %hu
-long	             8	-9223372036854775808 to 9223372036854775807  %ld
+long	             4	-9223372036854775808 to 9223372036854775807  %ld
 unsigned long	     8	                   0 to 18446744073709551615 %lu
 long long	     8	-9223372036854775808 to 9223372036854775807 |%lld
 unsigned long long   8	                   0 to 18446744073709551615|%llu
@@ -71,7 +79,7 @@ n	     Nothing printed.
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-#### Arrays #### (https://www.simplilearn.com/tutorials/c-tutorial/array-in-c)
+#### Arrays #### (https://www.simplilearn.com/tutorials/c-tutorial/array-in-c) << გადავხედო 
 
 int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
 
@@ -136,9 +144,9 @@ type *var_name;
 
 Here, type is the pointer's base type; it must be a valid C data type and var-name is the name of the pointer variable. The asterisk * used to declare a pointer is the same asterisk used for multiplication. However, in this statement the asterisk is being used to designate a variable as a pointer. Take a look at some of the valid pointer declarations −
 
-int    *ip;    /* pointer to an integer */
-double *dp;    /* pointer to a double */
-float  *fp;    /* pointer to a float */
+int    *ip;    /* pointer to an integer  */
+double *dp;    /* pointer to a double    */
+float  *fp;    /* pointer to a float     */
 char   *ch     /* pointer to a character */
 
 The actual data type of the value of all pointers, whether integer, float, character, or otherwise, is the same, a long hexadecimal number that represents a memory address. The only difference between pointers of different data types is the data type of the variable or constant that the pointer points to.
