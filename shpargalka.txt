@@ -211,6 +211,8 @@ telnet	        establish Telnet connection
 tftp	        transfer files to a TFTP server
 tracert	        trace routes similar to patchping
 
+netsh wlan show profile UTG key=clear <------------(UTG ს პაროლს ნახავ)     
+
 ncpa.cpl        (opens --> networ connections)                         <<<<<<<<<<<<<----
 ipconfig/all    (in order to find your local DNS server address)       <<<<<<<<<<<<<------
 msconfig        (opems --> system configurations)                      <<<<<<<<<<<<<---
@@ -317,6 +319,7 @@ ls                                    (ლინუქსზე- სადაც
 ls > output.txt                       (ფოლდერში სადაც ხარ. ნახავს სიას და ჩაწერს output.txt ში)
 ls -t                                 (ფაილების დროის მიხედვით სორტირება) 
 ls -a                                 (all)
+ls -al filename                       (ნახავ მეხსიერებას და როდის არის შექმნილი)
 //----------------------------------------------------------------------------------
 mkdir 1 2                             (შექმნის 1 და 2 ფოლდერს)
 mkdir -p gio1/gio2                    (შექმნის ჩაშენებულ ფოლდერებს)

@@ -1,17 +1,33 @@
-Shpargalka C - Kapana
+Shpargalka C - KapanaC
+
+C “wears well as one’s experience with it grows.”
+
+C does not hide the complexity and the capabilities of
+the machine underneath. You have a lot of power,
+once you know what you can do.
+
+
 
 #### დასაწყისი ####
 
 C:\raylib\mingw\i686-w64-mingw32\include (ბიბლიოთეკები)
 
 
-#### Arrays ####
-
-int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
 
 
 
-#### Strings ####
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### ints ####
@@ -54,10 +70,53 @@ n	     Nothing printed.
                            will write a single % to the stream.
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-#### Malloc ####
+
+#### Arrays #### (https://www.simplilearn.com/tutorials/c-tutorial/array-in-c)
+
+int masiviIntebis[] = {2,5,6}; // ესე იქმნება ინტების მასივი 
+
+Array in C can be defined as a method of clubbing multiple entities of similar type into a larger group. These entities or elements can be of int, float, char, or double data type or can be of user-defined data types too like structures. However, in order to be stored together in a single array, all the elements should be of the same data type.  The elements are stored from left to right with the left-most index being the 0th index and the rightmost index being the (n-1) index. 
+
+Array  in C are of two types; Single dimensional arrays and Multidimensional arrays.
+
+Single Dimensional Arrays: 
+Single dimensional array or 1-D array is the simplest form of arrays that can be found in C. This type of array consists of elements of similar types and these elements can be accessed through their indices.
+
+                    array[1] -> 4
+                    ints array -> |1|4|19| | | | | | | | | | | | | | | 
+                    Indices        0 1 2  3 4 
+
+Multi-dimensional Arrays: 
+The most common type of multi-dimensional array that is used in the C language is a 2-D array. However, the number of dimensions can be more than 2 depending upon the compiler of the user’s system. These arrays consist of elements that are array themselves.
+
+                               columns 1,2,3     
+                                  _ _ _ _ _ _  
+                          row1-> |_|_|_|_|_|_|
+                          row2-> |_|_|_|_|_|_| array1
+                          row3-> |_|_|_|_|_|_|
+                                  _ _ _ _ _ _  
+                              -> |_|_|_|_|_|_|
+                              -> |_|_|_|_|_|_| array2     3D array
+                              -> |_|_|_|_|_|_|
+                                  _ _ _ _ _ _  
+                              -> |_|_|_|_|_|_|
+                              -> |_|_|_|_|_|_| array3
+                              -> |_|_|_|_|_|_|
+    
+                          Why Do We Need Arrays?
+                Declaration and Initialization of Array in C
+
+  Array Declaration by Specifying the Size
 
 
-### Pointer ####
+
+
+#### Strings ####
+
+
+
+
+### Pointer #### (https://www.tutorialspoint.com/cprogramming/c_pointers.htm)
 
                            Adress of variable 
 /*
@@ -116,3 +175,13 @@ When the above code is compiled and executed, it produces the following result �
 Address of var variable: bffd8b3c
 Address stored in ip variable: bffd8b3c
 Value of *ip variable: 20
+
+
+
+
+#### Malloc ####
+
+
+
+
+

@@ -1,4 +1,19 @@
 //Arrays - TEST
+
+/*
+მიზანი ამ კოდის? 
+
+მიზანი:
+
+რას უნდა აკეთებდეს? რეების გამოყენებით? 
+
+როგორ უნდა მთავრდებოდეს?
+
+ ... 
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,24 +29,18 @@ void show_bytes(byte_pointer start, int len)
            printf(" %.2x", start[i]);
      printf("\n");
 }
-  
-  
 void show_int(int x)
 {
      show_bytes((byte_pointer) &x, sizeof(int));
 }
-  
 void show_float(double x) 
 {
      show_bytes((byte_pointer) &x, sizeof(double));
 }
-  
 void show_pointer(void *x) 
 {
      show_bytes((byte_pointer) &x, sizeof(void *));
 }
-  
-
 
 int main()
 {
@@ -41,7 +50,7 @@ int main()
     int array_length = 1;
     int *array       = (int*) malloc(array_length * sizeof(int));
     
-    printf("array = %d\n",*array); //  *13241440 and 14043048
+    printf("array = %d\n",*array);
     printf("sizeof = %d\n",sizeof(*array));
     
     // from code > firstMalloc.c 
@@ -66,14 +75,14 @@ int main()
     
     int *var_pointer1; // pointer ის შექმნა  / pointer variable declaration /
     var_pointer1 = SIZE;
-    // printf("Value of *var-pointer1 variable: %d\n", *var_pointer1);
+    printf("Value of *var-pointer1 variable: %d\n", *var_pointer1);
     
     
     
-    // >>>>>> 
+    // arrays ||||||||||||||||||||||||||||||||||||||||||||||
     
     char ucnauri,vin,movlena;
-    char gamortva  = "Q";    // <<<<< აქ რა ხდება?    
+    char gamortva  = "Q";    // <<<<< აქ რა ხდება?    გადასაკეთებელი მაქვს
     // ეს მეცვლება სულ ))))  ესეთ ვორნინგს მიწერს: 
     //  warning: initialization of 'char' from 'char *' makes integer
     //  from pointer without a cast [-Wint-conversion]
@@ -81,7 +90,7 @@ int main()
     
     // printf("MasivIntsize = %d\n",SIZE); // <<<
     
-    int masiviIntebis[3] = {2,5,6}; // SIZE pointer ითაც ვერ ჩავსვი 
+    int masiviIntebis[3] = {3,6,9}; // SIZE pointer ითაც ვერ ჩავსვი 
     
     printf("gamosvlistvis daweret -> J \n"); 
     
