@@ -44,7 +44,8 @@ void show_pointer(void *x)
 
 int main()
 {
-    int *SIZE        = 3; // malloc() - ით უნდა ვცადო 
+    int *SIZE     = 3; // malloc() - ით უნდა ვცადო 
+    char* gamortva = "G"; // ეს არ მომწონს მაინც/ ჩარის მინიჭება/ 
     
     // TESTING malloc ||||||||||||||||||||||||||||||||||||||||||||||
     int array_length = 1;
@@ -75,22 +76,16 @@ int main()
     
     int *var_pointer1; // pointer ის შექმნა  / pointer variable declaration /
     var_pointer1 = SIZE;
-    printf("Value of *var-pointer1 variable: %d\n", *var_pointer1);
+    // printf("Value of *var-pointer1 variable: %d\n", *var_pointer1);
     
     
     
     // arrays ||||||||||||||||||||||||||||||||||||||||||||||
     
     char ucnauri,vin,movlena;
-    char gamortva  = "Q";    // <<<<< აქ რა ხდება?    გადასაკეთებელი მაქვს
-    // ეს მეცვლება სულ ))))  ესეთ ვორნინგს მიწერს: 
-    //  warning: initialization of 'char' from 'char *' makes integer
-    //  from pointer without a cast [-Wint-conversion]
-    //  char gamortva  = "Q";     // <<<< =====  01;35m^~~
-    
-    // printf("MasivIntsize = %d\n",SIZE); // <<<
-    
-    int masiviIntebis[3] = {3,6,9}; // SIZE pointer ითაც ვერ ჩავსვი 
+    const int sami = 3;
+    int masiviIntebis[sami];
+    // masiviIntebis[3] = {3,6,9}; // SIZE pointer ითაც ვერ ჩავსვი 
     
     printf("gamosvlistvis daweret -> J \n"); 
     
@@ -131,5 +126,5 @@ int main()
 }
 
 
-
+// დასალაგებელია
 

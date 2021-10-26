@@ -1,6 +1,7 @@
 // print Fahrenheit-Celsius table
 
 # include<stdio.h>
+# include<string.h>
 
 int main()
 {   /* print Fahrenheit-Celsius table
@@ -12,13 +13,25 @@ int main()
     
     int threedim[5][10][4];
     
-    int zedalimitiT = 300;
-    int bijiT       =  20;
-    int dasawyisiT  =   0;
+    #define zedalimitiT 300
+    #define bijiT 20
+    #define dasawyisiT 0
     
-    int counter     =   0;
+    int counter    = 0;
+    
+    float shesamowmebeli[300];
     
     float chasaweri;
+    
+    const int SIZE = 5; // const ები ყოველთვის დიდი ასოებით/ define -იც
+    #define SIZE2 9
+    int fasebi[SIZE2];
+    fasebi[0] = 1;
+    
+    printf("sizeof(fasebi) %d\n",sizeof(fasebi)/sizeof(fasebi[0]));
+    printf("fasebi[0] = %d\n",fasebi[0]);
+    printf("address fasebi[0] = %p\n",&fasebi[0]);
+    printf("address fasebi[0] = %x\n",&fasebi[0]);
     
     printf("######################\n");
     // @D arr
@@ -31,18 +44,24 @@ int main()
             F = j;
             C = 5.0 * (F - 32.0) / 9.0;
      
-            k ? printf("%3d %3.3f\n",j,chasaweri = C) : printf("%3d %3.3f\n",j,chasaweri = F); // ესეც არ მომწონს 
-            // k ? chasaweri = C : chasaweri = F; // ესე რატპ არ გამოდის?
-            // k ? eval("chasaweri = C") : eval("chasaweri = F");
+            // k ? printf("%3d %3.3f\n",j,chasaweri = C) : printf("%3d %3.3f\n",j,chasaweri = F); // ესეც არ მომწონს 
+            
+            chasaweri = (k == 1)? C : F;
             
             arrCF[k][counter] = chasaweri; 
-        
+            
+            printf("arrCF[%d][%2d] = %7.3f", k, counter, arrCF[k][counter]);
+            k ? printf(" - Celsius\n") : printf(" - Fahrenheit\n");
+            
             counter++;
         }
     }    
     
-    
-    
+    // char gamortva[] = "G";
+    // ან 
+    char* gamortva = "G";
+    printf("G = %s\n",gamortva);
+   
     
     printf("######################\n");
     printf("sizeof(arrCF) aris %d\n",sizeof(arrCF)/sizeof(arrCF[0][0]));
@@ -50,21 +69,12 @@ int main()
     
     
     printf("######################\n");
-    float cxra = 9;
-    float xuti = 5;
-    float ganayofi;
+    // პატარა მაგალითი პოინტერებზე / შესვენება 5 წუთი
+    printf("%lu\n",*arrCF);
     
-    ganayofi = xuti / cxra;
-    printf("ganayofi %f\n",ganayofi);
-  
-    printf("######################\n");
-    int ati = 5;
-    int ori = 9;
-    int ganayofi2;
-    
-    ganayofi2 = ati / ori;
-    printf("ganayofi2 int 5 / int 9 ze aris %d\n",ganayofi2);
-    
+    int TEST[3] = {1,2,3};
+    printf("%u\n", *(TEST + 3)); //*TEST არის მასივის პირველი ელემენტის პოინტერი
+     
     
     return 0;
 }

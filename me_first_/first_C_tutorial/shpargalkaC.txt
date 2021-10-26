@@ -24,7 +24,14 @@ Now for some explanations about the program itself.
 
 
 1.2 Variables and Arithmetic Expressions
+
+Ternary Operator in C Explained -> (https://www.freecodecamp.org/news/c-ternary-operator/)
+
 1.3 The for statement 
+1.4 Symbolic constants 
+1.5 Character input and output
+
+
 
 
 
@@ -120,6 +127,22 @@ The most common type of multi-dimensional array that is used in the C language i
 
 
 #### Strings ####
+In C, strings are one special kind of array: a string is
+an array of char values:
+
+char name[7];
+char name[7] = { 'F', 'l', 'a', 'v', 'i', 'o' };
+ჯობია ციკლით შეავსოთ
+
+#include <string.h>
+
+And once you do that, you have access to:
+
+strcpy()  // to copy a string over another string
+strcat()  // to append a string to another string
+strcmp()  // to compare two strings for equality
+strncmp() // to compare the first n characters of two strings
+strlen()  // to calculate the length of a string and many, many more.
 
 
 

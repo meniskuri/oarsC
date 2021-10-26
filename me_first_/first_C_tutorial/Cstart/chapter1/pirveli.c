@@ -100,6 +100,22 @@ int main()
         i++;
     } while (i < 10);
     
+    printf("######################\n");
+    float cxra = 9;
+    float xuti = 5;
+    float ganayofi;
+    
+    ganayofi = xuti / cxra;
+    printf("ganayofi %f\n",ganayofi);
+  
+    printf("######################\n");
+    int ati = 5;
+    int ori = 9;
+    int ganayofi2;
+    
+    ganayofi2 = ati / ori;
+    printf("ganayofi2 int 5 / int 9 ze aris %d\n",ganayofi2);
+    
     return 0;
 }
 
