@@ -10,6 +10,7 @@ int main()
 
     float C,F;
     float arrCF[2][300]; // 2D array minda mqondes
+    float meoremasivi[2][300]; // todo ერთი for ციკლით მინდა შევავსო
 
     int threedim[5][10][4];
 
@@ -33,38 +34,49 @@ int main()
     printf("address fasebi[0] = %p\n",&fasebi[0]);
     printf("address fasebi[0] = %x\n",&fasebi[0]);
 
+
     printf("######################\n");
-    // @D arr
-    // arrCF[0][counter] = {1,1};
-    // გადასაკეთებელი
-    for (int k = 0; k < 2; k++)
+    printf("F to C table with one for loop\n");
+    int counter2 = 0;
+    for (int i = dasawyisiT; i <= zedalimitiT; i = i + bijiT)
     {
-        for (int j = dasawyisiT; j <= zedalimitiT; j = j + bijiT)
-        {
-            F = j;
-            C = 5.0 * (F - 32.0) / 9.0;
+      //..
+      meoremasivi[0][counter2] = i;
+      meoremasivi[1][counter2] = 5.0 * (i - 32.0) / 9.0;
 
-            // k ? printf("%3d %3.3f\n",j,chasaweri = C) : printf("%3d %3.3f\n",j,chasaweri = F); // ესეც არ მომწონს
+      printf("F - %f\t",meoremasivi[0][counter2]);
+      printf("C - %f\n",meoremasivi[1][counter2]);
 
-            chasaweri = (k == 1)? C : F;
+      // printf("F meoremasivi[0][counter2] = %f\n",meoremasivi[0][counter2]);
+      // printf("C meoremasivi[1][counter2] = %f\n",meoremasivi[1][counter2]);
 
-            arrCF[k][counter] = chasaweri;
-
-            printf("arrCF[%d][%2d] = %7.3f", k, counter, arrCF[k][counter]);
-            k ? printf(" - Celsius\n") : printf(" - Fahrenheit\n");
-
-            counter++;
-        }
+      counter2++;
     }
 
-    // char gamortva[] = "G";
+    printf("######################\n");
+    printf("F to C table with two for loop\n");
+    for (int k = 0; k < 2; k++)
+    {
+      counter = 0;
+      for (int j = dasawyisiT; j <= zedalimitiT; j = j + bijiT)
+      {
+        F = j;
+        C = 5.0 * (F - 32.0) / 9.0;
 
-    // ან
-    // აქ >>
-    // todo ფორ () {}
+        chasaweri = (k == 1)? C : F;
+
+        arrCF[k][counter] = chasaweri;
+
+        printf("arrCF[%d][%2d] = %7.3f", k, counter, arrCF[k][counter]);
+        k ? printf(" - Celsius\n") : printf(" - Fahrenheit\n");
+
+        // printf("meoremasivi[%d][%2d] = %7.3f\n", k, counter, meoremasivi[k][counter]);
+
+        counter++; // პირველი ციკლის მერე counter უნდა გავანულო // და ამ ორმაგი ციკლითაც ნორმალურად ჩავწერო მასივი
+      }
+    }
 
 
-    //
     char* gamortva = "G";
     printf("G = %s\n",gamortva);
 
