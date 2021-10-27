@@ -1,7 +1,7 @@
 # todo
 ##### G.Kapanadze
 
-#### 26 October 2012 Abastumani Observatory
+#### 26 October 2021 Abastumani Observatory
 - დაწერე თუდუ
 - სია
 - ✨Magic ✨

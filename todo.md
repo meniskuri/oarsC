@@ -1,7 +1,7 @@
 # todo
 ##### G.Kapanadze
 
-#### 26 October 2012 Abastumani Observatory
+#### 26 October 2021 Abastumani Observatory
 
 1. Create todo markdown list
 2. Kernighan and Ritchie The C Programming Language Book
@@ -18,3 +18,5 @@
 - First Try - RUN CODE
 
 5. Reading Stuff for me (CPU architectures <==> ელექტრონიკა - გადასახედი)
+
+6. shpargalka C GeoEng - ების markdown ფორმატზე გადაყვანა
