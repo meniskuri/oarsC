@@ -41,38 +41,82 @@
 > - `gcc –Wall filename.c –o filename` (The option -Wall enables all compiler’s warning messages. This option is recommended to generate better code.)
 
 ##### Automatic build with makefile
-Tutorial: <https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/> (how to make simple Makefile)
+> Tutorial: <https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/> (how to make simple Makefile)
 
 Let's start off with the following three files, `hellomake.c, hellofunc.c, and hellomake.h`,
 which would represent a typical main program, some functional code in a separate file,
 and an include file, respectively.
 
-`hellomake.c` `hellofunc.c` და `compile this collection of code` და `hellomake.h` და მიაბი.
+```
+hellomake.c	hellofunc.c	hellomake.h
+```
+```
+// hellomake.c
+#include <hellomake.h>
+
+int main() {
+  // call a function in another file
+  myPrintHelloMake();
+
+  return(0);
+}
+```
+```
+// hellofunc.c
+#include <stdio.h>
+#include <hellomake.h>
+
+void myPrintHelloMake(void) {
+
+  printf("Hello makefiles!\n");
+
+  return;
+}
+```
+```
+// hellomake.h
+
+/*
+example include file
+*/
+
+void myPrintHelloMake(void);
+```
+
+> `hellomake.c` `hellofunc.c` და `compile this collection of code` და `hellomake.h` და მიაბი.
 
 Normally, you would compile this collection of code by executing the following command:
->> gcc -o hellomake hellomake.c hellofunc.c -I.    (This compiles the two .c files and names the executable hellomake. The -I. is included so that gcc will look in the                                                                                                                      current directory (.) for the include file hellomake.h. Without a makefile)
+> gcc -o hellomake hellomake.c hellofunc.c -I.    (This compiles the two .c files and names the executable hellomake. The -I. is included so that gcc will look in the current directory (.) for the include file hellomake.h. Without a makefile)
 
 The simplest makefile you could create would look something like:
-Makefile 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< პირველი
+###### Makefile 1
+```
 hellomake: hellomake.c hellofunc.c
      gcc -o hellomake hellomake.c hellofunc.c -I.
 
  make (ბრძანებით გაუშვებ ამ მეიკფაილს)
-
+```
 
 One very important thing to note is that there is a tab before the gcc command in the makefile. There must be a tab at the beginning of any command, and make will not be happy if it's not there.
 
 
 In order to be a bit more efficient, let's try the following:
-Makefile 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეორე
+###### Makefile 2
+```
 CC=gcc
 CFLAGS=-I.
 
 hellomake: hellomake.o hellofunc.o
      $(CC) -o hellomake hellomake.o hellofunc.o
+```
+> So now we've defined some constants CC and CFLAGS. It turns out these are special constants that communicate to make how we want to compile the files hellomake.c and hellofunc.c. In particular, the macro CC is the C compiler to use, and CFLAGS is the list of flags to pass to the compilation command. By putting the object files--hellomake.o and hellofunc.o--in the dependency list and in the rule, make knows it must first compile the .c versions individually, and then build the executable hellomake.
 
+> Using this form of makefile is sufficient for most small scale projects. However, there is one thing missing: dependency on the include files. If you were to make a change to hellomake.h, for example, make would not recompile the .c files, even though they needed to be. In order to fix this, we need to tell make that all .c files depend on certain .h files. We can do this by writing a simple rule and adding it to the makefile.
 
-Makefile 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მესამე
+- `აქ მოგიწევს ობჯექთ ფაილების შექმნა ხელით gcc -c filename.c -I.`
+
+###### Makefile 3
+```
 CC=gcc
 CFLAGS=-I.
 DEPS = hellomake.h
@@ -82,18 +126,26 @@ DEPS = hellomake.h
 
 hellomake: hellomake.o hellofunc.o
 	$(CC) -o hellomake hellomake.o hellofunc.o
+```
 
 
 
-Makefile 4 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეოთხე
 
 
 
-Makefile 5 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< მეხუთე
+###### Makefile 4
 
 
 
-/* აქ ვარ გაჭედილი */
+###### Makefile 5
+
+
+
+/* აქ ვარ გაჭედილი - ჩემს make ბრძანებას არ ესმის გარკვეული სიმბოლოები*/
+
+###### Makefile (სხვა მაგალითი)
+<https://makefiletutorial.com/> ტუტორიალი 2 (ვნახოთ)
+
 
 
 ##### Optimization and Options
@@ -132,6 +184,8 @@ ctrl shift p     (შეგიძლია ნახო ექსთენშე
 f5               (compile C/C++)
 f6               (compiler GDB - GNU Project Debugger - მაგრამ გამოყენება ჯერ არ ვიცი)
 ```
+- ctrl-alt-o
+
 #### Vim
 
 #### Cmd commands under Windows
