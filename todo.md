@@ -3,20 +3,21 @@
 
 #### 26 October 2021 Abastumani Observatory
 
-1. Create todo markdown list
+1. Create todo markdown list - (✨Magic✨)
 2. Kernighan and Ritchie The C Programming Language Book
 
 - Chapter 1.3 (reading and coding)
- - Code example names or important changes (მაგალითების შესრულებისას თუ კოდზე რამეს დავაკომიტებ)
+ - Book Chapter 1.3 (F to C table with one and two for loops - fahrCelstable.c) - (✨Magic✨)
 - Chapter 1.4 (reading and coding)
 - Chapter so on ...
 
 3. Makefile tutorial
-- Tutorial name
+- 3.1 (Tutorial: https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ how to make simple Makefile) - (✨Magic✨)
+- 3.2 ()
 
 4. start using aradani
 - First Try - RUN CODE
 
 5. Reading Stuff for me (CPU architectures <==> ელექტრონიკა - გადასახედი)
 
-6. shpargalka C GeoEng - ების markdown ფორმატზე გადაყვანა
+6. shpargalka C GeoEng - ების markdown ფორმატზე გადაყვანა - (✨Magic✨)
