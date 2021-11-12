@@ -12,7 +12,7 @@ int threedim[5][10][4];
 #define bijiT 20
 #define dasawyisiT 0
 
-int counter    = 0;
+int counter = 0;
 float shesamowmebeli[300];
 float chasaweri;
 
