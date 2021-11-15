@@ -13,19 +13,19 @@ Passwords must contain:
 #include <stdlib.h>
 #include <stdbool.h>
 
-int counter = 0;
 int counterPassword = 0;
+int counter         = 0;
+int counter2        = 0; // მეორე ვაილში. პაროლის გადამოწმებაზე სამი შემთხვევისთვის
 
-char brzaneba[20];
+char brzaneba[20]; // size ით შეიძლება ამათი გაკეთება
+char paroliganmeorebiti[20];
 
-bool amomgdebi1 = false;
 bool amomgdebaPirveliNulis = false; // პაროლის დამთავრების პირობა
-
-bool pirobadidi    = false;
-bool pirobapatara  = false;
-bool pirobacifri   = false;
-bool pirobasigrze  = false;
-bool pirobasimbolo = false;
+bool pirobadidi            = false;
+bool pirobapatara          = false;
+bool pirobacifri           = false;
+bool pirobasigrze          = false;
+bool pirobasimbolo         = false;
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
     printf(" - a minimum of 1 special character\n");
     printf(" - Passwords must be at least 6 characters in length, but can be much longer\n");
 
-    printf("Enter password (თქვი ! და გამოდი): \n");
+    printf("Enter password (თქვი cntrl C და გამოდი): \n");
 
     gets(brzaneba);
     counterPassword = 0;
@@ -56,14 +56,11 @@ int main()
       // თუ პაროლი 0 ის ტოლი არ არის. მაშინ/დავითვალოთ რამდენი სიმბოლოსგან შედგება
       if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
       {
-        //
-        // printf(" \n");
         counterPassword ++;
         // printf("პაროლის სიგრზე (counterPassword) is %d\n",counterPassword);
-        if (counterPassword < 6)
+
+        if (counterPassword >= 6)
         {
-          // printf("Passwords must be at least 6 characters in length\n");
-        } else {
           pirobasigrze = true;
         }
 
@@ -71,17 +68,7 @@ int main()
         // როცა მასივში იპოვა ნული
         // printf(" \n");
         // printf("ნულშიჩავერთე\n");
-        // if (counterPassword < 6) printf("Passwords must be at least 6 characters in length\n");
         amomgdebaPirveliNulis = true;
-      }
-
-      // ამოგდების პირობა // შესაცვლელია
-      if (brzaneba[i] == 33) // 33 >> ! (პაროლში თუ შეიყვანთ ! ამოვარდება)
-      {
-        amomgdebi1 = true;
-        printf(" \n");
-        printf("amomgdebi1 = true\n");
-        break; // 33 >> !
       }
 
       // upper case letter(s) [A-Z] 65-90
@@ -119,15 +106,46 @@ int main()
     printf("Special character: %d\n",pirobasimbolo);
     printf("Passwords must be at least 6 characters in length: %d\n",pirobasigrze);
 
+    // TODO: თუ პაროლი სწორია. განმეორებით მოგთხოვოს ჩაწერა.
+    // თუ ვერ ჩაწერ 3 ჯერ. თავიდან შეგყავს პაროლი. თუ შეიყვანე პაროლი მთავრდება. შეიძლება ფაილში ჩაწერაც
+    if (pirobadidi && pirobapatara && pirobacifri && pirobasimbolo && pirobasigrze)
+    {
+      //
+      printf(" \n");
+      printf("პირობები შესრულდა, შეიყვანეთ განმეორებით პაროლი\n");
+
+      while(true)
+      {
+        printf(" \n");
+        printf("Enter password for validation (თქვი cntrl C და გამოდი): \n");
+        gets(paroliganmeorebiti);
+
+        for (int j = 0; j <= sizeof(brzaneba); j++)
+        {
+          // to do ..
+          printf("paroliganmeorebiti %d parolimtavari %d\n", paroliganmeorebiti[j],brzaneba[j]);
+
+          if (brzaneba[j] != 0 && (brzaneba[j] == paroliganmeorebiti[j]))
+          {
+            printf("1 \n");
+          } else {
+            printf("0 \n");
+            break; // განმეორებითი პაროლის შეყვანის დროს თუ არ მოხდა დამთხვევა ამოაგდებს
+          }
+
+        } // შიდა ფორის დასასრული
+        counter2++; // ამომგდებებია გასაკეთებელი
+      } // შიდა ვაილის დასასრული
+    } // შიდა იფის დასასრული
+
     counter++; // რამდენჯერ მოხდა პაროლის შეყვანა (+ ! თუ ამასაც შეიყვან)
 
-    if (amomgdebi1 == true) break; // ! ზე ამოგდება
     amomgdebaPirveliNulis = false; // ფორის დამთავრების მერე. ახალი პაროლი შეგყავს. საჭიროა ამის გაფალსება.
-    pirobadidi    = false;
-    pirobapatara  = false;
-    pirobacifri   = false;
-    pirobasimbolo = false;
-    pirobasigrze  = false;
+    pirobadidi            = false;
+    pirobapatara          = false;
+    pirobacifri           = false;
+    pirobasimbolo         = false;
+    pirobasigrze          = false;
   } // ვაილის დამთავრება
 
   return 0;
