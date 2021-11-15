@@ -15,7 +15,8 @@ Passwords must contain:
 
 int counterPassword = 0;
 int counter         = 0;
-int counter2        = 0; // მეორე ვაილში. პაროლის გადამოწმებაზე სამი შემთხვევისთვის
+int counter2        = 0; // მეორე ვაილში. პაროლის გადამოწმებაზე სამი შემთხვევისთვის // ჯერ არ ვიყენებ
+int counterertebi   = 0;
 
 char brzaneba[20]; // size ით შეიძლება ამათი გაკეთება
 char paroliganmeorebiti[20];
@@ -26,6 +27,8 @@ bool pirobapatara          = false;
 bool pirobacifri           = false;
 bool pirobasigrze          = false;
 bool pirobasimbolo         = false;
+bool ganmeorebiti          = false;
+bool amomgdebisaboloo      = false;
 
 int main()
 {
@@ -97,6 +100,7 @@ int main()
       }
 
     } // ფორის დამთავრება
+
     printf(" \n");
     printf("პირობების შემოწმება: \n");
     printf(" \n");
@@ -128,15 +132,42 @@ int main()
           if (brzaneba[j] != 0 && (brzaneba[j] == paroliganmeorebiti[j]))
           {
             printf("1 \n");
+            ganmeorebiti = true;
+            counterertebi++;
           } else {
             printf("0 \n");
+            // პირობა რომ თუ ბოლო ნულია მაგ შემთხვევაში განმეორებითი არ გააფალსოს counterPassword
+            if (counterPassword == counterertebi)
+            {
+              ganmeorebiti = true;
+            } else {
+              ganmeorebiti = false;
+            }
+
             break; // განმეორებითი პაროლის შეყვანის დროს თუ არ მოხდა დამთხვევა ამოაგდებს
           }
 
         } // შიდა ფორის დასასრული
-        counter2++; // ამომგდებებია გასაკეთებელი
+
+        counter2++; // ამომგდებებია გასაკეთებელი // ჯერ ამას არ ვიყენებ
+
+        if (ganmeorebiti == true)
+        {
+
+          printf("You have strong password \n");
+          amomgdebisaboloo = true;
+          break; // წესით ამოაგდებს მეორე ვაილს
+
+        } else {
+          //
+          printf("Try again \n");
+        }
+
       } // შიდა ვაილის დასასრული
     } // შიდა იფის დასასრული
+
+    printf("The END \n");
+    if (amomgdebisaboloo == true) break;
 
     counter++; // რამდენჯერ მოხდა პაროლის შეყვანა (+ ! თუ ამასაც შეიყვან)
 
