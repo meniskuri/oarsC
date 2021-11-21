@@ -123,7 +123,7 @@ The most common type of multi-dimensional array that is used in the C language i
                               -> |_|_|_|_|_|_|
 
 ```
-- ჩასამატებელია კიდევ 
+- ჩასამატებელია კიდევ
 
 ### Strings
 In C, strings are one special kind of array: a string is
@@ -232,3 +232,19 @@ it produces the following result:
 
 
 ### Malloc
+
+
+### C File Handling
+tutorial: <https://www.programiz.com/c-programming/c-file-input-output>
+
+In this tutorial, you will learn about file handling in C. You will learn to handle standard I/O in C using `fprintf()`, `fscanf()`, `fread()`, `fwrite()`, `fseek()` `etc`. with the help of examples.
+
+A file is a container in computer storage devices used for storing data.
+
+In C, you can perform four major operations on files, either text or binary:
+- Creating a new file
+- Opening an existing file
+- Closing a file
+- Reading from and writing information to a file
+
+// ჯერ მაგალითს გავაკეთებ და რაც საჭირო იქნება ჩავწერ აქ

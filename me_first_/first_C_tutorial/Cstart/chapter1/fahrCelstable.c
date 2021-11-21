@@ -19,7 +19,7 @@ float chasaweri;
 const int SIZE = 5; // const ები ყოველთვის დიდი ასოებით/ define -იც
 #define SIZE2 9
 int fasebi[SIZE2];
-fasebi[0] = 1;
+// fasebi[0] = 1;
 
 int main()
 {   /* print Fahrenheit-Celsius table

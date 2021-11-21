@@ -228,8 +228,10 @@ gcc -o core_input_keys.exe core_input_keys.c C:\\raylib\\raylib\\src\\raylib.rc.
 ctrl shift p     (შეგიძლია ნახო ექსთენშენები რაც გაქვს დაყენებული მაგალითად. აკრიფე Gpp და ამოგიგდებს რომ f5 ით უშვებ სის - GCC)
 f5               (compile C/C++)
 f6               (compiler GDB - GNU Project Debugger - მაგრამ გამოყენება ჯერ არ ვიცი)
+cntrl g          (და შეიყვან რიცხვს რომელ ლაინზეც გინდა გადახტე კოდში)
 ```
 - ctrl-alt-o
+
 
 #### Vim
 
