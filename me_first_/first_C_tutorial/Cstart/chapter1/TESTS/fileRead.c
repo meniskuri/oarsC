@@ -5,20 +5,26 @@
 
 int main()
 {
-   int num;
-   FILE *fptr;
+  char nums[100];
+  FILE *fptr;
 
-   if ((fptr = fopen("program.txt","r")) == NULL){
-       printf("Error! opening file");
+  if ((fptr = fopen("program.txt","r")) == NULL)
+  {
+    printf("Error! opening file");
 
-       // Program exits if the file pointer returns NULL.
-       exit(1);
-   }
+    // Program exits if the file pointer returns NULL.
+    exit(1);
+  }
 
-   fscanf(fptr,"%d", &num);
+  for (int i = 0; i <= 100; i++)
+  {
+    //
+    fscanf(fptr,"%c", &nums[i]);
+    printf("Value of n=%c\n", nums[i]);
+    
+  } // არ უნდა იმუშაოს
 
-   printf("Value of n=%d", num);
-   fclose(fptr);
+  fclose(fptr);
 
-   return 0;
+  return 0;
 }

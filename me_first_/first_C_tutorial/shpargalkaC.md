@@ -247,4 +247,62 @@ In C, you can perform four major operations on files, either text or binary:
 - Closing a file
 - Reading from and writing information to a file
 
-// ჯერ მაგალითს გავაკეთებ და რაც საჭირო იქნება ჩავწერ აქ
+###### working with Files
+For reading and writing to a text file, we use the functions `fprintf()` and `fscanf()`.
+They are just the file versions of `printf()` and `scanf()`. The only difference is that `fprintf()` and `fscanf()` expects a pointer to the structure `FILE`.
+
+```
+// Example 1: Write to a text file
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int num;
+   FILE *fptr;
+
+   // use appropriate location if you are using MacOS or Linux
+   fptr = fopen("C:\\program.txt","w");
+
+   if(fptr == NULL)
+   {
+      printf("Error!");   
+      exit(1);             
+   }
+
+   printf("Enter num: ");
+   scanf("%d",&num);
+
+   fprintf(fptr,"%d",num);
+   fclose(fptr);
+
+   return 0;
+}
+```
+```
+// Example 2: Read from a text file
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int num;
+   FILE *fptr;
+
+   if ((fptr = fopen("C:\\program.txt","r")) == NULL){
+       printf("Error! opening file");
+
+       // Program exits if the file pointer returns NULL.
+       exit(1);
+   }
+
+   fscanf(fptr,"%d", &num);
+
+   printf("Value of n=%d", num);
+   fclose(fptr);
+
+   return 0;
+}
+```

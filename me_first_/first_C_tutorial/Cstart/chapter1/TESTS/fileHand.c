@@ -1,26 +1,26 @@
-// test file handling.
+// test file handling. ჩაწერა ფაილში
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
-   int num;
-   FILE *fptr;
+  int num;
+  FILE *fptr;
 
-   fptr = fopen("program.txt","w");
+  fptr = fopen("program.txt","w");
 
-   if(fptr == NULL) //
-   {
-      printf("Error!");
-      exit(1);
-   }
+  if(fptr == NULL) //
+  {
+    printf("Error!");
+    exit(1);
+  }
 
-   printf("Enter num: ");
-   scanf("%d",&num);
+  printf("Enter num: ");
+  scanf("%d",&num);
 
-   fprintf(fptr,"%d",num); // ჩაწერა 
-   fclose(fptr);
+  fprintf(fptr,"%d",num); // ჩაწერა
+  fclose(fptr);
 
-   return 0;
+  return 0;
 }
