@@ -19,9 +19,9 @@ int main()
   for (int i = 0; i <= 100; i++)
   {
     //
-    fscanf(fptr,"%c", &nums[i]);
+    fscanf(fptr,"%c", &nums[i]); // ამოკითხვა 
     printf("Value of n=%c\n", nums[i]);
-    
+
   } // არ უნდა იმუშაოს
 
   fclose(fptr);

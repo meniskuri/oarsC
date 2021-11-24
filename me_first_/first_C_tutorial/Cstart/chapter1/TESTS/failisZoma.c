@@ -13,10 +13,10 @@ long int findSize(char file_name[])
         return -1;
     }
 
-    fseek(fp, 0L, SEEK_END);
+    fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
 
     // calculating the size of the file
-    long int res = ftell(fp);
+    long int res = ftell(fp); // ftell()
 
     // closing the file
     fclose(fp);

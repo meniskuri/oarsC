@@ -1,11 +1,11 @@
 /*
 ############################################################################
 Passwords must contain:
- - a minimum of 1 lower case letter [a-z] - ASCII ()
- - a minimum of 1 upper case letter [A-Z] - ASCII ()
- - a minimum of 1 numeric character [0-9] - ASCII ()
- - a minimum of 1 special character: ~`!@#$%^&*()-_+={}[]|\;:"<>,./? - ASCII ()
- - Passwords must be at least 6 characters in length, but can be much longer
+- a minimum of 1 lower case letter [a-z] - ASCII ()
+- a minimum of 1 upper case letter [A-Z] - ASCII ()
+- a minimum of 1 numeric character [0-9] - ASCII ()
+- a minimum of 1 special character: ~`!@#$%^&*()-_+={}[]|\;:"<>,./? - ASCII ()
+- Passwords must be at least 6 characters in length, but can be much longer
 ############################################################################
 */
 
@@ -46,45 +46,8 @@ FILE *pointeraFailis;
 
 int main()
 {
-  /*
-  TODO:
-  შევამოწმო არის თუარა შესაბამისი ფაილი
-  თუ არის წავიკითხო და დავსვა კითხვა: გადავაწერო? თუ ჩავამატო ახალი პაროლი (თავისი აღწერით)?
-  აღწერის ჩაწერის ჩამატება (თუ ჩარებად ვწერ პაროლს?)
-  */
-
-  // ფაილ ჰენდლინგ ///////////////////////////////////////////////
-
-
-
-  // pointeraFailis = fopen("parolebisSacavi.txt","w");
-
-  if(pointeraFailis == NULL) //
-  {
-    printf("Error! FILE NOT FOUND! \n");
-    exit(1); // საერთოდ პროგრამას აჩერებს 
-  }
-
-  printf("Enter passwprd for file Write TESTING : ");
-
-  // gets(parolifailshi); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  // fgets(parolifailshi,"%d",num); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  // fclose(pointeraFailis);
-
-
-  // დავბეჭდო საჭირო ინფორმაციები
-  printf("\n");
-
-
-
-
-
-
+  // და საწყისი
   //////////////////////////////////////////////////////////////////
-
-
 
   while(true) // პირველი ვაილი
   {
@@ -146,7 +109,7 @@ int main()
 
       // a minimum of 1 special character: ~`!@#$%^&*()-_+={}[]|\;:"<>,./? 58-64 32-47 91-96 123-126 (32 Space)
       if (((brzaneba[i] >= 58 && brzaneba[i] <= 64) || (brzaneba[i] >= 32 && brzaneba[i] <= 47) || (brzaneba[i] >= 91 && brzaneba[i] <= 96) || (brzaneba[i] >= 123 && brzaneba[i] <= 126))
-       && amomgdebaPirveliNulis == false) // სიმბოლოების შედარება. მათი ასკი კოდები. :)
+      && amomgdebaPirveliNulis == false) // სიმბოლოების შედარება. მათი ასკი კოდები. :)
       {
         pirobasimbolo = true;
       }
@@ -163,25 +126,6 @@ int main()
     printf("Passwords must be at least 6 characters in length: %d\n",pirobasigrze);
 
     /////////////////////////////////////////////////////////////////////
-    // time output //////////////////////////////////////////////////////
-    char buf[LEN];
-    time_t curtime;
-    struct tm *loc_time;
-
-    //Getting current time of system
-    curtime = time (NULL);
-
-    // Converting current time to local time
-    loc_time = localtime (&curtime);
-
-    // Displaying date and time in standard format
-    // printf("%s", asctime (loc_time));
-
-    // strftime (buf, LEN, "Today is %A, %b %d.\n", loc_time);
-    // fputs (buf, stdout);
-    // strftime (buf, LEN, "Time is %I:%M %p.\n", loc_time);
-    // fputs (buf, stdout);
-    /////////////////////////////////////////////////////////////////////
 
     if (pirobadidi && pirobapatara && pirobacifri && pirobasimbolo && pirobasigrze)
     {
@@ -191,7 +135,7 @@ int main()
       while(true)
       {
         printf(" \n");
-        printf("Enter password for validation (თქვი cntrl C და გამოდი): \n");
+        printf("Enter password for validation (თქვი cntrl C და გამოდი - სულ 3 ცდა): \n");
         gets(paroliganmeorebiti);
         printf(" \n");
 
@@ -226,14 +170,10 @@ int main()
         {
           //
           printf("You have strong password \n");
-
           amomgdebisaboloo = true;
-
           break; // ამოაგდებს მეორე ვაილს
-
         } else if (ganmeorebiti == false && counter2 <= 2) {
-          //
-          printf("Try again. you have left %d try \n", 3 - counter2);
+          printf("Try again. დაგრჩა %d ცდა \n", 3 - counter2);
         } else {
           // თუ სამჯერ ვერ შეიყვანე. პირველ ვაილში გადაგაგდოს
           printf("თავიდან შეიყვანეთ მთავარი პაროლი \n");
@@ -244,8 +184,29 @@ int main()
       } // შიდა ვაილის დასასრული
     } // შიდა იფის დასასრული
 
+    // Time function /////////////////////////////////////////////////
+    char buf[LEN];
+    time_t curtime;
+    struct tm *loc_time;
+
+    //Getting current time of system
+    curtime = time (NULL);
+
+    // Converting current time to local time
+    loc_time = localtime (&curtime);
+
+    // Displaying date and time in standard format
+    // printf("%s", asctime (loc_time));
+
+    // strftime (buf, LEN, "Today is %A, %b %d.\n", loc_time);
+    // fputs (buf, stdout);
+    // strftime (buf, LEN, "Time is %I:%M %p.\n", loc_time);
+    // fputs (buf, stdout);
+
     // Displaying date and time in standard format
     printf("%s", asctime (loc_time));
+
+    /////////////////////////////////////////////////
 
     if (amomgdebisaboloo == true) break;
 
@@ -261,10 +222,31 @@ int main()
 
   printf("THE END \n"); // შეიცვლება ადგილი
 
-  // ი/ო //
+  // ი/ო /////////////////////////////////////////////////
+  // TODO: ფაილ ჰენდლინგ
+  // შევამოწმო არის თუარა შესაბამისი ფაილი (done)
+  // ფაილში პაროლის ჩამატება (s ებად)
+  // სხვა ფაილში ჩაწერა (c ებად)
+  // აღწერის ჩაწერის ჩამატება პაროლზე
+  // ამოკითხვა (s ების)
+  // ამოკითხვა (c ების)
+  // თაიმ აუთფუთის ჩაწერა ყოველ ჯერზე. დრო _ აღწერა _ პაროლი (ფაილში) 
 
+  pointeraFailis = fopen("parolebisSacavi.txt","a"); // ფაილს გახსნის ჩასამატებლად ინფორმაციის. აფენდ + მინდა
 
+  if(pointeraFailis == NULL) // შევამოწმე არის თუარა ფაილი
+  {
+    printf("Error! FILE NOT FOUND! \n");
+    exit(1); // საერთოდ პროგრამას აჩერებს
+  }
 
+  fprintf(pointeraFailis,"%s",brzaneba); // ჩაწერა s. თუ c თუ გვინდა ჩაწერა ფორით უნდა გადავირბინო? ვნახავ მაგასაც
+  fprintf(pointeraFailis,"%s","\n");
+
+  fclose(pointeraFailis); // დავხურე ფაილი
+
+  // printf
+  // printf("brzaneba %c\n",brzaneba);
 
   return 0;
 }
