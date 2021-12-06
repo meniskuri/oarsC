@@ -36,7 +36,7 @@ bool amomgdebisaboloo      = false;
 bool amogdeba_meorevaili   = false; // შეიძლება არ დამჭირდეს
 
 FILE *pointeraFailis; // file Handling, declare a pointer of type file
-
+FILE *pointerCharebisFailis; // ფაილისთვის სადაც ჩარებად ჩავწერ. სავარჯიშოდ რავი. მერე გასაკეთებელია დაშიფრვა
 
 int main()
 {
@@ -185,16 +185,17 @@ int main()
    ფაილ ჰენდლინგ
    შევამოწმო არის თუარა შესაბამისი ფაილი (done)
    ფაილში პაროლის ჩამატება (s ებად) (done)
-   სხვა ფაილში ჩაწერა (c ებად) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+   სხვა ფაილში ჩაწერა (c არებად) (done)
    ნუმერაციის გაკეთება (done)
    ამოკითხვა და სიგრძის გაგება (s ების) (done)
-   ამოკითხვა (c ების)
    თაიმ აუთფუთის ჩაწერა ყოველ ჯერზე. დრო _ აღწერა _ პაროლი (ფაილში) (done)
+
    წიგნის დამთავრება (საჭიროა)
+   დაშიფრვა გასაკეთებელია (მერე)
 
    */
 
-  ////////////////////////////////////////////////////////////////////
+  // ფაილში ჩაწერა ////////////////////////////////////////////////////////////////////
   pointeraFailis = fopen("parolebisSacavi.txt","a"); // ფაილს გახსნის ჩასამატებლად ინფორმაციის. აფენდ + მინდა
 
   if(pointeraFailis == NULL) // შევამოწმე არის თუარა ფაილი
@@ -244,7 +245,7 @@ int main()
 
   fprintf(pointeraFailis,"%d",count_lines + 1);
   fprintf(pointeraFailis,"%s"," - ");
-  fprintf(pointeraFailis,"%s",brzaneba); // ჩაწერა s
+  fprintf(pointeraFailis,"%d",brzaneba); // ჩარებად ჩაწერა :)
   fprintf(pointeraFailis,"%s"," - ");
   fprintf(pointeraFailis,"%s",asctime(loc_time)); // დროის ჩამატება
   //  პაროლის აღწერის დამატება
@@ -252,6 +253,13 @@ int main()
 
   fclose(pointeraFailis); // დავხურე ფაილი
   ////////////////////////////////////////////////////////////////////
+
+  // ჩარებად დავბეჭდო brzaneba ჰმ for ით:
+  for (int i = 0; i <= sizeof(brzaneba); i++)
+  {
+    // ჩარებად ბეჭდვა ჩაწერაც ესე რიგ რიგობით უნდა მოხდეს?
+    printf("brzaneba %d \n",brzaneba[i]);
+  }
 
   return 0;
 }
