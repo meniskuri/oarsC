@@ -5,7 +5,7 @@
 *   This example has been created using raylib 1.0 (www.raylib.com)
 *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
 *
-*   Kapana. Snake C Raylib.os
+*   Kapana. Snake C Raylib
 *
 ********************************************************************************************/
 
