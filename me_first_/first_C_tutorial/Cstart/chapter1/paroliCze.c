@@ -9,6 +9,11 @@ Passwords must contain:
 ############################################################################
 */
 
+/*
+ბაგები კიდევ გასასწორებელია ))) მაგრამ ყველაფერი კაგრად არის . იქნებ ესეც დავტოვოთ?
+ვნახოთ. დრო გვაჩვენებს
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -21,9 +26,9 @@ int counter         = 0;
 int counter2        = 0; // მეორე ვაილში. პაროლის გადამოწმებაზე სამი შემთხვევისთვის <<<
 int counterertebi   = 0;
 
-char brzaneba[20];           //
-char paroliganmeorebiti[20]; // size ით შეიძლება ამათი გაკეთება
-char parolifailshi[20];      // აქ ჩავწერ პაროლს და ფაილში ჩავწერ
+char brzaneba[51];           //
+char paroliganmeorebiti[51]; // size ით შეიძლება ამათი გაკეთება
+char parolifailshi[51];      // აქ ჩავწერ პაროლს და ფაილში ჩავწერ
 
 bool amomgdebaPirveliNulis = false; // პაროლის დამთავრების პირობა
 bool pirobadidi            = false;
@@ -207,7 +212,7 @@ int main()
   // დაითვალოს ლაინების რაოდენობა /////////////////
   FILE *fileptr;
   int count_lines = 0;
-  char filechar[40], chr;
+  char filechar[51], chr;
 
   // printf("Enter file name: ");
   // scanf("%s", filechar);
@@ -245,7 +250,7 @@ int main()
 
   fprintf(pointeraFailis,"%d",count_lines + 1);
   fprintf(pointeraFailis,"%s"," - ");
-  fprintf(pointeraFailis,"%d",brzaneba); // ჩარებად ჩაწერა :)
+  fprintf(pointeraFailis,"%s",brzaneba); // ჩარებად ჩაწერა :)
   fprintf(pointeraFailis,"%s"," - ");
   fprintf(pointeraFailis,"%s",asctime(loc_time)); // დროის ჩამატება
   //  პაროლის აღწერის დამატება
@@ -258,7 +263,7 @@ int main()
   for (int i = 0; i <= sizeof(brzaneba); i++)
   {
     // ჩარებად ბეჭდვა ჩაწერაც ესე რიგ რიგობით უნდა მოხდეს?
-    printf("brzaneba %d \n",brzaneba[i]);
+    printf("brzaneba %s \n",brzaneba[i]);
   }
 
   return 0;
