@@ -3,8 +3,8 @@
 # include<stdio.h>
 # include<string.h>
 
-float C,F;
-float arrCF[2][300]; // 2D array minda mqondes
+float C,F;                 // ესენი ვინ არიან?
+float arrCF[2][300];       // 2D array minda mqondes
 float meoremasivi[2][300]; // todo ერთი for ციკლით მინდა შევავსო
 int threedim[5][10][4];
 

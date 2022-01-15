@@ -1,7 +1,7 @@
 # todo
 ##### G.Kapanadze
 
-#### 21 Nოემბერი 2021 თბილიC
+#### 15 იანვარი 2022 თბილიC
 
 1. Create todo markdown list - (✨Magic✨)
 2. Kernighan and Ritchie The C Programming Language Book
@@ -24,10 +24,10 @@
 4. start using aradani
 - First Try - RUN CODE
 
-5. Reading Stuff for me (CPU architectures <==> ელექტრონიკა - გადასახედი)
+#### ახალი თავი. ბერ ასტრონომ
 
-6. shpargalka C GeoEng - ების markdown ფორმატზე გადაყვანა - (✨Magic✨)
+- პირველ რიგში რუტინის და განწყობის შექმნა
+- ვაკეთებთ ყვეაფერს ხალისით. ვთამაშობთ
 
-7. ჯავასკრიპტის გამოყენებით სავარჯიშოების შექმნა
- -
- -
+- C წიგნის გაგრძელება.
+- raylib ის გარჩევა. ნაბიჯ ნაბიჯ.
