@@ -15,7 +15,12 @@ int main()
   c = getchar();
 
   k = 103; // შეესაბამება g ასოს
-  y = EOF; // EOF რა ჩემი ფეხებია?
+  y = EOF; // ენდ ოფ ფაილ. გეთჩარი რომ დამთავრდება ეგეც ესეთ ვალუეს მოგვცემს რასაც EOF. შემოწმებისთვის
+
+  /*
+  EOF is an integer defined in <stdio.h>, but the specific numeric value
+  doesn’t matter as long as it is not the same as any char value
+  */
 
   // ვაილამდე ბეჭდვა სიმბოლოების
   printf("c(d) = %d\n", c);
@@ -32,16 +37,19 @@ int main()
   printf("########");
   printf("\n");
 
+  // ვერსია 1
   while (c != y) // ექსპერიმენტობა )) EOF მინუს ერთს მაძლევს რავი. როდის გაუტოლდება?
   {
     putchar(c);
     printf("\n");
     // printf("while shi var \n");
-    c = getchar();
 
-    counter1 = counter1 + 1; // როცა შემყავ ერთი ასო counter1 = 2; rato? debagerit gadavurbino GDB
+    counter1 = counter1 + 1;
+    printf("counter1 = %d\n",counter1);
+    c = getchar();
   }
 
   printf("counter1 = %d\n",counter1);
-  printf("amovardna \n");
+  printf("amovardna1 \n");
+
 }
