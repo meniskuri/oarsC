@@ -31,7 +31,19 @@ Ternary Operator in C Explained  <https://www.freecodecamp.org/news/c-ternary-op
 #### 1.4 Symbolic constants
 #### 1.5 Character input and output
 
+The standard library provides several functions for reading or writing one
+character at a time, of which getchar and putchar are the simplest. Each
+time it is called, getchar reads the next input character from a text stream
+and returns that as its value. That is, after
+c = getchar()
+the variable c contains the next character of input. The characters normally
+come from the keyboard; input from files is discussed in Chapter 7.
+The function putchar prints a character each time it is called:
+putchar(c)
+prints the contents of the integer variable c as a character, usually on the
+screen. Calls to putchar and printf may be interleaved;
 
+#### 1.5.1 File copying
 
 
 
