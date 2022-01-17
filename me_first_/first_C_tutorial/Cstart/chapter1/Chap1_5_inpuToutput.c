@@ -53,3 +53,4 @@ int main()
   printf("amovardna1 \n");
 
 }
+// tamri movida 
