@@ -1,9 +1,21 @@
-// Chapter 1.5 Character input and output
-// Chapter 1.5.1 File copying
-// copy input to output; 1st version
+/*
+-Chapter 1.5   Character input and output
+-Chapter 1.5.1 File copying
+-chapter 1.5.2 Character counting
 
-/* read a character while (character is not end-of-file indicator)
-output the character just read read a character */
+-read a character while (character is not end-of-file indicator)
+output the character just read read a character
+
+-EOF is an integer defined in <stdio.h>, but the specific numeric value
+doesn’t matter as long as it is not the same as any char value
+ენდ ოფ ფაილ. გეთჩარი რომ დამთავრდება ეგეც ესეთ ვალუეს მოგვცემს რასაც EOF. შემოწმებისთვის
+
+TODO:
+1. გამოსვლა ვაილიდან გასაკეთებელია თუ აღარ გინდა იყო მანდ.
+2. რასაც შეიყვან სიმბოლოების რაოდენობას ითვლიდეს
+3. ვთქვათ ქაუნთერი გავანულო ყოველ ბოლო სიტყვაზე. ანუ ითვლიდეს იმ მომენტში რა სიტყვაც მყავს შეყვანილი იმას
+4. ყველა შიშების გულიდან გაყრა (განდევ ჩემგან სატანავ :დ)
+*/
 
 #include <stdio.h>
 
@@ -12,45 +24,30 @@ int main()
   int c, counter1 = 0;
   int k, y;
   printf("შეიყვანეთ კლავიატურიდან სიმბოლო ან სიმბოლოები \n");
+  printf("თქვი 'cntrl C' და გამოდი \n");
   c = getchar();
+  y = EOF;
 
-  k = 103; // შეესაბამება g ასოს
-  y = EOF; // ენდ ოფ ფაილ. გეთჩარი რომ დამთავრდება ეგეც ესეთ ვალუეს მოგვცემს რასაც EOF. შემოწმებისთვის
-
-  /*
-  EOF is an integer defined in <stdio.h>, but the specific numeric value
-  doesn’t matter as long as it is not the same as any char value
-  */
-
-  // ვაილამდე ბეჭდვა სიმბოლოების
-  printf("c(d) = %d\n", c);
-  printf("c(c) = %c\n", c);
-  //
-  printf("k(d) = %d\n", k);
-  printf("k(c) = %c\n", k);
-  //
-  printf("y(c) = %c\n", y);
-  printf("y(d) = %d\n", y);
-
-  putchar(c);
-  printf("\n");
-  printf("########");
-  printf("\n");
-
-  // ვერსია 1
-  while (c != y) // ექსპერიმენტობა )) EOF მინუს ერთს მაძლევს რავი. როდის გაუტოლდება?
+  printf("##############\n");
+  while (c != y)
   {
     putchar(c);
-    printf("\n");
-    // printf("while shi var \n");
+    ++counter1;
 
-    counter1 = counter1 + 1;
-    printf("counter1 = %d\n",counter1);
+    /* ითვლის ერთი სიმბოლოთი მეტს გეთჩარი ბოლოს კიდევ ერთ მონაცემს აგზავნის,
+    დამთავრებას რაც ნიშნავს. მაგას ვადარებთ EOF თან */
+
+    if (c == 10)
+    {
+      counter1 = 0;
+    } else
+    {
+      printf("counter1 = %d\n",counter1);
+      printf("vnaxot c = %d\n",c); // vnaxot
+    }
+
     c = getchar();
   }
 
-  printf("counter1 = %d\n",counter1);
-  printf("amovardna1 \n");
-
+  printf("counter1amovardna = %d\n",counter1);
 }
-// tamri movida 
