@@ -12,7 +12,7 @@
 
 ### CHAPTER 1: A Tutorial Introduction
 
-#### 1.1 Getting Started
+##### 1.1 Getting Started
 Now for some explanations about the program itself.
 A C program, whatever its size, consists of functions and variables.
 
@@ -23,13 +23,13 @@ C functions are like the subroutines and functions of Fortran or the procedures 
 Our example is a function named main. Normally you are at liberty to give functions whatever names you like, but “main” is special—your program begins executing at the beginning of main. This means that every program must have a main somewhere.
 
 
-#### 1.2 Variables and Arithmetic Expressions
+##### 1.2 Variables and Arithmetic Expressions
 
 Ternary Operator in C Explained  <https://www.freecodecamp.org/news/c-ternary-operator/>
 
-#### 1.3 The for statement
-#### 1.4 Symbolic constants
-#### 1.5 Character input and output
+##### 1.3 The for statement
+##### 1.4 Symbolic constants
+##### 1.5 Character input and output
 
 The standard library provides several functions for reading or writing one
 character at a time, of which getchar and putchar are the simplest. Each
@@ -43,7 +43,7 @@ putchar(c)
 prints the contents of the integer variable c as a character, usually on the
 screen. Calls to putchar and printf may be interleaved;
 
-#### 1.5.1 File copying
+##### 1.5.1 File copying
 (კოდი ნახეთ წიგნში)
 
 The problem is distinguishing the end of the input from valid data. The
@@ -56,7 +56,8 @@ enough to hold EOF in addition to any possible char. Therefore we use int.
 EOF is an integer defined in <stdio.h>, but the specific numeric value
 doesn’t matter as long as it is not the same as any char value
 
-
+##### 1.5.2 Character counting
+##### 1.5.3 Line counting 
 
 
 
