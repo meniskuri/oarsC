@@ -2,7 +2,7 @@
 - Chapter 1.5   Character input and output +
 - Chapter 1.5.1 File copying +
 - chapter 1.5.2 Character counting +
-- chapter 1.5.3 Line counting 
+- chapter 1.5.3 Line counting -
 
 - read a character while (character is not end-of-file indicator)
 output the character just read read a character
@@ -16,7 +16,7 @@ TODO:
 2. რასაც შეიყვან სიმბოლოების რაოდენობას ითვლიდეს
 3. ვთქვათ ქაუნთერი გავანულო ყოველ ბოლო სიტყვაზე. ანუ ითვლიდეს იმ მომენტში რა სიტყვაც მყავს შეყვანილი იმას
 4. ყველა შიშების გულიდან გაყრა (განდევ ჩემგან სატანავ :დ)
-5. ლაინ ქაუნთინგი. ისე გავაკეთო რომ ამ კოდში იყოს.
+5. ლაი-ნ ქაუნთინგი. ისე გავაკეთო რომ ამ კოდში იყოს. <<<<<<< 
 6. შეიძლება დამჭირდეს ვაილიდან ამოგდების ჩამატება. ოკ
 */
 
