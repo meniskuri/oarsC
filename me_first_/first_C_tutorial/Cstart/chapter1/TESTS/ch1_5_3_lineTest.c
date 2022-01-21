@@ -3,7 +3,10 @@
 - count lines in input
 
 - ეს კოდი. გეთჩარით სიტყვებს იღებს. და მერე ითვლის სიტყვაში რამდენჯერ მოხდა
-"/n" შემთხვევა ერთდოულად. '/n' ერთი სიმბოლოა. ასკიში უდრის 10 სო. ამეებს ვეძებ
+"/n" შემთხვევა ერთდოულად. (ვცადოთ ბულიანებით გაკეთება)
+
+- ეს კოდი ითვლის რამდენი სლეში მოხდა '/n' ერთი სიმბოლოა. ასკიში უდრის 10 სო. ამეებს ვეძებ
+- რა გამოდის რომ ყველა იმენა თავისას აწვება? დაჟე მეც ეხლა? ჰო
 */
 
 #include <stdio.h>
@@ -11,39 +14,53 @@
 #include <stdbool.h>
 
 
-
 main()
 {
   // ცვლადები
   int nl, c, counter;
+  counter = 0; // while ში რამდენჯერ შევედი მაგას დავითვლი
   nl      = 0;
-  counter = 0;
 
-  bool pirobadidi = false;
+  // ასკი კოდს შევადაროთ. n >> 110; / >> 47;
+  bool pirob_n      = false;
+  bool piroba_slesh = false;
 
   while ((c = getchar()) != EOF)
   {
     // რამდენი ასოც არის სიტყვაში. იმდენჯერ + 1 (+ გეთჩარის დამთავრება) შემოვდივარ ვაილში
     printf("c (ascii sheyvanili sityvis asoebi) = %d\n",c);
 
-    if (c == '\n') // ასკი კოდს შევადაროთ. n >> 110; / >> 47;
+    if (c == 92)
     {
-      ++nl;
-      // როცა მოვა სლეში და მერე ნ ეგ შემთხვევა მჭირდება
-      printf("+ (n roca movida) \n");
+      // "\n" ების მთვლელი
+      printf("movida sleshi \n");
+      piroba_slesh == true;
+
+      if (c == 110)
+      {
+        printf("movida n \n");
+      }
     }
 
-    // ++counter;
-  }
+    if (c == '\n')
+    {
+      ++nl;
+      printf("+ ('\ n' - roca movida) \n");
+    }
 
+    // ბულიანებით ვითვლი რამდენჯერ მოვიდა \ და მერე n
+    ++counter;
+  }
   printf("nl = %d\n", nl);
-  printf("counter = %d\n", counter);
 }
+
+
+
+
 
 /*
 // ტესტი
-// დაითვალოს ლაინების რაოდენობა /////////////////
-
+// დაითვალოს ლაინების რაოდენობა, გახსნილი ფაილის წაკითხვა და მანდ დათვლა ლაინების ;) მგონი
 FILE *fileptr;
 int  count_lines = 0;
 char filechar[51], chr;
@@ -65,5 +82,4 @@ while (chr != EOF) // ენდ ოფ ფაილ
 }
 fclose(fileptr); //close file.
 // printf("There are %d lines in parolebisSacavi \n", count_lines); // რამდენი ლაინია პაროლების საცავში
-
 */
