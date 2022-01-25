@@ -1,16 +1,6 @@
 /*
 - TESTInG chapter 1.5.3 Line counting
-- count lines in input
-
-- ეს კოდი. გეთჩარით სიტყვებს იღებს. და მერე ითვლის სიტყვაში რამდენჯერ მოხდა
-"/n" შემთხვევა ერთდოულად. (ვცადოთ ბულიანებით გაკეთება)
-
-- ეს კოდი ითვლის რამდენი სლეში მოხდა '/n' ერთი სიმბოლოა. ასკიში უდრის 10 სო. ამეებს ვეძებ
-- რა გამოდის რომ ყველა იმენა თავისას აწვება? დაჟე მეც ეხლა? ჰო
-- რისი გაკეთებაც მინდოდა გონებაში გავაკეთე. ეხლა დამავიწყდა. გავიხსენებ
-()
-
-- პროგრამა რომ გაეშვება რამე აღწერა მაინც დავუმატო რომ გაიგოს ადამიანმა რას შვება კოდი
+- Count lines in input
 */
 
 #include <stdio.h>
@@ -21,73 +11,69 @@
 main()
 {
   // ცვლადები
-  int nl, c, counter;
-  counter = 0; // while ში რამდენჯერ შევედი მაგას დავითვლი
-  nl      = 0;
+  int nl, c, counter, counter2;
+  counter2 = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
+  counter  = 0; // თვითოეულ სიტყვაში ასოებს ითვლის
+  nl       = 0; // სიტყვების რაოდენობა
 
-  // ასკი კოდს შევადაროთ. n >> 110; / >> 47;
-  bool pirob_n      = false;
-  bool piroba_slesh = false;
+  // 2D array
+  int sityvebSanaxi[2][300];
+
+
+  // სტარტ
+  printf("program will calculate slesh ns \n");
+  printf("enter word (getchar): \n");
 
   while ((c = getchar()) != EOF)
   {
     // რამდენი ასოც არის სიტყვაში. იმდენჯერ + 1 (+ გეთჩარის დამთავრება) შემოვდივარ ვაილში
-    printf("c (ascii sheyvanili sityvis asoebi) = %d\n",c);
 
     if (c == 92)
     {
-      // "\n" ების მთვლელი
-      printf("movida sleshi \n");
-      piroba_slesh == true;
+      // "\" ების მთვლელი. სიტყვაში თუ სლეში მოვიდა
+      printf("   movida sleshi \n");
+    }
 
-      if (c == 110)
-      {
-        printf("movida n \n");
-      }
+    if (c == 110)
+    {
+      // "n" ების მთვლელი. სიტყვაში თუ n მოვიდა
+      printf("   movida n \n");
     }
 
     if (c == '\n')
     {
+      // "\n" ების მთვლელი. სიტყვების მთვლელი.
+      // printf("end of getchar. enter new word: \n");
       ++nl;
-      printf("+ (slesh n -i roca movida) \n");
     }
 
-    // ბულიანებით ვითვლი რამდენჯერ მოვიდა \ და მერე n
-    ++counter;
-  }
-  printf("nl = %d\n", nl);
-}
-
-
-
-
-
-/*
-// ტესტი
-// დაითვალოს ლაინების რაოდენობა, გახსნილი ფაილის წაკითხვა და მანდ დათვლა ლაინების ;) მგონი
-FILE *fileptr;
-int  count_lines = 0;
-char filechar[51], chr;
-
-// printf("Enter file name: ");
-// scanf("%s", filechar);
-
-fileptr = fopen("parolebisSacavi.txt", "r");
-chr = getc(fileptr); //extract character from file and store in chr
-while (chr != EOF) // ენდ ოფ ფაილ
-{
-    //Count whenever new line is encountered
-    if (chr == 'n')
+    if (c == 10)
     {
-        count_lines = count_lines + 1;
+      // სიტყვაში სიმბოლოების მთველი
+      counter = 0;
+    } else {
+      // წერა. სიტყვების ასკი კოდების
+      // printf("counter = %d\n", counter);
+      printf("ascii of c words = %d\n",c);
     }
-    //take next character from file.
-    chr = getc(fileptr);
-}
-fclose(fileptr); //close file.
-// printf("There are %d lines in parolebisSacavi \n", count_lines); // რამდენი ლაინია პაროლების საცავში
-*/
 
+    // მასივში ჩაწერა. სიტყვის |სიტყვა|counter|
+    sityvebSanaxi[0][counter2] = c;
+
+    ++counter;
+    ++counter2;
+  }
+  // სტატუსები
+  printf("counter2 = %d\n",counter2);
+  printf("nl (number of entered words) = %d\n", nl);
+
+  // რა დედის ტყვნა უნდა ამას ეხლა?
+  for (int i = 0; i <= 7; i = i + 1)
+  {
+    //printf("asoebi - %d\n",sityvebSanaxi[0][i]);
+    printf("shemovedi aq\n");
+  }
+}
 
 /*
 პრობლემები. მამენტ მე მეყლევება, მაგრამ როცა ვოლდემორი
@@ -97,4 +83,23 @@ fclose(fileptr); //close file.
 რომ ჰორკრუქსები
 გავანადგუროთ?
 აბა რა ))
+
+შვილი რომ მყავდეს გამოვყლევდები ისე გამიხარდება :))
+რაც დასათმობი იყო. ყველაფერი დავთმე.
+იმენა ნახტომში ვარ.
+მი ვენ დე :)
+იესოს
+
+ნარკომანის ფარდა მცილდება. უფრო ნათლად ვხედავ რა როგორ.
+შეფასებების სიტემა ცოტა სხვანაირი მაქვს. მამენტ სიზმარია ეს.
+უბრალოდ სხვების შეხედულებას უფრო კარგად ვხედავ.
+სხვისი გადმოსახედიდან. ვინც არ იყო ისე გასული.
+როგორც მე. იმას უფრო ტკივა? არ ვიცი.
+უბრალოდ აზრები და მისიები.
+გადაწყვეტილებები.
+მე ვაფშე.
+გასული
+ვიყავი
+ეე
+ე
 */
