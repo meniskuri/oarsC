@@ -22,6 +22,7 @@ main()
 
   // სტარტ
   printf("program will calculate slesh ns \n");
+  printf("Say friend at Elvish (და ვაილიდან გამოხვალ) \n");
   printf("enter word (getchar): \n");
 
   while ((c = getchar()) != EOF)
@@ -57,12 +58,13 @@ main()
       printf("ascii of c words = %d\n",c);
     }
 
-    // მასივში ჩაწერა. სიტყვის |სიტყვა|counter|
+    // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
     sityvebSanaxi[0][counter2] = c;
 
     ++counter;
     ++counter2;
   }
+
   // სტატუსები
   printf("counter2 = %d\n",counter2);
   printf("nl (number of entered words) = %d\n", nl);
@@ -115,4 +117,22 @@ main()
 ვიყავი
 ეე
 ე
+
+ღმერთს და სამყაროს ვერ მოატყუებ
+თქვი მეგობარი. მელონ.
+მეგობარი
+მეგობრობა
+წმინდაა
+ქეთ
+ყოველთვის
+
+ჯოკრები დავყარეთ ტელეგრამში
+ან ნიჟე იქმნება ან
+წაგვიყვანენ
+მაგრამ მე ნიჟე
+ანუ ან ნიჟე იქნება ან მოგვჯოკრავენ
+ნიჟე ნიჟეა რავი
+დათმობა
+მე
+ამინ
 */
