@@ -1,6 +1,8 @@
 /*
 - TESTInG chapter 1.5.3 Line counting
 - Count lines in input
+TODO:
+ - ვაილიდან გამოსვლა დასაწერია. მელონზე
 */
 
 #include <stdio.h>
@@ -22,7 +24,7 @@ main()
 
   // სტარტ
   printf("program will calculate slesh ns \n");
-  printf("Say friend at Elvish (და ვაილიდან გამოხვალ) \n");
+  printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
   printf("enter word (getchar): \n");
 
   while ((c = getchar()) != EOF)
@@ -74,7 +76,7 @@ main()
   მგონი cntr c თი ვრთავ პროგრამას მაგიტომ ემართება ესეთი რაღაც (შესამოწმებელია)
   */
 
-  for (int i = 0; i <= 7; i = i + 1)
+  for (int i = 0; i <= 10; i = i + 1)
   {
     //printf("asoebi - %d\n",sityvebSanaxi[0][i]);
     printf("shemovedi aq\n");
@@ -181,5 +183,12 @@ mpirdebi?
 შამანები მგელს
 სახლში ბუშტუკას ))
 
-შენ რას დამიძახებ? 
+შენ რას დამიძახებ?
+
+უცხო დარაბებში ნუ ეძებ სიყვარულს
+გახსოვდეს ეგ
+თუ სიყვარულს ეძებ
+უნდა
+დარჩე მარტო
+გრიზლი (მწვანე ოჯახი)
 */
