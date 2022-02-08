@@ -13,7 +13,8 @@ TODO:
 main()
 {
   // ცვლადები
-  int nl, counter, counter2, counter3, c;
+  int nl, counter, counter2, counter3, counter4, c;
+  counter4 = 0;
   counter3 = 0; // საერთოდ რამდენი ასოა
   counter2 = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
   counter  = 0; // თვითოეულ სიტყვაში ასოებს ითვლის
@@ -25,6 +26,14 @@ main()
   bool Leo    = false; // 76
   bool Oniani = false; // 79
   bool N_vi   = false; // 78
+
+  bool erti   = false;
+  bool ori    = false;
+  bool sami   = false;
+  bool otxi   = false;
+  bool xuti   = false;
+
+  bool amogdeba = false;
 
   // 2D array
   int sityvebSanaxi[2][300];
@@ -85,7 +94,10 @@ main()
 
     for (int j = 0; j <= counter3; j = j + 1)
     {
-      //
+      // შეიძლება ახალი ქაუნთერი რომელიც შიგნით ითვლის სიტყვების რაოდენობას და ეგრევე აქედან გადასცემს რაოდენობას?
+      // აქ ქაუნთერის ამბავი უნდა მოვაგვარო
+      // აქ ვარ გაჭედილი
+
       if (sityvebSanaxi[0][j] == 77)
       {
         Me = true;
@@ -115,6 +127,9 @@ main()
         N_vi = true;
         printf("Me Erti Leo Oniani N_vi var (TEST)\n");
       }
+      // aq if
+      // da tralala ....
+      // .... tu xutia counter gadaitvalos ukan da naxos aris tuara MELON
     }
 
     // aq ra pizdeci unda??? ქაუნთერი რატომ არ მუშაობს ეგ გავიგე :)) სხვა რამე უნდა მოვიფიქრო :)
