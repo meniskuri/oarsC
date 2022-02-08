@@ -58,18 +58,6 @@ main()
       ++nl;
     }
 
-    if (c == 10)
-    {
-      // სიტყვაში სიმბოლოების მთველი
-      counter = 0;
-    } else {
-      // წერა. სიტყვების ასკი კოდების
-      // printf("counter = %d\n", counter);
-      // printf("ascii of c words = %d\n", c);
-      // printf("counter = %d\n", counter);
-      // printf("break from while! ~ \n");
-    }
-
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~
     if (c == 126)
     {
@@ -94,14 +82,45 @@ main()
     ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
     ++counter3; // სულ რამდენი ასოა
 
+    // printf("counter3 (sul ramdeni aso shemovida) %d\n", counter3);
+    // printf("counter (sityvashi asoebi) %d\n", counter);
+    // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][counter3]);
+    printf("c = %d\n",c);
+
     for (int j = 0; j <= counter3; j = j + 1)
     {
-      // შემოწმება
-       printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][j]);
-       // მელონის შემოწმება მოსაფიქრებელია
+      //
+      if (sityvebSanaxi[0][j] == 77)
+      {
+        Me = true;
+        printf("Me (TEST)\n");
+      }
+      if (sityvebSanaxi[0][j] == 69 && Me == true)
+      {
+        Erti = true;
+        printf("Me Erti (TEST)\n");
+      }
+      // else გასაგრძელებელია და კიბეებიც 
     }
-    printf("counter3 (sul ramdeni aso shemovida) %d\n", counter3);
+
+
+    if (c == 10)
+    {
+      // სიტყვაში სიმბოლოების მთველი
+      counter = 0;
+    } else {
+      // წერა. სიტყვების ასკი კოდების
+      // printf("counter = %d\n", counter);
+      // printf("ascii of c words = %d\n", c);
+      // printf("counter = %d\n", counter);
+      // printf("break from while! ~ \n");
+    }
   }
+
+
+
+
+
 
   // სტატუსები
   printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
@@ -112,7 +131,15 @@ main()
   {
     // printf("asoebi - %d\n",sityvebSanaxi[0][i]);
     // printf("shemovedi aq\n");
-    printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
+    printf("sityvebSanaxi = %d\n",sityvebSanaxi[0][i]);
+
+
+    // ეს მგონი საერთოდ არ მჭირდება. ვაილში კიდევ ფორი
+    if (sityvebSanaxi[0][i] == 77)
+    {
+      Me = true;
+      printf("Me \n");
+    }
   }
 }
 
@@ -303,5 +330,5 @@ realურად
 ჩემშია
 
 მარიამის პირობა
-როგორც ყოველთვის შედარების პრობლემა მაქვს :)) 
+როგორც ყოველთვის შედარების პრობლემა მაქვს :))
 */
