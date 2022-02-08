@@ -78,14 +78,10 @@ main()
     bool N_vi   = false; // 78
     */
 
-    ++counter;
-    ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
-    ++counter3; // სულ რამდენი ასოა
-
     // printf("counter3 (sul ramdeni aso shemovida) %d\n", counter3);
     // printf("counter (sityvashi asoebi) %d\n", counter);
     // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][counter3]);
-    printf("c = %d\n",c);
+    printf("c = %c\n",c);
 
     for (int j = 0; j <= counter3; j = j + 1)
     {
@@ -95,14 +91,44 @@ main()
         Me = true;
         printf("Me (TEST)\n");
       }
+
       if (sityvebSanaxi[0][j] == 69 && Me == true)
       {
         Erti = true;
         printf("Me Erti (TEST)\n");
       }
-      // else გასაგრძელებელია და კიბეებიც 
+
+      if (sityvebSanaxi[0][j] == 76 && Me == true && Erti == true)
+      {
+        Leo = true;
+        printf("Me Erti Leo (TEST)\n");
+      }
+
+      if (sityvebSanaxi[0][j] == 79 && Me == true && Erti == true && Leo == true)
+      {
+        Oniani = true;
+        printf("Me Erti Leo Oniani (TEST)\n");
+      }
+
+      if (sityvebSanaxi[0][j] == 78 && Me == true && Erti == true && Leo == true && Oniani == true)
+      {
+        N_vi = true;
+        printf("Me Erti Leo Oniani N_vi var (TEST)\n");
+      }
     }
 
+    // aq ra pizdeci unda??? ქაუნთერი რატომ არ მუშაობს ეგ გავიგე :)) სხვა რამე უნდა მოვიფიქრო :)
+    if (Me == true && Erti == true && Leo == true && Oniani == true && N_vi == true && counter == 5)
+    {
+      // ნუმერაცია არის გასაკეთებელი/ დავბეჭდო ქაუნთერი რომელიც ითვლის სიტყვებს
+      // printf("counter = %d\n", counter);
+      break;
+    }
+
+
+    ++counter;
+    ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
+    ++counter3; // სულ რამდენი ასოა
 
     if (c == 10)
     {
@@ -121,7 +147,7 @@ main()
 
 
 
-
+  // ვაილიდან გამოსვლის თემა
   // სტატუსები
   printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
   printf("nl (number of entered words) = %d\n", nl);
