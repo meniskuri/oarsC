@@ -13,7 +13,8 @@ TODO:
 main()
 {
   // ცვლადები
-  int nl, c, counter, counter2;
+  int nl, counter, counter2, counter3, c;
+  counter3 = 0; // საერთოდ რამდენი ასოა
   counter2 = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
   counter  = 0; // თვითოეულ სიტყვაში ასოებს ითვლის
   nl       = 0; // სიტყვების რაოდენობა
@@ -41,13 +42,13 @@ main()
     if (c == 92)
     {
       // "\" ების მთვლელი. სიტყვაში თუ სლეში მოვიდა
-      printf("   movida sleshi \n");
+      // printf("   movida sleshi \n");
     }
 
     if (c == 110)
     {
       // "n" ების მთვლელი. სიტყვაში თუ n მოვიდა
-      printf("   movida n \n");
+      // printf("   movida n \n");
     }
 
     if (c == '\n')
@@ -64,9 +65,9 @@ main()
     } else {
       // წერა. სიტყვების ასკი კოდების
       // printf("counter = %d\n", counter);
-      printf("ascii of c words = %d\n", c);
-      printf("counter = %d\n", counter);
-      printf("break from while! ~ \n");
+      // printf("ascii of c words = %d\n", c);
+      // printf("counter = %d\n", counter);
+      // printf("break from while! ~ \n");
     }
 
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~
@@ -78,12 +79,28 @@ main()
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
-    sityvebSanaxi[0][counter2] = c;
+    sityvebSanaxi[0][counter3] = c;
 
-    // melon ით გამოსვლა 
+    // melon ით გამოსვლა. for ით იყოს
+    /*
+    bool Me     = false; // 77
+    bool Erti   = false; // 69
+    bool Leo    = false; // 76
+    bool Oniani = false; // 79
+    bool N_vi   = false; // 78
+    */
 
     ++counter;
     ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
+    ++counter3; // სულ რამდენი ასოა
+
+    for (int j = 0; j <= counter3; j = j + 1)
+    {
+      // შემოწმება
+       printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][j]);
+       // მელონის შემოწმება მოსაფიქრებელია
+    }
+    printf("counter3 (sul ramdeni aso shemovida) %d\n", counter3);
   }
 
   // სტატუსები
@@ -91,7 +108,7 @@ main()
   printf("nl (number of entered words) = %d\n", nl);
 
   // davbechdo masivshi chawerili sityvebi
-  for (int i = 0; i <= counter2; i = i + 1)
+  for (int i = 0; i <= counter3; i = i + 1)
   {
     // printf("asoebi - %d\n",sityvebSanaxi[0][i]);
     // printf("shemovedi aq\n");
@@ -142,7 +159,6 @@ main()
 მეგობარი
 მეგობრობა
 წმინდაა
-ქეთ
 ყოველთვის
 
 ჯოკრები დავყარეთ ტელეგრამში
@@ -287,4 +303,5 @@ realურად
 ჩემშია
 
 მარიამის პირობა
+როგორც ყოველთვის შედარების პრობლემა მაქვს :)) 
 */
