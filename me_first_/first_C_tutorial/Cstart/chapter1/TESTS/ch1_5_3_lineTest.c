@@ -66,28 +66,36 @@ main()
       // printf("counter = %d\n", counter);
       printf("ascii of c words = %d\n", c);
       printf("counter = %d\n", counter);
+      printf("break from while! ~ \n");
+    }
+
+    // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~
+    if (c == 126)
+    {
+      // break
+      printf("break from while! \n");
+      break;
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
     sityvebSanaxi[0][counter2] = c;
+
+    // melon ით გამოსვლა 
 
     ++counter;
     ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
   }
 
   // სტატუსები
-  printf("counter2 = %d\n", counter2);
+  printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
   printf("nl (number of entered words) = %d\n", nl);
 
-  /*
-  რა დედის ტყვნა უნდა ამას ეხლა?
-  მგონი cntr c თი ვრთავ პროგრამას მაგიტომ ემართება ესეთი რაღაც (შესამოწმებელია)
-  */
-
-  for (int i = 0; i <= 10; i = i + 1)
+  // davbechdo masivshi chawerili sityvebi
+  for (int i = 0; i <= counter2; i = i + 1)
   {
-    //printf("asoebi - %d\n",sityvebSanaxi[0][i]);
-    printf("shemovedi aq\n");
+    // printf("asoebi - %d\n",sityvebSanaxi[0][i]);
+    // printf("shemovedi aq\n");
+    printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
   }
 }
 
