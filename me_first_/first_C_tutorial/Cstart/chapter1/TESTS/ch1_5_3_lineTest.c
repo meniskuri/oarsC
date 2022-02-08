@@ -65,14 +65,14 @@ main()
       // წერა. სიტყვების ასკი კოდების
       // printf("counter = %d\n", counter);
       printf("ascii of c words = %d\n", c);
-      printf("counter = %d\n", counter)
+      printf("counter = %d\n", counter);
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
     sityvebSanaxi[0][counter2] = c;
 
     ++counter;
-    ++counter2;
+    ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
   }
 
   // სტატუსები
@@ -276,5 +276,7 @@ realურად
 ჯოხების ოსტატი
 ხოდზეა
 ოლ ი ვანდერ
-ჩემშია  
+ჩემშია
+
+მარიამის პირობა
 */
