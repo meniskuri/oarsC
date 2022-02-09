@@ -14,24 +14,24 @@ main()
 {
   // ცვლადები
   int nl, counter, counter2, counter3, counter4, c;
-  counter4 = 0;
-  counter3 = 0; // საერთოდ რამდენი ასოა
-  counter2 = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
-  counter  = 0; // თვითოეულ სიტყვაში ასოებს ითვლის
-  nl       = 0; // სიტყვების რაოდენობა
+  counter4      = 0;
+  counter3      = 0; // საერთოდ რამდენი ასოა
+  counter2      = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
+  counter       = 0; // თვითოეულ სიტყვაში ასოებს ითვლის
+  nl            = 0; // სიტყვების რაოდენობა
 
   // ბულ იან ეგოები მერევა. მაგრამ აზრი არ აქვს მაგას ეხლა
-  bool Me     = false; // 77
-  bool Erti   = false; // 69
-  bool Leo    = false; // 76
-  bool Oniani = false; // 79
-  bool N_vi   = false; // 78
+  bool Me       = false; // 77
+  bool Erti     = false; // 69
+  bool Leo      = false; // 76
+  bool Oniani   = false; // 79
+  bool N_vi     = false; // 78
 
-  bool erti   = false;
-  bool ori    = false;
-  bool sami   = false;
-  bool otxi   = false;
-  bool xuti   = false;
+  bool erti     = false;
+  bool ori      = false;
+  bool sami     = false;
+  bool otxi     = false;
+  bool xuti     = false;
 
   bool amogdeba = false;
 
@@ -136,11 +136,36 @@ main()
       {
         printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][j]);
 
-        if ()
+        if (sityvebSanaxi[0][j - 5] == 77)
         {
-          // aq ifebi da tralala
-          
+          erti = true;
+          printf("M >>>> \n");
         }
+        if (sityvebSanaxi[0][j - 4] == 69)
+        {
+          ori = true;
+          printf("E >>>> \n");
+        }
+        if (sityvebSanaxi[0][j - 3] == 76)
+        {
+          sami = true;
+          printf("L >>>> \n");
+        }
+        if (sityvebSanaxi[0][j - 2] == 79)
+        {
+          otxi = true;
+          printf("O >>>> \n");
+        }
+        if (sityvebSanaxi[0][j - 1] == 78)
+        {
+          xuti = true;
+          printf("N >>>> \n");
+        }
+      }
+      if (erti == true && ori == true && sami == true && otxi == true && xuti == true)
+      {
+        printf("melon it gamosvla \n");
+        break;
       }
       // break;
       printf("counter3 = %d\n", counter3);
