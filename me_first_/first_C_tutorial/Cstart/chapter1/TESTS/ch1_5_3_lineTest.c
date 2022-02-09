@@ -5,16 +5,15 @@
 TODO:
 - TESTING + 1.5.4 Word Counting
 - რესპექტაბელური აუთფუთის დაწერა (და ეგ არის) <<<<
-- სიტყვების საცავში სიტყვების რაოდენობის მოძებნა
+- სიტყვების საცავში სიტყვების რაოდენობის მოძებნა <<<<
 - - ორი სლეში თუ იქნება რომ იცნოს
 - - - შა :)) 256 :))
-- - - პარაგრაფის ნახვა
+- - - პარაგრაფის ნახვა <<<<
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 
 main()
 {
@@ -47,7 +46,6 @@ main()
   // 2D array
   int sityvebSanaxi[2][300];
 
-
   // სტარტ
   printf("program will calculate slesh ns \n");
   printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
@@ -59,7 +57,6 @@ main()
 
     if (c == 92)
     {
-      // >>>>>
       // "\" ების მთვლელი. სიტყვაში თუ სლეში მოვიდა
       // printf("   movida sleshi \n");
       ++slesh_counter;
@@ -67,7 +64,6 @@ main()
 
     if (c == 110)
     {
-      // >>>>>
       // "n" ების მთვლელი. სიტყვაში თუ n მოვიდა
       // printf("   movida n \n");
       ++n_counter;
@@ -75,7 +71,6 @@ main()
 
     if (c == '\n')
     {
-      // >>>>>
       // "\n" ების მთვლელი. სიტყვების მთვლელი.
       // printf("end of getchar. enter new word: \n");
       ++nl;
@@ -91,19 +86,6 @@ main()
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
     sityvebSanaxi[0][counter3] = c;
-
-    // melon ით გამოსვლა. for ით იყოს
-    /*
-    bool Me     = false; // 77
-    bool Erti   = false; // 69
-    bool Leo    = false; // 76
-    bool Oniani = false; // 79
-    bool N_vi   = false; // 78
-    */
-
-    // printf("counter3 (sul ramdeni aso shemovida) %d\n", counter3);
-    // printf("counter (sityvashi asoebi) %d\n", counter);
-    // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][counter3]);
     printf("c = %c\n",c);
 
     for (int j = 0; j <= counter3; j = j + 1)
@@ -190,12 +172,6 @@ main()
     {
       // სიტყვაში სიმბოლოების მთველი
       counter = 0;
-    } else {
-      // წერა. სიტყვების ასკი კოდების
-      // printf("counter = %d\n", counter);
-      // printf("ascii of c words = %d\n", c);
-      // printf("counter = %d\n", counter);
-      // printf("break from while! ~ \n");
     }
   }
 
@@ -412,4 +388,7 @@ realურად
 
 მარიამის პირობა
 როგორც ყოველთვის შედარების პრობლემა მაქვს :))
+
+ქართველებო
+კატანებო
 */
