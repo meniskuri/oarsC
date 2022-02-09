@@ -94,52 +94,58 @@ main()
 
     for (int j = 0; j <= counter3; j = j + 1)
     {
-      // შეიძლება ახალი ქაუნთერი რომელიც შიგნით ითვლის სიტყვების რაოდენობას და ეგრევე აქედან გადასცემს რაოდენობას?
-      // აქ ქაუნთერის ამბავი უნდა მოვაგვარო
-      // აქ ვარ გაჭედილი
+      // უკან უნდა ითვლიდეს და ამოწმებდეს წინა ვარიანტებს თუარ დაჯდა სწორად გააფალსოს (ხელით იქნება ჩასამატებელი)
+      // ბულიანების ტრეკერი რომ იბეჭდებოდეს კარგი იქნებოდა
+      // ლამაზად ეკრანზე გამოტანა მნიშვნელოვანია
 
       if (sityvebSanaxi[0][j] == 77)
       {
         Me = true;
-        printf("Me (TEST)\n");
+        // printf("Me (TEST)\n");
       }
 
       if (sityvebSanaxi[0][j] == 69 && Me == true)
       {
         Erti = true;
-        printf("Me Erti (TEST)\n");
+        // printf("Me Erti (TEST)\n");
       }
 
       if (sityvebSanaxi[0][j] == 76 && Me == true && Erti == true)
       {
         Leo = true;
-        printf("Me Erti Leo (TEST)\n");
+        // printf("Me Erti Leo (TEST)\n");
       }
 
       if (sityvebSanaxi[0][j] == 79 && Me == true && Erti == true && Leo == true)
       {
         Oniani = true;
-        printf("Me Erti Leo Oniani (TEST)\n");
+        // printf("Me Erti Leo Oniani (TEST)\n");
       }
 
       if (sityvebSanaxi[0][j] == 78 && Me == true && Erti == true && Leo == true && Oniani == true)
       {
         N_vi = true;
-        printf("Me Erti Leo Oniani N_vi var (TEST)\n");
+        // printf("Me Erti Leo Oniani N_vi var (TEST)\n");
       }
-      // aq if
-      // da tralala ....
-      // .... tu xutia counter gadaitvalos ukan da naxos aris tuara MELON
     }
 
-    // aq ra pizdeci unda??? ქაუნთერი რატომ არ მუშაობს ეგ გავიგე :)) სხვა რამე უნდა მოვიფიქრო :)
+    // ქაუნთერი მუშაობს. უბრალოდ მაგდროს ხუთია შემდეგ ვაილში ჩავარდნის დროს გაზდება +1 ით მეტი თუ არის ზედმეტი ასო
     if (Me == true && Erti == true && Leo == true && Oniani == true && N_vi == true && counter == 5)
     {
-      // ნუმერაცია არის გასაკეთებელი/ დავბეჭდო ქაუნთერი რომელიც ითვლის სიტყვებს
-      // printf("counter = %d\n", counter);
-      break;
-    }
+      for (int j = counter3 - 5; j <= counter3; j = j + 1)
+      {
+        printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][j]);
 
+        if ()
+        {
+          // aq ifebi da tralala
+          
+        }
+      }
+      // break;
+      printf("counter3 = %d\n", counter3);
+      printf("break \n");
+    }
 
     ++counter;
     ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
@@ -159,10 +165,6 @@ main()
   }
 
 
-
-
-
-  // ვაილიდან გამოსვლის თემა
   // სტატუსები
   printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
   printf("nl (number of entered words) = %d\n", nl);
@@ -173,14 +175,6 @@ main()
     // printf("asoebi - %d\n",sityvebSanaxi[0][i]);
     // printf("shemovedi aq\n");
     printf("sityvebSanaxi = %d\n",sityvebSanaxi[0][i]);
-
-
-    // ეს მგონი საერთოდ არ მჭირდება. ვაილში კიდევ ფორი
-    if (sityvebSanaxi[0][i] == 77)
-    {
-      Me = true;
-      printf("Me \n");
-    }
   }
 }
 
