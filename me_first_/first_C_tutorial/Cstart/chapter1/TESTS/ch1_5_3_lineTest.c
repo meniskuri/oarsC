@@ -1,8 +1,11 @@
 /*
 - TESTInG chapter 1.5.3 Line counting
 - Count lines in input
+
 TODO:
- - ვაილიდან გამოსვლა დასაწერია. მელონზე
+- TESTING + 1.5.4 Word Counting
+- რესპექტაბელური აუთფუთის დაწერა
+
 */
 
 #include <stdio.h>
@@ -50,18 +53,21 @@ main()
 
     if (c == 92)
     {
+      // >>>>>
       // "\" ების მთვლელი. სიტყვაში თუ სლეში მოვიდა
       // printf("   movida sleshi \n");
     }
 
     if (c == 110)
     {
+      // >>>>>
       // "n" ების მთვლელი. სიტყვაში თუ n მოვიდა
       // printf("   movida n \n");
     }
 
     if (c == '\n')
     {
+      // >>>>>
       // "\n" ების მთვლელი. სიტყვების მთვლელი.
       // printf("end of getchar. enter new word: \n");
       ++nl;
@@ -191,6 +197,15 @@ main()
 
 
   // სტატუსები
+  printf("############################################################### \n");
+  printf("######################## outputs ############################## \n");
+  // TODO
+  // - სიტყვების მთვლელი
+  // - ასოების მთვლელი
+  // - სლეშების მთვლელი
+  // - ნ ების მთვლელი
+  // - ბულიანების სტატუსები ინთებოდეს
+
   printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
   printf("nl (number of entered words) = %d\n", nl);
 
