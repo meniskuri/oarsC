@@ -4,8 +4,11 @@
 
 TODO:
 - TESTING + 1.5.4 Word Counting
-- რესპექტაბელური აუთფუთის დაწერა
-
+- რესპექტაბელური აუთფუთის დაწერა (და ეგ არის) <<<<
+- სიტყვების საცავში სიტყვების რაოდენობის მოძებნა
+- - ორი სლეში თუ იქნება რომ იცნოს
+- - - შა :)) 256 :))
+- - - პარაგრაფის ნახვა
 */
 
 #include <stdio.h>
@@ -16,7 +19,10 @@ TODO:
 main()
 {
   // ცვლადები
-  int nl, counter, counter2, counter3, counter4, c;
+  int nl, counter, counter2, counter3, counter4, slesh_counter, n_counter, c;
+  n_counter     = 0;
+  slesh_counter = 0;
+
   counter4      = 0;
   counter3      = 0; // საერთოდ რამდენი ასოა
   counter2      = 0; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
@@ -56,6 +62,7 @@ main()
       // >>>>>
       // "\" ების მთვლელი. სიტყვაში თუ სლეში მოვიდა
       // printf("   movida sleshi \n");
+      ++slesh_counter;
     }
 
     if (c == 110)
@@ -63,6 +70,7 @@ main()
       // >>>>>
       // "n" ების მთვლელი. სიტყვაში თუ n მოვიდა
       // printf("   movida n \n");
+      ++n_counter;
     }
 
     if (c == '\n')
@@ -73,7 +81,7 @@ main()
       ++nl;
     }
 
-    // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~
+    // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
     if (c == 126)
     {
       // break
@@ -100,10 +108,6 @@ main()
 
     for (int j = 0; j <= counter3; j = j + 1)
     {
-      // უკან უნდა ითვლიდეს და ამოწმებდეს წინა ვარიანტებს თუარ დაჯდა სწორად გააფალსოს (ხელით იქნება ჩასამატებელი)
-      // ბულიანების ტრეკერი რომ იბეჭდებოდეს კარგი იქნებოდა
-      // ლამაზად ეკრანზე გამოტანა მნიშვნელოვანია
-
       if (sityvebSanaxi[0][j] == 77)
       {
         Me = true;
@@ -179,7 +183,7 @@ main()
     }
 
     ++counter;
-    ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ სულ რამდენი სიტყვაა
+    ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ counter3
     ++counter3; // სულ რამდენი ასოა
 
     if (c == 10)
@@ -200,21 +204,23 @@ main()
   printf("############################################################### \n");
   printf("######################## outputs ############################## \n");
   // TODO
-  // - სიტყვების მთვლელი
-  // - ასოების მთვლელი
-  // - სლეშების მთვლელი
-  // - ნ ების მთვლელი
-  // - ბულიანების სტატუსები ინთებოდეს
+  // - სიტყვების მთვლელი <<
+  // - ასოების მთვლელი   <<
+  // - სლეშების მთვლელი  <<
+  // - ნ ების მთვლელი    <<
+  // - მასივში ჩაწერილში სიტყვების ძებნა (ვთქვათ)
 
-  printf("counter2 (ramdenjer shevida vailshi saertod) = %d\n", counter2);
+  printf("counter3 (sul ramdeni asoa) = %d\n", counter3);
   printf("nl (number of entered words) = %d\n", nl);
+  printf("slesh_counter = %d\n", slesh_counter);
+  printf("n_counter = %d\n", n_counter);
 
   // davbechdo masivshi chawerili sityvebi
   for (int i = 0; i <= counter3; i = i + 1)
   {
-    // printf("asoebi - %d\n",sityvebSanaxi[0][i]);
-    // printf("shemovedi aq\n");
-    printf("sityvebSanaxi = %d\n",sityvebSanaxi[0][i]);
+    // მთვლელები იქნება გასაკეთებელი რისიც დამჭირდება იმის
+    // ....
+    printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
   }
 }
 
