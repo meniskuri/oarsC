@@ -14,6 +14,7 @@ TODO:
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 main()
 {
@@ -203,13 +204,23 @@ main()
   შეამოწმებს არის ფაილი თუ არა
   და ორ გზას შემოგთავაზებს მოვლენების განვითარების
   */
+  FILE *fptr;
+
+  if( access("program.txt", F_OK ) == 0 ) { // unistd.h
+    // file exists
+    // yess 
+    printf("file exists \n");
+  } else {
+    // file doesn't exist
+    printf("file doesnt exist \n");
+  }
 
   // ფაილებთან მუშაობა. შემოწმება. წაკითხვა. შექმნა. ახლის. ჩაწერა.
-  FILE *fptr;
+
 
   fptr = fopen("program.txt","w");
 
-  if(fptr == NULL) // ეს რას აკეთებს?
+  if(fptr == NULL) // ამოქმებს არის თუარა ფაილი
   {
     printf("Error!");
     exit(1);
