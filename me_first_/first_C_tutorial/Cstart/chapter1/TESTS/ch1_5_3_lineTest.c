@@ -125,7 +125,7 @@ main()
       }
     }
 
-    // ქაუნთერი მუშაობს. უბრალოდ მაგდროს ხუთია შემდეგ ვაილში ჩავარდნის დროს გაზდება +1 ით მეტი თუ არის ზედმეტი ასო
+    // ქაუნთერი მუშაობს. უბრალოდ მაგდროს ხუთია შემდეგ ვაილში ჩავარდნის დროს გაიზდება +1 ით მეტი თუ არის ზედმეტი ასო
     if (Me == true && Erti == true && Leo == true && Oniani == true && N_vi == true && counter == 5)
     {
       for (int j = counter3 - 5; j <= counter3; j = j + 1)
@@ -163,7 +163,7 @@ main()
         printf("melon it gamosvla \n");
         break;
       }
-      // break;
+      // break; // თუ დამჭირდა (რაი იყოს)
       printf("counter3 = %d\n", counter3);
       printf("break \n");
     }
@@ -184,7 +184,8 @@ main()
   printf("######################## outputs ############################## \n");
   // TODO
   // - მასივში ჩაწერილში სიტყვების ძებნა (ვთქვათ) <<
-  // - საცავის გაკეთება
+  // - საცავის გაკეთება <<
+  // - ამოკითხვა და დაბეჭდვა საცავიდან (ნუმერაცია) <
   // - საცავის რეზერვირების იდეა? ან ჯერ უბრალოდ რიცხვი დაემატოს რამდენჯერ იწერება. ფაილიდან ამოკითხვა გასაკეთებელია
   // - პარაგრაფის გადახედვა
 
@@ -212,11 +213,34 @@ main()
     // სიტყვები კი ალბათ სხვა სიმბოლოთი იქნებიან დაყოფილები
     // ........
     // ....
-    printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
+    // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
     fprintf(fptr,"%c",sityvebSanaxi[0][i]); // ჩაწერა
   }
 
   fclose(fptr);
+
+  // ფაილის წაკითხვა (ნუმერაცია)
+  char nums[100];
+  FILE *failponteramokitxvis;
+
+  if ((failponteramokitxvis = fopen("program.txt","r")) == NULL)
+  {
+    printf("Error! opening file");
+
+    // Program exits if the file pointer returns NULL.
+    exit(1);
+  }
+
+  for (int i = 0; i <= counter3; i = i + 1)
+  {
+    //
+    fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა
+    printf("sityvebiSsanaxi (amokitxva) =%c\n", sityvebSanaxi[0][i]);
+
+  } // არ უნდა იმუშაოს
+
+  fclose(fptr);
+
 
   return 0;
 }
