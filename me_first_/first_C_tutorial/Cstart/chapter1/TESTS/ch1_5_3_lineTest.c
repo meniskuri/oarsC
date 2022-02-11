@@ -185,7 +185,10 @@ main()
   // TODO
   // - მასივში ჩაწერილში სიტყვების ძებნა (ვთქვათ) <<
   // - საცავის გაკეთება <<
-  // - ამოკითხვა და დაბეჭდვა საცავიდან (ნუმერაცია) <
+  // - ამოკითხვა და დაბეჭდვა საცავიდან <<
+  // - ნუმერაცია წაკითხვა ამოკითხვა (საცავში შენახვა - საცავიდან ამოკითხვა მიმატება თავიდან ჩაწერა)
+  // - დამავიწყდა აქ რა უნდა დამეწერა (დასატენია ლეპტოპი)
+
   // - საცავის რეზერვირების იდეა? ან ჯერ უბრალოდ რიცხვი დაემატოს რამდენჯერ იწერება. ფაილიდან ამოკითხვა გასაკეთებელია
   // - პარაგრაფის გადახედვა
 
@@ -216,11 +219,18 @@ main()
     // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
     fprintf(fptr,"%c",sityvebSanaxi[0][i]); // ჩაწერა
   }
-
-  fclose(fptr);
+  // ნუმერაციის გაკეთება
+  int cointer_numeracia;
+  sityvebSanaxi[0][counter3 + 1] = 1;
+  fprintf(fptr,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
+  printf("#### \n");
+  printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
+  printf("#### \n");
+  cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1;
+  fclose(fptr); // ვა გავიჭდე 
 
   // ფაილის წაკითხვა (ნუმერაცია)
-  char nums[100];
+  char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
   FILE *failponteramokitxvis;
 
   if ((failponteramokitxvis = fopen("program.txt","r")) == NULL)
@@ -231,7 +241,7 @@ main()
     exit(1);
   }
 
-  for (int i = 0; i <= counter3; i = i + 1)
+  for (int i = 0; i <= counter3 + 1; i = i + 1)
   {
     //
     fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა
@@ -240,7 +250,6 @@ main()
   } // არ უნდა იმუშაოს
 
   fclose(fptr);
-
 
   return 0;
 }
@@ -436,4 +445,8 @@ realურად
 
 ქართველებო
 კატანებო
+
+დევით კოპერფილდი
+ილუზიების წიგნის
+წაკითხვა
 */
