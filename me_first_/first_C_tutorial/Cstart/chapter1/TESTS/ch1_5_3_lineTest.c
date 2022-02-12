@@ -16,6 +16,9 @@ TODO:
 #include <stdbool.h>
 #include <unistd.h> // << შემოწმების დროს რაღაც ფუნქციისთვის მჭირდება
 
+// globals
+int cointer_numeracia;
+
 main()
 {
   // ცვლადები
@@ -255,7 +258,7 @@ main()
     }
 
     // ნუმერაციის გაკეთება
-    int cointer_numeracia;
+    // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     sityvebSanaxi[0][counter3 + 1] = 1;
     fprintf(fptr,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
     printf("#### \n");
@@ -317,21 +320,24 @@ main()
   // ნიუ ბიგინინგ :)))
   // ....
   // .. მოვალ მალე
+  int cointer_numeracia;
   cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1; // ეს გადასატანი იქნებიან
+  printf("cointer_numeracia (amokitxvis dros) %c\n",cointer_numeracia);
 
   fclose(failponteramokitxvis);
 
+  // დავბეჭდო მთელი მატრიცა
 
 
 
-
+  /*
   // ფაილის თავიდან გახსნა და ჩაწერა cointer_numeracia = cointer_numeracia + 1
   // მერე მატრიცის შექმნაზე ფიქრი
   // აქ პრობლემა მაქვს
   FILE *fptr2;
   // აქ ვიწყებ ჩაწერას ბოლო ციფრის
 
-  fptr2 = fopen("program.txt","w"); // << w არის გახსნა და გადაწერა. ეს უნდა შევცვალო 
+  fptr2 = fopen("program.txt","w"); // << w არის გახსნა და გადაწერა. ეს უნდა შევცვალო
 
   if(fptr2 == NULL) // ამოქმებ არის თუარა ფაილი
   {
@@ -347,7 +353,8 @@ main()
   printf("#### \n");
 
   fclose(fptr2); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
-
+  */
+  // gets(brzaneba); // <<< ბრძანების მიცემა კლავიატურიდან <<<<<<<<<<<<<<<<<<<<< გამოვიყენო
 
   return 0;
 }

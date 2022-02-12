@@ -61,7 +61,7 @@ int main()
     printf(" - Passwords must be at least 6 characters in length, but can be much longer\n");
     printf("Enter password (თქვი cntrl C და გამოდი): \n");
 
-    gets(brzaneba);
+    gets(brzaneba); // <<< ბრძანების მიცემა კლავიატურიდან
     counterPassword = 0;
     printf("Password is %s\n", brzaneba);
 
