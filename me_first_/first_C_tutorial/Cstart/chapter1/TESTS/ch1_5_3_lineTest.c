@@ -219,22 +219,76 @@ main()
   იფ იფ ))
   */
 
-  FILE *fptr;
-
   if( access("program.txt", F_OK ) == 0 ) { // unistd.h
-    // file exists
-    // yess
-    // მატრიცა შევავსო. კარგი იდეაა
-    // არრეის თავს ხომ არ გადავხედო?
-    // მოდი ჯერ ნუმერაცია დავასრულო. და ნომერსაც მერე მატრიცაში ადგილს მივუჩენ
-    // ქართულად ჩაწერაც printf("file doesnt exist \n");მინდა დავამატო. მოდი ჯერ ფერვექსის ჩაი დავლიო
+
     printf("file exists \n");
-    // ამოკითხვა მოხდება ბოლო რიცხვის და ცვლადში დამახსოვრება
-    // და მერე ამ იფ ელსის შემდეგ მოხდება ჩაწერა ბოლორიცხვს პლიუს ერთი
-    // ამოწერე რიცხვის
-    // printf("amowere ricxvi - sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]); <<< gavichede
+
+    // ფაილის წაკითხვა (ნუმერაცია)
+    // აქედამ უნდა ამოვიწერო ბოლო ციფრი
+    char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
+    FILE *failponteramokitxvis;
+
+    if ((failponteramokitxvis = fopen("program.txt","r")) == NULL)
+    {
+      printf("Error! opening file");
+
+      // Program exits if the file pointer returns NULL.
+      exit(1);
+    }
+
+    for (int i = 0; i <= counter3 + 1; i = i + 1)
+    {
+      //
+      fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა
+      printf("sityvebiSsanaxi (amokitxva - 1) =%c\n", sityvebSanaxi[0][i]);
+
+    }
+
+    int cointer_numeracia;
+    cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1; // ეს გადასატანი იქნებიან
+    printf("cointer_numeracia (zrda) %c\n", cointer_numeracia);
+    printf("cointer_numeracia (amokitxvis dros) %c\n",sityvebSanaxi[0][counter3 + 1]);
+
+    fclose(failponteramokitxvis);
+
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    FILE *fptr_me;
+
+    printf("file doesnt exist \n");
+    printf("vqmnit fails \n");
+    fptr_me = fopen("program.txt","w");
+
+    if (fptr_me == NULL) // ამოქმებს არის თუარა ფაილი
+    {
+      printf("Error!");
+      exit(1);
+    }
+
+    // davbechdo masivshi chawerili sityvebi1
+    for (int i = 0; i <= counter3; i = i + 1)
+    {
+      // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
+      fprintf(fptr_me,"%c",sityvebSanaxi[0][i]); // ჩაწერა
+    }
+
+    // ნუმერაციის გაკეთება
+    // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
+    printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia);
+    sityvebSanaxi[0][counter3 + 1] = cointer_numeracia;
+    fprintf(fptr_me,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
+    printf("#### pirveli gashveba ### \n");
+    printf("sityvebSanaxi[0][counter3 + 1]) = %c\n", sityvebSanaxi[0][counter3 + 1]);
+    printf("#### \n");
+
+    fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
+
+
+
+
   } else {
     // file doesn't exist
+    FILE *fptr;
+
     printf("file doesnt exist \n");
     printf("vqmnit fails \n");
     fptr = fopen("program.txt","w");
@@ -248,11 +302,6 @@ main()
     // davbechdo masivshi chawerili sityvebi
     for (int i = 0; i <= counter3; i = i + 1)
     {
-      // მთვლელები იქნება გასაკეთებელი რისიც დამჭირდება იმის
-      // ორი სლეში თუ შემხვდა სიტყვასა და სიტყვას შორის
-      // სიტყვები კი ალბათ სხვა სიმბოლოთი იქნებიან დაყოფილები
-      // ........
-      // ....
       // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
       fprintf(fptr,"%c",sityvebSanaxi[0][i]); // ჩაწერა
     }
@@ -261,18 +310,10 @@ main()
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     sityvebSanaxi[0][counter3 + 1] = 1;
     fprintf(fptr,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
-    printf("#### \n");
+    printf("#### pirveli gashveba ### \n");
     printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
     printf("#### \n");
 
-    // ანუ აქ ჩავწერ 1 ს მერე ყოველ გაშვებაზე შევამოწმებ თუ ნაკლებია ან ტოლი 1 ზე მაშინ გავთიშავ
-    // მერე თავიდან ამოვიკითხავ ვა ავირიე ისევ დროში )))
-    // ანუ მინდა გავიგო რამდენჯერ გაეშვა ეს პროგრამა სულ. მაგის მთვლელი. ვა საინტერესო ამოცანაა
-    // მინდა ჯერ პირობა რომელიც ამოწმებს არის თუარა ეს ფაილი.
-    // თუ არის შევიდეს და წაიკითხოს და ამოწეროს რიცხვი
-    // თუ არ არის შექმნას და ჩაწეროს
-    // იმის შემდეგ რაც მეორე გაშვებაა და შევიდა და ამოვიკითხავ
-    // მაგის მერე ჩაწერის დროს მიუმატოს + 1 (ნუ დასალაგებელია)
     fclose(fptr); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
   }
 
@@ -295,7 +336,7 @@ main()
 
 
 
-
+  /*
   // ფაილებთან მუშაობა. შემოწმება. წაკითხვა. შექმნა. ახლის. ჩაწერა.
   // ფაილის წაკითხვა (ნუმერაცია)
   char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
@@ -327,7 +368,8 @@ main()
   fclose(failponteramokitxvis);
 
   // დავბეჭდო მთელი მატრიცა
-
+  // მოსაფიქრებელია მეორედ გაშვების დროს რას აკეთებდეს. ალბათ გადაწეროს თავიდან ახალი შეყვანილი სიტყვა?
+  // ჯერ დავბეჭდოთ მთლიანი მასივი
 
 
   /*
