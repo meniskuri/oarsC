@@ -239,15 +239,16 @@ main()
     for (int i = 0; i <= counter3 + 1; i = i + 1)
     {
       //
-      fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა
-      printf("sityvebiSsanaxi (amokitxva - 1) =%c\n", sityvebSanaxi[0][i]);
+      fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
+      printf("sityvebiSsanaxi (amokitxva - 1) =%d\n", sityvebSanaxi[0][i]);
 
     }
 
     int cointer_numeracia;
-    cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1; // ეს გადასატანი იქნებიან
+    cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1;
     printf("cointer_numeracia (zrda) %c\n", cointer_numeracia);
     printf("cointer_numeracia (amokitxvis dros) %c\n",sityvebSanaxi[0][counter3 + 1]);
+
 
     fclose(failponteramokitxvis);
 
@@ -264,7 +265,7 @@ main()
       exit(1);
     }
 
-    // davbechdo masivshi chawerili sityvebi1
+    // chavwero da davbechdo masivshi chawerili sityvebi1
     for (int i = 0; i <= counter3; i = i + 1)
     {
       // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
@@ -273,7 +274,7 @@ main()
 
     // ნუმერაციის გაკეთება
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
-    printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia);
+    printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
     sityvebSanaxi[0][counter3 + 1] = cointer_numeracia;
     fprintf(fptr_me,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
     printf("#### pirveli gashveba ### \n");
@@ -313,6 +314,14 @@ main()
     printf("#### pirveli gashveba ### \n");
     printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
     printf("#### \n");
+
+    // მთელი მასივის დაბეჭდვა (გასაკეთებელია - პირველი გაშვების დროს შევამოწმებ რა იწერება ბოლოში)
+    // ბეჭდვას ვაკეთებ ბოლოსას d თი და ჩასმას??? d თი ვაკეთებ (ჯერ ვფოკუსირდე მხოლოდ პირველ გაშვებაზე)
+    for (int i = 0; i <= counter3 + 1; i = i + 1)
+    {
+      printf("sityvebSanaxi (pirveli gashvebis mteli masivis bechdva)= %d\n",sityvebSanaxi[0][i]);
+    }
+
 
     fclose(fptr); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
   }
