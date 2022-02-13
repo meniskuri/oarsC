@@ -238,7 +238,7 @@ main()
 
     for (int i = 0; i <= counter3 + 1; i = i + 1)
     {
-      //
+      // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ 
       fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
       printf("sityvebiSsanaxi (amokitxva - 1) =%d\n", sityvebSanaxi[0][i]);
 
