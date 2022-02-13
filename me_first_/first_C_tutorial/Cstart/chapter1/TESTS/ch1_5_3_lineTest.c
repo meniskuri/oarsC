@@ -95,7 +95,7 @@ main()
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
-    sityvebSanaxi[0][counter3] = c;
+    sityvebSanaxi[0][counter3] = c; // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< masivis shevseba
     printf("c = %c\n",c);
 
     for (int j = 0; j <= counter3; j = j + 1)
@@ -206,6 +206,12 @@ main()
   printf("slesh_counter = %d\n", slesh_counter);
   printf("n_counter = %d\n", n_counter);
 
+  // ვაილმა რა სიტყვაც დამიბრუნა იმას ვბეჭდავ
+  for (int i = 0; i <= counter3; i = i + 1)
+  {
+    printf("sityvebSanaxi (vailma ra sityvac damibruna imas vbechdav)= %c\n",sityvebSanaxi[0][i]);
+  }
+
 
 
 
@@ -238,20 +244,32 @@ main()
 
     for (int i = 0; i <= counter3 + 1; i = i + 1)
     {
-      // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ 
-      fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
-      printf("sityvebiSsanaxi (amokitxva - 1) =%d\n", sityvebSanaxi[0][i]);
-
+      // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
+      if (i == counter3 + 1)
+      {
+        fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
+        printf("i = counter3 + 1 \n");
+        printf("sityvebiSsanaxi (amokitxva - if it) =%d\n", sityvebSanaxi[0][i]);
+      } else {
+        fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
+        printf("sityvebiSsanaxi (amokitxva - else it) =%c\n", sityvebSanaxi[0][i]);
+      }
     }
 
     int cointer_numeracia;
     cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1;
-    printf("cointer_numeracia (zrda) %c\n", cointer_numeracia);
-    printf("cointer_numeracia (amokitxvis dros) %c\n",sityvebSanaxi[0][counter3 + 1]);
-
+    printf("TEST cointer_numeracia (zrda - c) %c\n", cointer_numeracia);
+    printf("TEST cointer_numeracia (amokitxvis dros - c) %c\n",sityvebSanaxi[0][counter3 + 1]);
+    printf("TEST cointer_numeracia (zrda - d) %d\n", cointer_numeracia);
+    printf("TEST cointer_numeracia (amokitxvis dros - d) %d\n",sityvebSanaxi[0][counter3 + 1]);
 
     fclose(failponteramokitxvis);
 
+    // აქამდე ვარ მოსული. ქვემოთ უნდა გავარკვიო. შეიძლება აქ
+    // იყოს თუ ქვემოთ გახსნა ჩაწერა თავიდან უნდა დავწერო ან აფენდი
+    // ზემოთ ფაილი რომ გავხენით cointer_numeracia შეივსო გახსნილი ფაილიდან მიღებული ინფორმაციით
+    // ეს ბლოკი სხვაგან უნდა გადავდო
+    // ქვემოთ 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     FILE *fptr_me;
 
@@ -266,9 +284,10 @@ main()
     }
 
     // chavwero da davbechdo masivshi chawerili sityvebi1
+    // ვა სიტყვებსაც მინდა ცვლიდე და მაგას რატომ არ აკეთებს ვერ ვხდები
     for (int i = 0; i <= counter3; i = i + 1)
     {
-      // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
+      printf("sityvebSanaxi (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi[0][i]);
       fprintf(fptr_me,"%c",sityvebSanaxi[0][i]); // ჩაწერა
     }
 
@@ -276,15 +295,13 @@ main()
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
     sityvebSanaxi[0][counter3 + 1] = cointer_numeracia;
-    fprintf(fptr_me,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
-    printf("#### pirveli gashveba ### \n");
-    printf("sityvebSanaxi[0][counter3 + 1]) = %c\n", sityvebSanaxi[0][counter3 + 1]);
+    fprintf(fptr_me,"%d",cointer_numeracia);
+    printf("#### meored gashveba ### \n");
+    printf("sityvebSanaxi[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi[0][counter3 + 1]);
+    printf("sityvebSanaxi[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi[0][counter3 + 1]);
     printf("#### \n");
 
     fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
-
-
-
 
   } else {
     // file doesn't exist
