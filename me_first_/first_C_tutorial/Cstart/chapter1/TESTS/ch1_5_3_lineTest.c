@@ -49,6 +49,12 @@ main()
 
   // 2D array
   int sityvebSanaxi[2][300];
+
+  // შეიძლება ზუსტად ეს გამომადგეს. ყოველ შემდეგ გაშვებაზე
+  // ტესტებია გასაკეთბელი
+  // მასივების პარაგრაფი სანახავი
+  // მგონი გამოვა (ცდა უნდა)
+  // ჯერ ანუ მეორე მასივის (ტვინ მასივის) - იდეა ვცადო <<<<<<<<<<<<<<<<<<<<<<<<<<< აქ ვარ <<<<<<<<<<<<<<<<<<<
   int sityvebSanaxi2[2][300]; // მეორედ გაშვების დროს აქ ჩავწერ სიტყვებს ... შემდეგ გაშვებებზე მერე ვიფიქროთ
 
 
@@ -105,7 +111,8 @@ main()
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
-    sityvebSanaxi[0][counter3] = c; // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< masivis shevseba
+    sityvebSanaxi[0][counter3] = c;  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< masivis shevseba
+    sityvebSanaxi2[0][counter3] = c; // tvin მასივი
     printf("c = %c\n",c);
 
     for (int j = 0; j <= counter3; j = j + 1)
@@ -278,12 +285,18 @@ main()
       printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %c\n",sityvebSanaxi[0][i]);
     }
 
-    /*
+
     // აქამდე ვარ მოსული. ქვემოთ უნდა გავარკვიო. შეიძლება აქ
     // იყოს თუ ქვემოთ გახსნა ჩაწერა თავიდან უნდა დავწერო ან აფენდი
     // ზემოთ ფაილი რომ გავხენით cointer_numeracia შეივსო გახსნილი ფაილიდან მიღებული ინფორმაციით
     // ეს ბლოკი სხვაგან უნდა გადავდო
     // ქვემოთ
+
+    // >>>>>>>>>> აქ ვარ >>>>>>>>>>>>>>>
+    // sityvebSanaxi2 - ით ვაკეთებ ჩაწერას
+    // შესამოწმებელია sityvebSanaxi ის 2 ის ბოლო რიცხვები ცალცალკე
+    // და ისე დაემატოთ ერთმანეთს (for ებით გადარბენის დროს counter3 ს სავარაუდოდ
+    // ეშლება ამ ორ მასივში ნუმერაციის მოძებნა) ანუ კიდევ ერთი ქაუნთერი იქნება გასაკეთბელი
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     FILE *fptr_me;
 
@@ -301,22 +314,21 @@ main()
     // ვა სიტყვებსაც მინდა ცვლიდე და მაგას რატომ არ აკეთებს ვერ ვხდები
     for (int i = 0; i <= counter3; i = i + 1)
     {
-      printf("sityvebSanaxi (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi[0][i]);
-      fprintf(fptr_me,"%c",sityvebSanaxi[0][i]); // ჩაწერა
+      printf("sityvebSanaxi2 (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi2[0][i]);
+      fprintf(fptr_me,"%c",sityvebSanaxi2[0][i]); // ჩაწერა
     }
 
     // ნუმერაციის გაკეთება
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
-    sityvebSanaxi[0][counter3 + 1] = cointer_numeracia;
+    sityvebSanaxi2[0][counter3 + 1] = cointer_numeracia;
     fprintf(fptr_me,"%d",cointer_numeracia);
     printf("#### meored gashveba ### \n");
-    printf("sityvebSanaxi[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi[0][counter3 + 1]);
-    printf("sityvebSanaxi[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi[0][counter3 + 1]);
+    printf("sityvebSanaxi2[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi2[0][counter3 + 1]);
+    printf("sityvebSanaxi2[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi2[0][counter3 + 1]);
     printf("#### \n");
 
     fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
-    */
 
   } else {
     // file doesn't exist
