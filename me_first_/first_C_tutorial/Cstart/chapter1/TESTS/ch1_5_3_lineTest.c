@@ -226,7 +226,7 @@ main()
   // ვაილმა რა სიტყვაც დამიბრუნა იმას ვბეჭდავ
   for (int i = 0; i <= counter3; i = i + 1)
   {
-    printf("sityvebSanaxi (vailma ra sityvac damibruna imas vbechdav)= %c\n",sityvebSanaxi[0][i]);
+    printf("sityvebSanaxi (vailma daabruna)= %c; sityvebSanaxi2 = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
   }
 
   /*
@@ -296,7 +296,9 @@ main()
     // sityvebSanaxi2 - ით ვაკეთებ ჩაწერას
     // შესამოწმებელია sityvebSanaxi ის 2 ის ბოლო რიცხვები ცალცალკე
     // და ისე დაემატოთ ერთმანეთს (for ებით გადარბენის დროს counter3 ს სავარაუდოდ
+
     // ეშლება ამ ორ მასივში ნუმერაციის მოძებნა) ანუ კიდევ ერთი ქაუნთერი იქნება გასაკეთბელი
+    // ეს ორი მასივი დავბეჭდო ორივე (გვერდიგვერდ)
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     FILE *fptr_me;
 
