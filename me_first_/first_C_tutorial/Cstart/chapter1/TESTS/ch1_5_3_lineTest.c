@@ -248,8 +248,23 @@ main()
     // მთელი მასივის გადარბენა (30 მდე - ისე მთელი მასივი 300 იანია)
     printf("sityvebSanaxi (გადარბენა წაკითხვამდე - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
     // ვიპოვო და დავბეჭდო ფაილის დასასრული და დავაბრეიქო მანდ ფორ ციკლი
-    // ასკი სიმბოლოების კოდს შევადარო 
+    // ასკი სიმბოლოების კოდს შევადარო
+    if (sityvebSanaxi[0][i] <= 255 && sityvebSanaxi[0][i] >= 0)
+    {
+      // piroba + mtvleli
+      failis_end_test++;
+
+    } else {
+      // print mtvleli; print break; break from for
+      printf("failis_end_test = %d\n", failis_end_test);
+      printf("break from for (enf if file) \n");
+      break;
+    }
   }
+
+  /*
+  კოდი გასაწმენდია
+  */
 
 
   /*
@@ -287,19 +302,43 @@ main()
       exit(1);
     }
 
-    for (int i = 0; i <= counter3 + 1; i = i + 1)
+    printf("###################################### \n");
+    printf("amokitxvisas ra xdeba \n");
+
+    int mtvleli_1_sanaxi_amokitxva1, mtvleli_2_sanaxi_amokitxva2;
+    mtvleli_2_sanaxi_amokitxva2 = 0;
+    mtvleli_1_sanaxi_amokitxva1 = 0;
+
+    for (int i = 0; i <= 30; i = i + 1) // ამოკითხვისას სად წერია რიცხვი
     {
       // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
       if (i == counter3 + 1)
       {
         fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
         printf("i = counter3 + 1 \n");
-        printf("sityvebiSsanaxi (amokitxva - if it) =%d\n", sityvebSanaxi[0][i]);
+        printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
       } else {
         fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
-        printf("sityvebiSsanaxi (amokitxva - else it) =%c\n", sityvebSanaxi[0][i]);
+        printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+      }
+
+      // mtvlelebi 1 (dzveli); mtvleli2 (axali sityva)
+      if (sityvebSanaxi[0][i] <= 255 && sityvebSanaxi[0][i] >= 0)
+      {
+        // piroba + mtvleli
+        mtvleli_1_sanaxi_amokitxva1++;
+      }
+      if (sityvebSanaxi2[0][i] <= 255 && sityvebSanaxi2[0][i] >= 0)
+      {
+        // piroba + mtvleli
+        printf("TEST ABA !!!!! \n");
+        printf("sityvebSanaxi2[0][i] %d %c\n",sityvebSanaxi2[0][i],sityvebSanaxi2[0][i]);
+        mtvleli_2_sanaxi_amokitxva2++;
       }
     }
+    printf("mtvleli_1_sanaxi_amokitxva1 = %d\n", mtvleli_1_sanaxi_amokitxva1);
+    printf("mtvleli_2_sanaxi_amokitxva2 = %d\n", mtvleli_2_sanaxi_amokitxva2);
+    printf("######### \n");
 
     int cointer_numeracia;
     cointer_numeracia = sityvebSanaxi[0][counter3 + 1] + 1;
@@ -334,7 +373,7 @@ main()
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     FILE *fptr_me;
 
-    printf("file doesnt exist \n");
+    printf("file doesnt exist (tavidan - chawera ricxvis ganaxleba - mushaobs tolebistvis only) \n");
     printf("vqmnit fails \n");
     fptr_me = fopen("program.txt","w");
 
