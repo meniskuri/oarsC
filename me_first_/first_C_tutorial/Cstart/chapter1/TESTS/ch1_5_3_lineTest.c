@@ -11,6 +11,7 @@ TODO:
 - - - fileHand.c fileRead.c failisZoma.c (სანახავია)
 
 - პოინტერები
+- - დავწყნარდე და კოდს გადავხედო
 */
 
 #include <stdio.h>
@@ -194,6 +195,7 @@ main()
     }
 
     ++counter;
+
     ++counter2; // საერთოდ ვაილში რამდენჯერ შევიდა, ანუ counter3
     ++counter3; // სულ რამდენი ასოა
 
@@ -228,7 +230,7 @@ main()
   // ვაილმა რა სიტყვაც დამიბრუნა იმას ვბეჭდავ
   for (int i = 0; i <= counter3; i = i + 1)
   {
-    printf("sityvebSanaxi (vailma daabruna)= %c; sityvebSanaxi2 = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+    printf("sityvebSanaxi (vailma daabruna - d )= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
   }
 
   // <<<<<<<<<<<<< აქ ვარ <<<<<<<<<<<<<< მაღაზიიდან რომ მოხვლ ნახე <<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -237,6 +239,17 @@ main()
   // მერე ამოკითხვისასაც გადაირბენს მთლიან მასივზე ვთქვათ სადაც დამთავრდება იქ ამოაგდებს ფორს ოკ ;)
   // ერთ შემთხვევაში ნუმერაციას ამოიღებს ამოკითხვისას მიღებული ქაუნთერით
   // მერე ჩაწერისას ჩაწერს counter3 ში რაც იქნება იმით + წინა ამოღებული რიცხვი
+  //
+  int failis_end_test;
+  failis_end_test = 0;
+
+  for (int i = 0; i <= 30; i = i + 1)
+  {
+    // მთელი მასივის გადარბენა (30 მდე - ისე მთელი მასივი 300 იანია)
+    printf("sityvebSanaxi (გადარბენა წაკითხვამდე - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+    // ვიპოვო და დავბეჭდო ფაილის დასასრული და დავაბრეიქო მანდ ფორ ციკლი
+    // ასკი სიმბოლოების კოდს შევადარო 
+  }
 
 
   /*
