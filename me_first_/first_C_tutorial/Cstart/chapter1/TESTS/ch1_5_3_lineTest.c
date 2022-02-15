@@ -187,6 +187,8 @@ main()
       if (erti == true && ori == true && sami == true && otxi == true && xuti == true)
       {
         printf("melon it gamosvla \n");
+        // ბრეიქამდე. იქნებ აქედან ჩავსვა ფაილის დასრულებამდე ! << ეს ჩავსვა 
+
         break;
       }
 
@@ -243,6 +245,7 @@ main()
   int failis_end_test;
   failis_end_test = 0;
 
+  /*
   for (int i = 0; i <= 30; i = i + 1)
   {
     // მთელი მასივის გადარბენა (30 მდე - ისე მთელი მასივი 300 იანია)
@@ -261,6 +264,7 @@ main()
       break;
     }
   }
+  */
 
   /*
   კოდი გასაწმენდია
@@ -316,10 +320,10 @@ main()
       {
         fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
         printf("i = counter3 + 1 \n");
-        printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+        printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
       } else {
         fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
-        printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+        printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
       }
 
       // mtvlelebi 1 (dzveli); mtvleli2 (axali sityva)
@@ -328,11 +332,12 @@ main()
         // piroba + mtvleli
         mtvleli_1_sanaxi_amokitxva1++;
       }
+
       if (sityvebSanaxi2[0][i] <= 255 && sityvebSanaxi2[0][i] >= 0)
       {
         // piroba + mtvleli
-        printf("TEST ABA !!!!! \n");
-        printf("sityvebSanaxi2[0][i] %d %c\n",sityvebSanaxi2[0][i],sityvebSanaxi2[0][i]);
+        // printf("TEST ABA !!!!! \n");
+        // printf("sityvebSanaxi2[0][i] %d %c\n",sityvebSanaxi2[0][i],sityvebSanaxi2[0][i]);
         mtvleli_2_sanaxi_amokitxva2++;
       }
     }
@@ -351,7 +356,7 @@ main()
 
 
     // წაკითხვის შემდეგ რაც ჩაიწერა sityvebSanaxi ში
-    for (int i = 0; i <= counter3; i = i + 1)
+    for (int i = 0; i <= counter3 + 5; i = i + 1)
     {
       printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %c\n",sityvebSanaxi[0][i]);
     }
@@ -371,6 +376,8 @@ main()
     // ეშლება ამ ორ მასივში ნუმერაციის მოძებნა) ანუ კიდევ ერთი ქაუნთერი იქნება გასაკეთბელი
     // ეს ორი მასივი დავბეჭდო ორივე (გვერდიგვერდ)
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    // მეორედ ჩაწერა
     FILE *fptr_me;
 
     printf("file doesnt exist (tavidan - chawera ricxvis ganaxleba - mushaobs tolebistvis only) \n");
@@ -395,11 +402,14 @@ main()
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
     sityvebSanaxi2[0][counter3 + 1] = cointer_numeracia;
-    fprintf(fptr_me,"%d",cointer_numeracia);
+    fprintf(fptr_me,"%d",sityvebSanaxi2[0][counter3 + 1]);
     printf("#### meored gashveba ### \n");
     printf("sityvebSanaxi2[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi2[0][counter3 + 1]);
     printf("sityvebSanaxi2[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi2[0][counter3 + 1]);
     printf("#### \n");
+
+    sityvebSanaxi2[0][counter3 + 2] = 33;
+    fprintf(fptr_me,"%c",sityvebSanaxi2[0][counter3 + 2]);
 
     fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
 
@@ -432,9 +442,13 @@ main()
     printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
     printf("#### \n");
 
+    // ფაილის დასასრულში ვსვავ ! სიმბოლოს 33
+    sityvebSanaxi[0][counter3 + 2] = 33;
+    fprintf(fptr,"%c",sityvebSanaxi[0][counter3 + 2]);
+
     // მთელი მასივის დაბეჭდვა (გასაკეთებელია - პირველი გაშვების დროს შევამოწმებ რა იწერება ბოლოში)
     // ბეჭდვას ვაკეთებ ბოლოსას d თი და ჩასმას??? d თი ვაკეთებ (ჯერ ვფოკუსირდე მხოლოდ პირველ გაშვებაზე)
-    for (int i = 0; i <= counter3 + 1; i = i + 1)
+    for (int i = 0; i <= counter3 + 3; i = i + 1)
     {
       printf("sityvebSanaxi (pirveli gashvebis mteli masivis bechdva)= %d\n",sityvebSanaxi[0][i]);
     }
