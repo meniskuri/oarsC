@@ -187,7 +187,7 @@ main()
       if (erti == true && ori == true && sami == true && otxi == true && xuti == true)
       {
         printf("melon it gamosvla \n");
-        // ბრეიქამდე. იქნებ აქედან ჩავსვა ფაილის დასრულებამდე ! << ეს ჩავსვა 
+        // ბრეიქამდე. იქნებ აქედან ჩავსვა ფაილის დასრულებამდე ! << ეს ჩავსვა
 
         break;
       }
@@ -341,6 +341,8 @@ main()
         mtvleli_2_sanaxi_amokitxva2++;
       }
     }
+    // statusebi
+    printf("ricxvi aris %d\n",sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]); // <<<<<<<<<<<<<< yess
     printf("mtvleli_1_sanaxi_amokitxva1 = %d\n", mtvleli_1_sanaxi_amokitxva1);
     printf("mtvleli_2_sanaxi_amokitxva2 = %d\n", mtvleli_2_sanaxi_amokitxva2);
     printf("######### \n");
@@ -401,8 +403,8 @@ main()
     // ნუმერაციის გაკეთება
     // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
     printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
-    sityvebSanaxi2[0][counter3 + 1] = cointer_numeracia;
-    fprintf(fptr_me,"%d",sityvebSanaxi2[0][counter3 + 1]);
+    sityvebSanaxi2[0][counter3 + 1] = sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]; // <<<<< aq var
+    fprintf(fptr_me,"%d",sityvebSanaxi2[0][counter3 + 1] + 1);
     printf("#### meored gashveba ### \n");
     printf("sityvebSanaxi2[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi2[0][counter3 + 1]);
     printf("sityvebSanaxi2[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi2[0][counter3 + 1]);
