@@ -59,9 +59,9 @@ main()
   აა თავდან ამოწმებს არის თუარა ფაილი
   თუ არ არის ქმნის (პირველი გაშვება)
   თუ არის
-      შევა პირველ ფაილს გახსნის ამოიწერს რიცხვს და შეინახავს დახურავს ფაილეს
-      მეორე მასივი შევქმნა სადაც მეორედ გაშვების დროს ჩაიწერება სიტყვებსანახში რაც იწერება ეგ
-      და მერე სიტყვებს სანახს გადავაწერ მაგას ბოლოში დამახსოვრებული ციფრის ჩასმა
+  შევა პირველ ფაილს გახსნის ამოიწერს რიცხვს და შეინახავს დახურავს ფაილეს
+  მეორე მასივი შევქმნა სადაც მეორედ გაშვების დროს ჩაიწერება სიტყვებსანახში რაც იწერება ეგ
+  და მერე სიტყვებს სანახს გადავაწერ მაგას ბოლოში დამახსოვრებული ციფრის ჩასმა
   */
 
   // სტარტ
@@ -102,7 +102,7 @@ main()
     }
 
     // მასივში ჩაწერა. სიტყვის |სიტყვა|counter| es sanaxavia kidev
-    sityvebSanaxi[0][counter3] = c;  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< masivis shevseba
+    sityvebSanaxi[0][counter3]  = c;  // masivis shevseba
     sityvebSanaxi2[0][counter3] = c; // tvin მასივი
     printf("c = %c\n",c);
 
@@ -197,8 +197,6 @@ main()
   }
 
 
-
-
   // სტატუსები
   printf("############################################################### \n");
   printf("######################## outputs ############################## \n");
@@ -209,7 +207,7 @@ main()
   printf("n_counter = %d\n", n_counter);
 
   // ვაილმა რა სიტყვაც დამიბრუნა იმას ვბეჭდავ
-  for (int i = 0; i <= counter3; i = i + 1)
+  for (int i = 0; i <= counter3 + 5; i = i + 1)
   {
     printf("sityvebSanaxi (vailma daabruna - d )= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
   }
@@ -218,201 +216,220 @@ main()
   failis_end_test = 0;
 
   /*
+  // ამოწმებს რაღაცეებს იყოს შეიძლება დამჭირდეს გადასატანად ან გადასაკეთებლად
   for (int i = 0; i <= 30; i = i + 1)
   {
-    // მთელი მასივის გადარბენა (30 მდე - ისე მთელი მასივი 300 იანია)
-    printf("sityvebSanaxi (გადარბენა წაკითხვამდე - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
-    // ვიპოვო და დავბეჭდო ფაილის დასასრული და დავაბრეიქო მანდ ფორ ციკლი
-    // ასკი სიმბოლოების კოდს შევადარო
+  // მთელი მასივის გადარბენა (30 მდე - ისე მთელი მასივი 300 იანია)
+  printf("sityvebSanaxi (გადარბენა წაკითხვამდე - d)= %d sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+  // ვიპოვო და დავბეჭდო ფაილის დასასრული და დავაბრეიქო მანდ ფორ ციკლი
+  // ასკი სიმბოლოების კოდს შევადარო
+  if (sityvebSanaxi[0][i] <= 255 && sityvebSanaxi[0][i] >= 0)
+  {
+  // piroba + mtvleli
+  failis_end_test++;
+
+} else {
+// print mtvleli; print break; break from for
+printf("failis_end_test = %d\n", failis_end_test);
+printf("break from for (enf if file) \n");
+break;
+}
+}
+*/
+
+
+
+
+
+/*
+counter 3 სადაც შემეძლება შევცვალო (დროში პირველ მეორე მესამე გაშვებებზე ირევა მგონი)
+კოდი გასაწმენდია
+(გაიწმინდოს ეკლესია)
+:))))))))))))))))))))))
+*/
+
+
+
+
+
+// ფაილის შემოწმება და პირველი ამოკითხვა
+if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
+
+  printf("file exists \n");
+  // თუ არსებობს პროგრამა.ტქსტ არსებობს - ნახოს ზომა ფაილის რომ გავიგო counter3 ის შემცვლელი 
+
+
+  // ფაილის წაკითხვა (ნუმერაცია)
+  char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
+  FILE *failponteramokitxvis;
+
+  if ((failponteramokitxvis = fopen("program.txt","r")) == NULL)
+  {
+    printf("Error! opening file");
+
+    // Program exits if the file pointer returns NULL.
+    exit(1);
+  }
+
+  printf("###################################### \n");
+  printf("amokitxvisas ra xdeba \n");
+
+  int mtvleli_1_sanaxi_amokitxva1, mtvleli_2_sanaxi_amokitxva2;
+  mtvleli_2_sanaxi_amokitxva2 = 0;
+  mtvleli_1_sanaxi_amokitxva1 = 0;
+
+  for (int i = 0; i <= 30; i = i + 1) // ამოკითხვისას სად წერია რიცხვი
+  {
+
+    // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
+    if (i == counter3 + 1) // aq maqvs problema. failis zomis gamgebi mchirdeba
+    {
+      fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
+      printf("i = counter3 + 1 \n");
+      printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+    } else {
+      fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
+      printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+    }
+
+    // mtvlelebi 1 (dzveli); mtvleli2 (axali sityva)
     if (sityvebSanaxi[0][i] <= 255 && sityvebSanaxi[0][i] >= 0)
     {
       // piroba + mtvleli
-      failis_end_test++;
+      mtvleli_1_sanaxi_amokitxva1++;
+    }
 
-    } else {
-      // print mtvleli; print break; break from for
-      printf("failis_end_test = %d\n", failis_end_test);
-      printf("break from for (enf if file) \n");
-      break;
+    if (sityvebSanaxi2[0][i] <= 255 && sityvebSanaxi2[0][i] >= 0)
+    {
+      // piroba + mtvleli
+      // printf("TEST ABA !!!!! \n");
+      // printf("sityvebSanaxi2[0][i] %d %c\n",sityvebSanaxi2[0][i],sityvebSanaxi2[0][i]);
+      mtvleli_2_sanaxi_amokitxva2++;
     }
   }
-  */
+  // statusebi
+  printf("ricxvi aris %d\n",sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1-1]); // <<<<<<<<<<<<<< yess
+  printf("mtvleli_1_sanaxi_amokitxva1 = %d\n", mtvleli_1_sanaxi_amokitxva1);
+  printf("mtvleli_2_sanaxi_amokitxva2 = %d\n", mtvleli_2_sanaxi_amokitxva2);
+  printf("######### \n");
+  // აქ რაღაცეები გასასწორებელია. კოდი გასაწმენდია !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  /*
-  კოდი გასაწმენდია
-  */
+  int cointer_numeracia;
+  cointer_numeracia = sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1] + 1;
+  printf("TEST cointer_numeracia (zrda - d) %d\n", cointer_numeracia);
+  printf("TEST cointer_numeracia (amokitxvis dros - d) %d\n",sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+
+  fclose(failponteramokitxvis); // არსებული ფაილის ამოკითხვის დამთავრება
 
 
-  if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
-
-    printf("file exists \n");
-
-    // ფაილის წაკითხვა (ნუმერაცია)
-    char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
-    FILE *failponteramokitxvis;
-
-    if ((failponteramokitxvis = fopen("program.txt","r")) == NULL)
+  // წაკითხვის შემდეგ რაც ჩაიწერა sityvebSanaxi ში
+  for (int i = 0; i <= mtvleli_1_sanaxi_amokitxva1 + 5; i = i + 1)
+  {
+    printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %c\n",sityvebSanaxi[0][i]);
+    //
+    if (i == mtvleli_1_sanaxi_amokitxva1 - 1)
     {
-      printf("Error! opening file");
-
-      // Program exits if the file pointer returns NULL.
-      exit(1);
-    }
-
-    printf("###################################### \n");
-    printf("amokitxvisas ra xdeba \n");
-
-    int mtvleli_1_sanaxi_amokitxva1, mtvleli_2_sanaxi_amokitxva2;
-    mtvleli_2_sanaxi_amokitxva2 = 0;
-    mtvleli_1_sanaxi_amokitxva1 = 0;
-
-    for (int i = 0; i <= 30; i = i + 1) // ამოკითხვისას სად წერია რიცხვი
-    {
-      // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
-      if (i == counter3 + 1)
-      {
-        fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
-        printf("i = counter3 + 1 \n");
-        printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
-      } else {
-        fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
-        printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
-      }
-
-      // mtvlelebi 1 (dzveli); mtvleli2 (axali sityva)
-      if (sityvebSanaxi[0][i] <= 255 && sityvebSanaxi[0][i] >= 0)
-      {
-        // piroba + mtvleli
-        mtvleli_1_sanaxi_amokitxva1++;
-      }
-
-      if (sityvebSanaxi2[0][i] <= 255 && sityvebSanaxi2[0][i] >= 0)
-      {
-        // piroba + mtvleli
-        // printf("TEST ABA !!!!! \n");
-        // printf("sityvebSanaxi2[0][i] %d %c\n",sityvebSanaxi2[0][i],sityvebSanaxi2[0][i]);
-        mtvleli_2_sanaxi_amokitxva2++;
-      }
-    }
-    // statusebi
-    printf("ricxvi aris %d\n",sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]); // <<<<<<<<<<<<<< yess
-    printf("mtvleli_1_sanaxi_amokitxva1 = %d\n", mtvleli_1_sanaxi_amokitxva1);
-    printf("mtvleli_2_sanaxi_amokitxva2 = %d\n", mtvleli_2_sanaxi_amokitxva2);
-    printf("######### \n");
-
-    // აქ რაღაცეები გასასწორებელია. კოდი გასაწმენდია !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    int cointer_numeracia;
-    cointer_numeracia = sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1] + 1;
-    printf("TEST cointer_numeracia (zrda - d) %d\n", cointer_numeracia);
-    printf("TEST cointer_numeracia (amokitxvis dros - d) %d\n",sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
-
-    fclose(failponteramokitxvis); // არსებული ფაილის ამოკითხვის დამთავრება
-
-
-    // წაკითხვის შემდეგ რაც ჩაიწერა sityvebSanaxi ში
-    for (int i = 0; i <= mtvleli_1_sanaxi_amokitxva1 + 5; i = i + 1)
-    {
-      printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %c\n",sityvebSanaxi[0][i]);
       //
-      if (i == mtvleli_1_sanaxi_amokitxva1 -1)
-      {
-        //
-          printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %d\n",sityvebSanaxi[0][i]);
-      }
-
+      printf("sityvebSanaxi (wakitxvis mere rac gaxda)= %d\n",sityvebSanaxi[0][i]);
     }
 
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-    // მეორედ ჩაწერა
-    FILE *fptr_me;
-
-    printf("file doesnt exist (tavidan - chawera ricxvis ganaxleba - mushaobs tolebistvis only) \n");
-    printf("vqmnit fails \n");
-    fptr_me = fopen("program.txt","w");
-
-    if (fptr_me == NULL) // ამოქმებს არის თუარა ფაილი
-    {
-      printf("Error!");
-      exit(1);
-    }
-
-    // chavwero da davbechdo masivshi chawerili sityvebi1
-    // ვა სიტყვებსაც მინდა ცვლიდე და მაგას რატომ არ აკეთებს ვერ ვხდები
-    for (int i = 0; i <= counter3; i = i + 1)
-    {
-      printf("sityvebSanaxi2 (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi2[0][i]);
-      fprintf(fptr_me,"%c",sityvebSanaxi2[0][i]); // ჩაწერა
-    }
-
-    // ნუმერაციის გაკეთება
-    // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
-    printf("TEST cointer_numeracia !!!!!!!!!! %c\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
-    sityvebSanaxi2[0][counter3 + 1] = sityvebSanaxi[0][mtvleli_1_sanaxi_amokitxva1 - 1]; // <<<<< aq var
-    fprintf(fptr_me,"%d",sityvebSanaxi2[0][counter3 + 1] + 1);
-    printf("#### meored gashveba ### \n");
-    printf("sityvebSanaxi2[0][counter3 + 1]) c ti = %c\n", sityvebSanaxi2[0][counter3 + 1]);
-    printf("sityvebSanaxi2[0][counter3 + 1]) d ti = %d\n", sityvebSanaxi2[0][counter3 + 1]);
-    printf("#### \n");
-
-    sityvebSanaxi2[0][counter3 + 2] = 33;
-    fprintf(fptr_me,"%c",sityvebSanaxi2[0][counter3 + 2]);
-
-    fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
-
-  } else {
-    // file doesn't exist
-    FILE *fptr;
-
-    printf("file doesnt exist \n");
-    printf("vqmnit fails \n");
-    fptr = fopen("program.txt","w");
-
-    if (fptr == NULL) // ამოქმებს არის თუარა ფაილი
-    {
-      printf("Error!");
-      exit(1);
-    }
-
-    // davbechdo masivshi chawerili sityvebi
-    for (int i = 0; i <= counter3; i = i + 1)
-    {
-      // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
-      fprintf(fptr,"%c",sityvebSanaxi[0][i]); // ჩაწერა
-    }
-
-    // ნუმერაციის გაკეთება
-    // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
-    sityvebSanaxi[0][counter3 + 1] = 1;
-    fprintf(fptr,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
-    printf("#### pirveli gashveba ### \n");
-    printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
-    printf("#### \n");
-
-    // ფაილის დასასრულში ვსვავ ! სიმბოლოს 33
-    sityvebSanaxi[0][counter3 + 2] = 33;
-    fprintf(fptr,"%c",sityvebSanaxi[0][counter3 + 2]);
-
-    // მთელი მასივის დაბეჭდვა (გასაკეთებელია - პირველი გაშვების დროს შევამოწმებ რა იწერება ბოლოში)
-    // ბეჭდვას ვაკეთებ ბოლოსას d თი და ჩასმას??? d თი ვაკეთებ (ჯერ ვფოკუსირდე მხოლოდ პირველ გაშვებაზე)
-    for (int i = 0; i <= counter3 + 3; i = i + 1)
-    {
-      printf("sityvebSanaxi (pirveli gashvebis mteli masivis bechdva)= %d\n",sityvebSanaxi[0][i]);
-    }
-
-
-    fclose(fptr); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
   }
 
-  // gets(brzaneba); // <<< ბრძანების მიცემა კლავიატურიდან <<<<<<<<<<<<<<<<<<<<< გამოვიყენო
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  // მეორედ ჩაწერა
+  FILE *fptr_me;
 
-  return 0;
+  printf("file doesnt exist (tavidan - chawera ricxvis ganaxleba - mushaobs tolebistvis only) \n");
+  printf("vqmnit fails \n");
+  fptr_me = fopen("program.txt","w");
+
+  if (fptr_me == NULL) // ამოქმებს არის თუარა ფაილი
+  {
+    printf("Error!");
+    exit(1);
+  }
+
+  // chavwero da davbechdo masivshi chawerili sityvebi1
+  // ვა სიტყვებსაც მინდა ცვლიდე და მაგას რატომ არ აკეთებს ვერ ვხდები
+  for (int i = 0; i <= mtvleli_1_sanaxi_amokitxva1 - 2; i = i + 1)
+  {
+    printf("sityvebSanaxi2 (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi2[0][i]);
+    fprintf(fptr_me,"%c",sityvebSanaxi2[0][i]); // ჩაწერა
+  }
+
+  // ნუმერაციის გაკეთება
+  // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
+  printf("TEST cointer_numeracia !!!!!!!!!! %d\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
+  sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1] = cointer_numeracia; // <<<<< aq var
+  fprintf(fptr_me,"%d",sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+  printf("#### meored gashveba ### \n");
+  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) c ti = %c\n", sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) d ti = %d\n", sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+  printf("#### \n");
+
+  sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1] = 33;
+  fprintf(fptr_me,"%c",sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1]);
+
+  fclose(fptr_me); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
+
+} else {
+
+  // file doesn't exist. სულ პირველი გაშვება
+  FILE *fptr;
+
+  printf("file doesnt exist \n");
+  printf("vqmnit fails \n");
+  fptr = fopen("program.txt","w");
+
+  if (fptr == NULL) // ამოქმებს არის თუარა ფაილი
+  {
+    printf("Error!");
+    exit(1);
+  }
+
+  // davbechdo masivshi chawerili sityvebi
+  for (int i = 0; i <= counter3; i = i + 1)
+  {
+    // printf("sityvebSanaxi = %c\n",sityvebSanaxi[0][i]);
+    fprintf(fptr,"%c",sityvebSanaxi[0][i]); // ჩაწერა
+  }
+
+  // ნუმერაციის გაკეთება
+  // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
+  sityvebSanaxi[0][counter3 + 1] = 1;
+  fprintf(fptr,"%d",sityvebSanaxi[0][counter3 + 1]); // <<< გადასატანი იქნება. ეხლა ეს ამოვიკითხო და სადმე ცვლადში ჩავწერო
+  printf("#### pirveli gashveba ### \n");
+  printf("sityvebSanaxi[0][counter3 + 1]) = %d\n", sityvebSanaxi[0][counter3 + 1]);
+  printf("#### \n");
+
+  // ფაილის დასასრულში ვსვავ ! სიმბოლოს 33
+  sityvebSanaxi[0][counter3 + 2] = 33;
+  fprintf(fptr,"%c",sityvebSanaxi[0][counter3 + 2]);
+
+  // მთელი მასივის დაბეჭდვა (გასაკეთებელია - პირველი გაშვების დროს შევამოწმებ რა იწერება ბოლოში)
+  // ბეჭდვას ვაკეთებ ბოლოსას d თი და ჩასმას??? d თი ვაკეთებ (ჯერ ვფოკუსირდე მხოლოდ პირველ გაშვებაზე)
+  for (int i = 0; i <= counter3 + 3; i = i + 1)
+  {
+    printf("sityvebSanaxi (pirveli gashvebis mteli masivis bechdva)= %d\n",sityvebSanaxi[0][i]);
+  }
+
+
+  fclose(fptr); // ვა გავიჭდე ზემოთ რაღაც ავრიე დროში
 }
 
+// gets(brzaneba); // <<< ბრძანების მიცემა კლავიატურიდან <<<<<<<<<<<<<<<<<<<<< გამოვიყენო
 
+return 0;
+}
 
-
-
+/*
+მოვწევ
+მოვალ და კოდს გავუშვებ
+ესეიგი როცა პირველ მოცანას შევასრულებ
+მასივების თავს გადავხედავ და მოვიფიქრებ როგორ გავაკეთო დიდი საცავის
+მასივი რომელშიც შევინახავ ჯადო სიტყვებსაც
+კი
+*/
 
 
 /*
@@ -628,5 +645,17 @@ realურად
 )))
 მოკლედ
 ბრმა მივდივარ ქარი მიმიყვანს სახლში
-ჯადო 
+ჯადო
+
+მინიმუმ 10 ჯოხი მაქვს კიდევ დასამზადებელი!
+dez ნოუთს უნდა ვუყურო ჰაჰა :))) მაგარი გასართობიი ))) იეეე ია პ ო ნ უ რი საყარო გადამეშლება წინასწარმეტყველებაჯადოქარი
+მოვდივართ
+
+ზოგმა გული დაკარგა
+და ზოგმა
+დრაკონის
+გული
+ჩაიდგა
+;)
+<3
 */
