@@ -22,6 +22,29 @@ TODO:
 // globals
 int cointer_numeracia;
 
+// ფაილის ზომის გაგება
+long int findSize(char file_name[])
+{
+  // opening the file in read mode
+  FILE *fp = fopen(file_name, "r");
+
+  // checking if the file exist or not
+  if (fp == NULL) {
+    printf("File Not Found!\n");
+    return -1;
+  }
+
+  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
+
+  // calculating the size of the file
+  long int res = ftell(fp); // ftell()
+
+  // closing the file
+  fclose(fp);
+
+  return res;
+}
+
 main()
 {
   // ცვლადები
@@ -256,8 +279,18 @@ counter 3 სადაც შემეძლება შევცვალო (
 if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
 
   printf("file exists \n");
-  // თუ არსებობს პროგრამა.ტქსტ არსებობს - ნახოს ზომა ფაილის რომ გავიგო counter3 ის შემცვლელი 
-
+  // თუ არსებობს პროგრამა.ტქსტ არსებობს - ნახოს ზომა ფაილის რომ გავიგო counter3 ის შემცვლელი
+  char file_name[] = { "program.txt" };
+  long int res = findSize(file_name);
+  if (res != -1)
+  {
+    printf("Size of the file is %ld bytes \n", res);
+  }
+  // gio (3) - 14; giorgi (6) - 17
+  // MELON (5) - 9
+  // ~ - 3
+  // + 3
+  // counter3 = filisize - 4
 
   // ფაილის წაკითხვა (ნუმერაცია)
   char nums[100]; // ეს არ მჭირდება მგონი, მაგრამ იყოს
@@ -282,14 +315,14 @@ if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებ�
   {
 
     // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
-    if (i == counter3 + 1) // aq maqvs problema. failis zomis gamgebi mchirdeba
+    if (i == res - 4) // res - 4 // aq maqvs problema. failis zomis gamgebi mchirdeba
     {
       fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
       printf("i = counter3 + 1 \n");
       printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
     } else {
       fscanf(failponteramokitxvis,"%c", &sityvebSanaxi[0][i]); // ამოკითხვა (ჩემი ბოლო ციფრი ამოიკითხა ჩარად და არა ინტად)
-      printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (c) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
+      printf("sityvebSanaxi (წაკითხვის დროს - c)= %c sityvebSanaxi2 (d) = %c \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
     }
 
     // mtvlelebi 1 (dzveli); mtvleli2 (axali sityva)
