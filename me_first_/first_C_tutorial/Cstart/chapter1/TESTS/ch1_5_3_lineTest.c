@@ -316,7 +316,7 @@ if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებ�
 
     // როცა ბოლოზე მივა ამოიკითხოს როგორც d იფ იქნება დასაწერი იეე )) პაპიროზი მოვწიოთ
     if (i == res - 4) // res - 4 // aq maqvs problema. failis zomis gamgebi mchirdeba
-    {
+    { // მივხდი პრობლემას 
       fscanf(failponteramokitxvis,"%d", &sityvebSanaxi[0][i]);
       printf("i = counter3 + 1 \n");
       printf("sityvebSanaxi (წაკითხვის დროს - d)= %d sityvebSanaxi2 (d) = %d \n",sityvebSanaxi[0][i],sityvebSanaxi2[0][i]);
@@ -384,7 +384,7 @@ if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებ�
 
   // chavwero da davbechdo masivshi chawerili sityvebi1
   // ვა სიტყვებსაც მინდა ცვლიდე და მაგას რატომ არ აკეთებს ვერ ვხდები
-  for (int i = 0; i <= mtvleli_1_sanaxi_amokitxva1 - 2; i = i + 1)
+  for (int i = 0; i <= counter3; i = i + 1)
   {
     printf("sityvebSanaxi2 (meored chaweris dros ra weria aq? )= %c\n",sityvebSanaxi2[0][i]);
     fprintf(fptr_me,"%c",sityvebSanaxi2[0][i]); // ჩაწერა
@@ -393,11 +393,11 @@ if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებ�
   // ნუმერაციის გაკეთება
   // int cointer_numeracia; // global ურად უნდა გამოვაცხადო
   printf("TEST cointer_numeracia !!!!!!!!!! %d\n",cointer_numeracia); // <<< ra xdeba? integers ar vsvav masivshi?
-  sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1] = cointer_numeracia; // <<<<< aq var
-  fprintf(fptr_me,"%d",sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+  sityvebSanaxi2[0][counter3 + 1] = cointer_numeracia; // <<<<< aq var
+  fprintf(fptr_me,"%d",sityvebSanaxi2[0][counter3 + 1]);
   printf("#### meored gashveba ### \n");
-  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) c ti = %c\n", sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
-  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) d ti = %d\n", sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]);
+  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) c ti = %c\n", sityvebSanaxi2[0][counter3 + 1]);
+  printf("sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1 - 1]) d ti = %d\n", sityvebSanaxi2[0][counter3 + 1]);
   printf("#### \n");
 
   sityvebSanaxi2[0][mtvleli_1_sanaxi_amokitxva1] = 33;
