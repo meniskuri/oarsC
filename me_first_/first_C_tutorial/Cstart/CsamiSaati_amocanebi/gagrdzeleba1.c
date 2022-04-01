@@ -8,20 +8,34 @@
 
 int main() // main და main(void) ს შორის რა განსხვავებაა უნდა გავიგო მერე (ალბათ ამ კურსში იქნება)
 {
+  // variables
+  char brzaneba[100];
+  char name[33];
   const int NUMB = 5;
+
 
   int numb = 41;
   printf("ნამბერ %d ყლეები \n", numb);
   numb = 5;
   printf("ნამბერ %d ესენიც ყლეები, ზატო რუსებისკენ არ არიან \n", numb);
-
   printf("გაიმარჯვებენ %d \n", NUMB);
   printf("გაიმარჯვებენ %d \n", NUMB);
 
   printf("So\'S - ღმერთის დახმარებაა საჭირო და ჩვენი ხელის განძრევა \n");
+
   printf("%f \n", pow(2, 3));   // pow()  - ხარისხში აყვანა
   printf("%f \n", ceil(45.6));  // ceil() - დამრგალება ზემოთ
   printf("%f \n", floor(45.6)); // - ქვემოთ დამრგვალება
+
+
+  // Getting users input
+  gets(brzaneba);
+  printf("gets(brzaneba) კლავიატურიდან შეყვანილი ბრძანება (სტრინგად) %s \n",brzaneba);
+
+  // scanf() - რატომღაც არ მომწონდა. სლეშებს ვერ ამუღამებს "გიორგი კაპანაძე" და აღიქვავს მარტო "გიორგი" -ს )) სირობა მოკლედ
+  printf("scanf() ბრძანებით შეყვანა ტექსტის \n");
+  scanf("%s",&brzaneba); // ამპერსანტი უნდა თუარა ხზ. უნდა ალბათ
+  printf("brzaneba = %s \n",brzaneba);
 
   return 0;
 }
