@@ -7,6 +7,28 @@
 #include <math.h>
 #include <conio.h> // <<< ra bibliotekaa?
 
+int shedareba(int num, int num2)
+{
+  // კლავიატურიდან მიიღებს ორ რიცხვს და შეადარებს.
+  // გვეტყვის რომელია დიდი რომელი პატარა. რავი დააბრუნებს მათ ჯამს ვთქვათ
+  int result;
+
+  if (num == num2)
+  {
+    printf("ricxvebi tolia %d\n",num);
+    result = num;
+  } else if (num > num2)
+  {
+    printf("ricxvi1 aris max %d\n",num);
+    result = num;
+  } else {
+    printf("ricxvi2 aris max %d\n",num2);
+    result = num2;
+  }
+
+  return result; // პირობები მიწერია ყლეურად
+}
+
 double sameba(double ricxvi)
 {
   // კუბში აყვანა
@@ -100,7 +122,7 @@ int main() // main და main(void) ს შორის რა განსხ�
 
     printf(" \n");
     printf("%s cudi amindia \n", sad);
-    printf("%s tmaa %s \n", vin, rogori);
+    printf("%s s tma %s \n", vin, rogori);
     printf("giorgis elis shexvedra %s \n", ranairi);
     printf("ჩვევაში უნდა გადაგივიდეს კოდირება - ჰeბით \n");
     printf(" \n");
@@ -128,7 +150,7 @@ int main() // main და main(void) ს შორის რა განსხ�
   // This program will create different sequence of
   // random numbers on every program run
   // Use current time as seed for random generator
-  srand(time(0));
+  srand(time(0)); // დროის ამობეჭდვა მინდა ვნახო მერე :) სადღაც მაქვს. მგონი პაროლიCზე ში
   for(int i = 0; i<4; i++)
   printf(" %d \n", rand());
   masiviRicxvebis[3] = rand();
@@ -140,8 +162,18 @@ int main() // main და main(void) ს შორის რა განსხ�
   gagimarjos(vin);
 
   /* Return statements fro funqciotns */
-  printf("sameba = %f", sameba(masiviRicxvebis[3]));
+  printf("sameba = %f\n", sameba(masiviRicxvebis[3]));
+  // თუ ფუნქცია გინდა main ის ქვემოთ იყოს მაშინ ფუნქციის პროტოტიპი უნდა გააკეთო ზემოთ
+  // ანუ სახელი რა მარტო. და ფუნქციის აღწერა ქვემოთ შეგიძლია ჩამოიტანო. :))
 
+
+  /* if Statements */
+  // უნდა დავწერო ფუნქცია რომელიც შეადარებს რო რიცხვს.
+  // ეს ორი რიცხვი უნდა შევიყვანო ხელით. ავიღო პირველ კალკულატორში პირველი და მეორე რიცხვი
+  // ricxvi1 და ricxvi2 (ints)
+  int maqsimaLurianToliricxvi;
+  maqsimaLurianToliricxvi = shedareba(ricxvi1,ricxvi2);
+  printf("maqsimaLurianToliricxvi = %d\n",maqsimaLurianToliricxvi);
   return 0;
 }
 
