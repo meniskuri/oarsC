@@ -5,6 +5,27 @@
 #include <stdbool.h>
 #include <time.h>
 #include <math.h>
+#include <conio.h> // <<< ra bibliotekaa?
+
+double sameba(double ricxvi)
+{
+  // კუბში აყვანა
+  double pasuxi = ricxvi * ricxvi * ricxvi;
+  return pasuxi;
+}
+
+void gamarjoba()
+{
+  // პროსტა ფუნქცია
+  printf("funqcia gamarjobashi var - gamarjoba\n");
+}
+
+void gagimarjos(char name[]) // შემიძლია ბევრი პარამეტერი დავამატო
+{
+  // პaრამეტრიანი ფუნქცია
+  printf("gagimarjos - პასუხი გაგცა ტელეპორტირებულმა %s ამ\n",name);
+}
+
 
 int main() // main და main(void) ს შორის რა განსხვავებაა უნდა გავიგო მერე (ალბათ ამ კურსში იქნება)
 {
@@ -14,8 +35,10 @@ int main() // main და main(void) ს შორის რა განსხ�
   const int NUMB = 5;
 
   int numb = 41;
+
   printf("ნამბერ %d ყლეები \n", numb);
   numb = 5;
+
   printf("ნამბერ %d ესენიც ყლეები, ზატო რუსებისკენ არ არიან \n", numb);
   printf("გაიმარჯვებენ %d \n", NUMB);
   printf("გაიმარჯვებენ %d \n", NUMB);
@@ -23,6 +46,7 @@ int main() // main და main(void) ს შორის რა განსხ�
   printf("%f \n", pow(2, 3));   // pow()   - ხარისხში აყვანა
   printf("%f \n", ceil(45.6));  // ceil()  - დამრგალება ზემოთ
   printf("%f \n", floor(45.6)); // floor() - ქვემოთ დამრგვალება
+
 
   /* Getting users input */
   gets(brzaneba);
@@ -37,6 +61,7 @@ int main() // main და main(void) ს შორის რა განსხ�
   /* Building a basic calculator - dzaan advili varianti */
   printf("///////////////////////////// \n");
   printf("Building a basic calculator - ადვილი ვარიანტი - ტუტორიალს გავდივარ უბრალოდ :)) \n");
+
   int ricxvi1,ricxvi2;
 
   printf("Enter ricxvi1 \n");
@@ -100,27 +125,28 @@ int main() // main და main(void) ს შორის რა განსხ�
 
   /* Arrays in C */
   int masiviRicxvebis[] = {1,2,3,4,5,6,7,8,9,0};
-  masiviRicxvebis[4] = rand();
-  printf("masivi[4] = %d \n", masiviRicxvebis[4]);
+  // This program will create different sequence of
+  // random numbers on every program run
+  // Use current time as seed for random generator
+  srand(time(0));
+  for(int i = 0; i<4; i++)
+  printf(" %d \n", rand());
+  masiviRicxvebis[3] = rand();
+  printf("masivi[3] = %d \n", masiviRicxvebis[3]);
+
 
   /* Functions */
   gamarjoba();
   gagimarjos(vin);
 
+  /* Return statements fro funqciotns */
+  printf("sameba = %f", sameba(masiviRicxvebis[3]));
+
   return 0;
 }
 
-void gamarjoba()
-{
-  // პროსტა ფუნქცია
-  printf("funqcia gamarjobashi var - gamarjoba\n");
-}
 
-void gagimarjos(char name[])
-{
-  // პaრამეტრიანი ფუნქცია
-  printf("gagimarjos - პასუხი გაგცა ტელეპორტირებულმა %s ამ\n",name);
-}
+
 
 
 
