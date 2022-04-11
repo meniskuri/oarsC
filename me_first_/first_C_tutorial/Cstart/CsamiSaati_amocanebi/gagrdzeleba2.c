@@ -19,6 +19,7 @@ Building a better calculator and other staff
 #include <time.h>
 #include <math.h>
 #include <conio.h>
+#include <stdbool.h>
 
 double sameba(double ricxvi)
 {
@@ -31,11 +32,13 @@ double sameba(double ricxvi)
 int main()
 {
   // ცვლადები
-  char brzaneba[51];          // სტრინგებისთვის ან ასკით უნდა გადავამოწმო მერე. მოდი ვცადოთ. და ფორით გადარბენა?
+  char brzaneba[51];  // სტრინგებისთვის ან ასკით უნდა გადავამოწმო მერე. მოდი ვცადოთ. და ფორით გადარბენა?
   char test_tuaris_ricxvi[51];  // ვნახოთ რა გამოვა
-  int ricxvi1,ricxvi2,pasuxi;
+  int ricxvi1,ricxvi2,pasuxi,counterSigrdze; // დასაშლელი იქნება. ყველას ცალცალკე კომენტი დაჭირდება
+  bool amomgdebaPirveliNulis = false;
 
-  // იო ს ფორმის განსაზღვრა და ვარიანტები
+
+  // გეთს ბრძანების გამოყენება გადავწყვიტე
   gets(brzaneba);
   printf("brzaneba %s \n",brzaneba);
 
@@ -44,20 +47,24 @@ int main()
     printf(" %d\n", i);
     printf("brzaneba(d)[0] %d \n",brzaneba[i]);
 
-    if (brzaneba[i] >= 48)
+    if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
     {
-      //
+      counterSigrdze ++;
+    } else if (brzaneba[i] == 0 && amomgdebaPirveliNulis == false) {
+      // როცა მასივში იპოვა ნული
+      amomgdebaPirveliNulis = true;
     }
   }
 
+  printf("counterSigrdze = %d\n", counterSigrdze);
+
   // შემოწმების ალგორითმი რიცხვია თუ არა რომ შეამოწმოს და გითხრას პასუხი
-
-
 
   return 0;
 }
 
 
+/*
 if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
 {
   counterPassword ++;
@@ -71,10 +78,10 @@ if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
   // როცა მასივში იპოვა ნული
   amomgdebaPirveliNulis = true;
 }
+*/
 
 
 // გასარჩევია 0 რომ იპოვა და დათვალა რამხელა იყო შეყვანილი მასივის სიგრძე. რაც დაკავებულია ანუ.
-
 
 
 /*
@@ -108,5 +115,9 @@ if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
 და უნდა შეცვალო რა. უცებ წესიერი კაცი რომ გახდეს ეგრევე ნარკომანი. ეგრე არ იქნება ნელ ნელა მოხდება.
 ასევე ნარკომანიც ეგრევე ვერ გახდება წესიერი კაცი. და დრო ჭირდება ნელა ნელა ტუკუ ტუკუს ტყუილად არ
 ვიძახი. მოკლედ
-კაპანას. წარსულიდან მომავალში ვუგზავნი ამ ნაწერს 
+კაპანას. წარსულიდან მომავალში ვუგზავნი ამ ნაწერს.
+
+kapan-ჩართე სვანი კაცი-მოხუცი სანტოსი.
+არაფერზე არ ვნერვიულობ. ემოციებს ვაკონტროლებ. შიშები ფეხებს ვერ მჭამს სვანი ვარ.
+სანტოსობა ასწორებს. :) საქციელებიც ეგეთი უნდა მქონდეს. როცა სვანი ვარ.
 */
