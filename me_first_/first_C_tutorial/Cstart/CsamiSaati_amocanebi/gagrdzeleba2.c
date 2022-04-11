@@ -20,8 +20,37 @@ Building a better calculator and other staff
 #include <math.h>
 #include <conio.h>
 #include <stdbool.h>
+#include <string.h>
 
-double sameba(double ricxvi)
+// fuqnciebi
+int sigrdzeBrzanebis(char* brzaneba)
+{
+  /* კლავიატურიდან შეყვანილ ბრძანებას (char ების მასივს) გადათვლის და დააბრუნებს რიცხვს. სიგრძეს.
+  ფუნქცია რომელიც პირველ ნულს შეამოწმებს */
+
+  bool amomgdebaPirveliNulis = false;
+  int counterSigrdze = 0;
+  int len = strlen(brzaneba);
+
+  for (int i = 0; i <= len; i++)
+  {
+    // printf(" %d\n", i);
+    printf("brzaneba(d)[0] %d \n",brzaneba[i]);
+    // printf("strlen(brzaneba) = %d\n",strlen(brzaneba));
+
+    if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
+    {
+      counterSigrdze ++;
+    } else if (brzaneba[i] == 0 && amomgdebaPirveliNulis == false) {
+      // როცა მასივში იპოვა ნული
+      amomgdebaPirveliNulis = true;
+    }
+  }
+  printf("counterSigrdze = %d\n", counterSigrdze);
+  return counterSigrdze;
+}
+
+double sameba(double ricxvi) // არ ვიყენებ
 {
   // შემოწმების ფუნქცია კიდევ საჭირო იქნება გადაყვანის ფუნქცია ასკიდან გადაიყვანოს რიცხვებში
   double pasuxi = ricxvi * ricxvi * ricxvi;
@@ -32,57 +61,26 @@ double sameba(double ricxvi)
 int main()
 {
   // ცვლადები
+  // ჩარები
   char brzaneba[51];  // სტრინგებისთვის ან ასკით უნდა გადავამოწმო მერე. მოდი ვცადოთ. და ფორით გადარბენა?
-  char test_tuaris_ricxvi[51];  // ვნახოთ რა გამოვა
-  int ricxvi1,ricxvi2,pasuxi,counterSigrdze; // დასაშლელი იქნება. ყველას ცალცალკე კომენტი დაჭირდება
-  bool amomgdebaPirveliNulis = false;
+  // ინტები
+  int ricxvi1;
+  int ricxvi2;
+  int pasuxi;
 
-
-  // გეთს ბრძანების გამოყენება გადავწყვიტე
   gets(brzaneba);
   printf("brzaneba %s \n",brzaneba);
+  sigrdzeBrzanebis(brzaneba);
 
-  for (int i = 0; i <= sizeof(brzaneba); i++)
-  {
-    printf(" %d\n", i);
-    printf("brzaneba(d)[0] %d \n",brzaneba[i]);
-
-    if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
-    {
-      counterSigrdze ++;
-    } else if (brzaneba[i] == 0 && amomgdebaPirveliNulis == false) {
-      // როცა მასივში იპოვა ნული
-      amomgdebaPirveliNulis = true;
-    }
-  }
-
-  printf("counterSigrdze = %d\n", counterSigrdze);
-
-  // შემოწმების ალგორითმი რიცხვია თუ არა რომ შეამოწმოს და გითხრას პასუხი
+  // მჭირდება ფუნქცია რომელიც აიღებს სიგრძეს.
+  // და მეტყვის ციფრებისგან შედგება თუ არა. მოცემული შეყვანილი ბრძანება.
 
   return 0;
 }
 
 
-/*
-if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
-{
-  counterPassword ++;
-  // printf("პაროლის სიგრზე (counterPassword) is %d\n",counterPassword);
-  if (counterPassword >= 6)
-  {
-    pirobasigrze = true;
-  }
-
-} else if (brzaneba[i] == 0 && amomgdebaPirveliNulis == false) {
-  // როცა მასივში იპოვა ნული
-  amomgdebaPirveliNulis = true;
-}
-*/
-
 
 // გასარჩევია 0 რომ იპოვა და დათვალა რამხელა იყო შეყვანილი მასივის სიგრძე. რაც დაკავებულია ანუ.
-
 
 /*
 ბალროგთან ბრძოლა გრძელდება თურმე...
