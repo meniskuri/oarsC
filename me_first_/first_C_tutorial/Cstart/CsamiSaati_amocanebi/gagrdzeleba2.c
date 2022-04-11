@@ -13,7 +13,14 @@ Building a better calculator and other staff
 რეილიბით გუის გაკეთება გარშემო. კარგი ამოცანა იქნება
 */
 
-#include <stdio.h>
+/*
+საჭირო ინფო (ნელ ნელა შევავსებ):
+strcpy(value, " 958");
+
+*/
+
+
+#include <stdio.h> // ბიბლიოთეკების განხილვა და ჩახედვა შეგნით
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
@@ -21,9 +28,13 @@ Building a better calculator and other staff
 #include <conio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <errno.h>
+
+// Global ცვლადები
+bool arisCifri = false;
 
 // fuqnciebi
-int sigrdzeBrzanebis(char* brzaneba)
+int sigrdzeBrzanebis(char* brzaneba) // შეიძლება სახელი შევუცვალო
 {
   /* კლავიატურიდან შეყვანილ ბრძანებას (char ების მასივს) გადათვლის და დააბრუნებს რიცხვს. სიგრძეს.
   ფუნქცია რომელიც პირველ ნულს შეამოწმებს */
@@ -31,12 +42,11 @@ int sigrdzeBrzanebis(char* brzaneba)
   bool amomgdebaPirveliNulis = false;
   int counterSigrdze = 0;
   int len = strlen(brzaneba);
+  printf("len = %d\n",strlen(brzaneba)); // ეს უკვე აკეთებს რასაც მინდა იმას
 
   for (int i = 0; i <= len; i++)
   {
-    // printf(" %d\n", i);
-    printf("brzaneba(d)[0] %d \n",brzaneba[i]);
-    // printf("strlen(brzaneba) = %d\n",strlen(brzaneba));
+    printf("brzaneba(d)[%d] %d %c\n",i,brzaneba[i],brzaneba[i]);
 
     if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
     {
@@ -69,14 +79,46 @@ int main()
   int pasuxi;
 
   gets(brzaneba);
-  printf("brzaneba %s \n",brzaneba);
   sigrdzeBrzanebis(brzaneba);
 
   // მჭირდება ფუნქცია რომელიც აიღებს სიგრძეს.
   // და მეტყვის ციფრებისგან შედგება თუ არა. მოცემული შეყვანილი ბრძანება.
 
+
+
+  // Converting a numeric (ints) string
+  char str[10] = "122.4";
+  int x = atoi(str);
+  printf("Converting '122': %d\n", x);
+  // Converting an alphanumeric string
+  char str2[10] = "Hello!";
+  x = atoi(str2);
+  printf("Converting 'Hello!': %d\n", x);
+  // Converting a partial string
+  char str3[10] = "99Hello!";
+  x = atoi(str3);
+  printf("Converting '99Hello!': %d\n", x);
+
+ // double-ად გადაკეთება
+ double result;
+ char value[10];
+ char *eptr;
+
+ strcpy(value, brzaneba);
+ result = strtod(value, &eptr);
+ printf("value = %f\n",result);
+
+
   return 0;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -118,4 +160,16 @@ int main()
 kapan-ჩართე სვანი კაცი-მოხუცი სანტოსი.
 არაფერზე არ ვნერვიულობ. ემოციებს ვაკონტროლებ. შიშები ფეხებს ვერ მჭამს სვანი ვარ.
 სანტოსობა ასწორებს. :) საქციელებიც ეგეთი უნდა მქონდეს. როცა სვანი ვარ.
+
+რა გამოდის? რომ ისეთი არჩევანი გავაკეთე მეთვითონ.
+გავუშვი გვანცაც. ქეთოც. ვიცოდი.
+უბრალოდ ისეთი მწარე იყო.
+ძლივს გადავიტანე.
+არადა ჩემი
+თავის
+უფლება
+ამირჩევია
+წინ ბევრი საქმეები მაქვს.
+ღმერთო დაგვეხმარე ყველა გაჭირვებულს
+ამ მენ. im man. :)))
 */
