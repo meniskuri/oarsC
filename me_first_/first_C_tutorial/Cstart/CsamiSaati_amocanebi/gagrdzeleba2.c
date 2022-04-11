@@ -106,7 +106,7 @@ int main()
 
  strcpy(value, brzaneba);
  result = strtod(value, &eptr);
- printf("value = %f\n",result);
+ printf("value = %f\n",result + 100);
 
 
   return 0;
