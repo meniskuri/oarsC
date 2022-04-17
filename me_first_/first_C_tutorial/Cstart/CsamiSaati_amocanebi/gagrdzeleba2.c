@@ -50,7 +50,7 @@ int parametrebi_Brzanebis(char* brzaneba) // შეიძლება სახ�
 
     if (brzaneba[i] >= 48 && brzaneba[i] <= 57)
     {
-      printf("yvelaferi rigzea \n");
+      printf("yvelaferi rigzea \n"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
 
     if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
@@ -61,7 +61,7 @@ int parametrebi_Brzanebis(char* brzaneba) // შეიძლება სახ�
       amomgdebaPirveliNulis = true;
     }
   }
-  printf("%s\n", amomgdebaPirveliNulis ? "true" : "false");
+  printf("%s\n", amomgdebaPirveliNulis ? "true" : "false"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   printf("counterSigrdze = %d\n", counterSigrdze);
   return counterSigrdze;
 }
@@ -76,31 +76,40 @@ double sameba(double ricxvi) // არ ვიყენებ
 
 int main()
 {
-  char brzaneba[51];  // სტრინგებისთვის ან ასკით უნდა გადავამოწმო მერე. მოდი ვცადოთ. და ფორით გადარბენა?
-  double ricxvi1;
-  double ricxvi2;
-  double pasuxi;
-  int counter_while = 0;
+  char brzaneba[51];     // gets(brzaneba) კლავიატურიდან შეყვანა სტრინგის
+  double ricxvi1;        // brzaneba თუ რიცხვია კალკულატორის პირველი რიცხვი
+  double ricxvi2;        // კალკულატორის მეორე რიცხვი
+  double pasuxi;         // კალკულატორის პასუხი
 
-  double result;
-  char value[51];
+  double result;         // brzaneba -ს გადაყვანა დაბლში სტრინგიდან strtod
+  char value[51];        // brzaneba -ს გადაკოპირება strcpy ით. პირდაპირ brzaneba ც რომ იყოს შეიძლება
   char *eptr;
 
-  char gamortva[51];
+  char gamortva[51];     // ვაილ 1 დან გასვლა არ გამოსვლა კითხვა
+  int counter_while = 0; // ვაილ 1 ციკლის მთვლელი
 
-
-  while(true)
+  while(true) // ვაილ 1
   {
     // ტრიალი
-    printf("gets - brzaneba - შეიყვანე რიცხვი \n");
+    printf("gets - brzaneba - შეიყვანე რიცხვი 1 \n");
     gets(brzaneba);
-    parametrebi_Brzanebis(brzaneba); // ჩემი დაწერილი ფუნქცია
+    // ეს ფუნქცია უნდა ამოწმებდეს რიცხვია თუა არა შეყვანილი სტრინგი
+    // თუ რიცხვია გადაიყვანოს თუარა და გითხრას თავიდან შეყვანეო
+    // ნუ ჯერ მარტივად მერე დავხვეწავ
+    parametrebi_Brzanebis(brzaneba); // ჩემი დაწერილი ფუნქცია.
+    ricxvi1 = strtod(brzaneba, &eptr);
+    printf("ricxvi1 = %f\n",ricxvi1);
+
+    gets(brzaneba);
+    parametrebi_Brzanebis(brzaneba);
+    ricxvi2 = strtod(brzaneba, &eptr);
+    printf("ricxvi2 = %f\n",ricxvi2);
 
     // კლავიატურიდან შეყვანილი ბრძანების დაბლად გადაკეთება. თუ რიცხვია.
     strcpy(value, brzaneba);
     result = strtod(value, &eptr);
     printf("value = %f\n",result + 100);
-    // ორი რიცხვის ჩაწერა 
+    // ორი რიცხვის ჩაწერა
 
     printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
     gets(gamortva);
@@ -110,7 +119,7 @@ int main()
     {
       printf("aq var \n");
       continue;
-    } else
+    } else // იფ ელსე ნოუ ალბათ (რომ არ ამოაგდოს)
     {
       printf("break shi var \n");
       break;
