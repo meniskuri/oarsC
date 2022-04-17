@@ -66,6 +66,15 @@ int parametrebi_Brzanebis(char* brzaneba) // შეიძლება სახ�
   return counterSigrdze;
 }
 
+double cube(double x, double y)
+{
+  double cub1,cub2;
+  cub1=x*x*x;
+  cub2=y*y*y;
+  printf("\nCube of %f is=%f\n",x,cub1);
+  printf("\nCube of %f is=%f\n\n",y,cub2);
+}
+
 double sameba(double ricxvi) // არ ვიყენებ
 {
   // შემოწმების ფუნქცია კიდევ საჭირო იქნება გადაყვანის ფუნქცია ასკიდან გადაიყვანოს რიცხვებში
@@ -80,6 +89,7 @@ int main()
   double ricxvi1;        // brzaneba თუ რიცხვია კალკულატორის პირველი რიცხვი
   double ricxvi2;        // კალკულატორის მეორე რიცხვი
   double pasuxi;         // კალკულატორის პასუხი
+  double indikatori;     // 1,2,3, მიმატება გამოკლება კუბი
 
   double result;         // brzaneba -ს გადაყვანა დაბლში სტრინგიდან strtod
   char value[51];        // brzaneba -ს გადაკოპირება strcpy ით. პირდაპირ brzaneba ც რომ იყოს შეიძლება
@@ -100,16 +110,34 @@ int main()
     ricxvi1 = strtod(brzaneba, &eptr);
     printf("ricxvi1 = %f\n",ricxvi1);
 
+    printf("gets - brzaneba - შეიყვანე რიცხვი 2 \n");
     gets(brzaneba);
     parametrebi_Brzanebis(brzaneba);
     ricxvi2 = strtod(brzaneba, &eptr);
     printf("ricxvi2 = %f\n",ricxvi2);
+
+    printf("enter 3 if you want to cube ricxvi1 and ricxvi2\n");
+    gets(brzaneba);
+    indikatori = strtod(brzaneba, &eptr);
+    if (indikatori == 3)
+    {
+      // 3 = cube
+      cube(ricxvi1, ricxvi2);
+      printf("ricxvi2 (test)= %f\n",ricxvi2*ricxvi2);
+      printf("cube Shi var\n");
+    }
+
+
+
 
     // კლავიატურიდან შეყვანილი ბრძანების დაბლად გადაკეთება. თუ რიცხვია.
     strcpy(value, brzaneba);
     result = strtod(value, &eptr);
     printf("value = %f\n",result + 100);
     // ორი რიცხვის ჩაწერა
+
+
+
 
     printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
     gets(gamortva);
