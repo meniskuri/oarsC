@@ -44,12 +44,16 @@ int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებ�
   {
     printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
 
-    if (brzaneba[i] >= 48 && brzaneba[i] <= 57)
+    if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
     {
-      cifria = true;
-    } else {
-      cifria = false;
-      break;
+      // მაშინ
+      if (brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46 && brzaneba[i+1] >= 48 && brzaneba[i+1] <= 57)
+      {
+        cifria = true;
+      } else {
+        cifria = false;
+        break;
+      }
     }
   }
   printf("cifria = %d \n", cifria);
