@@ -71,21 +71,21 @@ int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებ�
   return cifria;
 }
 
-double add(double x, double y)
+double add_mimateba(double x, double y)
 { // 1
   double c;
   c=x+y;
   printf("\n The sum is = %f \n\n",c);
 }
 
-double sub(double d, double e)
+double sub_gamokleba(double d, double e)
 { // 2
   double f;
   f=d-e;
   printf("\n The subtraction is = %f \n\n",f);
 }
 
-double mult(double x, double y)
+double mult_gamravleba(double x, double y)
 { // 3
   double i;
   i=x*y;
@@ -99,7 +99,7 @@ double div_gayofa(double x, double y)
   printf("\n Divison is = %.3lf \n\n",m);
 }
 
-double sq(double x, double y)
+double sq_kvadrati(double x, double y)
 { // 5
   double sqr1,sqr2;
   sqr1=x*x;
@@ -108,15 +108,23 @@ double sq(double x, double y)
   printf("\n Square of %f is = %f \n\n",y,sqr2);
 }
 
-double cube(double x, double y)
+double cube_kubi(double x, double y)
 { // 6
   double cub1,cub2;
   cub1=x*x*x;
   cub2=y*y*y;
-  printf("\n Cube of %f is =%f \n",x,cub1);
-  printf("\n Cube of %f is =%f \n\n",y,cub2);
+  printf("\n Cube of %f is = %f \n",x,cub1);
+  printf("\n Cube of %f is = %f \n\n",y,cub2);
 }
 
+double percentage(int x,int y) // ჯერ არ დამიმატებია
+{ // 7
+  float per1,per2;
+  per1=100*x/y;
+  per2=100*y/x;
+  printf("\n%d is %.3f %c of %d\n",x,per1,37,y);//% sign using ASCII code 37
+  printf("\n%d is %.3f %% of %d\n\n",y,per2,x);//% sign by traditional %% code
+}
 
 int main()
 {
@@ -127,7 +135,7 @@ int main()
   int indikatori;        // 1,2,3, მიმატება გამოკლება კუბი
   double result;         // brzaneba -ს გადაყვანა დაბლში სტრინგიდან strtod
   char value[51];        // brzaneba -ს გადაკოპირება strcpy ით. პირდაპირ brzaneba ც რომ იყოს შეიძლება
-  char *eptr;            // ???
+  char *eptr;            // ??? string pointer რაც გადაყავს დაბლში (მგონი)
   char gamortva[51];     // ვაილ 1 დან გასვლა არ გამოსვლა კითხვა
   int counter_while = 0; // ვაილ 1 ციკლის მთვლელი
   bool ricxvi1Chek;
@@ -155,23 +163,28 @@ int main()
     if (ricxvi1Chek == 1 && ricxvi2Chek == 1) // თუ ricxvi1 და ricxvi2 არიან რიცხვები
     {
       printf("=================== \n");
-      printf("შეიყვანეთ 1 თუ გსურთ ricxvi1 da ricxvi2 - ის sum - ის გაგება \n");
-      printf("შეიყვანეთ 3 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
+      printf("შეიყვანეთ 1 თუ გსურთ ricxvi1 da ricxvi2 - ის sum_mimateba - ის გაგება \n");
+      printf("შეიყვანეთ 2 თუ გსურთ ricxvi1 da ricxvi2 - ის sub_gamokleba - ის გაგება \n");
+      printf("შეიყვანეთ 3 თუ გსურთ ricxvi1 da ricxvi2 - ის mult_gamravleba - ის გაგება \n");
+      printf("შეიყვანეთ 4 თუ გსურთ ricxvi1 da ricxvi2 - ის div_gayofa - ის გაგება \n");
+      printf("შეიყვანეთ 5 თუ გსურთ ricxvi1 da ricxvi2 - ის sq_kvadrati - ის გაგება \n");
+      printf("შეიყვანეთ 6 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
+
       gets(brzaneba);
       indikatori = atoi(brzaneba);
 
       switch(indikatori)
       {
         case 1:
-        add(ricxvi1, ricxvi2);
+        add_mimateba(ricxvi1, ricxvi2);
         break;
 
         case 2:
-        sub(ricxvi1, ricxvi2);
+        sub_gamokleba(ricxvi1, ricxvi2);
         break;
 
         case 3:
-        mult(ricxvi1, ricxvi2);
+        mult_gamravleba(ricxvi1, ricxvi2);
         break;
 
         case 4:
@@ -179,11 +192,11 @@ int main()
         break;
 
         case 5:
-        sq(ricxvi1, ricxvi2);
+        sq_kvadrati(ricxvi1, ricxvi2);
         break;
 
         case 6:
-        cube(ricxvi1, ricxvi2);
+        cube_kubi(ricxvi1, ricxvi2);
         break;
 
         default:
@@ -278,4 +291,14 @@ kapan-ჩართე სვანი კაცი-მოხუცი სან�
 ანიმ, ვირი ხეზე ავიდაო.
 მათე ხეზე აძვრაო. მიშიკუნამ გადაუღოო.
 მეორედ მოსვლაა მოკლედ.
+
+18 აპრილი.
+როგორც კი მეცადინეობა დავიწყე.
+არჩილმა დამირეკა და მითხრა რომ რაღაც არ გამომდიოდაო და
+ვთქვიო ეხლაო. რადგან ითქვა გამოვაო. ჰოდა აგერ ზემოთ რა სიტყვებიც მიწერია.
+ხომ მოვახერხე ამის თქმა. ჰოდა გამოვა.
+არ შეჩერდე. როცა შენ მუშაობ...
+მაშინ სამყაროს ძალები სიკეთის ლანგარზე დებენ ბევრ წონას.
+რასაც ბოროტება ვერასდროს ვერ გადაწონის.
+გ,კაპანა ჯორჯ ლუნატიკი
 */
