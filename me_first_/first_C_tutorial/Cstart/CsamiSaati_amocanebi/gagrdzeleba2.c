@@ -31,31 +31,44 @@ int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებ�
 {
   /* ფუნქციის აღწერა:
   აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
-  თუ არა აბრუნებს ლოგიკურ ნულიანს
+  თუ არა აბრუნებს ლოგიკურ ნულიანს. ამოწმებს 2.3 ში წერტილ სიმბოლოს.
+  არ დაუშვებს ორ წერტილს. წერტილით დაწყებას.
   */
 
   bool cifria = false; // თუ მასივში ციფრები წერია გათრუვდება
-  int len;
+  int len, counter_par = 0, counter_mdzime = 0;
 
   len = strlen(brzaneba);
   printf("len = %d \n",len);
 
-  for (int i = 0; i <= len-1; i++)
+  for (int i = 0; i <= len; i++)
   {
     printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
-
+    // printf("i = %d \n", i);
     if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
     {
-      // მაშინ
-      if (brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46 && brzaneba[i+1] >= 48 && brzaneba[i+1] <= 57)
+      // მაშინ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> aq var
+      if ((brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46) || brzaneba[i] == 0)
       {
         cifria = true;
       } else {
         cifria = false;
         break;
       }
+      if (brzaneba[i] == 46)
+      {
+        //
+        counter_mdzime++;
+      }
+      if (counter_mdzime > 1)
+      {
+        // printf("counter_mdzime %d \n", counter_mdzime);
+        cifria = false;
+      }
     }
+    counter_par++;
   }
+  // printf("counter_par = %d \n",counter_par);
   printf("cifria = %d \n", cifria);
   return cifria;
 }
@@ -95,7 +108,7 @@ int main()
     ricxvi1 = strtod(brzaneba, &eptr);
     printf("ricxvi1 = %f\n",ricxvi1);
     printf("ricxvi1Chek = %d\n",ricxvi1Chek);
-
+    printf("============= \n");
     printf("gets - brzaneba - შეიყვანე რიცხვი 2 - ricxvi2 \n");
     gets(brzaneba);
     ricxvi2Chek = parametrebi_Brzanebis(brzaneba);
@@ -106,6 +119,7 @@ int main()
     if (ricxvi1Chek == 1 && ricxvi2Chek == 1)
     {
       // თუ ricxvi1 და ricxvi2 არიან ციფრები
+      printf("=================== \n");
       printf("შეიყვანეთ 3 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
       // indikatori ის შემოწმებაც არის გასაკეთებელი
       gets(brzaneba);
@@ -122,6 +136,7 @@ int main()
     }
 
     // ვაილიდან გამოსვლა - დასახვეწია
+    printf("=================== \n");
     printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
     gets(gamortva);
     printf("gamortva = %s \n",gamortva);
