@@ -10,16 +10,10 @@ Building a better calculator and other staff
 ჯერ ორი რიცხვის შეყვანა შეიძლებოდეს და მერე რამდენიც გინდა იმდენის?
 1+1+1+1+1+1 = 6 + 1 + 1 + 1 = 9 ს. ესეთი რაღაც რომ დაიწეროს რა :))
 ამოცანა ესეც :)
-რეილიბით გუის გაკეთება გარშემო. კარგი ამოცანა იქნება
+რეილიბით გუის გაკეთება გარშემო. კარგი ამოცანა იქნება. ვინდოუსის ფუნქციების გამოყენებით გუის გაეთება
 */
 
-/*
-საჭირო ინფო (ნელ ნელა შევავსებ):
-strcpy(value, " 958");
-*/
-
-
-#include <stdio.h> // ბიბლიოთეკების განხილვა და ჩახედვა შეგნით
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
@@ -33,37 +27,33 @@ strcpy(value, " 958");
 bool arisCifri = false;
 
 // fuqnciebi
-int parametrebi_Brzanebis(char* brzaneba) // შეიძლება სახელი შევუცვალო
+int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებელია. დაამთავრე და მერე მიწერე ლარას
 {
-  /* კლავიატურიდან შეყვანილ ბრძანებას (char ების მასივს) გადათვლის და დააბრუნებს რიცხვს. სიგრძეს.
-  ფუნქცია რომელიც პირველ ნულს შეამოწმებს */
+  /* ფუნქციის აღწერა:
+  აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
+  თუ არა აბრუნებს ლოგიკურ ნულიანს
+  */
 
-  bool amomgdebaPirveliNulis = false;
-  bool cifria = false;
-  int counterSigrdze = 0;
-  int len = strlen(brzaneba);
-  printf("len = %d\n",strlen(brzaneba)); // ეს უკვე აკეთებს რასაც მინდა იმას
+  bool cifria = false; // თუ მასივში ციფრები წერია გათრუვდება
+  int len;
 
-  for (int i = 0; i <= len; i++)
+  len = strlen(brzaneba);
+  printf("len = %d \n",len);
+
+  for (int i = 0; i <= len-1; i++)
   {
-    printf("brzaneba(d)[%d] %d %c\n",i,brzaneba[i],brzaneba[i]);
+    printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
 
     if (brzaneba[i] >= 48 && brzaneba[i] <= 57)
     {
-      printf("yvelaferi rigzea \n"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    }
-
-    if (brzaneba[i] != 0 && amomgdebaPirveliNulis == false)
-    {
-      counterSigrdze ++;
-    } else if (brzaneba[i] == 0 && amomgdebaPirveliNulis == false) {
-      // როცა მასივში იპოვა ნული
-      amomgdebaPirveliNulis = true;
+      cifria = true;
+    } else {
+      cifria = false;
+      break;
     }
   }
-  printf("%s\n", amomgdebaPirveliNulis ? "true" : "false"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  printf("counterSigrdze = %d\n", counterSigrdze);
-  return counterSigrdze;
+  printf("cifria = %d \n", cifria);
+  return cifria;
 }
 
 double cube(double x, double y)
@@ -71,15 +61,8 @@ double cube(double x, double y)
   double cub1,cub2;
   cub1=x*x*x;
   cub2=y*y*y;
-  printf("\nCube of %f is=%f\n",x,cub1);
-  printf("\nCube of %f is=%f\n\n",y,cub2);
-}
-
-double sameba(double ricxvi) // არ ვიყენებ
-{
-  // შემოწმების ფუნქცია კიდევ საჭირო იქნება გადაყვანის ფუნქცია ასკიდან გადაიყვანოს რიცხვებში
-  double pasuxi = ricxvi * ricxvi * ricxvi;
-  return pasuxi;
+  printf("\n Cube of %f is=%f \n",x,cub1);
+  printf("\n Cube of %f is=%f \n\n",y,cub2);
 }
 
 
@@ -90,66 +73,61 @@ int main()
   double ricxvi2;        // კალკულატორის მეორე რიცხვი
   double pasuxi;         // კალკულატორის პასუხი
   double indikatori;     // 1,2,3, მიმატება გამოკლება კუბი
-
   double result;         // brzaneba -ს გადაყვანა დაბლში სტრინგიდან strtod
   char value[51];        // brzaneba -ს გადაკოპირება strcpy ით. პირდაპირ brzaneba ც რომ იყოს შეიძლება
-  char *eptr;
-
+  char *eptr;            // ???
   char gamortva[51];     // ვაილ 1 დან გასვლა არ გამოსვლა კითხვა
   int counter_while = 0; // ვაილ 1 ციკლის მთვლელი
+  bool ricxvi1Chek;
+  bool ricxvi2Chek;
 
   while(true) // ვაილ 1
   {
-    // ტრიალი
-    printf("gets - brzaneba - შეიყვანე რიცხვი 1 \n");
+    // გამოსათვლელი რიცხვების შეყვანა სტრინგად
+    printf("==================================== \n");
+    printf("gets - brzaneba - შეიყვანე რიცხვი 1 - ricxvi1 \n");
     gets(brzaneba);
-    // ეს ფუნქცია უნდა ამოწმებდეს რიცხვია თუა არა შეყვანილი სტრინგი
-    // თუ რიცხვია გადაიყვანოს თუარა და გითხრას თავიდან შეყვანეო
-    // ნუ ჯერ მარტივად მერე დავხვეწავ
-    parametrebi_Brzanebis(brzaneba); // ჩემი დაწერილი ფუნქცია.
+    ricxvi1Chek = parametrebi_Brzanebis(brzaneba);
     ricxvi1 = strtod(brzaneba, &eptr);
     printf("ricxvi1 = %f\n",ricxvi1);
+    printf("ricxvi1Chek = %d\n",ricxvi1Chek);
 
-    printf("gets - brzaneba - შეიყვანე რიცხვი 2 \n");
+    printf("gets - brzaneba - შეიყვანე რიცხვი 2 - ricxvi2 \n");
     gets(brzaneba);
-    parametrebi_Brzanebis(brzaneba);
+    ricxvi2Chek = parametrebi_Brzanebis(brzaneba);
     ricxvi2 = strtod(brzaneba, &eptr);
     printf("ricxvi2 = %f\n",ricxvi2);
+    printf("ricxvi2Chek = %d\n",ricxvi2Chek);
 
-    printf("enter 3 if you want to cube ricxvi1 and ricxvi2\n");
-    gets(brzaneba);
-    indikatori = strtod(brzaneba, &eptr);
-    if (indikatori == 3)
+    if (ricxvi1Chek == 1 && ricxvi2Chek == 1)
     {
-      // 3 = cube
-      cube(ricxvi1, ricxvi2);
-      printf("ricxvi2 (test)= %f\n",ricxvi2*ricxvi2);
-      printf("cube Shi var\n");
+      // თუ ricxvi1 და ricxvi2 არიან ციფრები
+      printf("შეიყვანეთ 3 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
+      // indikatori ის შემოწმებაც არის გასაკეთებელი
+      gets(brzaneba);
+      indikatori = strtod(brzaneba, &eptr);
+      if (indikatori == 3)
+      {
+        // 3 = cube
+        cube(ricxvi1, ricxvi2);
+      }
+    } else {
+      //
+      printf("შეიყვანეთ ricxvi1 და ricxvi2 თავიდან \n");
+      printf("==================================== \n");
     }
 
-
-
-
-    // კლავიატურიდან შეყვანილი ბრძანების დაბლად გადაკეთება. თუ რიცხვია.
-    strcpy(value, brzaneba);
-    result = strtod(value, &eptr);
-    printf("value = %f\n",result + 100);
-    // ორი რიცხვის ჩაწერა
-
-
-
-
+    // ვაილიდან გამოსვლა - დასახვეწია
     printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
     gets(gamortva);
     printf("gamortva = %s \n",gamortva);
 
-    if (gamortva[0] == 121) // შეიძლება ასკიი თ უნდა შევადარო
+    if (gamortva[0] == 121)
     {
-      printf("aq var \n");
       continue;
-    } else // იფ ელსე ნოუ ალბათ (რომ არ ამოაგდოს)
+    } else
     {
-      printf("break shi var \n");
+      printf("break \n");
       break;
     }
     counter_while++;
@@ -159,7 +137,13 @@ int main()
 }
 
 
-// გასარჩევია 0 რომ იპოვა და დათვალა რამხელა იყო შეყვანილი მასივის სიგრძე. რაც დაკავებულია ანუ.
+/*
+ფუნქციები რაც მგონია რომ დამჭირდება:
+
+1 - strcpy(value, brzaneba);
+
+/*
+
 
 /*
 ბალროგთან ბრძოლა გრძელდება თურმე...
