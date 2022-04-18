@@ -23,9 +23,6 @@ Building a better calculator and other staff
 #include <string.h>
 #include <errno.h>
 
-// Global ცვლადები
-bool arisCifri = false;
-
 // fuqnciebi
 int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებელია. დაამთავრე და მერე მიწერე ლარას
 {
@@ -47,19 +44,20 @@ int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებ�
     // printf("i = %d \n", i);
     if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
     {
-      // მაშინ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> aq var
       if ((brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46) || brzaneba[i] == 0)
       {
         cifria = true;
-      } else {
+      } else
+      {
         cifria = false;
         break;
       }
       if (brzaneba[i] == 46)
       {
-        //
+        // ითვლის წერტილების რაოდენობას 3.3 ერთი წერტილია, 3.3.3 - ორი წერტილია. დაბლ რიცხვების შეყვანისთვის
         counter_mdzime++;
       }
+
       if (counter_mdzime > 1)
       {
         // printf("counter_mdzime %d \n", counter_mdzime);
@@ -73,13 +71,50 @@ int parametrebi_Brzanebis(char* brzaneba) // დასამთავრებ�
   return cifria;
 }
 
+double add(double x, double y)
+{ // 1
+  double c;
+  c=x+y;
+  printf("\n The sum is = %f \n\n",c);
+}
+
+double sub(double d, double e)
+{ // 2
+  double f;
+  f=d-e;
+  printf("\n The subtraction is = %f \n\n",f);
+}
+
+double mult(double x, double y)
+{ // 3
+  double i;
+  i=x*y;
+  printf("\n The multiplication is = %f \n\n",i);
+}
+
+double div_gayofa(double x, double y)
+{ // 4
+  double m;
+  m=x/y;
+  printf("\n Divison is = %.3lf \n\n",m);
+}
+
+double sq(double x, double y)
+{ // 5
+  double sqr1,sqr2;
+  sqr1=x*x;
+  sqr2=y*y;
+  printf("\n Square of %f is = %f \n",x,sqr1);
+  printf("\n Square of %f is = %f \n\n",y,sqr2);
+}
+
 double cube(double x, double y)
-{
+{ // 6
   double cub1,cub2;
   cub1=x*x*x;
   cub2=y*y*y;
-  printf("\n Cube of %f is=%f \n",x,cub1);
-  printf("\n Cube of %f is=%f \n\n",y,cub2);
+  printf("\n Cube of %f is =%f \n",x,cub1);
+  printf("\n Cube of %f is =%f \n\n",y,cub2);
 }
 
 
@@ -89,7 +124,7 @@ int main()
   double ricxvi1;        // brzaneba თუ რიცხვია კალკულატორის პირველი რიცხვი
   double ricxvi2;        // კალკულატორის მეორე რიცხვი
   double pasuxi;         // კალკულატორის პასუხი
-  double indikatori;     // 1,2,3, მიმატება გამოკლება კუბი
+  int indikatori;        // 1,2,3, მიმატება გამოკლება კუბი
   double result;         // brzaneba -ს გადაყვანა დაბლში სტრინგიდან strtod
   char value[51];        // brzaneba -ს გადაკოპირება strcpy ით. პირდაპირ brzaneba ც რომ იყოს შეიძლება
   char *eptr;            // ???
@@ -116,32 +151,59 @@ int main()
     printf("ricxvi2 = %f\n",ricxvi2);
     printf("ricxvi2Chek = %d\n",ricxvi2Chek);
 
-    if (ricxvi1Chek == 1 && ricxvi2Chek == 1)
+
+    if (ricxvi1Chek == 1 && ricxvi2Chek == 1) // თუ ricxvi1 და ricxvi2 არიან რიცხვები
     {
-      // თუ ricxvi1 და ricxvi2 არიან ციფრები
       printf("=================== \n");
+      printf("შეიყვანეთ 1 თუ გსურთ ricxvi1 da ricxvi2 - ის sum - ის გაგება \n");
       printf("შეიყვანეთ 3 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
-      // indikatori ის შემოწმებაც არის გასაკეთებელი
       gets(brzaneba);
-      indikatori = strtod(brzaneba, &eptr);
-      if (indikatori == 3)
+      indikatori = atoi(brzaneba);
+
+      switch(indikatori)
       {
-        // 3 = cube
+        case 1:
+        add(ricxvi1, ricxvi2);
+        break;
+
+        case 2:
+        sub(ricxvi1, ricxvi2);
+        break;
+
+        case 3:
+        mult(ricxvi1, ricxvi2);
+        break;
+
+        case 4:
+        div_gayofa(ricxvi1, ricxvi2);
+        break;
+
+        case 5:
+        sq(ricxvi1, ricxvi2);
+        break;
+
+        case 6:
         cube(ricxvi1, ricxvi2);
+        break;
+
+        default:
+        printf("\n\n შეიყვანეთ რიცხვი მოცემული ცხრილიდან \n");
       }
-    } else {
+
+    } else
+    {
       //
       printf("შეიყვანეთ ricxvi1 და ricxvi2 თავიდან \n");
       printf("==================================== \n");
     }
 
-    // ვაილიდან გამოსვლა - დასახვეწია
+
     printf("=================== \n");
     printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
     gets(gamortva);
     printf("gamortva = %s \n",gamortva);
 
-    if (gamortva[0] == 121)
+    if (gamortva[0] == 121) // ვაილიდან გამოსვლა - დასახვეწია
     {
       continue;
     } else

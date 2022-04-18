@@ -20,7 +20,7 @@ int mult(int x, int y)
   printf("\nThe multiplication is=%d\n\n",i);
 }
 
-double div(double x, double y)1
+double div(double x, double y)1 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< es ra chemi ylea?
 {
   double m;
   m=x/y;
