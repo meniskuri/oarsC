@@ -171,7 +171,7 @@ int main()
       printf("შეიყვანეთ 6 თუ გსურთ ricxvi1 da ricxvi2 - ის cube - ის გაგება \n");
 
       gets(brzaneba);
-      indikatori = atoi(brzaneba);
+      indikatori = atoi(brzaneba); // სტრინგი გადაყავს ინტში
 
       switch(indikatori)
       {
@@ -216,7 +216,7 @@ int main()
     gets(gamortva);
     printf("gamortva = %s \n",gamortva);
 
-    if (gamortva[0] == 121) // ვაილიდან გამოსვლა - დასახვეწია
+    if (gamortva[0] == 121) // ვაილიდან გამოსვლა - დასახვეწია - არ დამიმთავრებია!!!!!!! <<<<<<<<<<<<<<<< 
     {
       continue;
     } else

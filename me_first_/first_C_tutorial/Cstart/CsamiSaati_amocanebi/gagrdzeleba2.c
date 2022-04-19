@@ -49,7 +49,32 @@ int main()
     printf("num1 / num2 = %f \n", num1 / num2);
   } else
   {
+    printf("================ \n");
+    printf("Error \n");
     printf("Invalid operator \n");
+  }
+
+  switch(op)
+  {
+    case '+':
+    printf("მიმატება \n");
+    break;
+
+    case '-':
+    printf("გამოკლება \n");
+    break;
+
+    case '*':
+    printf("გამრავლება \n");
+    break;
+
+    case '/':
+    printf("გაყოფა \n");
+    break;
+
+    default:
+    printf("ერორ-ერორ \n");
+    printf("ინვალიდი ოპერატორი \n");
   }
 
   return 0;
