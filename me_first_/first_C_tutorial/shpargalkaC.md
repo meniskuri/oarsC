@@ -6,6 +6,241 @@
 >the machine underneath. You have a lot of power,
 >once you know what you can do.
 
+#### C and C Raylib
+> Compilation is the translation of source code (the code we write)
+> into object code (sequence of statements in machine language) by a compiler.
+> - The compilation process has four different steps:
+>  - The preprocessing
+>  - The compiling
+>  - The assembling
+>  - The linking
+
+დეტალურად იხილეთ ლინკი: <https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052>
+
+`როგორ იბილდება? 1.პრე კომპილაცია 2. კომპილაცია 3. ლინკინგი | ასემბლი`
+##### The steps
+1. The preprocessor
+> The output of this step will be stored in a file with a “.i” extension
+ - `gcc -E file1.c`       (In order to stop the compilation right after this step,
+ we can use the option “-E” with the gcc command on the source file and press enter.)
+
+2. The compiler
+> The compiler will take the preprocessed file and generate IR code (Intermediate Representation), so this will produce a `“.s”` file.
+ - `gcc -S file1.c`       (We can stop after this step with the `“-S”` option on the `gcc` command, and press enter. and then `cat file1.s`)
+
+3. The assembler
+> The assembler takes the IR code and transforms it into object code, that is code in machine language (i.e. binary). This will produce a file ending in “.o”.
+(IR code - Intermediate Representation <https://en.wikipedia.org/wiki/Intermediate_representation>
+ - `gcc -c file1.c`       (We can stop the compilation process after this step by using the option “-c” with the gcc command, and pressing enter.)
+დაამზადებს ობჯექთ ფაილს. `gcc file1.o` დაამზადებს `a.exe` ფაილს.
+
+4. The linker
+> The linker creates the final executable, in binary, and can play two roles:
+  - linking all the source files together, that is all the other object codes in the project. For example, if I want to compile `main.c` with another file called         `secondary.c` and make them into one single program, this is the step where the object code of secondary.c (that is secondary.o) will be linked to the main.c
+    object code `(main.o)`.
+> second
+  - linking function calls with their definitions. The linker knows where to look for the function definitions in the static libraries or dynamic libraries. Static     libraries are “the result of the linker making copy of all used library functions to the executable file”, according to geeksforgeeks.org, and dynamic libraries     “don’t require the code to be copied, it is done by just placing the name of the library in the binary file”. Note that gcc uses by default dynamic libraries. In     our example this is when the linker will find the definition of our “puts” function, and link it.
+
+ >  - By default, after this fourth and last step, that is when you type the whole `gcc main.c` command without any options, the compiler will create an executable program called `a.out`, that we can run by typing “./a.out” in the command line.
+
+ > - `gcc file1.c -o file1`             (We can also choose to create an executable program with the name we want, by adding the “-o”)
+> - `gcc –Wall filename.c –o filename` (The option -Wall enables all compiler’s warning messages. This option is recommended to generate better code.)
+
+##### Automatic build with makefile
+> Tutorial: <https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/> (how to make simple Makefile)
+
+Let's start off with the following three files, `hellomake.c, hellofunc.c, and hellomake.h`,
+which would represent a typical main program, some functional code in a separate file,
+and an include file, respectively.
+
+```
+hellomake.c	hellofunc.c	hellomake.h
+```
+```
+// hellomake.c
+#include <hellomake.h>
+
+int main() {
+  // call a function in another file
+  myPrintHelloMake();
+
+  return(0);
+}
+```
+```
+// hellofunc.c
+#include <stdio.h>
+#include <hellomake.h>
+
+void myPrintHelloMake(void) {
+
+  printf("Hello makefiles!\n");
+
+  return;
+}
+```
+```
+// hellomake.h
+
+/*
+example include file
+*/
+
+void myPrintHelloMake(void);
+```
+
+> `hellomake.c` `hellofunc.c` და `compile this collection of code` და `hellomake.h` და მიაბი.
+
+Normally, you would compile this collection of code by executing the following command:
+> gcc -o hellomake hellomake.c hellofunc.c -I.    (This compiles the two .c files and names the executable hellomake. The -I. is included so that gcc will look in the current directory (.) for the include file hellomake.h. Without a makefile)
+
+The simplest makefile you could create would look something like:
+###### Makefile 1
+```
+hellomake: hellomake.c hellofunc.c
+      gcc -o hellomake hellomake.c hellofunc.c -I.
+
+ make (ბრძანებით გაუშვებ ამ მეიკფაილს)
+```
+
+One very important thing to note is that there is a tab before the gcc command in the makefile. There must be a tab at the beginning of any command, and make will not be happy if it's not there.
+
+
+In order to be a bit more efficient, let's try the following:
+###### Makefile 2
+```
+CC=gcc
+CFLAGS=-I.
+
+hellomake: hellomake.o hellofunc.o
+      $(CC) -o hellomake hellomake.o hellofunc.o
+```
+> So now we've defined some constants CC and CFLAGS. It turns out these are special constants that communicate to make how we want to compile the files hellomake.c and hellofunc.c. In particular, the macro CC is the C compiler to use, and CFLAGS is the list of flags to pass to the compilation command. By putting the object files--hellomake.o and hellofunc.o--in the dependency list and in the rule, make knows it must first compile the .c versions individually, and then build the executable hellomake.
+
+> Using this form of makefile is sufficient for most small scale projects. However, there is one thing missing: dependency on the include files. If you were to make a change to hellomake.h, for example, make would not recompile the .c files, even though they needed to be. In order to fix this, we need to tell make that all .c files depend on certain .h files. We can do this by writing a simple rule and adding it to the makefile.
+
+```
+თუ გამოვიყენებთ ბრძანება make -ს:
+ - აქ მოგიწევს ობჯექთ ფაილების შექმნა ხელით gcc -c filename.c -I.
+
+თუ გამოვიყენებთ ბრძანება mingw32-make:
+ - makefile (N2 ვარიანტი) იმუშავებს სწორად და შექნის ობჯექთ ფაილებს თვითონ. შემდეგ კი ეგზეს.
+
+```
+
+###### Makefile 3
+```
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+
+%.o: %.c $(DEPS)
+      $(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: hellomake.o hellofunc.o
+      $(CC) -o hellomake hellomake.o hellofunc.o
+```
+> This addition first creates the macro `DEPS`, which is the set of `.h` files on which the `.c` files depend. Then we define a rule that applies to all files ending in the `.o` suffix. The rule says that the `.o` file depends upon the `.c` version of the file and the .h files included in the `DEPS` macro. The rule then says that to generate the `.o` file, make needs to compile the `.c` file using the compiler defined in the `CC` macro. The `-c flag` says to generate the object file, the `-o $@` says to put the output of the compilation in the file named on the left side of the :, the `$<` is the first item in the dependencies list, and the `CFLAGS` macro is defined as above.
+
+> As a final simplification, let's use the special macros `$@` and `$^`, which are the left and right sides of the :, respectively, to make the overall compilation rule more general. In the example below, all of the include files should be listed as part of the macro `DEPS`, and all of the object files should be listed as part of the macro `OBJ`.
+
+###### Makefile 4
+```
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+OBJ = hellomake.o hellofunc.o
+
+%.o: %.c $(DEPS)
+      $(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+      $(CC) -o $@ $^ $(CFLAGS)
+```
+> So what if we want to start putting our `.h` files in an `include` directory, our source code in a `src` directory, and some local libraries in a `lib` directory? Also, can we somehow hide those annoying `.o` files that hang around all over the place? The answer, of course, is yes. The following `makefile` defines paths to the `include` and `lib` directories, and places the object files in an `obj` subdirectory within the `src` directory. It also has a macro defined for any libraries you want to include, such as the `math library -lm`. This makefile should be located in the `src` directory. Note that it also includes a rule for cleaning up your source and object directories if you type make `mingw32-make clean`. The `.PHONY` rule keeps make from doing something with a file named `mingw32-make clean`.
+
+
+###### Makefile 5
+```
+IDIR =../include
+CC=gcc
+CFLAGS=-I$(IDIR)
+
+ODIR=obj
+LDIR =../lib
+
+LIBS=-lm
+
+_DEPS = hellomake.h
+DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+
+_OBJ = hellomake.o hellofunc.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+
+$(ODIR)/%.o: %.c $(DEPS)
+      $(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+      $(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
+
+clean:
+      rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+
+```
+> So now you have a perfectly good `makefile` that you can modify to manage small and medium-sized software projects. You can add multiple rules to a `makefile`; you can even create rules that call other rules. For more information on `makefiles` and the `make` function, check out the `GNU Make Manual`, which will tell you more than you ever wanted to know (really).
+
+/* აქ ვარ გაჭედილი - ჩემს make ბრძანებას არ ესმის გარკვეული სიმბოლოები. გადმოვწერე mingw32-make*/
+
+###### Makefile (tutorial 2)
+<https://makefiletutorial.com/> ტუტორიალი 2 (ვნახოთ - გადასახედია)
+
+
+
+##### Optimization and Options
+```
+gcc -O3 -S arraysTest1.c (მესამე დონის ოპტიმიზაცია - ასემბლერის ფაილის დამზადებისას -- კიდევ მაქვს კითხვები ??? წასაკითხია რაღაცეები ;) )
+
+```
+
+##### GDB
+###### How to Debug C Program using gdb in 6 Simple Steps
+```
+gcc -g file1.c    (Compile your C program with -g option. This allows the compiler to collect the debugging information.)
+                  (The above command creates a.out file which will be used for debugging as shown below. or a.exe)
+gdb a.exe         (Launch gdb)
+break line_number (ბრეიქ პონტის დასმა და რა ადგილას სვავ line_number = 12 მაგალითად)
+run               (Execute the C program in gdb debugger)
+print {variable}  (Printing the variable values inside gdb debugger)
+
+s                 (or step: Same as next, but does not treats function as a single instruction, instead goes into the function and executes it line by line.)
+c                 (or continue: Debugger will continue executing until the next break point.)
+n                 (or next: Debugger will execute the next line as single instruction.)
+l                 (lisტ)
+
+q                 (quit)
+```
+
+##### How to Debug C Raylib using gdb
+```
+gcc -o core_input_keys.exe core_input_keys.c C:\\raylib\\raylib\\src\\raylib.rc.data
+-std=c99 -Wall -IC:\\raylib\\raylib\\src -Iexternal -DPLATFORM_DESKTOP -ggdb -lraylib
+-lopengl32 -lgdi32 -lwinmm^C
+```
+#### Atom
+```
+ctrl shift p     (შეგიძლია ნახო ექსთენშენები რაც გაქვს დაყენებული მაგალითად. აკრიფე Gpp და ამოგიგდებს რომ f5 ით უშვებ სის - GCC)
+f5               (compile C/C++)
+f6               (compiler GDB - GNU Project Debugger - მაგრამ გამოყენება ჯერ არ ვიცი)
+cntrl g          (და შეიყვან რიცხვს რომელ ლაინზეც გინდა გადახტე კოდში)
+```
+- ctrl-alt-o
+
+
+
+
 ## დასაწყისი ✨Magic ✨
 
 - C:\raylib\mingw\i686-w64-mingw32\include (ბიბლიოთეკები)
@@ -57,7 +292,7 @@ EOF is an integer defined in <stdio.h>, but the specific numeric value
 doesn’t matter as long as it is not the same as any char value
 
 ##### 1.5.2 Character counting
-##### 1.5.3 Line counting 
+##### 1.5.3 Line counting
 
 
 
