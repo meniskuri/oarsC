@@ -12,7 +12,7 @@
 
 int main()
 {
-  //
+  // TEST :)))) sam_saatiano_tutorial shi axali comiti unda gachdnes; masterze ki ara 
 
   return 0;
 }
@@ -41,5 +41,5 @@ struct ების რატომღაც მეშინოდა
 იმიტომ რომ შეგვიძლია
 რატომ არის თამაში ჯადოსნური?
 იმიტომ რომ ნამდვილია
-ხოდა ეგრე 
+ხოდა ეგრე
 */
