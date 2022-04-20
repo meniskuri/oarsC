@@ -17,13 +17,23 @@ struct MagicWands {
 };
 
 /* function declaration */
-void printMagicWandsInfo( struct MagicWands wand )
+void printMagicWandsInfo (struct MagicWands wand)
 {
-  printf( "wand1 title  : %s\n", wand.title);
-  printf( "wand1 author : %s\n", wand.author);
-  printf( "wand1 owner  : %s\n", wand.owner);
-  printf( "wand1 soul   : %s\n", wand.soul);
-  printf( "wand1 id     : %d\n", wand.wand_id);
+  printf("wand title  : %s\n", wand.title);
+  printf("wand author : %s\n", wand.author);
+  printf("wand owner  : %s\n", wand.owner);
+  printf("wand soul   : %s\n", wand.soul);
+  printf("wand id     : %d\n", wand.wand_id);
+}
+
+void printMagicWandsInfoPointer (struct MagicWands *wand) // მისამართი იგზავნება აქ
+{
+  // პოინტერის გამოყენების დროს -> გვჭირდბა . ის მაგივრად
+  printf("wand title  : %s\n", wand->title);
+  printf("wand author : %s\n", wand->author);
+  printf("wand owner  : %s\n", wand->owner);
+  printf("wand soul   : %s\n", wand->soul);
+  printf("wand id     : %d\n", wand->wand_id);
 }
 
 
@@ -81,10 +91,24 @@ int main( ) {
    strcpy(wand2.soul, "Golden Dragon");
    wand2.wand_id = 2;
 
-
    /* print MagicWands info */
   printMagicWandsInfo(wand1);
   printMagicWandsInfo(wand2);
+
+
+
+  // Struct version 3 - Pointers to Structures
+  printf("====================================================== \n");
+  printf("Struct version 3 - Pointers to Structures\n");
+
+  struct MagicWands *struct_pointer;
+  struct_pointer = &wand1;
+  // printf ებით ვნახო პოინტერების მისამართები? მოკლედ ვცადო ჰო
+  printMagicWandsInfoPointer(struct_pointer);
+  printMagicWandsInfoPointer(&wand2);
+
+  printf("Address of wand1 (&wand1): %p\n", &wand1);
+  printf("Address of wand1 (struct_pointer): %p\n", struct_pointer);
 
    return 0;
 }

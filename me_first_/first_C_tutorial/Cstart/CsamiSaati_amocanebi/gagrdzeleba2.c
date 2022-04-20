@@ -1,5 +1,6 @@
 /*
 3 საათიანი ვიდეოს გაგრძელება
+calculator from video
 */
 
 #include <stdio.h>
