@@ -18,7 +18,38 @@ struct MagicWands {
    int   wand_id;
 };
 
+struct Jadoqrebi // დიდი ასაოთი ვიწყებთ რატომღაც. ალბათ რომ ვიცნოტ მერე სტრუქტურაა
+{
+  // ჩემი ჯადოქრები
+  char saxeli[100];
+  char jadoqruli_saxeli[100];
+  char dzalebi[100];
+  char joxis_saxeli[100];
+  char totemi[100];
+  int gafidvis_lvl;
+}; // წერტილ მძიმეი მთავრდება
+
 /* function declaration */
+void jadoqrebi_info_prnt (struct Jadoqrebi *jadoqrebi) // მისამართს მივცემ
+{
+  printf("================================ \n");
+  printf("pntr print \n");
+  printf("ჯადოქრის სახელი:          %s \n",jadoqrebi->saxeli);
+  printf("ჯადოქრული სახელი:        %s \n",jadoqrebi->jadoqruli_saxeli);
+  printf("ჯადოქრის ძალები:          %s \n",jadoqrebi->dzalebi);
+  printf("ჯადოქრის ტოტემი:          %s \n",jadoqrebi->totemi);
+  printf("ჯადოქრის გაფიდვის ლეველი: %d \n",jadoqrebi->gafidvis_lvl);
+}
+
+void jadoqrebi_info (struct Jadoqrebi jadoqrebi) // სახელს მივცემ
+{
+  printf("ჯადოქრის სახელი:          %s \n",jadoqrebi.saxeli);
+  printf("ჯადოქრული სახელი:        %s \n",jadoqrebi.jadoqruli_saxeli);
+  printf("ჯადოქრის ძალები:          %s \n",jadoqrebi.dzalebi);
+  printf("ჯადოქრის ტოტემი:          %s \n",jadoqrebi.totemi);
+  printf("ჯადოქრის გაფიდვის ლეველი: %d \n",jadoqrebi.gafidvis_lvl);
+}
+
 void printMagicWandsInfo (struct MagicWands wand)
 {
   printf("wand title  : %s\n", wand.title);
@@ -111,6 +142,27 @@ int main( ) {
 
   printf("Address of wand1 (&wand1): %p\n", &wand1);
   printf("Address of wand1 (struct_pointer): %p\n", struct_pointer);
+
+  // jadoqrebi
+  struct Jadoqrebi ojaxi_da, ojaxi_deda;
+  struct Jadoqrebi *ojaxi_da_pntr;
+  ojaxi_da_pntr = &ojaxi_da;
+
+  strcpy(ojaxi_da.saxeli,"Shoshi");
+  strcpy(ojaxi_da.jadoqruli_saxeli,"SunGolden Dragon");
+  strcpy(ojaxi_da.dzalebi,"Sun Light and Green Trees Power Earth Power");
+  strcpy(ojaxi_da.totemi,"Leopard");
+  ojaxi_da.gafidvis_lvl = 28;
+
+  strcpy(ojaxi_deda.saxeli,"Tamriko");
+  strcpy(ojaxi_deda.jadoqruli_saxeli,"King Tamar - Mother of Jesie");
+  strcpy(ojaxi_deda.dzalebi,"Love");
+  strcpy(ojaxi_deda.totemi,"Birds");
+  ojaxi_deda.gafidvis_lvl = 100; // max
+
+  jadoqrebi_info(ojaxi_da);
+  jadoqrebi_info_prnt(ojaxi_da_pntr);
+  jadoqrebi_info(ojaxi_deda);
 
    return 0;
 }
