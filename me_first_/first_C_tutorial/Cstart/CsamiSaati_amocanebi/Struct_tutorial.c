@@ -164,7 +164,15 @@ int main( ) {
   jadoqrebi_info_prnt(ojaxi_da_pntr);
   jadoqrebi_info(ojaxi_deda);
 
-   return 0;
+  int index = 6;
+  do {
+    printf("index = %d \n", index);
+    index++;
+  } while (index <= 5);
+  printf("index = %d \n", index);
+  printf("do while - ჯერ გაუშვებს ვაილში რაც არის და მერე შეამოწმებს პირობას \n");
+
+  return 0;
 }
 
 /*

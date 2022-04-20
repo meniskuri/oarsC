@@ -20,19 +20,19 @@ void jadoqrebi_info_prnt (struct Jadoqrebi *jadoqrebi) // მისამარ�
 {
   printf("================================ \n");
   printf("pntr print \n");
-  printf("ჯადოქრის სახელი:          %s \n",jadoqrebi->saxeli);
-  printf("ჯადოქრული სახელი:        %s \n",jadoqrebi->jadoqruli_saxeli);
-  printf("ჯადოქრის ძალები:          %s \n",jadoqrebi->dzalebi);
-  printf("ჯადოქრის ტოტემი:          %s \n",jadoqrebi->totemi);
+  printf("ჯადოქრის სახელი:           %s \n",jadoqrebi->saxeli);
+  printf("ჯადოქრული სახელი:          %s \n",jadoqrebi->jadoqruli_saxeli);
+  printf("ჯადოქრის ძალები:           %s \n",jadoqrebi->dzalebi);
+  printf("ჯადოქრის ტოტემი:           %s \n",jadoqrebi->totemi);
   printf("ჯადოქრის გაფიდვის ლეველი: %d \n",jadoqrebi->gafidvis_lvl);
 }
 
 void jadoqrebi_info (struct Jadoqrebi jadoqrebi) // სახელს მივცემ
 {
-  printf("ჯადოქრის სახელი:          %s \n",jadoqrebi.saxeli);
-  printf("ჯადოქრული სახელი:        %s \n",jadoqrebi.jadoqruli_saxeli);
-  printf("ჯადოქრის ძალები:          %s \n",jadoqrebi.dzalebi);
-  printf("ჯადოქრის ტოტემი:          %s \n",jadoqrebi.totemi);
+  printf("ჯადოქრის სახელი:           %s \n",jadoqrebi.saxeli);
+  printf("ჯადოქრული სახელი:          %s \n",jadoqrebi.jadoqruli_saxeli);
+  printf("ჯადოქრის ძალები:           %s \n",jadoqrebi.dzalebi);
+  printf("ჯადოქრის ტოტემი:           %s \n",jadoqrebi.totemi);
   printf("ჯადოქრის გაფიდვის ლეველი: %d \n",jadoqrebi.gafidvis_lvl);
 }
 
@@ -50,6 +50,13 @@ int main()
 
   jadoqrebi_info(ojaxi_da);
   jadoqrebi_info_prnt(ojaxi_da_pntr);
+
+  int index = 6;
+  do {
+    printf("index = %d \n", index);
+    index++;
+  } while (index <= 5);
+  printf("index = %d \n", index);
 
   return 0;
 }
