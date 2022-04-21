@@ -70,7 +70,10 @@ int main()
   int counter_while = 0; // ვაილის მთვლელი. როცა შეგვყავს რიცხვი. სხვა შემთხვევებს არ ავღრიცხავ
   int counter_main  = 0;
 
-  double sacavi_statistikis[10000];
+  double sacavi_statistikis[1000];
+  #define MAX_LENGTH 100
+  #define NUM_STRINGS 100
+  char sacavi_civa_cxela[NUM_STRINGS][MAX_LENGTH] = {""}; // <<<<
 
   printf("================================== \n");
   printf("ვთამაშობთ გამოცნობანას - წინასწარმეტყველების თამაში \n");
@@ -95,9 +98,11 @@ int main()
       } else if (mixvedra < secret) {
         printf("========== \n");
         printf("ცივა \n");
+        strcpy(sacavi_civa_cxela[counter_while + 1],"cold");
       } else {
         printf("========== \n");
         printf("ცხელა \n");
+        strcpy(sacavi_civa_cxela[counter_while + 1],"hot");
       }
       counter_while++;
 
@@ -107,21 +112,28 @@ int main()
       printf("ERROR - შეიყვანეთ რიცხვი \n");
     }
     counter_main++;
+
     printf("counter_main %d \n", counter_main);
     printf("counter_while = %d \n", counter_while);
+
     sacavi_statistikis[counter_while] = mixvedra;
     printf("sacavi_statistikis[%d] = %f \n", counter_while, sacavi_statistikis[counter_while]);
+
     printf("==========++++++++++ \n");
     // printf("strlen(sacavi_statistikis) = %d \n",strlen(sacavi_statistikis));
 
     for (int i = 1; i < 20; i++)
     {
       printf("sacavi_statistikis[i] %f \n", sacavi_statistikis[i]);
+      printf("sacavi_civa_cxela[i] %s \n", sacavi_civa_cxela[i]);
     }
-
+    //printf("sizeof(sacavi_statistikis) %d \n", sizeof(sacavi_statistikis)/sizeof(sacavi_statistikis[0]));
   }
   return 0;
 }
+
+
+
 
 
 /*
