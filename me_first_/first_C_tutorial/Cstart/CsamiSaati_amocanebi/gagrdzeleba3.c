@@ -71,28 +71,19 @@ void civa_cxela_funqcia(double sacavi_statistikis[], int mtvleli, char sacavi_ci
   ასევე ვაწვდი ცივა ცხელას მასივს საბეჭდად.
   */
   double coldMAX, hotMIN;
-
-  double chemMAX, chemMIN; // ქვედა
-  double zedMAX, zedMIN;   // ზედა
-
-  double cuRent = sacavi_statistikis[mtvleli-1];
+  double chemMAX, chemMIN;
 
   printf("საცნობი: %f - %s \n", sacavi_statistikis[mtvleli-1], sacavi_civa_cxela[mtvleli-1]);
-
+  chemMAX = chemMIN = sacavi_statistikis[0];
   for (int i = 0; i < mtvleli ; i++)
   {
-    // printf("TEST \n");
-    if (cuRent < secret)
-    {
-      chemMIN = cuRent;
-      if (sacavi_statistikis[i] > chemMIN)
-      {
-        chemMAX = sacavi_statistikis[i]
-      }
-    }
-
+    if (chemMIN > sacavi_statistikis[i])
+      chemMIN = sacavi_statistikis[i];
+      if (chemMAX < sacavi_statistikis[i])
+      chemMAX = sacavi_statistikis[i];
   }
-
+  printf("minimum of array is : %f \n",chemMIN);
+  printf("maximum of array is : %f \n",chemMAX);
 }
 
 
