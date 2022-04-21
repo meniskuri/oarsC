@@ -11,6 +11,10 @@
 #include <string.h>
 #include <errno.h>
 
+// გლობალური ცვლადები
+#define MAX_LENGTH 100  // სტრინგების მასივის შესაქმნელად სიგრძე
+#define NUM_STRINGS 100 // რამდენი სტრინგ ელემენტის შენახვა შეუძლია 2დ ერრეის
+
 int parametrebi_Brzanebis(char* brzaneba)
 {
   /* ფუნქციის აღწერა:
@@ -23,7 +27,7 @@ int parametrebi_Brzanebis(char* brzaneba)
   int len, counter_par = 0, counter_mdzime = 0;
 
   len = strlen(brzaneba);
-  printf("len = %d \n",len);
+  // printf("len = %d \n",len);
 
   for (int i = 0; i <= len; i++)
   {
@@ -58,6 +62,39 @@ int parametrebi_Brzanebis(char* brzaneba)
   return cifria;
 }
 
+void civa_cxela_funqcia(double sacavi_statistikis[], int mtvleli, char sacavi_civa_cxela[][MAX_LENGTH], double secret)
+{
+  /*
+  ფუნქცია. რომელსაც მივაწვდი სტატისტიკის მასივს
+  გამოითვლის ჰოთ მინს და ქოლდ მაქს და დამიბეჭდვას
+  მგონი არ იქნება რთული. მთავარია თქვა რა გინდა.
+  ასევე ვაწვდი ცივა ცხელას მასივს საბეჭდად.
+  */
+  double coldMAX, hotMIN;
+
+  double chemMAX, chemMIN; // ქვედა
+  double zedMAX, zedMIN;   // ზედა
+
+  double cuRent = sacavi_statistikis[mtvleli-1];
+
+  printf("საცნობი: %f - %s \n", sacavi_statistikis[mtvleli-1], sacavi_civa_cxela[mtvleli-1]);
+
+  for (int i = 0; i < mtvleli ; i++)
+  {
+    // printf("TEST \n");
+    if (cuRent < secret)
+    {
+      chemMIN = cuRent;
+      if (sacavi_statistikis[i] > chemMIN)
+      {
+        chemMAX = sacavi_statistikis[i]
+      }
+    }
+
+  }
+
+}
+
 
 int main()
 {
@@ -70,10 +107,8 @@ int main()
   int counter_while = 0; // ვაილის მთვლელი. როცა შეგვყავს რიცხვი. სხვა შემთხვევებს არ ავღრიცხავ
   int counter_main  = 0;
 
-  double sacavi_statistikis[1000];
-  #define MAX_LENGTH 100
-  #define NUM_STRINGS 100
-  char sacavi_civa_cxela[NUM_STRINGS][MAX_LENGTH] = {""}; // <<<<
+  double sacavi_statistikis[1000]; // ვინახავ შეყვანილ რიცხვებს
+  char sacavi_civa_cxela[NUM_STRINGS][MAX_LENGTH] = {""}; // ყოველ შეყვანილ რიცხვზე ვიწერ ცივია თუ ცხელია
 
   printf("================================== \n");
   printf("ვთამაშობთ გამოცნობანას - წინასწარმეტყველების თამაში \n");
@@ -89,23 +124,19 @@ int main()
     if (brzanebaChek == 1)
     {
       mixvedra = strtod(brzaneba, &eptr);
-      printf("mixvedra = %f \n",mixvedra);
+      // printf("mixvedra = %f \n",mixvedra);
 
       if (mixvedra == secret)
       {
         printf("თამაში დამთვრებულია \n");
         break;
       } else if (mixvedra < secret) {
-        printf("========== \n");
-        printf("ცივა \n");
-        strcpy(sacavi_civa_cxela[counter_while + 1],"cold");
+        strcpy(sacavi_civa_cxela[counter_while ],"cold");
       } else {
-        printf("========== \n");
-        printf("ცხელა \n");
-        strcpy(sacavi_civa_cxela[counter_while + 1],"hot");
+        strcpy(sacavi_civa_cxela[counter_while],"hot");
       }
+      sacavi_statistikis[counter_while] = mixvedra;
       counter_while++;
-
     } else
     {
       printf("================================== \n");
@@ -116,25 +147,11 @@ int main()
     printf("counter_main %d \n", counter_main);
     printf("counter_while = %d \n", counter_while);
 
-    sacavi_statistikis[counter_while] = mixvedra;
-    printf("sacavi_statistikis[%d] = %f \n", counter_while, sacavi_statistikis[counter_while]);
-
-    printf("==========++++++++++ \n");
-    // printf("strlen(sacavi_statistikis) = %d \n",strlen(sacavi_statistikis));
-
-    for (int i = 1; i < 20; i++)
-    {
-      printf("sacavi_statistikis[i] %f \n", sacavi_statistikis[i]);
-      printf("sacavi_civa_cxela[i] %s \n", sacavi_civa_cxela[i]);
-    }
-    //printf("sizeof(sacavi_statistikis) %d \n", sizeof(sacavi_statistikis)/sizeof(sacavi_statistikis[0]));
+    printf("========== \n");
+    civa_cxela_funqcia(sacavi_statistikis, counter_while, sacavi_civa_cxela, secret);
   }
   return 0;
 }
-
-
-
-
 
 /*
 არჩილმა დამირეკა და მითხრა რომ ნუ აძინებ ტვინსო
