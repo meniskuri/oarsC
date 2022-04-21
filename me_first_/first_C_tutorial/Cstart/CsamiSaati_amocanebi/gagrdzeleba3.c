@@ -61,12 +61,16 @@ int parametrebi_Brzanebis(char* brzaneba)
 
 int main()
 {
-  double secret = 1783; // გამოსაცნობი რიცხვი
-  double mixvedra;   // კლავიატურიდან შეყვანილი რიცხვს სადაც ჩავწე და შევადარებ secret-ს
+  double secret = 1783;  // გამოსაცნობი რიცხვი
+  double mixvedra;       // კლავიატურიდან შეყვანილი რიცხვს სადაც ჩავწე და შევადარებ secret-ს
 
-  char brzaneba[51]; // სტრინგი რომელიც შემყავს კლავიატურიდან ვამოწმებ რიცხვია თუა არა და ვანიჭებ mixvedra-ს
-  bool brzanebaChek; //  თუ ფუნქციამ დააბრუნა 1 ანუ რიცხვი შევიყვანეთ თუარადა დააბრუნებს 0 ს
-  char *eptr;        // ??? string pointer რაც გადაყავს დაბლში (მგონი)
+  char brzaneba[51];     // სტრინგი რომელიც შემყავს კლავიატურიდან ვამოწმებ რიცხვია თუა არა და ვანიჭებ mixvedra-ს
+  bool brzanebaChek;     //  თუ ფუნქციამ დააბრუნა 1 ანუ რიცხვი შევიყვანეთ თუარადა დააბრუნებს 0 ს
+  char *eptr;            // ??? string pointer რაც გადაყავს დაბლში (მგონი)
+  int counter_while = 0; // ვაილის მთვლელი. როცა შეგვყავს რიცხვი. სხვა შემთხვევებს არ ავღრიცხავ
+  int counter_main  = 0;
+
+  double sacavi_statistikis[10000];
 
   printf("================================== \n");
   printf("ვთამაშობთ გამოცნობანას - წინასწარმეტყველების თამაში \n");
@@ -95,13 +99,27 @@ int main()
         printf("========== \n");
         printf("ცხელა \n");
       }
+      counter_while++;
+
     } else
     {
       printf("================================== \n");
       printf("ERROR - შეიყვანეთ რიცხვი \n");
     }
-  }
+    counter_main++;
+    printf("counter_main %d \n", counter_main);
+    printf("counter_while = %d \n", counter_while);
+    sacavi_statistikis[counter_while] = mixvedra;
+    printf("sacavi_statistikis[%d] = %f \n", counter_while, sacavi_statistikis[counter_while]);
+    printf("==========++++++++++ \n");
+    // printf("strlen(sacavi_statistikis) = %d \n",strlen(sacavi_statistikis));
 
+    for (int i = 1; i < 20; i++)
+    {
+      printf("sacavi_statistikis[i] %f \n", sacavi_statistikis[i]);
+    }
+
+  }
   return 0;
 }
 
