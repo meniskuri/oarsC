@@ -72,16 +72,17 @@ void civa_cxela_funqcia(double sacavi_statistikis[], int mtvleli, char sacavi_ci
   */
   double coldMAX, hotMIN;
   double chemMAX, chemMIN;
-  double sacavi_shida_stat_qveda[1000];
-  int k = 0;
-  double sacavi_shida_stat_zeda[1000];
-  int p = 0;
+
+  double sacavi_shida_stat_qveda[1000]; // საცავი ქვედა არეალში მოხვედრილი რიცხვებისთვის
+  int k = 0; // ინდექსების მთვლელი ქვედა არეალისთვის
+  double sacavi_shida_stat_zeda[1000]; // საცავი ზედა არეალში მოხვედრილი რიცხვებისთვის
+  int p = 0; // ინდექსების მთვლელი ზედა არეალისთვის
 
   printf("საცნობი: %f - %s \n", sacavi_statistikis[mtvleli-1], sacavi_civa_cxela[mtvleli-1]);
 
   chemMAX = chemMIN = sacavi_statistikis[0];
 
-  for (int i = 0; i < mtvleli ; i++)
+  for (int i = 0; i < mtvleli; i++)
   {
     // მინ მაქს ის გამოთვლა მასივში
     if (chemMIN > sacavi_statistikis[i])
@@ -93,19 +94,38 @@ void civa_cxela_funqcia(double sacavi_statistikis[], int mtvleli, char sacavi_ci
     if (sacavi_statistikis[i] < secret)
     {
       sacavi_shida_stat_qveda[k] = sacavi_statistikis[i];
-      printf("sacavi_shida_stat_qveda[%d] = %f \n", k, sacavi_shida_stat_qveda[k]);
+      // printf("sacavi_shida_stat_qveda[%d] = %f \n", k, sacavi_shida_stat_qveda[k]);
       k++;
     }
     // ქვედა მასივის შექმნა რომელსიც უნდა გამოვითვალო მინ მაქსი ასევე
     if (sacavi_statistikis[i] > secret)
     {
       sacavi_shida_stat_zeda[p] = sacavi_statistikis[i];
-      printf("sacavi_shida_stat_zeda[%d] = %f \n", p, sacavi_shida_stat_zeda[p]);
+      // printf("sacavi_shida_stat_zeda[%d] = %f \n", p, sacavi_shida_stat_zeda[p]);
       p++;
     }
+
+    // მაქს ქვედა არეალისთვის
+    coldMAX = sacavi_shida_stat_qveda[0];
+    for (int i = 0; i < k; i++)
+    {
+      if (coldMAX < sacavi_shida_stat_qveda[i])
+      coldMAX = sacavi_shida_stat_qveda[i];
+    }
+    // მინ ზედა არეალისთვის
+    hotMIN = sacavi_shida_stat_zeda[0];
+    for (int i = 0; i < p; i++)
+    {
+      if (hotMIN > sacavi_shida_stat_zeda[i])
+      hotMIN = sacavi_shida_stat_zeda[i];
+    }
   }
-  printf("minimum of array is : %f \n",chemMIN);
-  printf("maximum of array is : %f \n",chemMAX);
+
+  printf("(Man array) Minimum of array is : %f \n",chemMIN);
+  printf("(Man array) Maximum of array is : %f \n",chemMAX);
+
+  printf("(coldMAX) Maximum low diapason of array is : %f \n",coldMAX);
+  printf("(hotMIN) Minumum hight diapason of array is : %f \n",hotMIN);
 }
 
 
@@ -120,7 +140,7 @@ int main()
   int counter_while = 0; // ვაილის მთვლელი. როცა შეგვყავს რიცხვი. სხვა შემთხვევებს არ ავღრიცხავ
   int counter_main  = 0;
 
-  double sacavi_statistikis[1000]; // ვინახავ შეყვანილ რიცხვებს
+  double sacavi_statistikis[1000];                        // ვინახავ შეყვანილ რიცხვებს
   char sacavi_civa_cxela[NUM_STRINGS][MAX_LENGTH] = {""}; // ყოველ შეყვანილ რიცხვზე ვიწერ ცივია თუ ცხელია
 
   printf("================================== \n");
