@@ -158,14 +158,22 @@ int main()
 
   while (true)
   {
-    printf("================================== \n");
-    printf("შეიყვანეთ ნებისმიერი რიცხვი \n");
-    gets(brzaneba);
-    brzanebaChek = parametrebi_Brzanebis(brzaneba);
+    if (while_gamosasvlelze_ricxvia == false)
+    {
+      printf("================================== \n");
+      printf("შეიყვანეთ ნებისმიერი რიცხვი \n");
+      gets(brzaneba);
+      brzanebaChek = parametrebi_Brzanebis(brzaneba);
+      mixvedra = strtod(brzaneba, &eptr);
+    } else
+    {
+      brzanebaChek = parametrebi_Brzanebis(gamortva);
+      mixvedra = strtod(gamortva, &eptr);
+    }
 
     if (brzanebaChek == 1)
     {
-      mixvedra = strtod(brzaneba, &eptr);
+      // mixvedra = strtod(brzaneba, &eptr);
       // printf("mixvedra = %f \n",mixvedra);
 
       if (mixvedra == secret)
@@ -192,7 +200,6 @@ int main()
     printf("========== \n");
     civa_cxela_funqcia(sacavi_statistikis, counter_while, sacavi_civa_cxela, secret);
 
-    // თუ n ს შეიყვან გამოირთოს თუ სხვა რამეს გაგრძელდეს
     printf("=================== \n");
     printf("ვაილ ციკლი გაჩერდეს? (y ან შეიყვანე ნებისმიერი რიცხვი და განაგრძე თამაში) \n");
     gets(gamortva);
@@ -204,6 +211,11 @@ int main()
       break;
     } else
     {
+      if (parametrebi_Brzanebis(gamortva) == 1)
+      {
+        printf("გათრუვდა \n");
+        while_gamosasvlelze_ricxvia = true;
+      }
       printf("თამაში გრძელდება \n");
       continue;
     }
