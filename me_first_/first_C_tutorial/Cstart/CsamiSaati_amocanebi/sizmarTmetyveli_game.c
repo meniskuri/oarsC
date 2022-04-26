@@ -1,3 +1,4 @@
+// წინასწარმეტყველური თამაში
 // gagrdzeleba 3 - struct - ebidan - video განვაგრძო - Struct_totirial შია struct ების მაგალითები
 // Buildgin a Guessing Game (loop ებით) ვნახოთ რას აკეთებს და მეთვითნ გავაკეთო
 
@@ -148,6 +149,9 @@ int main()
   double sacavi_statistikis[1000];                        // ვინახავ შეყვანილ რიცხვებს
   char sacavi_civa_cxela[NUM_STRINGS][MAX_LENGTH] = {""}; // ყოველ შეყვანილ რიცხვზე ვიწერ ცივია თუ ცხელია
 
+  char gamortva[100]; // ვაილიდან გამოსასველი სტრინგი ბრძანება კლავიატურიდან
+  bool while_gamosasvlelze_ricxvia = false;
+
   printf("================================== \n");
   printf("ვთამაშობთ გამოცნობანას - წინასწარმეტყველების თამაში \n");
   printf("შეყვანილია საიდუმლო secret ცვლადი, რომელიც უნდა გამოვიცნოთ \n");
@@ -182,11 +186,28 @@ int main()
     }
     counter_main++;
 
-    printf("counter_main %d \n", counter_main);
+    printf("counter_m ain %d \n", counter_main);
     printf("counter_while = %d \n", counter_while);
 
     printf("========== \n");
     civa_cxela_funqcia(sacavi_statistikis, counter_while, sacavi_civa_cxela, secret);
+
+    // თუ n ს შეიყვან გამოირთოს თუ სხვა რამეს გაგრძელდეს
+    printf("=================== \n");
+    printf("ვაილ ციკლი გაჩერდეს? (y ან შეიყვანე ნებისმიერი რიცხვი და განაგრძე თამაში) \n");
+    gets(gamortva);
+    // printf("gamortva = %s \n",gamortva);
+
+    if (gamortva[0] == 121) // ვაილიდან გამოსვლა - დასახვეწია - არ დამიმთავრებია!!!!!!! <<<<<<<<<<<<<<<<
+    {
+      printf("break \n");
+      break;
+    } else
+    {
+      printf("თამაში გრძელდება \n");
+      continue;
+    }
+
   }
   return 0;
 }
