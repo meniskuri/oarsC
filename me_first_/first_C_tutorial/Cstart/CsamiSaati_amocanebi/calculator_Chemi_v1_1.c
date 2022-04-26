@@ -220,11 +220,16 @@ int main()
     if (gamortva[0] == 121) // ვაილიდან გამოსვლა - დასახვეწია - არ დამიმთავრებია!!!!!!! <<<<<<<<<<<<<<<<
     {
       continue;
-    } else
+    } else if (gamortva[0] == 110)
     {
       printf("break \n");
       break;
+    } else
+    {
+      printf("ვაილი გრძელდება \n");
+      continue;
     }
+
     counter_while++;
   }
 

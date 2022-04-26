@@ -219,7 +219,6 @@ int main()
       printf("თამაში გრძელდება \n");
       continue;
     }
-
   }
   return 0;
 }
