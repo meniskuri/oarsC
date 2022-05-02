@@ -1,4 +1,4 @@
-// gagrdzeleba 3 - 2D arrays nested loops
+// writing files
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <errno.h>
+#include <unistd.h>
 
 int parametrebi_Brzanebis(char* brzaneba)
 {
@@ -57,15 +58,60 @@ int parametrebi_Brzanebis(char* brzaneba)
   return cifria;
 }
 
-struct Books {
-  char  title[50];
-  char  author[50];
-  char  subject[100];
-  int   book_id;
-};
+// ფაილის ზომის გაგება
+long int findSize(char file_name[])
+{
+  // opening the file in read mode
+  FILE *fp = fopen(file_name, "r");
+
+  // checking if the file exist or not
+  if (fp == NULL) {
+    printf("File Not Found!\n");
+    return -1;
+  }
+
+  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
+
+  // calculating the size of the file
+  long int res = ftell(fp); // ftell()
+
+  // closing the file
+  fclose(fp);
+
+  return res;
+}
+
 
 int main()
 {
+  char brzaneba[51];
+  FILE *chemiFailisPointeri;
+  /* ფაილის ჩაწერა
+  - r - read
+  - w - write
+  - a - append
+  */
+  gets(brzaneba);
+
+  chemiFailisPointeri = fopen("tavi1.txt","a");
+
+  fprintf(chemiFailisPointeri,"%s",brzaneba);
+  fprintf(chemiFailisPointeri,"%s","\n");
+
+  fclose(chemiFailisPointeri);
+
+
+  // ფაილის შემოწმება და პირველი ამოკითხვა
+  if( access("tavi1.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
+    printf("file exists \n");
+    // თუ არსებობს - ნახოს ზომა ფაილის
+    char file_name[] = { "tavi1.txt" };
+    long int res = findSize(file_name);
+    if (res != -1)
+    {
+      printf("Size of the file is %ld bytes \n", res);
+    }
+  }
 
   return 0;
 }
@@ -74,4 +120,10 @@ int main()
 ტუკუ ტუკუ
 ჩუ ჩუუ
 კუ კუუუ
+ცოტა ვბუქსაობ... ))
+გააგრძელეო. საღამომდე უნდა ეწვალო.
+მერე უნდა ივარჯიშო. მერე ჭამო. და მერე ნახავ...
+ან დახატო ან ჯოხები გააკეთო. ან უყურო რამეს. ან წაიკითხო.
+ნება შენია. საღამოს. დილას ჩემი. ოკ?
+ოკ..
 */
