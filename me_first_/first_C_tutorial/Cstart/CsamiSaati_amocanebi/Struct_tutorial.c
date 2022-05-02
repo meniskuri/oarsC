@@ -143,6 +143,9 @@ int main( ) {
   printf("Address of wand1 (&wand1): %p\n", &wand1);
   printf("Address of wand1 (struct_pointer): %p\n", struct_pointer);
 
+
+
+
   // jadoqrebi
   struct Jadoqrebi ojaxi_da, ojaxi_deda;
   struct Jadoqrebi *ojaxi_da_pntr;
