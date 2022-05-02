@@ -85,14 +85,14 @@ long int findSize(char file_name[])
 int main()
 {
   char brzaneba[51];
-  FILE *chemiFailisPointeri;
+  gets(brzaneba);
+
   /* ფაილის ჩაწერა
   - r - read
   - w - write
   - a - append
   */
-  gets(brzaneba);
-
+  FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen("tavi1.txt","a");
 
   fprintf(chemiFailisPointeri,"%s",brzaneba);
@@ -113,6 +113,18 @@ int main()
     }
   }
 
+
+  // ფაილის წაკითხვა
+  char line[100]; // აქ შევინახავ წაკითხულ ფაილიდან ინფორმაციას
+
+  chemiFailisPointeri = fopen("tavi1.txt","r");
+
+  fgets(line,100,chemiFailisPointeri); // პირველი ლაინი წაიკითხა
+  fgets(line,100,chemiFailisPointeri); // მეორე ლაინი წაიკითხა 
+
+  fclose(chemiFailisPointeri);
+
+  printf("line = %s\n", line);
   return 0;
 }
 
