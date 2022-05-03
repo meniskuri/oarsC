@@ -109,6 +109,18 @@ int main()
     /* print MagicWands info */
     printMagicWandsInfo(wand1);
 
+
+
+    FILE *chemiFailisPointeri;
+    chemiFailisPointeri = fopen("tavi1.txt","a");
+
+    fprintf(chemiFailisPointeri,"%s",brzaneba);
+    fprintf(chemiFailisPointeri,"%s","\n");
+
+    fclose(chemiFailisPointeri);
+
+
+    
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
     if (brzaneba[counter_while] == 126)
     {
@@ -120,14 +132,6 @@ int main()
     printf("counter_while = %d\n", counter_while);
     counter_while++;
   }
-
-
-
-
-
-
-
-
 
   // ფაილის შემოწმება და პირველი ამოკითხვა
   if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
