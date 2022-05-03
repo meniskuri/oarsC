@@ -77,31 +77,32 @@ void printMagicWandsInfo (struct MagicWands wand)
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen("tavi1.txt","a");
 
-  fprintf(chemiFailisPointeri,"%s","wand.title: ");
+  fprintf(chemiFailisPointeri,"%s","wand.title:");
   fprintf(chemiFailisPointeri,"%s",wand.title);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.author: ");
+  fprintf(chemiFailisPointeri,"%s","wand.author:");
   fprintf(chemiFailisPointeri,"%s",wand.author);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.owner: ");
+  fprintf(chemiFailisPointeri,"%s","wand.owner:");
   fprintf(chemiFailisPointeri,"%s",wand.owner);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.soul: ");
+  fprintf(chemiFailisPointeri,"%s","wand.soul:");
   fprintf(chemiFailisPointeri,"%s",wand.soul);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.wand_id: ");
+  fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
   fprintf(chemiFailisPointeri,"%d",wand.wand_id);
   fprintf(chemiFailisPointeri,"%s","\n");
 
   fclose(chemiFailisPointeri);
 
 }
-
+// ფაილიდან ამოკითხვა და ნუმერაციის გაკეთება სწორად
 
 int main()
 {
   char brzaneba[51];     // სტრინგი რომელიც შემყავს კლავიატურიდან
   int counter_while = 0;
+  int count_lines = 0;
 
   struct MagicWands wand1;        /* Declare Book1 of type Book */
 
@@ -132,6 +133,29 @@ int main()
 
     /* print MagicWands info and write to file*/
     printMagicWandsInfo(wand1);
+
+
+
+    FILE *fileptr;
+    char chr;
+    fileptr = fopen("tavi1.txt", "r");
+   //extract character from file and store in chr
+    chr = getc(fileptr);
+    while (chr != EOF)
+    {
+        //Count whenever new line is encountered
+        if (chr == '\n')
+        {
+            count_lines = count_lines + 1;
+        }
+        //take next character from file.
+        chr = getc(fileptr);
+    }
+    fclose(fileptr); //close file.
+    printf("failshi lainebis raodenoba = %d\n",count_lines);
+
+
+
 
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
     if (brzaneba[counter_while] == 126)
