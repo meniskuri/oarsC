@@ -72,7 +72,31 @@ void printMagicWandsInfo (struct MagicWands wand)
   printf("wand owner  : %s\n", wand.owner);
   printf("wand soul   : %s\n", wand.soul);
   printf("wand id     : %d\n", wand.wand_id);
+
+  // chawera failshi
+  FILE *chemiFailisPointeri;
+  chemiFailisPointeri = fopen("tavi1.txt","a");
+
+  fprintf(chemiFailisPointeri,"%s","wand.title: ");
+  fprintf(chemiFailisPointeri,"%s",wand.title);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.author: ");
+  fprintf(chemiFailisPointeri,"%s",wand.author);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.owner: ");
+  fprintf(chemiFailisPointeri,"%s",wand.owner);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.soul: ");
+  fprintf(chemiFailisPointeri,"%s",wand.soul);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.wand_id: ");
+  fprintf(chemiFailisPointeri,"%d",wand.wand_id);
+  fprintf(chemiFailisPointeri,"%s","\n");
+
+  fclose(chemiFailisPointeri);
+
 }
+
 
 int main()
 {
@@ -106,21 +130,9 @@ int main()
     strcpy(wand1.soul, brzaneba);
     wand1.wand_id = counter_while;
 
-    /* print MagicWands info */
+    /* print MagicWands info and write to file*/
     printMagicWandsInfo(wand1);
 
-
-
-    FILE *chemiFailisPointeri;
-    chemiFailisPointeri = fopen("tavi1.txt","a");
-
-    fprintf(chemiFailisPointeri,"%s",brzaneba);
-    fprintf(chemiFailisPointeri,"%s","\n");
-
-    fclose(chemiFailisPointeri);
-
-
-    
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
     if (brzaneba[counter_while] == 126)
     {

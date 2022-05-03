@@ -5,3 +5,33 @@ ras waikitxavs? line shi ra chaiwereba?
 
 dragon
 kapana
+anglaxeli
+kapANA
+kapANA
+dragon
+0
+wand.title: anglaxel
+wand.author: kapANA
+wand.owner: kapANA
+wand.soul: black dragon
+42109280
+wand.title: anglaxeli
+wand.author: jesus
+wand.owner: kapana
+wand.soul: black dragon
+42109280
+wand.title: salamuri
+wand.author: mdelo
+wand.owner: lai
+wand.soul: mela
+wand.wand_id: 0
+wand.title: tamar mefis kvertxi
+wand.author: kapANA
+wand.owner: tamri
+wand.soul: suliwminda
+wand.wand_id: 0
+wand.title: mzis drakoni
+wand.author: kapANA
+wand.owner: shorena
+wand.soul: golden dragon
+wand.wand_id: 1
