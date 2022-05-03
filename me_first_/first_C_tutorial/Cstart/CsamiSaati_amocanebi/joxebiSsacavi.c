@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <string.h>
 
 // ფაილის ზომის გაგება
 long int findSize(char file_name[])
@@ -56,19 +57,57 @@ long int findSize(char file_name[])
   return res;
 }
 
+struct MagicWands {
+  char  title[50];
+  char  author[50];
+  char  owner[100];
+  char  soul[100];
+  int   wand_id;
+};
+
+void printMagicWandsInfo (struct MagicWands wand)
+{
+  printf("wand title  : %s\n", wand.title);
+  printf("wand author : %s\n", wand.author);
+  printf("wand owner  : %s\n", wand.owner);
+  printf("wand soul   : %s\n", wand.soul);
+  printf("wand id     : %d\n", wand.wand_id);
+}
 
 int main()
 {
   char brzaneba[51];     // სტრინგი რომელიც შემყავს კლავიატურიდან
   int counter_while = 0;
 
+  struct MagicWands wand1;        /* Declare Book1 of type Book */
+
   printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
 
   while (true)
   {
+    printf("enter wand.title \n");
     gets(brzaneba);
     printf("brzaneba (string) = %s\n", brzaneba);
-    printf("counter_while = %d\n", counter_while);
+    strcpy(wand1.title, brzaneba);
+
+    printf("enter wand.author \n");
+    gets(brzaneba);
+    printf("brzaneba (string) = %s\n", brzaneba);
+    strcpy(wand1.author, brzaneba);
+
+    printf("enter wand.owner \n");
+    gets(brzaneba);
+    printf("brzaneba (string) = %s\n", brzaneba);
+    strcpy(wand1.owner, brzaneba);
+
+    printf("enter wand.soul \n");
+    gets(brzaneba);
+    printf("brzaneba (string) = %s\n", brzaneba);
+    strcpy(wand1.soul, brzaneba);
+    wand1.wand_id = counter_while;
+
+    /* print MagicWands info */
+    printMagicWandsInfo(wand1);
 
     // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
     if (brzaneba[counter_while] == 126)
@@ -77,6 +116,8 @@ int main()
       printf("break from while! \n");
       break;
     }
+
+    printf("counter_while = %d\n", counter_while);
     counter_while++;
   }
 
