@@ -44,7 +44,36 @@
 #include <unistd.h>
 #include <string.h>
 
-// ფაილის ზომის გაგება
+/* ფაილში ლაინების რაოდენობის გაგება */
+int findLineNumber(char file_name[])
+{
+  /* extract character from file and store in chr
+  ვიყენებ /n ების დასათვლელად. ლაინების რაოდენობა რომ ვიცოდე
+  */
+  FILE *fileptr;
+  char chr;
+  int count_lines = 0; // ლაინების რაოდენობა
+
+  fileptr = fopen(file_name, "r");
+  chr = getc(fileptr);
+  while (chr != EOF)
+  {
+    //Count whenever new line is encountered
+    if (chr == '\n')
+    {
+      count_lines = count_lines + 1;
+    }
+    //take next character from file.
+    chr = getc(fileptr);
+  }
+  fclose(fileptr); //close file.
+
+  printf("failshi lainebis raodenoba = %d\n", count_lines);
+
+  return count_lines;
+}
+
+/* ფაილის ზომის გაგება */
 long int findSize(char file_name[])
 {
   // opening the file in read mode
@@ -71,7 +100,7 @@ struct MagicWands {
   int   wand_id;
 };
 
-void printMagicWandsInfo (struct MagicWands wand)
+void printMagicWandsInfo (struct MagicWands wand, char file_name[])
 {
   printf("wand title  : %s\n", wand.title);
   printf("wand author : %s\n", wand.author);
@@ -79,9 +108,10 @@ void printMagicWandsInfo (struct MagicWands wand)
   printf("wand soul   : %s\n", wand.soul);
   printf("wand id     : %d\n", wand.wand_id);
 
-  // chawera failshi
+  /* ფაილის შექმნა და ჩაწერა */
   FILE *chemiFailisPointeri;
-  chemiFailisPointeri = fopen("tavi1.txt","a");
+  chemiFailisPointeri = fopen(file_name,"a");
+
   fprintf(chemiFailisPointeri,"%s","wand.title:");
   fprintf(chemiFailisPointeri,"%s",wand.title);
   fprintf(chemiFailisPointeri,"%s","\n");
@@ -97,17 +127,25 @@ void printMagicWandsInfo (struct MagicWands wand)
   fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
   fprintf(chemiFailisPointeri,"%d",wand.wand_id);
   fprintf(chemiFailisPointeri,"%s","\n");
+
   fclose(chemiFailisPointeri);
 }
 
 
 int main()
 {
-  char brzaneba[51];     /* სტრინგი რომელიც შემყავს კლავიატურიდან */
-  int counter_while = 0; /* ვაილ ციკლი რამდენჯერ გაეშვა */
-  int count_lines   = 0; /* ფაილში ნახულობს რამდენი ხაზი ჩავწერე */
+  char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
+  char file_name[]  = { "tavi1.txt" }; /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
+  int counter_while = 0;               /* ვაილ ციკლი რამდენჯერ გაეშვა */
+  int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა*/
 
-  struct MagicWands wand1; /* Declare Book1 of type Book */
+  struct MagicWands wand1;             /* Declare wand1 as Magicwands struct */
+
+  /* სანამ კითხვებს დავსვავ და ფაილშ შევქმნი. მჭირდება შემოწმება არსებობს ფაილი თუარა
+  და თუ არსებობს ამოწერა ლაინების რაოდენობის (მაგალითად) და დამახსოვრება.
+  თუ არ არსებობს შექმნა.
+  თუ არსებობს ნუ კითხვარზე მიშვება.
+  */
 
   printf("ჯადოსნური ჯოხების საცავი \n");
   printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
@@ -132,38 +170,19 @@ int main()
     strcpy(wand1.soul, brzaneba);
     wand1.wand_id = counter_while; // <<<<<<<<<<<<<<<<<<<<<< შესაცვლელია <<<<<<<<<<<<<<<
 
-    /* print MagicWands info and write to file*/
-    printMagicWandsInfo(wand1);
+    /* print MagicWands info and write to file (ფაილის შექმნა და ჩაწერა) */
+    printMagicWandsInfo(wand1, file_name);
 
-
-    /* extract character from file and store in chr
-    ვიყენებ /n ების დასათვლელად. ლაინების რაოდენობა რომ ვიცოდე
-    */
-    FILE *fileptr;
-    char chr;
-    fileptr = fopen("tavi1.txt", "r");
-    chr = getc(fileptr);
-    while (chr != EOF)
-    {
-      //Count whenever new line is encountered
-      if (chr == '\n')
-      {
-        count_lines = count_lines + 1;
-      }
-      //take next character from file.
-      chr = getc(fileptr);
-    }
-    fclose(fileptr); //close file.
-    printf("failshi lainebis raodenoba = %d\n", count_lines);
+    /* ლაინების რაოდენობა რომ ვიცოდე */
+    lineNUMBER = findLineNumber(file_name);
 
 
     /* ფაილის შემოწმება და პირველი ამოკითხვა */
-    if( access("tavi1.txt", F_OK ) == 0 )
+    if( access(file_name, F_OK ) == 0 )
     {
       printf("file exists \n");
-      // თუ არსებობს პროგრამა.ტქსტ არსებობს
-      char file_name[] = { "tavi1.txt" };
       long int res = findSize(file_name);
+
       if (res != -1)
       {
         printf("Size of the file is %ld bytes \n", res);
@@ -196,3 +215,11 @@ int main()
 
   return 0;
 }
+
+/*
+- ჯოხების და მათი პატრონების ცხრილი v1
+- - ქლაუდე უნდა იდოს და ინტერნეტ სამყაროში შეუგნებლად რევოლუციას მოახდენენ
+- - - ზაფხულში რევოლუცია - მატრიცა რევოლუცია - მალე თვითმფრინავი ჩამოვარდება
+- - ჩონჩხების გუნდი იხოდება
+- აზერ საიდიდან მოდიან
+*/
