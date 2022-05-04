@@ -30,6 +30,14 @@
 - შეიძლება რამდენიმე განსხვავებული სტრუქტურის შესავსებად იყენებდე (კითხვას უნდა გისვავდეს)
 */
 
+/*
+- ვორდ ფაილის გახსნა
+- - ტექსტის ჩამატება
+- - - ფოტოების ჩამატება
+- - დროის ჩამატება
+- ვნახოთ
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -41,15 +49,13 @@ long int findSize(char file_name[])
 {
   // opening the file in read mode
   FILE *fp = fopen(file_name, "r");
-
   // checking if the file exist or not
   if (fp == NULL) {
     printf("File Not Found!\n");
     return -1;
   }
-
-  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
   // calculating the size of the file
+  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
   long int res = ftell(fp); // ftell()
   // closing the file
   fclose(fp);
@@ -76,7 +82,6 @@ void printMagicWandsInfo (struct MagicWands wand)
   // chawera failshi
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen("tavi1.txt","a");
-
   fprintf(chemiFailisPointeri,"%s","wand.title:");
   fprintf(chemiFailisPointeri,"%s",wand.title);
   fprintf(chemiFailisPointeri,"%s","\n");
@@ -92,20 +97,19 @@ void printMagicWandsInfo (struct MagicWands wand)
   fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
   fprintf(chemiFailisPointeri,"%d",wand.wand_id);
   fprintf(chemiFailisPointeri,"%s","\n");
-
   fclose(chemiFailisPointeri);
-
 }
-// ფაილიდან ამოკითხვა და ნუმერაციის გაკეთება სწორად
+
 
 int main()
 {
-  char brzaneba[51];     // სტრინგი რომელიც შემყავს კლავიატურიდან
-  int counter_while = 0;
-  int count_lines = 0;
+  char brzaneba[51];     /* სტრინგი რომელიც შემყავს კლავიატურიდან */
+  int counter_while = 0; /* ვაილ ციკლი რამდენჯერ გაეშვა */
+  int count_lines   = 0; /* ფაილში ნახულობს რამდენი ხაზი ჩავწერე */
 
-  struct MagicWands wand1;        /* Declare Book1 of type Book */
+  struct MagicWands wand1; /* Declare Book1 of type Book */
 
+  printf("ჯადოსნური ჯოხების საცავი \n");
   printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
 
   while (true)
@@ -114,77 +118,80 @@ int main()
     gets(brzaneba);
     printf("brzaneba (string) = %s\n", brzaneba);
     strcpy(wand1.title, brzaneba);
-
     printf("enter wand.author \n");
     gets(brzaneba);
     printf("brzaneba (string) = %s\n", brzaneba);
     strcpy(wand1.author, brzaneba);
-
     printf("enter wand.owner \n");
     gets(brzaneba);
     printf("brzaneba (string) = %s\n", brzaneba);
     strcpy(wand1.owner, brzaneba);
-
     printf("enter wand.soul \n");
     gets(brzaneba);
     printf("brzaneba (string) = %s\n", brzaneba);
     strcpy(wand1.soul, brzaneba);
-    wand1.wand_id = counter_while;
+    wand1.wand_id = counter_while; // <<<<<<<<<<<<<<<<<<<<<< შესაცვლელია <<<<<<<<<<<<<<<
 
     /* print MagicWands info and write to file*/
     printMagicWandsInfo(wand1);
 
 
-
+    /* extract character from file and store in chr
+    ვიყენებ /n ების დასათვლელად. ლაინების რაოდენობა რომ ვიცოდე
+    */
     FILE *fileptr;
     char chr;
     fileptr = fopen("tavi1.txt", "r");
-   //extract character from file and store in chr
     chr = getc(fileptr);
     while (chr != EOF)
     {
-        //Count whenever new line is encountered
-        if (chr == '\n')
-        {
-            count_lines = count_lines + 1;
-        }
-        //take next character from file.
-        chr = getc(fileptr);
+      //Count whenever new line is encountered
+      if (chr == '\n')
+      {
+        count_lines = count_lines + 1;
+      }
+      //take next character from file.
+      chr = getc(fileptr);
     }
     fclose(fileptr); //close file.
-    printf("failshi lainebis raodenoba = %d\n",count_lines);
+    printf("failshi lainebis raodenoba = %d\n", count_lines);
 
 
-
-
-    // ვაილიდან გამოსვლა. ავარიული. ასკი 126 - ~ ლევიოსა
-    if (brzaneba[counter_while] == 126)
+    /* ფაილის შემოწმება და პირველი ამოკითხვა */
+    if( access("tavi1.txt", F_OK ) == 0 )
     {
-      // break
-      printf("break from while! \n");
+      printf("file exists \n");
+      // თუ არსებობს პროგრამა.ტქსტ არსებობს
+      char file_name[] = { "tavi1.txt" };
+      long int res = findSize(file_name);
+      if (res != -1)
+      {
+        printf("Size of the file is %ld bytes \n", res);
+      }
+    }
+
+
+    /* ვაილიდან გამოსვლა */
+    printf("=================== \n");
+    printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
+    gets(brzaneba);
+    printf("brzaneba = %s \n",brzaneba);
+
+    if (brzaneba[0] == 121)
+    {
+      continue;
+    } else if (brzaneba[0] == 110)
+    {
+      printf("break \n");
       break;
+    } else
+    {
+      printf("ვაილი გრძელდება \n");
+      continue;
     }
 
     printf("counter_while = %d\n", counter_while);
     counter_while++;
-  }
-
-  // ფაილის შემოწმება და პირველი ამოკითხვა
-  if( access("program.txt", F_OK ) == 0 ) { // unistd.h - თუ არსებობს ეს ფაილი
-
-    printf("file exists \n");
-    // თუ არსებობს პროგრამა.ტქსტ არსებობს - ნახოს ზომა ფაილის რომ გავიგო counter3 ის შემცვლელი
-    char file_name[] = { "program.txt" };
-    long int res = findSize(file_name);
-    if (res != -1)
-    {
-      printf("Size of the file is %ld bytes \n", res);
-    }
-    // gio (3) - 14; giorgi (6) - 17
-    // MELON (5) - 9
-    // ~ - 3
-    // + 3
-    // counter3 = filisize - 4
   }
 
   return 0;

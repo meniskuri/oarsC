@@ -226,7 +226,7 @@ int main()
   while (chr != EOF)
   {
       //Count whenever new line is encountered
-      if (chr == 'n')
+      if (chr == 'n') // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< შეიძლება შეცდომაა 
       {
           count_lines = count_lines + 1;
       }
