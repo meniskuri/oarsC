@@ -45,7 +45,8 @@
 /* აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან */
 int parametrebi_Brzanebis(char* brzaneba)
 {
-  /* ფუნქციის აღწერა:
+  /*
+  ფუნქციის აღწერა:
   აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
   თუ არა აბრუნებს ლოგიკურ ნულიანს. ამოწმებს 2.3 ში წერტილ სიმბოლოს.
   არ დაუშვებს ორ წერტილს. წერტილით დაწყებას.
@@ -195,7 +196,9 @@ int main()
   char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
   char file_name[]  = {"tavi1.txt"};   /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
   int counter_while = 0;               /* ვაილ ციკლი რამდენჯერ გაეშვა */
-  int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა*/
+  int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა */
+  int result;                          /* მელონ ის შესამოწმებლადს result = strcmp(str1, str2);*/
+  char str1[] = {"MELON"};
 
   struct MagicWands wand1;             /* Declare wand1 as Magicwands struct */
   FILE *chemiFailisPointeri;
@@ -224,15 +227,31 @@ int main()
   {
     printf("enter wand.title \n");
     gets(brzaneba);
+    result = strcmp(brzaneba, str1);
+    if (result == 0){
+      break;
+    }
     strcpy(wand1.title, brzaneba);
     printf("enter wand.author \n");
     gets(brzaneba);
+    result = strcmp(brzaneba, str1);
+    if (result == 0){
+      break;
+    }
     strcpy(wand1.author, brzaneba);
     printf("enter wand.owner \n");
     gets(brzaneba);
+    result = strcmp(brzaneba, str1);
+    if (result == 0){
+      break;
+    }
     strcpy(wand1.owner, brzaneba);
     printf("enter wand.soul \n");
     gets(brzaneba);
+    result = strcmp(brzaneba, str1);
+    if (result == 0){
+      break;
+    }
     strcpy(wand1.soul, brzaneba);
     printf("lineNUMBER = %d\n",lineNUMBER);
     if (lineNUMBER == 0)
@@ -247,17 +266,6 @@ int main()
     /* print MagicWands info and write to file (ფაილის შექმნა და ჩაწერა) */
     printMagicWandsInfo(wand1, file_name, counter_while);
     lineNUMBER = findLineNumber(file_name);
-
-    // წაკითხვა ფაილის
-    char line[100]; // აქ შევინახავ წაკითხულ ფაილიდან ინფორმაციას
-    chemiFailisPointeri = fopen("tavi1.txt","r");
-    for (int i = 0; i < lineNUMBER; i++)
-    {
-      fgets(line,100,chemiFailisPointeri);
-      // printf("line = %s\n", line);
-      // parametrebi_Brzanebis(line);
-    }
-    fclose(chemiFailisPointeri);
 
     printf("counter_while = %d\n", counter_while);
     counter_while++;
