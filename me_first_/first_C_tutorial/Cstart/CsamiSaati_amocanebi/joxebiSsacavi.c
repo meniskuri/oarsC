@@ -40,6 +40,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 
 /* აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან */
 int parametrebi_Brzanebis(char* brzaneba)
@@ -147,11 +148,27 @@ struct MagicWands {
 
 void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_while)
 {
+  // Time function /////////////////
+  char buf[150];
+  time_t curtime;
+  struct tm *loc_time;
+  //Getting current time of system
+  curtime = time (NULL);
+  // Converting current time to local time
+  loc_time = localtime (&curtime);
+  // strftime (buf, LEN, "Today is %A, %b %d.\n", loc_time);
+  // fputs (buf, stdout);
+  // strftime (buf, LEN, "Time is %I:%M %p.\n", loc_time);
+  // fputs (buf, stdout);
+  // Displaying date and time in standard format
+  printf("%s", asctime(loc_time));
+
   /* ფაილის შექმნა და ჩაწერა */
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen(file_name,"a");
 
-  fprintf(chemiFailisPointeri,"%s","//////////////////////\n");
+  fprintf(chemiFailisPointeri,"%s","////////////////////// ");
+  fprintf(chemiFailisPointeri,"%s\n", asctime(loc_time));
 
   fprintf(chemiFailisPointeri,"%s","wand.title:");
   fprintf(chemiFailisPointeri,"%s",wand.title);
@@ -222,9 +239,9 @@ int main()
     {
       wand1.wand_id = 0;
     }
-    if (lineNUMBER % 6 == 0 && lineNUMBER != 0)
+    if (lineNUMBER % 7 == 0 && lineNUMBER != 0)
     {
-      wand1.wand_id = lineNUMBER / 6;
+      wand1.wand_id = lineNUMBER / 7;
     }
 
     /* print MagicWands info and write to file (ფაილის შექმნა და ჩაწერა) */

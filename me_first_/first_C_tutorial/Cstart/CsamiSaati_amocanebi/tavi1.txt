@@ -1,24 +1,28 @@
-//////////////////////
+////////////////////// Thu May 05 17:48:58 2022
+
 wand.title:anglaxeli
-wand.author:kapANA
-wand.owner:KAPana
-wand.soul:blackDRAGON
+wand.author:kapana
+wand.owner:kapana
+wand.soul:blackdragon
 wand.wand_id:0
-//////////////////////
+////////////////////// Thu May 05 17:49:17 2022
+
 wand.title:moonWand
-wand.author:KAPana
-wand.owner:ramSHO
+wand.author:kapana
+wand.owner:ramsho
 wand.soul:void
 wand.wand_id:1
-//////////////////////
-wand.title:monSterasi
-wand.author:KAPana
-wand.owner:laRA
-wand.soul:wyaltevza 
+////////////////////// Thu May 05 17:52:58 2022
+
+wand.title:tamarMEFIS
+wand.author:kapana
+wand.owner:tamari
+wand.soul:suli wminda
 wand.wand_id:2
-//////////////////////
-wand.title:anguriELI
-wand.author:KAPana
-wand.owner:shoRENA
-wand.soul:GOLDenSunDragon
+////////////////////// Thu May 05 17:53:18 2022
+
+wand.title:angurieli
+wand.author:kapana
+wand.owner:shoshi
+wand.soul:GoldenSunDragon
 wand.wand_id:3
