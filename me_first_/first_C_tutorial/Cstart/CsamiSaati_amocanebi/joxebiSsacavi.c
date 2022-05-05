@@ -31,11 +31,8 @@
 */
 
 /*
-- ვორდ ფაილის გახსნა
-- - ტექსტის ჩამატება
-- - - ფოტოების ჩამატება
+- ნუმერაციის გაკეთება
 - - დროის ჩამატება
-- ვნახოთ
 */
 
 #include <stdio.h>
@@ -44,7 +41,53 @@
 #include <unistd.h>
 #include <string.h>
 
-/* გლობალური ცვლადები */
+/* აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან */
+int parametrebi_Brzanebis(char* brzaneba)
+{
+  /* ფუნქციის აღწერა:
+  აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
+  თუ არა აბრუნებს ლოგიკურ ნულიანს. ამოწმებს 2.3 ში წერტილ სიმბოლოს.
+  არ დაუშვებს ორ წერტილს. წერტილით დაწყებას.
+  */
+
+  bool cifria = false; // თუ მასივში ციფრები წერია გათრუვდება
+  int len, counter_par = 0, counter_mdzime = 0;
+
+  len = strlen(brzaneba);
+  // printf("len = %d \n",len);
+
+  for (int i = 0; i <= len; i++)
+  {
+    // printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
+    // printf("i = %d \n", i);
+    if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
+    {
+      if ((brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46) || brzaneba[i] == 0)
+      {
+        cifria = true;
+      } else
+      {
+        cifria = false;
+        break;
+      }
+      if (brzaneba[i] == 46)
+      {
+        // ითვლის წერტილების რაოდენობას 3.3 ერთი წერტილია, 3.3.3 - ორი წერტილია. დაბლ რიცხვების შეყვანისთვის
+        counter_mdzime++;
+      }
+
+      if (counter_mdzime > 1)
+      {
+        // printf("counter_mdzime %d \n", counter_mdzime);
+        cifria = false;
+      }
+    }
+    counter_par++;
+  }
+  // printf("counter_par = %d \n",counter_par);
+  printf("cifria = %d \n", cifria);
+  return cifria;
+}
 
 /* ფაილში ლაინების რაოდენობის გაგება */
 int findLineNumber(char file_name[])
@@ -104,20 +147,11 @@ struct MagicWands {
 
 void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_while)
 {
-  printf("wand title  : %s\n", wand.title);
-  printf("wand author : %s\n", wand.author);
-  printf("wand owner  : %s\n", wand.owner);
-  printf("wand soul   : %s\n", wand.soul);
-  printf("wand id     : %d\n", wand.wand_id);
-
   /* ფაილის შექმნა და ჩაწერა */
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen(file_name,"a");
 
-  if (counter_while == 0)
-  {
-    fprintf(chemiFailisPointeri,"%s","//////////////////////\n");
-  }
+  fprintf(chemiFailisPointeri,"%s","//////////////////////\n");
 
   fprintf(chemiFailisPointeri,"%s","wand.title:");
   fprintf(chemiFailisPointeri,"%s",wand.title);
@@ -134,7 +168,6 @@ void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_
   fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
   fprintf(chemiFailisPointeri,"%d",wand.wand_id);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","//////////////////////\n");
 
   fclose(chemiFailisPointeri);
 }
@@ -143,7 +176,7 @@ void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_
 int main()
 {
   char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
-  char file_name[]  = {"tavi1.txt"};  /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
+  char file_name[]  = {"tavi1.txt"};   /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
   int counter_while = 0;               /* ვაილ ციკლი რამდენჯერ გაეშვა */
   int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა*/
 
@@ -156,14 +189,16 @@ int main()
   {
     printf("file exists \n");
     lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
-
+    printf("lineNUMBER = %d\n", lineNUMBER);
     long int res = findSize(file_name);
     if (res != -1)
     {
       printf("Size of the file is %ld bytes \n", res);
     }
+  } else {
+    lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
+    printf("lineNUMBER = %d\n", lineNUMBER);
   }
-
 
   printf("ჯადოსნური ჯოხების საცავი \n");
   printf("Say friend დიდი ასოებით at Elvish (და ვაილიდან გამოხვალ - სამებით - წამებით) \n");
@@ -172,24 +207,43 @@ int main()
   {
     printf("enter wand.title \n");
     gets(brzaneba);
-
     strcpy(wand1.title, brzaneba);
     printf("enter wand.author \n");
     gets(brzaneba);
-
     strcpy(wand1.author, brzaneba);
     printf("enter wand.owner \n");
     gets(brzaneba);
-
     strcpy(wand1.owner, brzaneba);
     printf("enter wand.soul \n");
     gets(brzaneba);
-
     strcpy(wand1.soul, brzaneba);
-    wand1.wand_id = counter_while; // <<<<<<<<<<<<<<<<<<<<<< შესაცვლელია <<<<<<<<<<<<<<<
+    printf("lineNUMBER = %d\n",lineNUMBER);
+    if (lineNUMBER == 0)
+    {
+      wand1.wand_id = 0;
+    }
+    if (lineNUMBER % 6 == 0 && lineNUMBER != 0)
+    {
+      wand1.wand_id = lineNUMBER / 6;
+    }
 
     /* print MagicWands info and write to file (ფაილის შექმნა და ჩაწერა) */
     printMagicWandsInfo(wand1, file_name, counter_while);
+    lineNUMBER = findLineNumber(file_name);
+
+    // წაკითხვა ფაილის
+    char line[100]; // აქ შევინახავ წაკითხულ ფაილიდან ინფორმაციას
+    chemiFailisPointeri = fopen("tavi1.txt","r");
+    for (int i = 0; i < lineNUMBER; i++)
+    {
+      fgets(line,100,chemiFailisPointeri);
+      // printf("line = %s\n", line);
+      // parametrebi_Brzanebis(line);
+    }
+    fclose(chemiFailisPointeri);
+
+    printf("counter_while = %d\n", counter_while);
+    counter_while++;
 
     /* ვაილიდან გამოსვლა */
     printf("=================== \n");
@@ -205,22 +259,6 @@ int main()
       printf("ვაილი გრძელდება \n");
       // continue;
     }
-
-    printf("aq rato ar movida? \n");
-
-    // წაკითხვა ფაილის
-    char line[100]; // აქ შევინახავ წაკითხულ ფაილიდან ინფორმაციას
-    chemiFailisPointeri = fopen("tavi1.txt","r");
-
-    fgets(line,100,chemiFailisPointeri); // პირველი ლაინი წაიკითხა
-    fgets(line,100,chemiFailisPointeri); // მეორე ლაინი წაიკითხა
-
-    fclose(chemiFailisPointeri);
-
-    printf("line = %s\n", line);
-
-    printf("counter_while = %d\n", counter_while);
-    counter_while++;
   }
 
   return 0;
