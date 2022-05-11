@@ -14,50 +14,36 @@
 #include "raylib.h"
 
 // ცვლადები 
-    //--------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
     const  int screenWidth   = 800;
     const  int screenHeight  = 450;
     static int framesCounter = 0;
     const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
-    float      speed         = 2;    // ნაბიჯი წამში. სიჩქარე
-    float      iqsi          = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
+    float iqsi               = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
 
-    int        counter       = 0;    // კლავიატურაზე რამდენჯერ მქონდა დაჭერილი წინ ქვემოთ მარჯვნივ მარცხნივ კლავიშები. მაგის მთვლელი 
+    int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
     bool marjvenaKlaviatura  = true; // მიმართულებები
     bool marcxenaKlaviatura  = false;
     bool zedaKlaviatura      = false;
     bool qvedaKlaviatura     = false;
 
-    // გველი 
+    // გველი    
     Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; // გველის თავი
     Color ballColor          = DARKBLUE;
-    float ballRadius         = 50.0;
-    float tailPositionsX[1000000];   // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
+    const float ballRadius   = 15.0;
+    const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
+    float tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
     float tailPositionsY[1000000];    
-    // Types and Structures Definition // შესაძლოა ჩავამატო
-    typedef struct Snake 
-    { 
-        Vector2 position;
-        Vector2 size;
-        Vector2 speed;
-        Color color;
-    } Snake;
+   
 
     // ვაშლი
     Vector2 vashliPosition   = {0,0}; // GetRandomValue(0,screenWidth), GetRandomValue(0,screenHeight) // ვაშლები
     Color vashliColor        = RED;
-    float vashliRadius       = 25.0;
-    int counter_vashlebi = 0; // რამდენი ვაშლი აქვს ნაჭამი
-    // Types and Structures Definition // შესაძლოა ჩავამატო
-    typedef struct Food 
-    {    
-        Vector2 position;
-        Vector2 size;
-        bool active;
-        Color color;
-    } Food;
+    float vashliRadius       = 10.0;
+    int counter_vashlebi     = 0; // რამდენი ვაშლი აქვს ნაჭამი
 
     static bool pause = false; // დაპაუზება 
+
 
 int main(void)
 {   
@@ -76,6 +62,7 @@ int main(void)
     SetTargetFPS(fps_chemi);                  // Set our game to run at 60 frames-per-second  
     //--------------------------------------------------------------------------------------
 
+
     // Main game loop
     while (!WindowShouldClose())                    // Detect window close button or ESC key
     {
@@ -90,18 +77,12 @@ int main(void)
     
     // snake head position tracker 
     //--------------------------------------------------------------------------------------
-    for (int i =0;i<counter;i++) 
+    for (int i = 0; i < counter; i++) 
     {
         // printf("vnaxot --- tailPositionsX[i] = %lf i = %d\n",tailPositionsX[i],i);
         // printf("vnaxot --- counter = %d\n",counter);
     }
-    
-    // Size-related functions
-    //----------------------------------------------------------------------------------
-    printf("//---------------------------- Size-related functions ---------------------------------------");
-    printf("\n");
-    printf("sizeof(tailPositionsX) = %d\n",sizeof(tailPositionsX)); // კითხვა მაქვს 
-    
+ 
     // Timing-related functions
     //----------------------------------------------------------------------------------
     printf("//---------------------------- Timing-related functions ---------------------------------------");
@@ -112,8 +93,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();                                        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
-        
+    //--------------------------------------------------------------------------------------        
     return 0;
 }
 
@@ -180,34 +160,6 @@ void UpdateGame(void)
         qvedaKlaviatura    = true; // 
     }
     
-    // კლავიატურიდან ბრძანების მიცემის დროს დაიწერება შესაბამისი კოორდინატები 
-    //----------------------------------------------------------------------------------
-    /*
-    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_DOWN))
-    {   
-        printf("//----------------------------------------------------------------------------------");
-        printf("\n");
-
-        printf("counter = %d\n",counter);             
-            
-        printf("Vector2 ballPosition = %lf\n",(ballPosition)); // აი ეს რას მიჩვენებს? )) ???
-        printf("ballPosition.x = %f\n",ballPosition.x);
-        printf("ballPosition.y = %f\n",ballPosition.y);
-        printf("Vector2 magn = %f\n",sqrt(pow(ballPosition.y,2) + pow(ballPosition.x,2)));
-           
-        tailPositionsX[counter] = ballPosition.x;
-        tailPositionsY[counter] = ballPosition.y;
-            
-        printf("tailPositionsX[counter] = %f\ntailPositionsY[counter] = %f\n",tailPositionsX[counter],tailPositionsY[counter]);
-              
-        counter++; // კლავიატურაზე რამდენჯერ მქონდა დაჭერილი წინ ქვემოთ მარჯვნივ მარცხნივ კლავიშები. მაგის მთვლელი   
-        
-        printf("(after counter++ in UpdateGame(void)) counter = %d\n",counter); 
-        printf("//----------------------------------------------------------------------------------");
-        printf("\n");  
-    }
-    */
-    
     framesCounter++; // რამდენჯერ იხატება ეკრანი წამში 
     // printf("framesCounter = %d\n",framesCounter);
     
@@ -222,8 +174,8 @@ void UpdateGame(void)
     {
         if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
         if (marcxenaKlaviatura == true) ballPosition.x -= speed;
-        if (zedaKlaviatura == true)     ballPosition.y -= speed;
-        if (qvedaKlaviatura == true)    ballPosition.y += speed;
+        if (zedaKlaviatura     == true) ballPosition.y -= speed;
+        if (qvedaKlaviatura    == true) ballPosition.y += speed;
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებში
         //----------------------------------------------------------------------------------
@@ -263,10 +215,8 @@ void UpdateGame(void)
     
     if (hipotenoza <= (distance2points)) 
     {
-        counter_vashlebi++;
-        printf("counter_vashlebi = %d\n",counter_vashlebi);
-        
-        VashliRandom(); // ვაშლი დავსვა ეკრანზე. ჭამის მერე. ახალ ადგილას გადასმა
+        counter_vashlebi++;    
+        VashliRandom();   
     }
     
     /*
@@ -274,13 +224,30 @@ void UpdateGame(void)
     //--------------------------------------------------------------------------------------
     if (CheckCollisionCircles(ballPosition, ballRadius, vashliPosition, vashliRadius) == true)
     {
-        counter_vashlebi++;
-        printf("counter_vashlebi = %d\n",counter_vashlebi);
-        VashliRandom();
+        // counter_vashlebi++;
+        // printf("counter_vashlebi = %d\n",counter_vashlebi);
+        // VashliRandom();
+        // pause = !pause;
+        // printf("aq var? \n");
     }
     */
 }
 
+void VashliRandom(void)
+{
+    // ვაშლი დავსვა ეკრანზე. ჭამის მერე. ახალ ადგილას გადასმა
+    //--------------------------------------------------------------------------------------
+    vashliPosition.x = GetRandomValue(0,screenWidth);
+    vashliPosition.y = GetRandomValue(0,screenHeight);
+    
+    // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
+}
+
+void tailDraw(void)
+{
+    // აქ ვარ <<<<<<<<<<
+    printf("counter_vashlebi = %d\n",counter_vashlebi);
+}
 
 void DrawGame(void)
 {
@@ -289,8 +256,11 @@ void DrawGame(void)
         ClearBackground(DARKGRAY);
 
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
-            
-        DrawFPS(screenWidth/4, screenHeight/4);   // ფერი როგორ შევუცვალო? :))
+        DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, LIGHTGRAY); 
+        DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
+        DrawText(TextFormat("framesCounter (tracker) %i", framesCounter), 100, 70, 20, LIGHTGRAY);
+        
+        DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
         DrawCircleV(ballPosition, ballRadius, ballColor); // Draw a color-filled circle (Vector version)
         
@@ -303,19 +273,3 @@ void DrawGame(void)
     EndDrawing();
 }
 
-void tailDraw(void)
-{
-    // აქ ვარ <<<<<<<<<<
-    printf("counter_vashlebi = %d\n",counter_vashlebi);
-}
-
-
-void VashliRandom(void)
-{
-    // ვაშლი დავსვა ეკრანზე. ჭამის მერე. ახალ ადგილას გადასმა
-    //--------------------------------------------------------------------------------------
-    vashliPosition.x = GetRandomValue(0,screenWidth);
-    vashliPosition.y = GetRandomValue(0,screenHeight);
-    
-    // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
-}
