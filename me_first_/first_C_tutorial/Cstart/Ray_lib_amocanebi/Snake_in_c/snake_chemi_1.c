@@ -32,10 +32,10 @@
     Color ballColor          = DARKBLUE;
     const float ballRadius   = 15.0;
     const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
-    float tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
-    float tailPositionsY[1000000];    
-    float test_snake_modzraoba_x[1000000]; // test
-    float test_snake_modzraoba_y[1000000]; // test
+    int tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
+    int tailPositionsY[1000000];    
+    int test_snake_modzraoba_x[1000000]; // test
+    int test_snake_modzraoba_y[1000000]; // test
 
     // ვაშლი
     Vector2 vashliPosition   = {0,0}; // GetRandomValue(0,screenWidth), GetRandomValue(0,screenHeight) // ვაშლები
@@ -186,12 +186,11 @@ void UpdateGame(void)
         
         for (int i = counter_vashlebi; i >= 0; i--)
         {
-            //
-            printf("i (test) = %d\n", i);
+            // printf("i (test) = %d\n", i);
             test_snake_modzraoba_x[i] = tailPositionsX[counter - i];
-            printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
+            // printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
             test_snake_modzraoba_y[i] = tailPositionsY[counter - i];
-            printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
+            // printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
             // pause = true;
         }
  
@@ -272,12 +271,21 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         DrawText(TextFormat("framesCounter (tracker) %i", framesCounter), 100, 70, 20, LIGHTGRAY);
-        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %f", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %f", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %i", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %i", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
+        
+        Color colors[10] = { 0 };
+        for (int i = 0; i < 10; i++) colors[i] = (Color){ GetRandomValue(100, 250), GetRandomValue(50, 150), GetRandomValue(10, 100), 255 };
+        
         DrawCircleV(ballPosition, ballRadius, ballColor); // Draw a color-filled circle (Vector version)
+        for (int i = 0; i < counter_vashlebi; i++) 
+        {
+            // test
+            DrawCircleLines(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius/2, colors[GetRandomValue(0, 10)]);
+        }
         
         DrawCircleV(vashliPosition, vashliRadius, vashliColor); // ვაშლის ხატვა 
         
