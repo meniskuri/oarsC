@@ -34,7 +34,8 @@
     const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
     float tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
     float tailPositionsY[1000000];    
-   
+    float test_snake_modzraoba_x[1000000]; // test
+    float test_snake_modzraoba_y[1000000]; // test
 
     // ვაშლი
     Vector2 vashliPosition   = {0,0}; // GetRandomValue(0,screenWidth), GetRandomValue(0,screenHeight) // ვაშლები
@@ -181,6 +182,18 @@ void UpdateGame(void)
         //----------------------------------------------------------------------------------
         tailPositionsX[counter] = ballPosition.x;
         tailPositionsY[counter] = ballPosition.y;
+        
+        
+        for (int i = counter_vashlebi; i >= 0; i--)
+        {
+            //
+            printf("i (test) = %d\n", i);
+            test_snake_modzraoba_x[i] = tailPositionsX[counter - i];
+            printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
+            test_snake_modzraoba_y[i] = tailPositionsY[counter - i];
+            printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
+            // pause = true;
+        }
  
         counter++;
     } 
@@ -256,9 +269,11 @@ void DrawGame(void)
         ClearBackground(DARKGRAY);
 
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
-        DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, LIGHTGRAY); 
+        DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         DrawText(TextFormat("framesCounter (tracker) %i", framesCounter), 100, 70, 20, LIGHTGRAY);
+        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %f", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %f", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
@@ -268,6 +283,7 @@ void DrawGame(void)
         
         DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
         
+        // printf("aq ar movdivar? \n");
         if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); // პაუზის ტექსტის დაწერა
         
     EndDrawing();
