@@ -6,7 +6,7 @@
 *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
 *
 *   Kapana. Snake C Raylib
-*
+*   კოდი დასალაგებელია. დასავარცხნია ფუნქციებად. და გასალამაზებელი. ჯერ დეველოპმენტ ვერსიაა ვ.1.1
 ********************************************************************************************/
 
 #include <stdio.h>
@@ -15,35 +15,36 @@
 
 // ცვლადები 
 //--------------------------------------------------------------------------------------
-    const  int screenWidth   = 800;
-    const  int screenHeight  = 450;
-    static int framesCounter = 0;
-    const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
-    float iqsi               = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
+const  int screenWidth   = 800;
+const  int screenHeight  = 450;
+static int framesCounter = 0;
+const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
+float iqsi               = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
 
-    int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
-    bool marjvenaKlaviatura  = true; // მიმართულებები
-    bool marcxenaKlaviatura  = false;
-    bool zedaKlaviatura      = false;
-    bool qvedaKlaviatura     = false;
+int counter_meatedi      = 0;    // ყოველი მეათე ბიჯი ერთია აქ რაც გააკეთა გველის თავმა 
+int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
+bool marjvenaKlaviatura  = true; // მიმართულებები
+bool marcxenaKlaviatura  = false;
+bool zedaKlaviatura      = false;
+bool qvedaKlaviatura     = false;
 
-    // გველი    
-    Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; // გველის თავი
-    Color ballColor          = DARKBLUE;
-    const float ballRadius   = 15.0;
-    const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
-    int tailPositionsX[1000000]; // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
-    int tailPositionsY[1000000];    
-    int test_snake_modzraoba_x[1000000]; // test
-    int test_snake_modzraoba_y[1000000]; // test
+// გველი    
+Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; // გველის თავი
+Color ballColor          = DARKBLUE;
+const float ballRadius   = 10.0;
+const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
+int tailPositionsX[1000000];   // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
+int tailPositionsY[1000000];    
+int test_snake_modzraoba_x[1000000]; // test
+int test_snake_modzraoba_y[1000000]; // test
 
-    // ვაშლი
-    Vector2 vashliPosition   = {0,0}; // GetRandomValue(0,screenWidth), GetRandomValue(0,screenHeight) // ვაშლები
-    Color vashliColor        = RED;
-    float vashliRadius       = 10.0;
-    int counter_vashlebi     = 0; // რამდენი ვაშლი აქვს ნაჭამი
+// ვაშლი
+Vector2 vashliPosition   = {0,0}; // GetRandomValue(0,screenWidth), GetRandomValue(0,screenHeight) // ვაშლები
+Color vashliColor        = RED;
+float vashliRadius       = 10.0;
+int counter_vashlebi     = 0; // რამდენი ვაშლი აქვს ნაჭამი
 
-    static bool pause = false; // დაპაუზება 
+static bool pause = false; // დაპაუზება 
 
 
 int main(void)
@@ -180,21 +181,28 @@ void UpdateGame(void)
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებში
         //----------------------------------------------------------------------------------
-        tailPositionsX[counter] = ballPosition.x;
-        tailPositionsY[counter] = ballPosition.y;
+        tailPositionsX[counter_meatedi] = ballPosition.x;
+        tailPositionsY[counter_meatedi] = ballPosition.y;
         
         
         for (int i = counter_vashlebi; i >= 0; i--)
         {
             // printf("i (test) = %d\n", i);
-            test_snake_modzraoba_x[i] = tailPositionsX[counter - i];
+            test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi - i];
             // printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
-            test_snake_modzraoba_y[i] = tailPositionsY[counter - i];
+            test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi - i];
             // printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
             // pause = true;
         }
  
         counter++;
+        
+        if (counter % 20 == 0) 
+        {
+            // printf("yoveli meate \n");
+            // pause = true;
+            counter_meatedi++;
+        }
     } 
     
     // გველის თავის სიარული კედლებში (დასახვეწია გასვლა კედელში) 
@@ -276,18 +284,20 @@ void DrawGame(void)
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
-        
+        // ფერების გენერირება და მერე ამორჩევა შემთხვევითობის პრინციპით
         Color colors[10] = { 0 };
-        for (int i = 0; i < 10; i++) colors[i] = (Color){ GetRandomValue(100, 250), GetRandomValue(50, 150), GetRandomValue(10, 100), 255 };
+        for (int i = 0; i < 10; i++) colors[i] = (Color){ GetRandomValue(0, 250), GetRandomValue(50, 150), GetRandomValue(10, 100), 255 };
         
         DrawCircleV(ballPosition, ballRadius, ballColor); // Draw a color-filled circle (Vector version)
+        
         for (int i = 0; i < counter_vashlebi; i++) 
         {
-            // test
-            DrawCircleLines(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius/2, colors[GetRandomValue(0, 10)]);
+            // კუდის ხატვა 
+            DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);
+            printf("test_snake_modzraoba_x[%d] = %d\n",i,test_snake_modzraoba_x[i]);
         }
         
-        DrawCircleV(vashliPosition, vashliRadius, vashliColor); // ვაშლის ხატვა 
+        DrawCircleV(vashliPosition, vashliRadius, colors[GetRandomValue(0, 10)]); // ვაშლის ხატვა 
         
         DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
         
