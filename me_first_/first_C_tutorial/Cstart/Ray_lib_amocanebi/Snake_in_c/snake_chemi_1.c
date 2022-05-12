@@ -17,7 +17,7 @@
 //--------------------------------------------------------------------------------------
 const  int screenWidth   = 800;
 const  int screenHeight  = 450;
-static int framesCounter = 0;
+int framesCounter = 0;
 const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
 float iqsi               = 1.0;  // ჯერ არ ვიყენებ არაფერში <<<<< დასამთავრებელია <<<<<<
 
@@ -32,7 +32,7 @@ bool qvedaKlaviatura     = false;
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; // გველის თავი
 Color ballColor          = DARKBLUE;
 const float ballRadius   = 10.0;
-const float speed        = 1;  // ნაბიჯი წამში. სიჩქარე
+const float speed        = 20;  // ნაბიჯი წამში. სიჩქარე
 int tailPositionsX[1000000];   // ჰმ. როგორ გავადიდო კუდის მასივის სიგრძე counter ით?
 int tailPositionsY[1000000];    
 int test_snake_modzraoba_x[1000000]; // test
@@ -173,11 +173,16 @@ void UpdateGame(void)
         printf("GAME PAUSED\n");        
     }
     if (!pause)
-    {
-        if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
-        if (marcxenaKlaviatura == true) ballPosition.x -= speed;
-        if (zedaKlaviatura     == true) ballPosition.y -= speed;
-        if (qvedaKlaviatura    == true) ballPosition.y += speed;
+    {   
+        if (framesCounter % 20 == 0)
+        {
+            //
+            if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
+            if (marcxenaKlaviatura == true) ballPosition.x -= speed;
+            if (zedaKlaviatura     == true) ballPosition.y -= speed;
+            if (qvedaKlaviatura    == true) ballPosition.y += speed;
+        }
+        
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებში
         //----------------------------------------------------------------------------------
@@ -278,9 +283,9 @@ void DrawGame(void)
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
-        DrawText(TextFormat("framesCounter (tracker) %i", framesCounter), 100, 70, 20, LIGHTGRAY);
-        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %i", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %i", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
+        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
@@ -290,14 +295,14 @@ void DrawGame(void)
         
         DrawCircleV(ballPosition, ballRadius, ballColor); // Draw a color-filled circle (Vector version)
         
-        for (int i = 0; i < counter_vashlebi; i++) 
+        for (int i = counter_vashlebi; i > 0; i--) 
         {
             // კუდის ხატვა 
             DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);
-            printf("test_snake_modzraoba_x[%d] = %d\n",i,test_snake_modzraoba_x[i]);
+            // printf("test_snake_modzraoba_x[%d] = %d\n",i,test_snake_modzraoba_x[i]);
         }
         
-        DrawCircleV(vashliPosition, vashliRadius, colors[GetRandomValue(0, 10)]); // ვაშლის ხატვა 
+        DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
         
         DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
         
