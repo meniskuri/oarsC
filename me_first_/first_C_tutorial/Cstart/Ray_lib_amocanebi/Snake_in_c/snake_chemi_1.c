@@ -51,7 +51,7 @@ static bool pause = false;
 Color colors[10] = { 0 };
 
 
-int main(void)
+int main(void) 
 {    
     // ფერების გენერირება
     //--------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ void vashlisChama(void)
         VashliRandom();   
     }
     
-    /*
+    /* // <<<<<--------------------------------||||-
     // Check collision between two circles // CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
     //--------------------------------------------------------------------------------------
     if (CheckCollisionCircles(ballPosition, ballRadius, vashliPosition, vashliRadius) == true)
@@ -137,9 +137,6 @@ void vashlisChama(void)
 
 void gvelisSiaruliKedlebshi(void)
 {
-    int zero           = 0;           // ჯერ არ ვიყენებ 
-    int MaxSqreenWidht = screenWidth; // ჯერ არ ვიყენებ 
-    
     if ((ballPosition.x - ballRadius) >= screenWidth)             // მარჯვნივ სიარული
     {
         ballPosition.x = -ballRadius;
@@ -167,7 +164,7 @@ void gvelisSiaruliANDpasuse(void)
     }
     if (!pause)
     {   
-        if (framesCounter % 20 == 0) // რადიუსი გამრავლებული ორზეა ჩასასმელი აქ 
+        if (framesCounter % 20 == 0) // რადიუსი გამრავლებული ორზეა ჩასასმელი აქ // <<<<<--------------------------------||||-
         {
             if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
             if (marcxenaKlaviatura == true) ballPosition.x -= speed;
@@ -175,24 +172,17 @@ void gvelisSiaruliANDpasuse(void)
             if (qvedaKlaviatura    == true) ballPosition.y += speed;
         }
         
-        
-        // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებში
-        //----------------------------------------------------------------------------------
+        // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x;
         tailPositionsY[counter_meatedi] = ballPosition.y;
         
-        
         for (int i = counter_vashlebi; i >= 0; i--)
         {
-            // printf("i (test) = %d\n", i);
             test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
-            // printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
             test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1   - i];
-            // printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
-            // pause = true;
         }
         
-        if (counter % 20 == 0) 
+        if (counter % 20 == 0) // <<<<<--------------------------------||||-
         {
             counter_meatedi++;
         }
@@ -230,7 +220,7 @@ void mimartulebebiKlaviaturidan(void)
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = true;     
     }
-    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული 
+    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული // <<<<<--------------------------------||||-
     {
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 
@@ -264,6 +254,8 @@ void VashliRandom(void)
 {
     vashliPosition.x = GetRandomValue(0,screenWidth);
     vashliPosition.y = GetRandomValue(0,screenHeight);
+    // <<<<<--------------------------------||||-
+    // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
 }
 
 void tailDraw(void)
@@ -272,6 +264,12 @@ void tailDraw(void)
     { 
         DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);   
     }
+}
+
+void tavisChama(void) // <<<<<--------------------------------||||-
+{
+    // გველის სიკვდილი ანუ თავის თავის ჭამა 
+
 }
 
 void DrawGame(void)
@@ -283,11 +281,11 @@ void DrawGame(void)
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
-        DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
+        // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
+        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
