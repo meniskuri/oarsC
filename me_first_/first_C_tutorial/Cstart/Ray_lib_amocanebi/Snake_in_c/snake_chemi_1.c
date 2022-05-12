@@ -174,7 +174,7 @@ void UpdateGame(void)
     }
     if (!pause)
     {   
-        if (framesCounter % 20 == 0)
+        if (framesCounter % 20 == 0) // რადიუსი გამრავლებული ორზეა ჩასასმელი აქ 
         {
             //
             if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
@@ -193,9 +193,9 @@ void UpdateGame(void)
         for (int i = counter_vashlebi; i >= 0; i--)
         {
             // printf("i (test) = %d\n", i);
-            test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi - i];
+            test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
             // printf("test_snake_modzraoba_x[%d]%f\n",i,test_snake_modzraoba_x[i]);
-            test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi - i];
+            test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1 - i];
             // printf("test_snake_modzraoba_y[%d]%f\n",i,test_snake_modzraoba_y[i]);
             // pause = true;
         }
@@ -284,8 +284,10 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        DrawText(TextFormat("test_snake_modzraoba_x (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
