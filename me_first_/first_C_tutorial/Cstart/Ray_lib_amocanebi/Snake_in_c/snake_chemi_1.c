@@ -45,6 +45,10 @@ Color vashliColor        = RED;
 float vashliRadius       = 10.0;
 int counter_vashlebi     = 0; 
 
+// კუდის ვექტორი
+Vector2 kudi = {0,0}; 
+float kudi_radius = ballRadius;
+
 static bool pause = false; 
 
 // ფერები (კუდის)
@@ -143,6 +147,9 @@ void UpdateGame(void)
     
     // ვაშლის ჭამა (დასახვეწია)
     vashlisChama();
+    
+    // თავის ჭამა (დასახვეწია)
+    tavisChama();
 }
 
 void vashlisChama(void)
@@ -216,6 +223,11 @@ void gvelisSiaruliANDpasuse(void)
         {
             test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
             test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1   - i];
+            
+            kudi.x = (float)test_snake_modzraoba_x[i];
+            kudi.y = (float)test_snake_modzraoba_y[i];
+       
+            // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
         }
         
         if (counter % 20 == 0) // <<<<<--------------------------------||||-
@@ -291,7 +303,6 @@ void VashliRandom(void)
     vashliPosition.x = GetRandomValue(0,screenWidth);
     vashliPosition.y = GetRandomValue(0,screenHeight);
     // <<<<<--------------------------------||||-
-    // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
     // ვაშლი გველს რომ არ ახტებოდეს ეგრევე თავზე. თუმცა გაუმართლაც შეიძლება მოხდეს? მაგრამ ეგრე შეიძლება კომეტა დაგვეცეს? და ანუ გაგვიმართლა?
 }
 
@@ -305,7 +316,13 @@ void tailDraw(void)
 
 void tavisChama(void) // <<<<<--------------------------------||||-
 {
-    // გველის სიკვდილი ანუ თავის თავის ჭამა 
+    // გველის სიკვდილი ანუ თავის თავის ჭამა // ლაინების დახატვით
+    if(CheckCollisionCircles(ballPosition, ballRadius, kudi, ballRadius) == true)
+    {
+        printf("aq var? tu dapauzda aq xar aba sad iqnebi..");
+        pause = true;
+        
+    }
     
     //for (int i = counter_vashlebi; i > 0; i--) 
     //{ 
@@ -332,7 +349,6 @@ void DrawGame(void)
             
             for (int i = 0; i > -100; i--)
             {
-                //
                 DrawRectangleLines(0 + i, 0 + i, screenWidth - 2*i, screenHeight - 2*i,  colors[GetRandomValue(0, 10)]);
             }
             
@@ -343,10 +359,12 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
+        DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
+        DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
