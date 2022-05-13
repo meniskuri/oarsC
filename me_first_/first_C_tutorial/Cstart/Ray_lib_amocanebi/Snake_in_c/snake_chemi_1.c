@@ -318,17 +318,6 @@ void DrawGame(void)
     BeginDrawing();
 
         ClearBackground(DARKGRAY);
-
-        DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
-        DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
-        DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
-        // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
-        
-        DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
         // 2დ ხატვა 
         //--------------------------------------------------------------------------------------  
@@ -340,14 +329,27 @@ void DrawGame(void)
             DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
             
             DrawText("SCREEN AREA", 640, 10, 20, RED);
-
-            DrawRectangleLines(0, 0, screenWidth, screenHeight, RED);
-        
+            
+            for (int i = 0; i > -100; i--)
+            {
+                //
+                DrawRectangleLines(0 + i, 0 + i, screenWidth - 2*i, screenHeight - 2*i,  colors[GetRandomValue(0, 10)]);
+            }
+            
         EndMode2D();
         
         
+        DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
+        DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
+        DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
+        // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
+        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         
-
+        DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
+        
         DrawRectangle( 10, 70, 250, 113, Fade(SKYBLUE, 0.5f));
         DrawRectangleLines( 10, 70, 250, 113, BLUE);
 
