@@ -50,9 +50,21 @@ static bool pause = false;
 // ფერები (კუდის)
 Color colors[10] = { 0 };
 
-
+// 2დ კამერა ინიციალიზაცია 
+//--------------------------------------------------------------------------------------
+Camera2D camera = { 0 };
+    
+    
 int main(void) 
-{    
+{   
+    // 2დ კამერა ინიციალიზაცია 
+    //--------------------------------------------------------------------------------------
+    camera.target = (Vector2){ ballPosition.x + 20.0f, ballPosition.y + 20.0f };
+    camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
+    camera.rotation = 0.0f;
+    camera.zoom = 1.0f;
+    //----------------------------------------------------------------------------------
+    
     // ფერების გენერირება
     //--------------------------------------------------------------------------------------
     for (int i = 0; i < 10; i++) colors[i] = (Color){ GetRandomValue(0, 250), GetRandomValue(50, 150), GetRandomValue(10, 100), 255 };
@@ -72,7 +84,31 @@ int main(void)
     
     // Main game loop
     while (!WindowShouldClose())                    // Detect window close button or ESC key
-    {
+    {   
+        // 2 დ კამერა
+        //----------------------------------------------------------------------------------
+        // Camera rotation controls
+        if (IsKeyDown(KEY_A)) camera.rotation--;
+        else if (IsKeyDown(KEY_S)) camera.rotation++;
+
+        // Limit camera rotation to 80 degrees (-40 to 40)
+        if (camera.rotation > 40) camera.rotation = 40;
+        else if (camera.rotation < -40) camera.rotation = -40;
+
+        // Camera zoom controls
+        camera.zoom += ((float)GetMouseWheelMove()*0.05f);
+
+        if (camera.zoom > 3.0f) camera.zoom = 3.0f;
+        else if (camera.zoom < 0.1f) camera.zoom = 0.1f;
+
+        // Camera reset (zoom and rotation)
+        if (IsKeyPressed(KEY_R))
+        {
+            camera.zoom = 1.0f;
+            camera.rotation = 0.0f;
+        }
+        //----------------------------------------------------------------------------------
+        
         // Update
         //----------------------------------------------------------------------------------
         UpdateGame();
@@ -173,8 +209,8 @@ void gvelisSiaruliANDpasuse(void)
         }
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
-        tailPositionsX[counter_meatedi] = ballPosition.x;
-        tailPositionsY[counter_meatedi] = ballPosition.y;
+        tailPositionsX[counter_meatedi] = ballPosition.x; // <<<<<--------------------------------||||-
+        tailPositionsY[counter_meatedi] = ballPosition.y; // ეს მასივები უნდა დავიცვა გადავსებისგან
         
         for (int i = counter_vashlebi; i >= 0; i--)
         {
@@ -183,7 +219,7 @@ void gvelisSiaruliANDpasuse(void)
         }
         
         if (counter % 20 == 0) // <<<<<--------------------------------||||-
-        {
+        {                      // გველის ბურთების რადიუსთან უნდა მივაბა როგორღაც. თორე ზომების ცვლილებით აირევა გველი
             counter_meatedi++;
         }
         counter++;
@@ -221,7 +257,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = true;     
     }
     if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული // <<<<<--------------------------------||||-
-    {
+    {                                                  // წინ და ეგრევე უკან შემობრუნება რომ არ შეეძლოს. თავს რომ არ გადაუაროს 
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = true; //    
@@ -256,6 +292,7 @@ void VashliRandom(void)
     vashliPosition.y = GetRandomValue(0,screenHeight);
     // <<<<<--------------------------------||||-
     // vashliPosition = {(float)GetRandomValue(0,screenWidth), (float)GetRandomValue(0,screenHeight)}; // რატო? )) კითხვა
+    // ვაშლი გველს რომ არ ახტებოდეს ეგრევე თავზე. თუმცა გაუმართლაც შეიძლება მოხდეს? მაგრამ ეგრე შეიძლება კომეტა დაგვეცეს? და ანუ გაგვიმართლა?
 }
 
 void tailDraw(void)
@@ -269,7 +306,11 @@ void tailDraw(void)
 void tavisChama(void) // <<<<<--------------------------------||||-
 {
     // გველის სიკვდილი ანუ თავის თავის ჭამა 
-
+    
+    //for (int i = counter_vashlebi; i > 0; i--) 
+    //{ 
+    //    DrawLine(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);   
+    //}
 }
 
 void DrawGame(void)
@@ -289,13 +330,34 @@ void DrawGame(void)
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
-        DrawCircleV(ballPosition, ballRadius, ballColor); // გველის თავის ხატვა 
-        tailDraw(); // ტანის ხატვა
+        // 2დ ხატვა 
+        //--------------------------------------------------------------------------------------  
+        BeginMode2D(camera);
+            
+            DrawCircleV(ballPosition, ballRadius, ballColor); // გველის თავის ხატვა 
+            tailDraw(); // ტანის ხატვა
+            DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
+            DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
+            
+            DrawText("SCREEN AREA", 640, 10, 20, RED);
+
+            DrawRectangleLines(0, 0, screenWidth, screenHeight, RED);
         
-        DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
-        DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
+        EndMode2D();
         
-        if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); 
+        
+        
+
+        DrawRectangle( 10, 70, 250, 113, Fade(SKYBLUE, 0.5f));
+        DrawRectangleLines( 10, 70, 250, 113, BLUE);
+
+        DrawText("Free 2d camera controls:", 20, 80, 10, BLACK);
+        DrawText("- Right/Left to move Offset", 40, 100, 10, DARKGRAY);
+        DrawText("- Mouse Wheel to Zoom in-out", 40, 120, 10, DARKGRAY);
+        DrawText("- A / S to Rotate", 40, 140, 10, DARKGRAY);
+        DrawText("- R to reset Zoom and Rotation", 40, 160, 10, DARKGRAY); 
+
+        if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);            
         
     EndDrawing();
 }
