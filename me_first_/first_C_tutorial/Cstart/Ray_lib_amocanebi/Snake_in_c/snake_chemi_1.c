@@ -33,7 +33,7 @@ bool qvedaKlaviatura     = false;
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
 Color ballColor          = DARKBLUE;
 const float ballRadius   = 10.0;
-const float speed        = 20;  
+const float speed        = (int)ballRadius * 2;  
 int tailPositionsX[1000000];   
 int tailPositionsY[1000000];    
 int test_snake_modzraoba_x[1000000]; 
@@ -163,19 +163,6 @@ void vashlisChama(void)
         counter_vashlebi++;    
         VashliRandom();   
     }
-    
-    /* // <<<<<--------------------------------||||-
-    // Check collision between two circles // CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2);
-    //--------------------------------------------------------------------------------------
-    if (CheckCollisionCircles(ballPosition, ballRadius, vashliPosition, vashliRadius) == true)
-    {
-        // counter_vashlebi++;
-        // printf("counter_vashlebi = %d\n",counter_vashlebi);
-        // VashliRandom();
-        // pause = !pause;
-        // printf("aq var? \n");
-    }
-    */
 }
 
 void gvelisSiaruliKedlebshi(void)
@@ -207,7 +194,7 @@ void gvelisSiaruliANDpasuse(void)
     }
     if (!pause)
     {   
-        if (framesCounter % 20 == 0) // რადიუსი გამრავლებული ორზეა ჩასასმელი აქ // <<<<<--------------------------------||||-
+        if (framesCounter % ((int)ballRadius*2) == 0) 
         {
             if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
             if (marcxenaKlaviatura == true) ballPosition.x -= speed;
@@ -226,8 +213,8 @@ void gvelisSiaruliANDpasuse(void)
             // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
         }
         
-        if (counter % 20 == 0) // <<<<<--------------------------------||||-
-        {                      // გველის ბურთების რადიუსთან უნდა მივაბა როგორღაც. თორე ზომების ცვლილებით აირევა გველი
+        if (counter % ((int)ballRadius*2) == 0) 
+        {                                  
             counter_meatedi++;
         }
         counter++;
@@ -306,19 +293,19 @@ void tailDraw(void)
 {
     for (int i = counter_vashlebi; i > 0; i--) 
     { 
-        DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);   
+        DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], kudi_radius, colors[GetRandomValue(0, 10)]);   
     }
 }
 
-void tavisChama(void) // <<<<<--------------------------------||||-
+void tavisChama(void) 
 {    
     for (int i = 1; i <= counter_vashlebi; i++)
     {
         kudi.x = (float)test_snake_modzraoba_x[i];
         kudi.y = (float)test_snake_modzraoba_y[i];
         
-        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, (ballRadius-1)) == true)
-        {
+        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, (kudi_radius-1)) == true) 
+        {                                                                                  
             pause = true;
         }
     }
@@ -348,7 +335,6 @@ void DrawGame(void)
             
         EndMode2D();
         
-        
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
@@ -360,7 +346,7 @@ void DrawGame(void)
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
         // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
         
-        DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
+        DrawFPS(screenWidth/2, 10); 
         
         DrawRectangle( 10, 70, 250, 113, Fade(SKYBLUE, 0.5f));
         DrawRectangleLines( 10, 70, 250, 113, BLUE);
