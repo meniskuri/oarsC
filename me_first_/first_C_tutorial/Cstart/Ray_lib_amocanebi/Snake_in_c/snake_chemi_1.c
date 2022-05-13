@@ -223,10 +223,6 @@ void gvelisSiaruliANDpasuse(void)
         {
             test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
             test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1   - i];
-            
-            kudi.x = (float)test_snake_modzraoba_x[i];
-            kudi.y = (float)test_snake_modzraoba_y[i];
-       
             // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
         }
         
@@ -315,19 +311,17 @@ void tailDraw(void)
 }
 
 void tavisChama(void) // <<<<<--------------------------------||||-
-{
-    // გველის სიკვდილი ანუ თავის თავის ჭამა // ლაინების დახატვით
-    if(CheckCollisionCircles(ballPosition, ballRadius, kudi, ballRadius) == true)
+{    
+    for (int i = 1; i <= counter_vashlebi; i++)
     {
-        printf("aq var? tu dapauzda aq xar aba sad iqnebi..");
-        pause = true;
+        kudi.x = (float)test_snake_modzraoba_x[i];
+        kudi.y = (float)test_snake_modzraoba_y[i];
         
+        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, (ballRadius-1)) == true)
+        {
+            pause = true;
+        }
     }
-    
-    //for (int i = counter_vashlebi; i > 0; i--) 
-    //{ 
-    //    DrawLine(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], ballRadius, colors[GetRandomValue(0, 10)]);   
-    //}
 }
 
 void DrawGame(void)
@@ -359,12 +353,12 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
-        DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
-        DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
-        DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
+        // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
+        // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
+        // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
         
         DrawFPS(screenWidth/2, 10);   // ფერი როგორ შევუცვალო? :))
         
