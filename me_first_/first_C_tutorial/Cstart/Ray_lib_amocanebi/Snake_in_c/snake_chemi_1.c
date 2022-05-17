@@ -1,10 +1,5 @@
 /*******************************************************************************************
 *
-*   raylib [core] example - Keyboard input
-*
-*   This example has been created using raylib 1.0 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
 *   Kapana. Snake C Raylib
 *   კოდი დასალაგებელია. დასავარცხნია ფუნქციებად. და გასალამაზებელი. ჯერ დეველოპმენტ ვერსიაა ვ.1.1
 *
@@ -28,12 +23,14 @@ bool marjvenaKlaviatura  = true; // მიმართულებები
 bool marcxenaKlaviatura  = false;
 bool zedaKlaviatura      = false;
 bool qvedaKlaviatura     = false;
+bool diagonali           = false;
 
 // გველი    
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
 Color ballColor          = DARKBLUE;
 const float ballRadius   = 10.0;
 const float speed        = (int)ballRadius * 2;  
+float speed2             = 0; 
 int tailPositionsX[1000000];   
 int tailPositionsY[1000000];    
 int test_snake_modzraoba_x[1000000]; 
@@ -45,7 +42,7 @@ Color vashliColor        = RED;
 float vashliRadius       = 10.0;
 int counter_vashlebi     = 0; 
 
-// კუდის ვექტორი
+// კუდის ვექტორის
 Vector2 kudi = {0,0}; 
 float kudi_radius = ballRadius;
 
@@ -75,7 +72,7 @@ int main(void)
     
     // Initialization
     //--------------------------------------------------------------------------------------
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input - Kapana");
+    InitWindow(screenWidth, screenHeight, "Snake - Kapana");
     
     // ვაშლი (ინიციალიზაცია)
     //--------------------------------------------------------------------------------------
@@ -194,18 +191,27 @@ void gvelisSiaruliANDpasuse(void)
     }
     if (!pause)
     {   
-        if (framesCounter % ((int)ballRadius*2) == 0) 
+        if ((framesCounter % ((int)ballRadius*2) == 0) && (diagonali == false)) 
         {
-            if (marjvenaKlaviatura == true) ballPosition.x += speed; // დასახვეწია 
+            if (marjvenaKlaviatura == true) ballPosition.x += speed; 
             if (marcxenaKlaviatura == true) ballPosition.x -= speed;
             if (zedaKlaviatura     == true) ballPosition.y -= speed;
             if (qvedaKlaviatura    == true) ballPosition.y += speed;
         }
         
+        if ((framesCounter % ((int)ballRadius*2) == 0) && (diagonali == true)) // დიაგონალზე სიარული 
+        {
+            speed2 = speed/sqrt(2);
+            if (marjvenaKlaviatura == true) ballPosition.x += speed2; 
+            if (marcxenaKlaviatura == true) ballPosition.x -= speed2;
+            if (zedaKlaviatura     == true) ballPosition.y -= speed2;
+            if (qvedaKlaviatura    == true) ballPosition.y += speed2;
+        }
+        
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; // <<<<<--------------------------------||||-
         tailPositionsY[counter_meatedi] = ballPosition.y; // ეს მასივები უნდა დავიცვა გადავსებისგან
-        
+                                                          // რაღაც რაოდენობა რომ გახდება სხვა მასივში გადაწეროს ეს გაანულოს და მერე ისევ დაიწყოს ათვლა?
         for (int i = counter_vashlebi; i >= 0; i--)
         {
             test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
@@ -229,6 +235,7 @@ void mimartulebebiKlaviaturidan(void)
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = false;
+        diagonali          = false;
     }
     if (IsKeyDown(KEY_LEFT))
     {
@@ -236,6 +243,7 @@ void mimartulebebiKlaviaturidan(void)
         marcxenaKlaviatura = true; 
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = false;
+        diagonali          = false;
     }
     if (IsKeyDown(KEY_UP))
     {
@@ -243,27 +251,31 @@ void mimartulebebiKlaviaturidan(void)
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = true;     
         qvedaKlaviatura    = false;
+        diagonali          = false;
     }
     if (IsKeyDown(KEY_DOWN))
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = false;     
-        qvedaKlaviatura    = true;     
+        qvedaKlaviatura    = true;
+        diagonali          = false;        
     }
     if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული // <<<<<--------------------------------||||-
     {                                                  // წინ და ეგრევე უკან შემობრუნება რომ არ შეეძლოს. თავს რომ არ გადაუაროს 
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = true; //    
-        qvedaKlaviatura    = false;  
+        qvedaKlaviatura    = false;
+        diagonali          = true;        
     }
     if ((IsKeyDown(KEY_LEFT)) && (IsKeyDown(KEY_UP)))  
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = true; //
         zedaKlaviatura     = true; //    
-        qvedaKlaviatura    = false;  
+        qvedaKlaviatura    = false; 
+        diagonali          = true;        
     }
     if ((IsKeyDown(KEY_LEFT)) && (IsKeyDown(KEY_DOWN))) 
     {
@@ -271,6 +283,7 @@ void mimartulebebiKlaviaturidan(void)
         marcxenaKlaviatura = true; //
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = true; // 
+        diagonali          = true;
     }
     if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_DOWN)))  
     {
@@ -278,6 +291,7 @@ void mimartulebebiKlaviaturidan(void)
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = false;     
         qvedaKlaviatura    = true; // 
+        diagonali          = true;
     }
 }
 
@@ -304,7 +318,7 @@ void tavisChama(void)
         kudi.x = (float)test_snake_modzraoba_x[i];
         kudi.y = (float)test_snake_modzraoba_y[i];
         
-        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, (kudi_radius-1)) == true) 
+        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, kudi_radius/2 == true)) 
         {                                                                                  
             pause = true;
         }
@@ -345,6 +359,7 @@ void DrawGame(void)
         // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
         // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
+        DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
         
         DrawFPS(screenWidth/2, 10); 
         
