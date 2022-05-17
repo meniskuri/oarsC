@@ -229,7 +229,7 @@ void gvelisSiaruliANDpasuse(void)
 
 void mimartulebebiKlaviaturidan(void)
 {
-    if (IsKeyDown(KEY_RIGHT))
+    if (IsKeyDown(KEY_RIGHT) && marcxenaKlaviatura != true)
     { 
         marjvenaKlaviatura = true;
         marcxenaKlaviatura = false; 
@@ -237,7 +237,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = false;
         diagonali          = false;
     }
-    if (IsKeyDown(KEY_LEFT))
+    if (IsKeyDown(KEY_LEFT) && marjvenaKlaviatura != true)
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = true; 
@@ -245,7 +245,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = false;
         diagonali          = false;
     }
-    if (IsKeyDown(KEY_UP))
+    if (IsKeyDown(KEY_UP) && qvedaKlaviatura != true)
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = false; 
@@ -253,7 +253,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = false;
         diagonali          = false;
     }
-    if (IsKeyDown(KEY_DOWN))
+    if (IsKeyDown(KEY_DOWN) && zedaKlaviatura != true)
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = false; 
@@ -261,8 +261,8 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = true;
         diagonali          = false;        
     }
-    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული // <<<<<--------------------------------||||-
-    {                                                  // წინ და ეგრევე უკან შემობრუნება რომ არ შეეძლოს. თავს რომ არ გადაუაროს 
+    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული 
+    {                                                  
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 
         zedaKlaviatura     = true; //    
@@ -352,14 +352,23 @@ void DrawGame(void)
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
+        
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
         // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
-        // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);
-        DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
+        // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);   
+        // DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
+        
+        DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 220, 20, RED);
+        
+        // marjvenaKlaviatura = true; 
+        // marcxenaKlaviatura = false; 
+        // zedaKlaviatura     = false;     
+        // qvedaKlaviatura    = false;
+        // diagonali          = false;
         
         DrawFPS(screenWidth/2, 10); 
         
