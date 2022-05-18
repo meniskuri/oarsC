@@ -341,7 +341,6 @@ void tamashisGadatvirtva(void)
 
 void tavidanDawyeba(void)
 {
-    // tavidanDawyeba
     counter_vashlebi = 0;
     counter_meatedi = 0;
     counter = 0; 
@@ -353,7 +352,6 @@ void tavidanDawyeba(void)
 
 void gamortva(void)
 {
-    // gamortva
     SetExitKey(KEY_N);
 }
 
@@ -384,6 +382,7 @@ void DrawGame(void)
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
+        DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
         
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
         // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
@@ -394,12 +393,6 @@ void DrawGame(void)
         // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);   
         // DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
         // DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 220, 20, RED);
-        
-        // marjvenaKlaviatura = true; 
-        // marcxenaKlaviatura = false; 
-        // zedaKlaviatura     = false;     
-        // qvedaKlaviatura    = false;
-        // diagonali          = false;
         
         DrawFPS(screenWidth/2, 10); 
         
@@ -418,7 +411,9 @@ void DrawGame(void)
             DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
             DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
         }
-        else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
+        else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); 
+        
     EndDrawing();
 }
 
+// 598249980 ლუნა
