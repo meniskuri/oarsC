@@ -185,7 +185,14 @@ void gvelisSiaruliKedlebshi(void)
 
 void gvelisSiaruliANDpasuse(void)
 {
-    if (IsKeyPressed('P')) 
+    if (IsKeyPressed(KEY_Y)) 
+    {
+        tavidanDawyeba();       
+    } else if (KEY_N){
+        gamortva();
+    }
+    
+    if (IsKeyPressed(KEY_P)) 
     {
         pause = !pause;
         printf("GAME PAUSED\n");        
@@ -328,9 +335,26 @@ void tavisChama(void)
 
 void tamashisGadatvirtva(void)
 {
-    //
     pause = true;
     game_over = true;
+}
+
+void tavidanDawyeba(void)
+{
+    // tavidanDawyeba
+    counter_vashlebi = 0;
+    counter_meatedi = 0;
+    counter = 0; 
+    ballPosition.x = (float)screenWidth/2;
+    ballPosition.y = (float)screenHeight/2;
+    pause = false;
+    game_over = false;
+}
+
+void gamortva(void)
+{
+    // gamortva
+    SetExitKey(KEY_N);
 }
 
 void DrawGame(void)
@@ -389,7 +413,11 @@ void DrawGame(void)
         DrawText("- R to reset Zoom and Rotation", 40, 160, 10, DARKGRAY); 
 
         // if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
-        if (pause && game_over) DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
+        if (pause && game_over)
+        {
+            DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
+            DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
+        }
         else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
     EndDrawing();
 }
