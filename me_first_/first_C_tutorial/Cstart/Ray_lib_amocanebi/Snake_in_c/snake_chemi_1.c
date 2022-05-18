@@ -46,7 +46,8 @@ int counter_vashlebi     = 0;
 Vector2 kudi = {0,0}; 
 float kudi_radius = ballRadius;
 
-static bool pause = false; 
+static bool pause = false;
+static bool game_over = false;
 
 // ფერები (კუდის)
 Color colors[10] = { 0 };
@@ -189,7 +190,7 @@ void gvelisSiaruliANDpasuse(void)
         pause = !pause;
         printf("GAME PAUSED\n");        
     }
-    if (!pause)
+    if (!pause) // || (game_over == false)
     {   
         if ((framesCounter % ((int)ballRadius*2) == 0) && (diagonali == false)) 
         {
@@ -261,7 +262,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = true;
         diagonali          = false;        
     }
-    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარული 
+    if ((IsKeyDown(KEY_RIGHT)) && (IsKeyDown(KEY_UP))) // დიაგონალზე სიარულით თავზე გადავლა მაინც შეუძლია 
     {                                                  
         marjvenaKlaviatura = true; // 
         marcxenaKlaviatura = false; 
@@ -320,9 +321,16 @@ void tavisChama(void)
         
         if (CheckCollisionCircles(ballPosition, ballRadius, kudi, kudi_radius/2 == true)) 
         {                                                                                  
-            pause = true;
+            tamashisGadatvirtva();
         }
     }
+}
+
+void tamashisGadatvirtva(void)
+{
+    //
+    pause = true;
+    game_over = true;
 }
 
 void DrawGame(void)
@@ -361,8 +369,7 @@ void DrawGame(void)
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
         // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);   
         // DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
-        
-        DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 220, 20, RED);
+        // DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 220, 20, RED);
         
         // marjvenaKlaviatura = true; 
         // marcxenaKlaviatura = false; 
@@ -381,8 +388,9 @@ void DrawGame(void)
         DrawText("- A / S to Rotate", 40, 140, 10, DARKGRAY);
         DrawText("- R to reset Zoom and Rotation", 40, 160, 10, DARKGRAY); 
 
-        if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);            
-        
+        // if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
+        if (pause && game_over) DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
+        else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
     EndDrawing();
 }
 
