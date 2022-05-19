@@ -35,6 +35,8 @@ int tailPositionsX[1000000];
 int tailPositionsY[1000000];    
 int test_snake_modzraoba_x[1000000]; 
 int test_snake_modzraoba_y[1000000]; 
+int test_snake_gadawera_x[1000000];
+int test_snake_gadawera_y[1000000];
 
 // ვაშლი
 Vector2 vashliPosition   = {0,0}; 
@@ -225,6 +227,18 @@ void gvelisSiaruliANDpasuse(void)
             test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
             test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1   - i];
             // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
+        }
+        
+        if (counter_meatedi == 10 && )
+        {            
+            // ტესტ 
+            for (int i = counter_vashlebi; i >= 0; i--)
+            {
+                tailPositionsX[i] = tailPositionsX[counter_meatedi -1 - i];
+                tailPositionsY[i] = tailPositionsY[counter_meatedi -1   - i];
+                // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
+            }
+            counter_meatedi = 0;
         }
         
         if (counter % ((int)ballRadius*2) == 0) 
@@ -418,5 +432,5 @@ void DrawGame(void)
 
 // 598249980 ლუნა
 /* 
-მალაშევსკის ჯოხი 
+მალაშევსკის ჯოხი - ჰილერის ჯოხი
 */
