@@ -185,7 +185,7 @@ void gvelisSiaruliKedlebshi(void)
 
 void gvelisSiaruliANDpasuse(void)
 {
-    if (IsKeyPressed(KEY_Y)) 
+    if (IsKeyPressed(KEY_Y) && game_over == true) 
     {
         tavidanDawyeba();       
     } else if (KEY_N){
@@ -417,3 +417,6 @@ void DrawGame(void)
 }
 
 // 598249980 ლუნა
+/* 
+მალაშევსკის ჯოხი 
+*/
