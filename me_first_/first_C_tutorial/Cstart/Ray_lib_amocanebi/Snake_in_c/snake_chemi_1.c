@@ -11,6 +11,8 @@
 
 // ცვლადები 
 //--------------------------------------------------------------------------------------
+#define SNAKE_LENGTH   1000000
+
 const  int screenWidth   = 800;
 const  int screenHeight  = 450;
 int framesCounter        = 0;
@@ -31,15 +33,17 @@ Color ballColor          = DARKBLUE;
 const float ballRadius   = 10.0;
 const float speed        = (int)ballRadius * 2;  
 float speed2             = 0; 
-int tailPositionsX[1000000];   
-int tailPositionsY[1000000];    
-int test_snake_modzraoba_x[1000000]; 
-int test_snake_modzraoba_y[1000000]; 
-int test_snake_gadawera_x[1000000];
-int test_snake_gadawera_y[1000000];
+
+int tailPositionsX[SNAKE_LENGTH];   
+int tailPositionsY[SNAKE_LENGTH];    
+int test_snake_modzraoba_x[SNAKE_LENGTH]; 
+int test_snake_modzraoba_y[SNAKE_LENGTH]; 
+int test_snake_gadawera_x[SNAKE_LENGTH];
+int test_snake_gadawera_y[SNAKE_LENGTH];
 
 // ვაშლი
 Vector2 vashliPosition   = {0,0}; 
+Vector2 chek_vashli_pos  = {0,0}; 
 Color vashliColor        = RED;
 float vashliRadius       = 10.0;
 int counter_vashlebi     = 0; 
@@ -222,20 +226,15 @@ void gvelisSiaruliANDpasuse(void)
         tailPositionsX[counter_meatedi] = ballPosition.x; 
         tailPositionsY[counter_meatedi] = ballPosition.y; 
                                                                 
-        if (counter_meatedi == 1000000) // <<<<<--------------------------------||||-
+        if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას
         {            
-            // ტესტ - დინამიური შევსების პირობაა დასამატებელი
             for (int i = counter_vashlebi; i >= 0; i--)
             {
                 tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
                 tailPositionsY[i] = tailPositionsY[counter_meatedi - i];
                 // printf("tailPositionsX[%d] %d ; tailPositionsY[%d] %d\n", i, tailPositionsX[i], i, tailPositionsY[i]);
             }
-            counter_meatedi = counter_vashlebi + 1; // ეს გამრავლებული ორზე ან სამზე და ეგ გამრავლება არ უნდა უდრიდეს ლიმიტს
-            // და თუ უდრის ლიმიტს ავარიული გამოთიშვა (გამარჯვებულია ვინც ეგ ქნა რამდენი ხანი უთამაშია)
-            // თავიდან თამაშს რომ დაიწყებ უნდა შეიყვანო სახელი 
-            // და ტექსტ ფაილში წერდეს სიას რეკორდების 10 გრადაციაში ვთქვათ 
-            // თამაშის ბოლოს გაჩვენებდეს მაგ ინფორმაციას - ანუ ფაილიდან ამოწერა და ეკრანზე დაწერა 
+            counter_meatedi = counter_vashlebi + 1;  
         }
         
         if (counter % ((int)ballRadius*2) == 0) 
@@ -324,10 +323,7 @@ void VashliRandom(void)
 {
     vashliPosition.x = GetRandomValue(0,screenWidth);
     vashliPosition.y = GetRandomValue(0,screenHeight);
-    // <<<<<--------------------------------||||-
-    // ვაშლი გველს რომ არ ახტებოდეს ეგრევე თავზე. თუმცა გაუმართლაც შეიძლება მოხდეს? მაგრამ ეგრე შეიძლება კომეტა დაგვეცეს? და ანუ გაგვიმართლა?
-    // გველის მასივში უნდა გადავირბინო და შევამოწმო თუ ეს რენდომი უდრის არ დასვას და თუ არ უდრის დასვას :)
-    // თავზე დაეცეს კუდზე არ ეცემოდეს. 
+    // აქ ვარ გაჭედილი 
 }
 
 void tailDraw(void)
@@ -345,7 +341,7 @@ void tavisChama(void)
         kudi.x = (float)test_snake_modzraoba_x[i];
         kudi.y = (float)test_snake_modzraoba_y[i];
         
-        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, kudi_radius/2 == true)) 
+        if (CheckCollisionCircles(ballPosition, ballRadius, kudi, kudi_radius/2) == true)
         {                                                                                  
             tamashisGadatvirtva();
         }
@@ -386,6 +382,7 @@ void DrawGame(void)
             
             DrawCircleV(ballPosition, ballRadius, ballColor); // გველის თავის ხატვა 
             tailDraw(); // ტანის ხატვა
+
             DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
             DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
             
@@ -400,8 +397,8 @@ void DrawGame(void)
         
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
-        DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
-        DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
+        // DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
+        // DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
         
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
         // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
@@ -435,8 +432,13 @@ void DrawGame(void)
     EndDrawing();
 }
 
-// 598249980 ლუნა
+// 598249980 ლუნა-დედა კალაშნიკოვა
+
 /* 
+თავიდან თამაშს რომ დაიწყებ უნდა შეიყვანო სახელი 
+და ტექსტ ფაილში წერდეს სიას რეკორდების 10 გრადაციაში ვთქვათ  
+თამაშის ბოლოს გაჩვენებდეს მაგ ინფორმაციას - ანუ ფაილიდან ამოწერა და ეკრანზე დაწერა
+
 მალაშევსკის ჯოხი - ჰილერის ჯოხი
 ჯოხების საცავი გასაახლებელი მაქვს 
 */
