@@ -221,28 +221,27 @@ void gvelisSiaruliANDpasuse(void)
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; // <<<<<--------------------------------||||-
         tailPositionsY[counter_meatedi] = ballPosition.y; // ეს მასივები უნდა დავიცვა გადავსებისგან
-                                                          // რაღაც რაოდენობა რომ გახდება სხვა მასივში გადაწეროს ეს გაანულოს და მერე ისევ დაიწყოს ათვლა?
-        for (int i = counter_vashlebi; i >= 0; i--)
-        {
-            test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi -1 - i];
-            test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi -1   - i];
-            // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
-        }
-        
-        if (counter_meatedi == 10 && )
+                                                          // რაღაც რაოდენობა რომ გახდება სხვა მასივში გადაწეროს ეს გაანულოს და მერე ისევ დაიწყოს ათვლა?        
+        if (counter_meatedi == 1000000)
         {            
             // ტესტ 
             for (int i = counter_vashlebi; i >= 0; i--)
             {
-                tailPositionsX[i] = tailPositionsX[counter_meatedi -1 - i];
-                tailPositionsY[i] = tailPositionsY[counter_meatedi -1   - i];
-                // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
+                tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
+                tailPositionsY[i] = tailPositionsY[counter_meatedi - i];
+                // printf("tailPositionsX[%d] %d ; tailPositionsY[%d] %d\n", i, tailPositionsX[i], i, tailPositionsY[i]);
             }
-            counter_meatedi = 0;
+            counter_meatedi = counter_vashlebi + 1;
         }
         
         if (counter % ((int)ballRadius*2) == 0) 
-        {                                  
+        {                      
+                    for (int i = counter_vashlebi; i >= 0; i--)
+                    {
+                        test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi - i];
+                        test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi - i];
+                        // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
+                    }    
             counter_meatedi++;
         }
         counter++;
@@ -433,4 +432,5 @@ void DrawGame(void)
 // 598249980 ლუნა
 /* 
 მალაშევსკის ჯოხი - ჰილერის ჯოხი
+ჯოხების საცავი გასაახლებელი მაქვს 
 */
