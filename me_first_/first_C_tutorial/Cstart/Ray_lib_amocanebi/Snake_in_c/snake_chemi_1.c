@@ -219,29 +219,33 @@ void gvelisSiaruliANDpasuse(void)
         }
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
-        tailPositionsX[counter_meatedi] = ballPosition.x; // <<<<<--------------------------------||||-
-        tailPositionsY[counter_meatedi] = ballPosition.y; // ეს მასივები უნდა დავიცვა გადავსებისგან
-                                                          // რაღაც რაოდენობა რომ გახდება სხვა მასივში გადაწეროს ეს გაანულოს და მერე ისევ დაიწყოს ათვლა?        
-        if (counter_meatedi == 1000000)
+        tailPositionsX[counter_meatedi] = ballPosition.x; 
+        tailPositionsY[counter_meatedi] = ballPosition.y; 
+                                                                
+        if (counter_meatedi == 1000000) // <<<<<--------------------------------||||-
         {            
-            // ტესტ 
+            // ტესტ - დინამიური შევსების პირობაა დასამატებელი
             for (int i = counter_vashlebi; i >= 0; i--)
             {
                 tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
                 tailPositionsY[i] = tailPositionsY[counter_meatedi - i];
                 // printf("tailPositionsX[%d] %d ; tailPositionsY[%d] %d\n", i, tailPositionsX[i], i, tailPositionsY[i]);
             }
-            counter_meatedi = counter_vashlebi + 1;
+            counter_meatedi = counter_vashlebi + 1; // ეს გამრავლებული ორზე ან სამზე და ეგ გამრავლება არ უნდა უდრიდეს ლიმიტს
+            // და თუ უდრის ლიმიტს ავარიული გამოთიშვა (გამარჯვებულია ვინც ეგ ქნა რამდენი ხანი უთამაშია)
+            // თავიდან თამაშს რომ დაიწყებ უნდა შეიყვანო სახელი 
+            // და ტექსტ ფაილში წერდეს სიას რეკორდების 10 გრადაციაში ვთქვათ 
+            // თამაშის ბოლოს გაჩვენებდეს მაგ ინფორმაციას - ანუ ფაილიდან ამოწერა და ეკრანზე დაწერა 
         }
         
         if (counter % ((int)ballRadius*2) == 0) 
         {                      
-                    for (int i = counter_vashlebi; i >= 0; i--)
-                    {
-                        test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi - i];
-                        test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi - i];
-                        // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
-                    }    
+            for (int i = counter_vashlebi; i >= 0; i--)
+            {
+                test_snake_modzraoba_x[i] = tailPositionsX[counter_meatedi - i];
+                test_snake_modzraoba_y[i] = tailPositionsY[counter_meatedi - i];
+                // printf("test_snake_modzraoba_x[%d] %d ; test_snake_modzraoba_y[%d] %d\n", i, test_snake_modzraoba_x[i], i, test_snake_modzraoba_y[i]);
+            }    
             counter_meatedi++;
         }
         counter++;
@@ -322,6 +326,8 @@ void VashliRandom(void)
     vashliPosition.y = GetRandomValue(0,screenHeight);
     // <<<<<--------------------------------||||-
     // ვაშლი გველს რომ არ ახტებოდეს ეგრევე თავზე. თუმცა გაუმართლაც შეიძლება მოხდეს? მაგრამ ეგრე შეიძლება კომეტა დაგვეცეს? და ანუ გაგვიმართლა?
+    // გველის მასივში უნდა გადავირბინო და შევამოწმო თუ ეს რენდომი უდრის არ დასვას და თუ არ უდრის დასვას :)
+    // თავზე დაეცეს კუდზე არ ეცემოდეს. 
 }
 
 void tailDraw(void)
