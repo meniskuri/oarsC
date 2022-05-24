@@ -1,7 +1,7 @@
 /*******************************************************************************************
 *
 *   Kapana. Snake C Raylib
-*   კოდი დასალაგებელია. დასავარცხნია ფუნქციებად. და გასალამაზებელი. ჯერ დეველოპმენტ ვერსიაა ვ.1.1
+*   ვ.1.1
 *
 ********************************************************************************************/
 
@@ -231,7 +231,7 @@ void gvelisSiaruliANDpasuse(void)
                                                                 
         if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას - დაბალ ლენგზზე შესამოწმებელია
         {            
-            for (int i = counter_vashlebi; i >= 0; i--) 
+            for (int i = counter_vashlebi; i >= 0; i--) // მასივის გადატვირთვისგან დაცვა 
             {
                 tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
                 tailPositionsY[i] = tailPositionsY[counter_meatedi - i];
@@ -323,15 +323,13 @@ void mimartulebebiKlaviaturidan(void)
 }
 
 void VashliRandom(void)
-{
-    // vashliPosition.x = GetRandomValue(0,screenWidth);
-    // vashliPosition.y = GetRandomValue(0,screenHeight);
-    // აქ ვარ გაჭედილი 
-    
-    for (int i = 0; i <= 100; i++)
+{   
+    for (int i = 0; i <= 100; i++) // ვაშლი არ დაახტება თავზე და კუდზე გველს
     {
-        chek_vashli_pos.x = GetRandomValue(screenWidth/2 - 50,screenWidth/2 + 50);
-        chek_vashli_pos.y = GetRandomValue(screenHeight/2 - 50,screenHeight/2 + 50);
+        kudze_aris = false;
+        kudze_araris = false;
+        chek_vashli_pos.x = GetRandomValue(0,screenWidth);
+        chek_vashli_pos.y = GetRandomValue(0,screenHeight);
         
         for (int k = 0; k <= counter_vashlebi; k++)
         {
@@ -339,20 +337,21 @@ void VashliRandom(void)
             kudi.x = (float)test_snake_modzraoba_x[k];
             kudi.y = (float)test_snake_modzraoba_y[k];
             
-            if (CheckCollisionCircles(kudi, kudi_radius, chek_vashli_pos, vashliRadius) == false) 
+            if (CheckCollisionCircles(kudi, kudi_radius, chek_vashli_pos, vashliRadius) == true) 
             {
-                vashliPosition.x = chek_vashli_pos.x;
-                vashliPosition.y = chek_vashli_pos.y;               
-            }    
-            printf("i da k %d %d\n",i,k);            
+                kudze_aris = true;                
+            } else {
+                kudze_araris = true;
+            }                
+            // printf("i da k %d %d\n",i,k);            
         }
             
-        // if (CheckCollisionCircles(ballPosition, ballRadius, chek_vashli_pos, vashliRadius) == false) 
-        // {
-        //     vashliPosition.x = chek_vashli_pos.x;
-        //     vashliPosition.y = chek_vashli_pos.y;
-        //    printf("romel iteraciaze ar daeca tavze? : %d\n",i);
-        // }        
+        if (kudze_aris == false && kudze_araris == true)
+        {
+            vashliPosition.x = chek_vashli_pos.x;
+            vashliPosition.y = chek_vashli_pos.y; 
+            break;            
+        }         
     }
 }
 
