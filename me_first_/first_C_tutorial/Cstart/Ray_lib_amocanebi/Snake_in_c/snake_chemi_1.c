@@ -55,6 +55,9 @@ float kudi_radius = ballRadius;
 static bool pause = false;
 static bool game_over = false;
 
+static bool kudze_aris = false;
+static bool kudze_araris = false;
+
 // ფერები (კუდის)
 Color colors[10] = { 0 };
 
@@ -226,9 +229,9 @@ void gvelisSiaruliANDpasuse(void)
         tailPositionsX[counter_meatedi] = ballPosition.x; 
         tailPositionsY[counter_meatedi] = ballPosition.y; 
                                                                 
-        if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას
+        if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას - დაბალ ლენგზზე შესამოწმებელია
         {            
-            for (int i = counter_vashlebi; i >= 0; i--)
+            for (int i = counter_vashlebi; i >= 0; i--) 
             {
                 tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
                 tailPositionsY[i] = tailPositionsY[counter_meatedi - i];
@@ -321,9 +324,36 @@ void mimartulebebiKlaviaturidan(void)
 
 void VashliRandom(void)
 {
-    vashliPosition.x = GetRandomValue(0,screenWidth);
-    vashliPosition.y = GetRandomValue(0,screenHeight);
+    // vashliPosition.x = GetRandomValue(0,screenWidth);
+    // vashliPosition.y = GetRandomValue(0,screenHeight);
     // აქ ვარ გაჭედილი 
+    
+    for (int i = 0; i <= 100; i++)
+    {
+        chek_vashli_pos.x = GetRandomValue(screenWidth/2 - 50,screenWidth/2 + 50);
+        chek_vashli_pos.y = GetRandomValue(screenHeight/2 - 50,screenHeight/2 + 50);
+        
+        for (int k = 0; k <= counter_vashlebi; k++)
+        {
+            
+            kudi.x = (float)test_snake_modzraoba_x[k];
+            kudi.y = (float)test_snake_modzraoba_y[k];
+            
+            if (CheckCollisionCircles(kudi, kudi_radius, chek_vashli_pos, vashliRadius) == false) 
+            {
+                vashliPosition.x = chek_vashli_pos.x;
+                vashliPosition.y = chek_vashli_pos.y;               
+            }    
+            printf("i da k %d %d\n",i,k);            
+        }
+            
+        // if (CheckCollisionCircles(ballPosition, ballRadius, chek_vashli_pos, vashliRadius) == false) 
+        // {
+        //     vashliPosition.x = chek_vashli_pos.x;
+        //     vashliPosition.y = chek_vashli_pos.y;
+        //    printf("romel iteraciaze ar daeca tavze? : %d\n",i);
+        // }        
+    }
 }
 
 void tailDraw(void)
@@ -399,7 +429,6 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         // DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         // DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
-        
         // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
         // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
