@@ -5,6 +5,14 @@
 *
 ********************************************************************************************/
 
+/*
+- გადაწერის პროცესი რომ იწერებოდეს "მიმდინარეობს მასივების გადაწერის პროცესი - სანამ მიდის პრცესი იქამდე ეწეროს ეკრანზე ეგ"
+
+- მაუსის ჩამატება 
+
+- მაუსის ისარს გაყვეს სნეიქი
+*/
+
 #include <stdio.h>
 #include <math.h>
 #include "raylib.h"
@@ -270,7 +278,7 @@ void gvelisSiaruliANDpasuse(void)
         tailPositionsY[counter_meatedi] = ballPosition.y; 
                                                                 
         if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას - დაბალ ლენგზზე შესამოწმებელია
-        {            
+        {
             for (int i = counter_vashlebi; i >= 0; i--) // მასივის გადატვირთვისგან დაცვა 
             {
                 tailPositionsX[i] = tailPositionsX[counter_meatedi - i];
@@ -461,6 +469,10 @@ void DrawGame(void)
             for (int i = 0; i > -100; i--)
             {
                 DrawRectangleLines(0 + i, 0 + i, screenWidth - 2*i, screenHeight - 2*i,  colors[GetRandomValue(0, 10)]);
+                if (counter_meatedi == SNAKE_LENGTH)
+                {
+                    DrawRectangleLines(0 + i, 0 + i, screenWidth - 2*i, screenHeight - 2*i, RED);
+                }
             }
             
         EndMode2D();
@@ -469,14 +481,7 @@ void DrawGame(void)
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         // DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
         DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
-        
-        if (counter_meatedi == SNAKE_LENGTH)
-        {
-            // მასივების გადაწერა ხდება 
-            DrawText("masivis gadawera", screenWidth/2 - MeasureText("masivis gadawera", 40)/2, screenHeight/2 - 40, 40, RED);
-        }
-        
-        
+         
         //DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
         DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
         DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);

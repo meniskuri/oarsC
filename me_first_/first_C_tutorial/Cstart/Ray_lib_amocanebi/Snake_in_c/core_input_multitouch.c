@@ -63,18 +63,21 @@ int main(void)
             for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
             {
                 touchPosition = GetTouchPosition(i);                    // Get the touch point
-
+                
+                DrawText(TextFormat("VASHLI VUSHLEBI %d", i), 100, 60, 20, GREEN); 
+                
                 if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
                 {
                     // Draw circle and touch index number
                     DrawCircleV(touchPosition, 34, ORANGE);
-                    DrawText(TextFormat("%d", i), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 40, BLACK);
+                    DrawText(TextFormat("%d", i), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
                 }
             }
 
             // Draw the normal mouse location
             DrawCircleV(ballPosition, 30 + (touchCounter*3.0f), ballColor);
 
+            
             DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, DARKGRAY);
             DrawText("touch the screen at multiple locations to get multiple balls", 10, 30, 20, DARKGRAY);
 
