@@ -1,7 +1,7 @@
 /*******************************************************************************************
 *
 *   Kapana. Snake C Raylib
-*   ვ.1.1
+*   ვ.1.2 (მაუსს უნდა დაყვებოდეს გველი)
 *
 ********************************************************************************************/
 
@@ -11,7 +11,8 @@
 
 // ცვლადები 
 //--------------------------------------------------------------------------------------
-#define SNAKE_LENGTH   1000000
+// #define SNAKE_LENGTH   1000000
+#define SNAKE_LENGTH   20
 
 const  int screenWidth   = 800;
 const  int screenHeight  = 450;
@@ -21,11 +22,6 @@ float iqsi               = 1.0;  // ჯერ არ ვიყენებ ა�
 
 int counter_meatedi      = 0;    // ყოველი მეათე ბიჯი ერთია აქ რაც გააკეთა გველის თავმა 
 int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
-bool marjvenaKlaviatura  = true; // მიმართულებები
-bool marcxenaKlaviatura  = false;
-bool zedaKlaviatura      = false;
-bool qvedaKlaviatura     = false;
-bool diagonali           = false;
 
 // გველი    
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
@@ -49,20 +45,28 @@ float vashliRadius       = 10.0;
 int counter_vashlebi     = 0; 
 
 // კუდის ვექტორის
-Vector2 kudi = {0,0}; 
+Vector2 kudi      = {0,0}; 
 float kudi_radius = ballRadius;
 
-static bool pause = false;
-static bool game_over = false;
+// ბულიანები
+static bool pause        = false;
+static bool game_over    = false;
 
-static bool kudze_aris = false;
+static bool kudze_aris   = false;
 static bool kudze_araris = false;
+
+static bool game_win     = false;
+
+bool marjvenaKlaviatura  = true; // მიმართულებები
+bool marcxenaKlaviatura  = false;
+bool zedaKlaviatura      = false;
+bool qvedaKlaviatura     = false;
+bool diagonali           = false;
 
 // ფერები (კუდის)
 Color colors[10] = { 0 };
 
 // 2დ კამერა ინიციალიზაცია 
-//--------------------------------------------------------------------------------------
 Camera2D camera = { 0 };
     
     
@@ -74,7 +78,6 @@ int main(void)
     camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
-    //----------------------------------------------------------------------------------
     
     // ფერების გენერირება
     //--------------------------------------------------------------------------------------
@@ -199,6 +202,13 @@ void vashlisChama(void)
     {
         counter_vashlebi++;    
         VashliRandom();   
+        if (counter_vashlebi == SNAKE_LENGTH/2)
+        {
+            // თამაში მოიგე 
+            game_win = true;
+            pause = !pause;
+            printf("GAME PAUSED you win \n");  
+        }
     }
 }
 
@@ -224,7 +234,7 @@ void gvelisSiaruliKedlebshi(void)
 
 void gvelisSiaruliANDpasuse(void)
 {
-    if (IsKeyPressed(KEY_Y) && game_over == true) 
+    if ((IsKeyPressed(KEY_Y) && game_over == true) || (IsKeyPressed(KEY_Y) && game_win == true)) 
     {
         tavidanDawyeba();       
     } else if (KEY_N){
@@ -422,6 +432,7 @@ void tavidanDawyeba(void)
     ballPosition.y = (float)screenHeight/2;
     pause = false;
     game_over = false;
+    game_win = false;
 }
 
 void gamortva(void)
@@ -457,10 +468,18 @@ void DrawGame(void)
         DrawText("move the ball with arrow keys", 10, 10, 20, BLUE);
         DrawText(TextFormat("VASHLI VUSHLEBI %i", counter_vashlebi), 100, 30, 20, GREEN); 
         // DrawText(TextFormat("counter (tracker) %i", counter), 100, 50, 20, LIGHTGRAY);
-        // DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
-        // DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
-        // DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
-        // DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
+        DrawText(TextFormat("counter_meatedi (tracker) %i", counter_meatedi), 100, 70, 20, YELLOW);
+        
+        if (counter_meatedi == SNAKE_LENGTH)
+        {
+            // მასივების გადაწერა ხდება 
+            DrawText("masivis gadawera", screenWidth/2 - MeasureText("masivis gadawera", 40)/2, screenHeight/2 - 40, 40, RED);
+        }
+        
+        
+        //DrawText(TextFormat("framesCounter (tracker) %d *60", framesCounter/60), 100, 70, 20, LIGHTGRAY);
+        DrawText(TextFormat("test_snake_modzraoba_x[0] (tracker) %d", test_snake_modzraoba_x[0]), 100, 90, 20, RED);
+        DrawText(TextFormat("test_snake_modzraoba_y[0] (tracker) %d", test_snake_modzraoba_y[0]), 100, 110, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_x[1] (tracker) %d", test_snake_modzraoba_x[1]), 100, 130, 20, RED);
         // DrawText(TextFormat("test_snake_modzraoba_y[1] (tracker) %d", test_snake_modzraoba_y[1]), 100, 150, 20, RED);
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
@@ -470,14 +489,14 @@ void DrawGame(void)
         
         DrawFPS(screenWidth/2, 10); 
         
-        DrawRectangle( 10, 70, 250, 113, Fade(SKYBLUE, 0.5f));
-        DrawRectangleLines( 10, 70, 250, 113, BLUE);
+        // DrawRectangle( 10, 70, 250, 113, Fade(SKYBLUE, 0.5f));
+        // DrawRectangleLines( 10, 70, 250, 113, BLUE);
 
-        DrawText("Free 2d camera controls:", 20, 80, 10, BLACK);
-        DrawText("- Right/Left to move Offset", 40, 100, 10, DARKGRAY);
-        DrawText("- Mouse Wheel to Zoom in-out", 40, 120, 10, DARKGRAY);
-        DrawText("- A / S to Rotate", 40, 140, 10, DARKGRAY);
-        DrawText("- R to reset Zoom and Rotation", 40, 160, 10, DARKGRAY); 
+        // DrawText("Free 2d camera controls:", 20, 80, 10, BLACK);
+        // DrawText("- Right/Left to move Offset", 40, 100, 10, DARKGRAY);
+        // DrawText("- Mouse Wheel to Zoom in-out", 40, 120, 10, DARKGRAY);
+        // DrawText("- A / S to Rotate", 40, 140, 10, DARKGRAY);
+        // DrawText("- R to reset Zoom and Rotation", 40, 160, 10, DARKGRAY); 
 
         // if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
         if (pause && game_over)
@@ -485,12 +504,15 @@ void DrawGame(void)
             DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
             DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
         }
+        else if (pause && game_win) 
+        {
+            DrawText("moige", screenWidth/2 - MeasureText("moige", 40)/2, screenHeight/2 - 40, 40, RED);
+            DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
+        }
         else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); 
         
     EndDrawing();
 }
-
-// 598249980 ლუნა-დედა კალაშნიკოვა
 
 /* 
 თავიდან თამაშს რომ დაიწყებ უნდა შეიყვანო სახელი 
