@@ -35,7 +35,7 @@ int counter              = 0;    // რამდენი ბიჯი გაა
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
 Color ballColor          = DARKBLUE;
 const float ballRadius   = 10.0;
-const float speed        = (int)ballRadius * 2;  
+const float speed        = (int)ballRadius * 2;  // 20 step 
 float speed2             = 0; 
 
 int tailPositionsX[SNAKE_LENGTH];   
@@ -88,7 +88,7 @@ int main(void)
 {   
     // 2დ კამერა ინიციალიზაცია 
     //--------------------------------------------------------------------------------------
-    camera.target = (Vector2){ ballPosition.x + 20.0f, ballPosition.y + 20.0f };
+    camera.target = (Vector2){ ballPosition.x, ballPosition.y}; // აქ რაღაც შევცვალე 
     camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
@@ -135,23 +135,6 @@ int main(void)
             camera.zoom = 1.0f;
             camera.rotation = 0.0f;
         }
-        //----------------------------------------------------------------------------------
-        
-        // mause
-        //----------------------------------------------------------------------------------
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) mausPosition = GetMousePosition();
-        // mausPosition = GetMousePosition();
-        mausColor = BEIGE;
-        
-        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
-        if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
-        if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))  mausColor = DARKBLUE;
-
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))   touchCounter = 10;
-        if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) touchCounter = 10;
-        if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))  touchCounter = 10;
-
-        if (touchCounter > 0) touchCounter--;
         
         // Update
         //----------------------------------------------------------------------------------
@@ -191,8 +174,36 @@ void UpdateGame(void)
     // ვაშლის ჭამა (დასახვეწია)
     vashlisChama();
     
+    // მაუსი 
+    mausiJoistiki();
+     
     // თავის ჭამა (დასახვეწია)
     tavisChama();
+}
+
+void mausiJoistiki(void)
+{
+    // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
+    // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
+    
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        mausPosition = GetMousePosition();
+    }
+    mausColor = BEIGE;
+        
+    DrawText(TextFormat("A = %d", (int)mausPosition.x), 100, 130, 20, RED);
+    DrawText(TextFormat("B = %d", 1), 100, 150, 20, RED);
+    
+    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
+    if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
+    if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))  mausColor = DARKBLUE;
+
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))   touchCounter = 10;
+    if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) touchCounter = 10;
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))  touchCounter = 10;
+
+    if (touchCounter > 0) touchCounter--;
 }
 
 void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა 
@@ -490,7 +501,7 @@ void DrawGame(void)
             }
         }
         // Draw the normal mouse location
-        DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor);      
+        DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor);       
         
         // 2დ ხატვა 
         //--------------------------------------------------------------------------------------  
@@ -501,7 +512,7 @@ void DrawGame(void)
 
             DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
             DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
-            
+            DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
             DrawText("SCREEN AREA", 640, 10, 20, RED);
             
             for (int i = 0; i > -100; i--)
@@ -569,5 +580,5 @@ rey-lib ამოცანების გადახედვა რათა 
 */
 
 /*
-გორგასლის 28 
+გორგასლის 28 - ატომს :)) 
 */
