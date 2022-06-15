@@ -139,16 +139,17 @@ int main(void)
         
         // mause
         //----------------------------------------------------------------------------------
-        mausPosition = GetMousePosition();
-        // mausColor = BEIGE;
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) mausPosition = GetMousePosition();
+        // mausPosition = GetMousePosition();
+        mausColor = BEIGE;
         
-        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) mausColor = MAROON;
+        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
         if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
-        if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) mausColor = DARKBLUE;
+        if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))  mausColor = DARKBLUE;
 
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) touchCounter = 10;
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))   touchCounter = 10;
         if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) touchCounter = 10;
-        if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) touchCounter = 10;
+        if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))  touchCounter = 10;
 
         if (touchCounter > 0) touchCounter--;
         
@@ -484,12 +485,12 @@ void DrawGame(void)
             if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
             {
                 // Draw circle and touch index number
-                DrawCircleV(touchPosition, 34, ORANGE);
+                DrawCircleV(touchPosition, vashliRadius, ORANGE);
                 DrawText(TextFormat(".x %d .y %d", (int)mausPosition.x,(int)mausPosition.y), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
             }
         }
         // Draw the normal mouse location
-        DrawCircleV(mausPosition, 30 + (touchCounter*3.0f), mausColor);      
+        DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor);      
         
         // 2დ ხატვა 
         //--------------------------------------------------------------------------------------  

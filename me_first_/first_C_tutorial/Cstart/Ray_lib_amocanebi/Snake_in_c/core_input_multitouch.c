@@ -69,7 +69,7 @@ int main(void)
                 if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
                 {
                     // Draw circle and touch index number
-                    DrawCircleV(touchPosition, 34, ORANGE);
+                    DrawCircleV(touchPosition, 34, GREEN);
                     DrawText(TextFormat("%d", touchCounter), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
                 }
             }
