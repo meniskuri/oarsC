@@ -552,8 +552,19 @@ void DrawGame(void)
             DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
             
             // სამკუთხედების ხატვის ოთხი პირობა 
-            DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
-            
+            if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
+            {
+                DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
+            } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
+            {
+                DrawRectangleLines(ballPosition.x, ballPosition.y - B, A, B, BLACK);
+            } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
+            {
+                DrawRectangleLines(mausPosition.x, mausPosition.y, A, B, BLACK);
+            } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
+            {
+                DrawRectangleLines(mausPosition.x, mausPosition.y - B, A, B, BLACK);
+            }               
             
         EndMode2D();
         
