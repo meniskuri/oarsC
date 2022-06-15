@@ -84,6 +84,10 @@ int touchCounter      = 0;
 Vector2 touchPosition = { 0 };
 #define MAX_TOUCH_POINTS 10
 
+int A   = 0;
+int B   = 0; 
+float C = 0.0;
+
 int main(void) 
 {   
     // 2დ კამერა ინიციალიზაცია 
@@ -176,7 +180,7 @@ void UpdateGame(void)
     
     // მაუსი 
     mausiJoistiki();
-     
+   
     // თავის ჭამა (დასახვეწია)
     tavisChama();
 }
@@ -189,11 +193,23 @@ void mausiJoistiki(void)
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         mausPosition = GetMousePosition();
+        DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+        
+        A = abs(mausPosition.x - ballPosition.x); // x
+        B = abs(mausPosition.y - ballPosition.y); // y 
+        C = sqrt(pow(A,2) + pow(B,2));      
+        
+        pause = !pause;
+        printf("GAME PAUSED\n");
     }
     mausColor = BEIGE;
+    
+    
+    
         
-    DrawText(TextFormat("A = %d", (int)mausPosition.x), 100, 130, 20, RED);
-    DrawText(TextFormat("B = %d", 1), 100, 150, 20, RED);
+    DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
+    DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
+    DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
     
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
     if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
@@ -212,7 +228,6 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
     
     while(true)
     {
-        //
         printf("enter player name: \n");
         gets(brzaneba);
         
@@ -487,22 +502,6 @@ void DrawGame(void)
 
         ClearBackground(DARKGRAY);
         
-        // მაუსის ხატვა 
-        //--------------------------------------------------------------------------------------
-        // Multitouch
-        for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
-        {
-            touchPosition = GetTouchPosition(i);                    // Get the touch point    
-            if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
-            {
-                // Draw circle and touch index number
-                DrawCircleV(touchPosition, vashliRadius, ORANGE);
-                DrawText(TextFormat(".x %d .y %d", (int)mausPosition.x,(int)mausPosition.y), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
-            }
-        }
-        // Draw the normal mouse location
-        DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor);       
-        
         // 2დ ხატვა 
         //--------------------------------------------------------------------------------------  
         BeginMode2D(camera);
@@ -512,7 +511,7 @@ void DrawGame(void)
 
             DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
             DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
-            DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+            
             DrawText("SCREEN AREA", 640, 10, 20, RED);
             
             for (int i = 0; i > -100; i--)
@@ -523,6 +522,23 @@ void DrawGame(void)
                     DrawRectangleLines(0 + i, 0 + i, screenWidth - 2*i, screenHeight - 2*i, RED);
                 }
             }
+            
+            // მაუსის ხატვა 
+            //--------------------------------------------------------------------------------------
+            // Multitouch
+            for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
+            {
+                touchPosition = GetTouchPosition(i);                    // Get the touch point    
+                if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
+                {
+                    // Draw circle and touch index number
+                    DrawCircleV(touchPosition, vashliRadius, ORANGE);
+                    DrawText(TextFormat(".x %d .y %d", (int)mausPosition.x,(int)mausPosition.y), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
+                }
+            }
+            // Draw the normal mouse location
+            DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor); 
+            DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
             
         EndMode2D();
         
