@@ -24,19 +24,19 @@
 
 const  int screenWidth   = 800;
 const  int screenHeight  = 450;
-int framesCounter        = 0;
+int    framesCounter     = 0;
 const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
-float iqsi               = 1.0;  // ჯერ არ ვიყენებ არაფერში 
+float  iqsi              = 1.0;  // ჯერ არ ვიყენებ არაფერში 
 
 int counter_meatedi      = 0;    // ყოველი მეათე ბიჯი ერთია აქ რაც გააკეთა გველის თავმა 
 int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
 
 // გველი    
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
-Color ballColor          = DARKBLUE;
-const float ballRadius   = 10.0;
-const float speed        = (int)ballRadius * 2;  // 20 step 
-float speed2             = 0; 
+Color   ballColor        = DARKBLUE;
+const   float ballRadius = 10.0;
+const   float speed      = (int)ballRadius * 2;  // 20 step 
+float   speed2           = 0; 
 
 int tailPositionsX[SNAKE_LENGTH];   
 int tailPositionsY[SNAKE_LENGTH];    
@@ -48,13 +48,13 @@ int test_snake_gadawera_y[SNAKE_LENGTH];
 // ვაშლი
 Vector2 vashliPosition   = {0,0}; 
 Vector2 chek_vashli_pos  = {0,0}; 
-Color vashliColor        = RED;
-float vashliRadius       = 10.0;
-int counter_vashlebi     = 0; 
+Color   vashliColor      = RED;
+float   vashliRadius     = 10.0;
+int     counter_vashlebi = 0; 
 
 // კუდის ვექტორის
-Vector2 kudi      = {0,0}; 
-float kudi_radius = ballRadius;
+Vector2 kudi        = {0,0}; 
+float   kudi_radius = ballRadius;
 
 // ბულიანები
 static bool pause        = false;
@@ -79,14 +79,19 @@ Camera2D camera = { 0 };
 
 // მაუსი 
 Vector2 mausPosition  = { -100.0f, -100.0f };
-Color mausColor       = RED;
-int touchCounter      = 0;
+Color   mausColor     = RED;
+int     touchCounter  = 0;
 Vector2 touchPosition = { 0 };
 #define MAX_TOUCH_POINTS 10
 
-int A   = 0;
-int B   = 0; 
-float C = 0.0;
+int   A = 0;   // კათეტები
+int   B = 0;   // კათეტები (გველის თავსა და მაუსით დაგდებულ თარჯეთს შორის მართხა სამკუთხედია)
+float C = 0.0; // მანძილი გველის თავსა და თარჯერთს შორის 
+float a = 0;   // ერთეულოვანი ბიჯები x  
+float b = 0;   // ერთეულოვანი y (mandzili_bijebi რამდენიც იქნება იმდენჯერ მიემატება ეს გველის თავის კოორდინატებს)
+
+float mandzili_bijebi = 0; // რამდენი ბიჯი დაწირდება მიზნამდე მისასვლელად - დავარგვალო ზედა ნიშნულამდე 
+
 
 int main(void) 
 {   
@@ -197,19 +202,24 @@ void mausiJoistiki(void)
         
         A = abs(mausPosition.x - ballPosition.x); // x
         B = abs(mausPosition.y - ballPosition.y); // y 
-        C = sqrt(pow(A,2) + pow(B,2));      
+        C = sqrt(pow(A,2) + pow(B,2));   
+        
+        mandzili_bijebi = (C / (2*ballRadius)); 
+        mandzili_bijebi = ceil(mandzili_bijebi); 
+        
+        a = A / mandzili_bijebi; // x ერთეულოვანი
+        b = B / mandzili_bijebi; // y ერთეულოვანი         
         
         pause = !pause;
-        printf("GAME PAUSED\n");
     }
     mausColor = BEIGE;
-    
-    
-    
-        
+   
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
     DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
     DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
+    DrawText(TextFormat("bijebi (target vs head) = %f", mandzili_bijebi), 100, 190, 20, RED);
+    DrawText(TextFormat("a.x = %f", a), 100, 210, 20, RED);
+    DrawText(TextFormat("b.y = %f", b), 100, 230, 20, RED);
     
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
     if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
@@ -320,6 +330,8 @@ void gvelisSiaruliANDpasuse(void)
             if (zedaKlaviatura     == true) ballPosition.y -= speed2;
             if (qvedaKlaviatura    == true) ballPosition.y += speed2;
         }
+        
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; 
@@ -506,10 +518,9 @@ void DrawGame(void)
         //--------------------------------------------------------------------------------------  
         BeginMode2D(camera);
             
-            DrawCircleV(ballPosition, ballRadius, ballColor); // გველის თავის ხატვა 
-            tailDraw(); // ტანის ხატვა
-
-            DrawCircleV(vashliPosition, vashliRadius, RED); // ვაშლის ხატვა 
+            DrawCircleV(ballPosition, ballRadius, ballColor);                                    // გველის თავის ხატვა 
+            tailDraw();                                                                          // ტანის ხატვა
+            DrawCircleV(vashliPosition, vashliRadius, RED);                                      // ვაშლის ხატვა 
             DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
             
             DrawText("SCREEN AREA", 640, 10, 20, RED);
@@ -539,6 +550,10 @@ void DrawGame(void)
             // Draw the normal mouse location
             DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor); 
             DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+            
+            // სამკუთხედების ხატვის ოთხი პირობა 
+            DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
+            
             
         EndMode2D();
         
