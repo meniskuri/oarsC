@@ -64,13 +64,13 @@ int main(void)
             {
                 touchPosition = GetTouchPosition(i);                    // Get the touch point
                 
-                DrawText(TextFormat("VASHLI VUSHLEBI %d", i), 100, 60, 20, GREEN); 
+                DrawText(TextFormat("VASHLI VUSHLEBI %d", touchCounter), 100, 60, 20, GREEN); 
                 
                 if ((touchPosition.x >= 0) && (touchPosition.y >= 0))   // Make sure point is not (-1,-1) as this means there is no touch for it
                 {
                     // Draw circle and touch index number
                     DrawCircleV(touchPosition, 34, ORANGE);
-                    DrawText(TextFormat("%d", i), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
+                    DrawText(TextFormat("%d", touchCounter), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
                 }
             }
 
