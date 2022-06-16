@@ -371,7 +371,7 @@ void gvelisSiaruliANDpasuse(void)
                 zedaKlaviatura     = false;
                 qvedaKlaviatura    = true;
             } 
-            mtvleli_mausis++;
+            mtvleli_mausis++; // თუ თარჯერთზე მიუსვლელად შეუცვლი თარჯერთს. ირევა mtvleli_mausis და mandzili_bijebi ები. გასასწორებელია :)
             if (mtvleli_mausis == mandzili_bijebi) 
             {
                 mausi_var       = false;
