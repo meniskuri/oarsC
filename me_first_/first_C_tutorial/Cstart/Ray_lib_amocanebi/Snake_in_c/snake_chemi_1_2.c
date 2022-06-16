@@ -19,8 +19,8 @@
 
 // ცვლადები 
 //--------------------------------------------------------------------------------------
-// #define SNAKE_LENGTH   1000000
-#define SNAKE_LENGTH   20
+#define SNAKE_LENGTH   1000000
+// #define SNAKE_LENGTH   20
 
 const  int screenWidth   = 800;
 const  int screenHeight  = 450;
@@ -93,7 +93,6 @@ float b = 0;   // ერთეულოვანი y (mandzili_bijebi რამ
 float mandzili_bijebi = 0; // რამდენი ბიჯი დაწირდება მიზნამდე მისასვლელად - დავარგვალო ზედა ნიშნულამდე 
 static bool mausi_var = false; 
 int mtvleli_mausis    = 0;
-
 
 int main(void) 
 {   
@@ -207,7 +206,8 @@ void mausiJoistiki(void)
         C = sqrt(pow(A,2) + pow(B,2));   
         
         mandzili_bijebi = (C / (2*ballRadius)); 
-        mandzili_bijebi = ceil(mandzili_bijebi); 
+        mandzili_bijebi = ceil(mandzili_bijebi);
+        mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
         
         a = A / mandzili_bijebi; // x ერთეულოვანი
         b = B / mandzili_bijebi; // y ერთეულოვანი         
@@ -341,18 +341,35 @@ void gvelisSiaruliANDpasuse(void)
             {
                 ballPosition.x += a;
                 ballPosition.y += b;
+                 
+                marjvenaKlaviatura = false;
+                marcxenaKlaviatura = false;
+                zedaKlaviatura     = false;
+                qvedaKlaviatura    = true;                
             } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
             {
                 ballPosition.x += a;
                 ballPosition.y -= b;
+                marjvenaKlaviatura = false;
+                marcxenaKlaviatura = false;
+                zedaKlaviatura     = true;
+                qvedaKlaviatura    = false;
             } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
             {
                 ballPosition.x -= a;
                 ballPosition.y -= b;
+                marjvenaKlaviatura = false;
+                marcxenaKlaviatura = false;
+                zedaKlaviatura     = true;
+                qvedaKlaviatura    = false;
             } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
             {
                 ballPosition.x -= a;
                 ballPosition.y += b;
+                marjvenaKlaviatura = false;
+                marcxenaKlaviatura = false;
+                zedaKlaviatura     = false;
+                qvedaKlaviatura    = true;
             } 
             mtvleli_mausis++;
             if (mtvleli_mausis == mandzili_bijebi) 
@@ -400,7 +417,7 @@ void gvelisSiaruliANDpasuse(void)
 
 void mimartulebebiKlaviaturidan(void)
 {
-    if (IsKeyDown(KEY_RIGHT) && marcxenaKlaviatura != true)
+    if ((IsKeyDown(KEY_RIGHT) && marcxenaKlaviatura != true) || (marjvenaKlaviatura == true && marcxenaKlaviatura != true))
     { 
         marjvenaKlaviatura = true;
         marcxenaKlaviatura = false; 
@@ -408,7 +425,7 @@ void mimartulebebiKlaviaturidan(void)
         qvedaKlaviatura    = false;
         diagonali          = false;
     }
-    if (IsKeyDown(KEY_LEFT) && marjvenaKlaviatura != true)
+    if ((IsKeyDown(KEY_LEFT) && marjvenaKlaviatura != true)) // || (marcxenaKlaviatura == true && marjvenaKlaviatura != true)
     {
         marjvenaKlaviatura = false;
         marcxenaKlaviatura = true; 
@@ -590,7 +607,7 @@ void DrawGame(void)
             // სამკუთხედების ხატვის ოთხი პირობა // გველის თარჯერთზე მისვლისასაც ოთხი პირობა იქნება 
             if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
             {
-                DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
+                // DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
                 for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
@@ -598,7 +615,7 @@ void DrawGame(void)
                 }    
             } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
             {
-                DrawRectangleLines(ballPosition.x, ballPosition.y - B, A, B, BLACK);
+                // DrawRectangleLines(ballPosition.x, ballPosition.y - B, A, B, BLACK);
                 for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
@@ -606,7 +623,7 @@ void DrawGame(void)
                 }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
             {
-                DrawRectangleLines(mausPosition.x, mausPosition.y, A, B, BLACK);
+                // DrawRectangleLines(mausPosition.x, mausPosition.y, A, B, BLACK);
                 for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
@@ -614,7 +631,7 @@ void DrawGame(void)
                 }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
             {
-                DrawRectangleLines(mausPosition.x, mausPosition.y - B, A, B, BLACK);
+                // DrawRectangleLines(mausPosition.x, mausPosition.y - B, A, B, BLACK);
                 for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
@@ -637,7 +654,12 @@ void DrawGame(void)
         // DrawText(TextFormat("kudi.x (tracker) %f", kudi.x), 100, 170, 20, RED);
         // DrawText(TextFormat("kudi.y (tracker) %f", kudi.y), 100, 190, 20, RED);   
         // DrawText(TextFormat("speed2 %f", speed2), 100, 220, 20, RED);
-        // DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 220, 20, RED);
+        DrawText(TextFormat("marjvenaKlaviatura %i", marjvenaKlaviatura), 100, 250, 20, BLUE);
+        DrawText(TextFormat("marcxenaKlaviatura %i", marcxenaKlaviatura), 100, 280, 20, BLUE);
+        DrawText(TextFormat("zedaKlaviatura %i", zedaKlaviatura), 100, 310, 20, BLUE);
+        DrawText(TextFormat("qvedaKlaviatura %i", qvedaKlaviatura), 100, 340, 20, BLUE);
+        DrawText(TextFormat("mtvleli_mausis %i", mtvleli_mausis), 100, 370, 20, GREEN);         
+        DrawText(TextFormat("mandzili_bijebi %f", mandzili_bijebi), 100, 400, 20, GREEN); 
         
         DrawFPS(screenWidth/2, 10); 
         
@@ -679,4 +701,5 @@ rey-lib ამოცანების გადახედვა რათა 
 
 /*
 გორგასლის 28 - ატომს :)) 
+spectrum lab 
 */
