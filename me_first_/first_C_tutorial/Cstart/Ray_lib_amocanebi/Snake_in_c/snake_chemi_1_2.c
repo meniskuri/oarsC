@@ -78,7 +78,7 @@ Color colors[10] = { 0 };
 Camera2D camera = { 0 };
 
 // მაუსი 
-Vector2 mausPosition  = { -100.0f, -100.0f };
+Vector2 mausPosition  = { 0,0 };
 Color   mausColor     = RED;
 int     touchCounter  = 0;
 Vector2 touchPosition = { 0 };
@@ -91,6 +91,8 @@ float a = 0;   // ერთეულოვანი ბიჯები x
 float b = 0;   // ერთეულოვანი y (mandzili_bijebi რამდენიც იქნება იმდენჯერ მიემატება ეს გველის თავის კოორდინატებს)
 
 float mandzili_bijebi = 0; // რამდენი ბიჯი დაწირდება მიზნამდე მისასვლელად - დავარგვალო ზედა ნიშნულამდე 
+static bool mausi_var = false; 
+int mtvleli_mausis    = 0;
 
 
 int main(void) 
@@ -209,15 +211,16 @@ void mausiJoistiki(void)
         
         a = A / mandzili_bijebi; // x ერთეულოვანი
         b = B / mandzili_bijebi; // y ერთეულოვანი         
-        
-        pause = !pause;
+       
+        mausi_var = true;
+        // pause = !pause;
     }
     mausColor = BEIGE;
    
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
     DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
     DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
-    DrawText(TextFormat("bijebi (target vs head) = %f", mandzili_bijebi), 100, 190, 20, RED);
+    DrawText(TextFormat("bijebi (target vs head) = %f", mandzili_bijebi - mtvleli_mausis), 100, 190, 20, RED);
     DrawText(TextFormat("a.x = %f", a), 100, 210, 20, RED);
     DrawText(TextFormat("b.y = %f", b), 100, 230, 20, RED);
     
@@ -314,7 +317,7 @@ void gvelisSiaruliANDpasuse(void)
     }
     if (!pause) // || (game_over == false)
     {   
-        if ((framesCounter % ((int)ballRadius*2) == 0) && (diagonali == false)) 
+        if ((framesCounter % ((int)ballRadius*2) == 0) && (diagonali == false) && (mausi_var == false)) 
         {
             if (marjvenaKlaviatura == true) ballPosition.x += speed; 
             if (marcxenaKlaviatura == true) ballPosition.x -= speed;
@@ -331,7 +334,40 @@ void gvelisSiaruliANDpasuse(void)
             if (qvedaKlaviatura    == true) ballPosition.y += speed2;
         }
         
-        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        if ((framesCounter % ((int)ballRadius*2) == 0) && (mausi_var == true))
+        {
+            // მაუსით მოძრაობა
+            if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
+            {
+                ballPosition.x += a;
+                ballPosition.y += b;
+            } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
+            {
+                ballPosition.x += a;
+                ballPosition.y -= b;
+            } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
+            {
+                ballPosition.x -= a;
+                ballPosition.y -= b;
+            } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
+            {
+                ballPosition.x -= a;
+                ballPosition.y += b;
+            } 
+            mtvleli_mausis++;
+            if (mtvleli_mausis == mandzili_bijebi) 
+            {
+                mausi_var       = false;
+                mtvleli_mausis  = 0;
+                mandzili_bijebi = 0;
+                A = 0;
+                B = 0;
+                C = 0;
+                a = 0;
+                b = 0;
+            }
+            
+        }
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; 
