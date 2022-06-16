@@ -337,7 +337,7 @@ void gvelisSiaruliANDpasuse(void)
         tailPositionsX[counter_meatedi] = ballPosition.x; 
         tailPositionsY[counter_meatedi] = ballPosition.y; 
                                                                 
-        if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას - დაბალ ლენგზზე შესამოწმებელია
+        if (counter_meatedi == SNAKE_LENGTH) // მეხსიერებაში დაათრევს ყველა პოზიციას - დაბალ ლენგზზე შესამოწმებელია - შემოწმებულია (კარგია)
         {
             for (int i = counter_vashlebi; i >= 0; i--) // მასივის გადატვირთვისგან დაცვა 
             {
@@ -551,19 +551,39 @@ void DrawGame(void)
             DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor); 
             DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
             
-            // სამკუთხედების ხატვის ოთხი პირობა 
+            // სამკუთხედების ხატვის ოთხი პირობა // გველის თარჯერთზე მისვლისასაც ოთხი პირობა იქნება 
             if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
             {
                 DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
+                for (int i = 0; i < mandzili_bijebi; i++)
+                {
+                    // targetamde mandzili - burtebad dalagebuli
+                    DrawCircle(ballPosition.x + i*a, ballPosition.y + i*b, vashliRadius/3, ORANGE);
+                }    
             } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
             {
                 DrawRectangleLines(ballPosition.x, ballPosition.y - B, A, B, BLACK);
+                for (int i = 0; i < mandzili_bijebi; i++)
+                {
+                    // targetamde mandzili - burtebad dalagebuli
+                    DrawCircle(ballPosition.x + i*a, ballPosition.y - i*b, vashliRadius/3, ORANGE);
+                }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
             {
                 DrawRectangleLines(mausPosition.x, mausPosition.y, A, B, BLACK);
+                for (int i = 0; i < mandzili_bijebi; i++)
+                {
+                    // targetamde mandzili - burtebad dalagebuli
+                    DrawCircle(ballPosition.x - i*a, ballPosition.y - i*b, vashliRadius/3, ORANGE);
+                }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
             {
                 DrawRectangleLines(mausPosition.x, mausPosition.y - B, A, B, BLACK);
+                for (int i = 0; i < mandzili_bijebi; i++)
+                {
+                    // targetamde mandzili - burtebad dalagebuli
+                    DrawCircle(ballPosition.x - i*a, ballPosition.y + i*b, vashliRadius/3, ORANGE);
+                }
             }               
             
         EndMode2D();
