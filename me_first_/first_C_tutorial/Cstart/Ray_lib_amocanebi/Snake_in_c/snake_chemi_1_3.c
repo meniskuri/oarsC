@@ -1,7 +1,7 @@
 /*******************************************************************************************
 *
 *   Kapana. Snake C Raylib
-*   ვ.1.2 (მაუსის კლიკებს დაყვება გველი)
+*   ვ.1.3 (მაუსის მოძრაობას უნდა დაყვებოდეს გველი)
 *
 ********************************************************************************************/
 
@@ -188,33 +188,29 @@ void mausiJoistiki(void)
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
     // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
     
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        mtvleli_mausis  = 0;
-        mandzili_bijebi = 0;
-        A = 0;
-        B = 0;
-        C = 0;
-        a = 0;
-        b = 0;
+    mtvleli_mausis  = 0;
+    mandzili_bijebi = 0;
+    A = 0;
+    B = 0;
+    C = 0;
+    a = 0;
+    b = 0;
         
-        mausPosition = GetMousePosition();
-        DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+    mausPosition = GetMousePosition();
+    DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
         
-        A = abs(mausPosition.x - ballPosition.x); // x
-        B = abs(mausPosition.y - ballPosition.y); // y 
-        C = sqrt(pow(A,2) + pow(B,2));   
+    A = abs(mausPosition.x - ballPosition.x); // x
+    B = abs(mausPosition.y - ballPosition.y); // y 
+    C = sqrt(pow(A,2) + pow(B,2));   
         
-        mandzili_bijebi = (C / (2*ballRadius)); 
-        mandzili_bijebi = ceil(mandzili_bijebi);
-        mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
+    mandzili_bijebi = (C / (2*ballRadius)); 
+    mandzili_bijebi = ceil(mandzili_bijebi);
+    mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
         
-        a = A / mandzili_bijebi; // x ერთეულოვანი
-        b = B / mandzili_bijebi; // y ერთეულოვანი         
+    a = A / mandzili_bijebi; // x ერთეულოვანი
+    b = B / mandzili_bijebi; // y ერთეულოვანი         
        
-        mausi_var = true;
-        // pause = !pause;
-    }
+    mausi_var = true;
     mausColor = BEIGE;
    
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
