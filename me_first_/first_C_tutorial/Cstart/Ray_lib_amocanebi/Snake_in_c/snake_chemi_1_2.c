@@ -198,6 +198,14 @@ void mausiJoistiki(void)
     
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
+        mtvleli_mausis  = 0;
+        mandzili_bijebi = 0;
+        A = 0;
+        B = 0;
+        C = 0;
+        a = 0;
+        b = 0;
+        
         mausPosition = GetMousePosition();
         DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
         
@@ -341,7 +349,6 @@ void gvelisSiaruliANDpasuse(void)
             {
                 ballPosition.x += a;
                 ballPosition.y += b;
-                 
                 marjvenaKlaviatura = false;
                 marcxenaKlaviatura = false;
                 zedaKlaviatura     = false;
@@ -372,7 +379,7 @@ void gvelisSiaruliANDpasuse(void)
                 qvedaKlaviatura    = true;
             } 
             mtvleli_mausis++; // თუ თარჯერთზე მიუსვლელად შეუცვლი თარჯერთს. ირევა mtvleli_mausis და mandzili_bijebi ები. გასასწორებელია :)
-            if (mtvleli_mausis == mandzili_bijebi) 
+            if ((mtvleli_mausis == mandzili_bijebi) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
             {
                 mausi_var       = false;
                 mtvleli_mausis  = 0;
@@ -383,7 +390,6 @@ void gvelisSiaruliANDpasuse(void)
                 a = 0;
                 b = 0;
             }
-            
         }
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
@@ -494,7 +500,6 @@ void VashliRandom(void)
         
         for (int k = 0; k <= counter_vashlebi; k++)
         {
-            
             kudi.x = (float)test_snake_modzraoba_x[k];
             kudi.y = (float)test_snake_modzraoba_y[k];
             
