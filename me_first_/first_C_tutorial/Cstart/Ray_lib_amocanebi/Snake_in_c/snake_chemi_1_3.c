@@ -367,7 +367,12 @@ void gvelisSiaruliANDpasuse(void)
                 qvedaKlaviatura    = true;
             } 
             mtvleli_mausis++; 
-            if ((mtvleli_mausis == mandzili_bijebi) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+            
+            // მაუსის პოზიცია და თავის პოზიცია თუ ერთმანეთს უდრის 
+            // მაშინ შევიდეს ამ იფ ში. 
+            // შეიძლება მაუსის მარჯვენა და შუა კნოპკაზე დავაყენო კლავიატურასა და მაუსს შორის გადართვა 
+            
+            if (mtvleli_mausis == mandzili_bijebi) // აქ ჯერ არ შემოდის - პრობლემა 
             {
                 mausi_var       = false;
                 mtvleli_mausis  = 0;
@@ -379,6 +384,15 @@ void gvelisSiaruliANDpasuse(void)
                 b = 0;
             }
         }
+        
+        if ((ballPosition.x == mausPosition.x) && (ballPosition.y == mausPosition.y))
+        {
+            //
+            printf("GAME PAUSED rato?\n"); 
+            printf("ballPosition.x %f, mausPosition.x %f\n", ballPosition.x, mausPosition.x);
+            pause = !pause;
+        }
+            
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; 
@@ -652,7 +666,8 @@ void DrawGame(void)
         DrawText(TextFormat("zedaKlaviatura %i", zedaKlaviatura), 100, 310, 20, BLUE);
         DrawText(TextFormat("qvedaKlaviatura %i", qvedaKlaviatura), 100, 340, 20, BLUE);
         DrawText(TextFormat("mtvleli_mausis %i", mtvleli_mausis), 100, 370, 20, GREEN);         
-        DrawText(TextFormat("mandzili_bijebi %f", mandzili_bijebi), 100, 400, 20, GREEN); 
+        DrawText(TextFormat("mandzili_bijebi %f", mandzili_bijebi), 100, 400, 20, GREEN);
+        DrawText(TextFormat("mausi_var %d", mausi_var), 100, 420, 20, RED);       
         
         DrawFPS(screenWidth/2, 10); 
         
