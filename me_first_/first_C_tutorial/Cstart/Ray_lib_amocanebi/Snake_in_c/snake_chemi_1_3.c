@@ -188,7 +188,7 @@ void mausiJoistiki(void)
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
     // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
     
-    mtvleli_mausis  = 0;
+    // mtvleli_mausis  = 0; // ეს აქ რატოა? 
     mandzili_bijebi = 0;
     A = 0;
     B = 0;
@@ -210,7 +210,7 @@ void mausiJoistiki(void)
     a = A / mandzili_bijebi; // x ერთეულოვანი
     b = B / mandzili_bijebi; // y ერთეულოვანი         
        
-    mausi_var = true;
+    mausi_var = true; // <<<<<<<<<<<<<<<<<<<<<< ტესტ - უნდა შევცვალო 
     mausColor = BEIGE;
    
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
@@ -332,7 +332,7 @@ void gvelisSiaruliANDpasuse(void)
         
         if ((framesCounter % ((int)ballRadius*2) == 0) && (mausi_var == true))
         {
-            // მაუსით მოძრაობა
+            // მაუსით მოძრაობა // აქ უნდა იყოს პრობლემა // კნოპკაზე გავაკეთო რომ კლიკებით იაროს. გავიხსენო განსხვავება. მოწიე დამოდი
             if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
             {
                 ballPosition.x += a;
@@ -366,7 +366,7 @@ void gvelisSiaruliANDpasuse(void)
                 zedaKlaviatura     = false;
                 qvedaKlaviatura    = true;
             } 
-            mtvleli_mausis++; 
+            mtvleli_mausis++; // <<<<<<<<<<<< ეს რას შვება?
             
             // მაუსის პოზიცია და თავის პოზიცია თუ ერთმანეთს უდრის 
             // მაშინ შევიდეს ამ იფ ში. 
@@ -384,7 +384,7 @@ void gvelisSiaruliANDpasuse(void)
                 b = 0;
             }
         }
-        
+        /*
         if ((ballPosition.x == mausPosition.x) && (ballPosition.y == mausPosition.y))
         {
             //
@@ -392,7 +392,7 @@ void gvelisSiaruliANDpasuse(void)
             printf("ballPosition.x %f, mausPosition.x %f\n", ballPosition.x, mausPosition.x);
             pause = !pause;
         }
-            
+        */   
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; 
