@@ -71,9 +71,7 @@ Camera2D camera = { 0 };
 
 // მაუსი 
 Vector2 mausPosition  = { 0,0 };
-Vector2 mausPosition2  = { 0,0 };
-
-Color   mausColor     = GREEN;
+Color   mausColor     = RED;
 int     touchCounter  = 0;
 Vector2 touchPosition = { 0 };
 #define MAX_TOUCH_POINTS 10
@@ -87,7 +85,6 @@ float b = 0;   // ერთეულოვანი y (mandzili_bijebi რამ
 float mandzili_bijebi = 0; // რამდენი ბიჯი დაწირდება მიზნამდე მისასვლელად - დავარგვალო ზედა ნიშნულამდე 
 static bool mausi_var = false; 
 int mtvleli_mausis    = 0;
-static bool kargi     = true;
 
 int main(void) 
 {   
@@ -190,12 +187,9 @@ void mausiJoistiki(void)
 {
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
     // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
-    // mausPosition = GetMousePosition();
-    // if ((framesCounter % 50 == 0) && (mausPosition.x - ballPosition.x != 0)) // <<<< სხვა პირობა 
-    // კიდევ ერთი პირობა ვცადოთ (ბულიანი კარგი)
-    if (kargi == true)
+    
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
-        mausi_var = true;
         mtvleli_mausis  = 0;
         mandzili_bijebi = 0;
         A = 0;
@@ -217,10 +211,11 @@ void mausiJoistiki(void)
         
         a = A / mandzili_bijebi; // x ერთეულოვანი
         b = B / mandzili_bijebi; // y ერთეულოვანი         
-      
+       
+        mausi_var = true;
         // pause = !pause;
     }
-    mausColor = GREEN;
+    mausColor = BEIGE;
    
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
     DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
@@ -386,9 +381,7 @@ void gvelisSiaruliANDpasuse(void)
                 C = 0;
                 a = 0;
                 b = 0;
-                kargi = false; 
             }
-            // ლავიატურის რეჟიმზე გადართვა როცა მაუსი მივა პოზიციაში სანამ ნულზე გაყოფს . პრობლემის ამოხსნა
         }
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
@@ -575,10 +568,10 @@ void DrawGame(void)
         //--------------------------------------------------------------------------------------  
         BeginMode2D(camera);
             
-            DrawCircleV(ballPosition, (ballRadius), ballColor);                                    // გველის თავის ხატვა 
+            DrawCircleV(ballPosition, ballRadius, ballColor);                                    // გველის თავის ხატვა 
             tailDraw();                                                                          // ტანის ხატვა
             DrawCircleV(vashliPosition, vashliRadius, RED);                                      // ვაშლის ხატვა 
-            // DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
+            DrawLine(ballPosition.x, ballPosition.y, vashliPosition.x, vashliPosition.y, BLACK); // ვაშლისა და თავის ცენტრებს შორის ჯოხი
             
             DrawText("SCREEN AREA", 640, 10, 20, RED);
             
@@ -594,7 +587,6 @@ void DrawGame(void)
             // მაუსის ხატვა 
             //--------------------------------------------------------------------------------------
             // Multitouch
-            /*
             for (int i = 0; i < MAX_TOUCH_POINTS; ++i)
             {
                 touchPosition = GetTouchPosition(i);                    // Get the touch point    
@@ -605,17 +597,15 @@ void DrawGame(void)
                     DrawText(TextFormat(".x %d .y %d", (int)mausPosition.x,(int)mausPosition.y), (int)touchPosition.x - 10, (int)touchPosition.y - 70, 20, RED);
                 }
             }
-            */
             // Draw the normal mouse location
-            mausPosition2 = GetMousePosition();
-            DrawCircleV(mausPosition2, vashliRadius + (touchCounter*3.0f), mausColor); 
-            // DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+            DrawCircleV(mausPosition, vashliRadius + (touchCounter*3.0f), mausColor); 
+            DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
             
             // სამკუთხედების ხატვის ოთხი პირობა // გველის თარჯერთზე მისვლისასაც ოთხი პირობა იქნება 
             if (ballPosition.x < mausPosition.x && ballPosition.y < mausPosition.y) // 1
             {
                 // DrawRectangleLines(ballPosition.x, ballPosition.y, A, B, BLACK);
-                for (int i = 0; i < (mandzili_bijebi - mtvleli_mausis); i++)
+                for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
                     DrawCircle(ballPosition.x + i*a, ballPosition.y + i*b, vashliRadius/3, ORANGE);
@@ -623,26 +613,26 @@ void DrawGame(void)
             } else if (ballPosition.x < mausPosition.x && ballPosition.y > mausPosition.y) // 2
             {
                 // DrawRectangleLines(ballPosition.x, ballPosition.y - B, A, B, BLACK);
-                for (int i = 0; i < (mandzili_bijebi - mtvleli_mausis); i++)
+                for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
-                    DrawCircle(ballPosition.x + i*a, ballPosition.y - i*b, vashliRadius/3, RED);
+                    DrawCircle(ballPosition.x + i*a, ballPosition.y - i*b, vashliRadius/3, ORANGE);
                 }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y > mausPosition.y) // 3
             {
                 // DrawRectangleLines(mausPosition.x, mausPosition.y, A, B, BLACK);
-                for (int i = 0; i < (mandzili_bijebi - mtvleli_mausis); i++)
+                for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
-                    DrawCircle(ballPosition.x - i*a, ballPosition.y - i*b, vashliRadius/3, GREEN);
+                    DrawCircle(ballPosition.x - i*a, ballPosition.y - i*b, vashliRadius/3, ORANGE);
                 }
             } else if (ballPosition.x > mausPosition.x && ballPosition.y < mausPosition.y) // 4
             {
                 // DrawRectangleLines(mausPosition.x, mausPosition.y - B, A, B, BLACK);
-                for (int i = 0; i < (mandzili_bijebi - mtvleli_mausis); i++)
+                for (int i = 0; i < mandzili_bijebi; i++)
                 {
                     // targetamde mandzili - burtebad dalagebuli
-                    DrawCircle(ballPosition.x - i*a, ballPosition.y + i*b, vashliRadius/3, BLACK);
+                    DrawCircle(ballPosition.x - i*a, ballPosition.y + i*b, vashliRadius/3, ORANGE);
                 }
             }               
             
@@ -667,7 +657,6 @@ void DrawGame(void)
         DrawText(TextFormat("qvedaKlaviatura %i", qvedaKlaviatura), 100, 340, 20, BLUE);
         DrawText(TextFormat("mtvleli_mausis %i", mtvleli_mausis), 100, 370, 20, GREEN);         
         DrawText(TextFormat("mandzili_bijebi %f", mandzili_bijebi), 100, 400, 20, GREEN); 
-        DrawText(TextFormat("mausi_var %d", mausi_var), 100, 420, 20, RED);
         
         DrawFPS(screenWidth/2, 10); 
         
