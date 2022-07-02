@@ -5,6 +5,7 @@
 *
 ********************************************************************************************/
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include "raylib.h"
@@ -70,7 +71,7 @@ Color colors[10] = { 0 };
 Camera2D camera = { 0 };
 
 // მაუსი 
-Vector2 mausPosition  = { 0,0 };
+Vector2 mausPosition  = { 100,100 };
 Color   mausColor     = RED;
 int     touchCounter  = 0;
 Vector2 touchPosition = { 0 };
@@ -187,11 +188,11 @@ void mausiJoistiki(void)
 {
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
     // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
-    
+
     // mtvleli_mausis  = 0; // ეს აქ რატოა? 
     mandzili_bijebi = 0;
-    A = 0;
-    B = 0;
+    A = 1;
+    B = 1;
     C = 0;
     a = 0;
     b = 0;
@@ -201,18 +202,35 @@ void mausiJoistiki(void)
         
     A = abs(mausPosition.x - ballPosition.x); // x
     B = abs(mausPosition.y - ballPosition.y); // y 
-    C = sqrt(pow(A,2) + pow(B,2));   
-        
-    mandzili_bijebi = (C / (2*ballRadius)); 
+    C = sqrt(pow(A,2) + pow(B,2)); 
+    C = 0;
+    if (C = 0)
+    {
+        mandzili_bijebi = 0;
+    } else {
+        // pause =! pause;
+        mandzili_bijebi = (C / (2*ballRadius));
+    }
+   
+    // სენსორი რამე გაასწორებს 
+    // mandzili_bijebi = (C / (2*ballRadius));
     mandzili_bijebi = ceil(mandzili_bijebi);
-    mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
-        
+    mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :) 
     a = A / mandzili_bijebi; // x ერთეულოვანი
-    b = B / mandzili_bijebi; // y ერთეულოვანი         
+    b = B / mandzili_bijebi; // y ერთეულოვანი           
+          
+        
+    // mandzili_bijebi = (C / (2*ballRadius)); 
+    // mandzili_bijebi = ceil(mandzili_bijebi);
+    // mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
+        
+    // delay(1000); // არ მუშაობს 
+    // a = A / mandzili_bijebi; // x ერთეულოვანი
+    // b = B / mandzili_bijebi; // y ერთეულოვანი         
        
     mausi_var = true; // <<<<<<<<<<<<<<<<<<<<<< ტესტ - უნდა შევცვალო 
     mausColor = BEIGE;
-   
+    
     DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
     DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
     DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
@@ -385,14 +403,14 @@ void gvelisSiaruliANDpasuse(void)
             }
         }
         /*
-        if ((ballPosition.x == mausPosition.x) && (ballPosition.y == mausPosition.y))
+        if ((ballPosition.x == mausPosition.x) && (ballPosition.y == mausPosition.y) && mtvleli_mausis != 0)
         {
-            //
+            // test
             printf("GAME PAUSED rato?\n"); 
             printf("ballPosition.x %f, mausPosition.x %f\n", ballPosition.x, mausPosition.x);
             pause = !pause;
         }
-        */   
+        */
         
         // როცა დადის. ყველა პოზიციას იმახსოვრებს tailPositionsX და tailPositionsY მასივებშi
         tailPositionsX[counter_meatedi] = ballPosition.x; 
