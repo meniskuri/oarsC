@@ -26,3 +26,10 @@ wand.author:kapana
 wand.owner:shoshi
 wand.soul:GoldenSunDragon
 wand.wand_id:3
+////////////////////// Wed Aug 02 18:21:20 2023
+
+wand.title:txili_3/4_white
+wand.author:Kapana
+wand.owner:Kapana_White_Wizard_istari
+wand.soul:eagle
+wand.wand_id:4
