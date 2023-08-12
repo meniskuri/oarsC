@@ -18,16 +18,30 @@ int main()
 {
   printf("drois borbali %d\n",prizma);
   printf("gamarjoba samyaro\n");
-  printf("სევდა --> სინათლის სხივი --> სიყვარული ---> \n");
+  printf("სევდა --> სინათლის სხივი --> სიყვარული ---> infinit 1.8T WW3 - new world (mission)\n");
   for (int i = 0; i <= kutxe; i++)
   {
     //unda davxato samkutxedi
     if (i == 0)
     {
-      printf("   /\\\n");
-      printf("  /  \\\n");
-      printf(" /    \\\n");
-      printf("/________\\n");
+      printf("            /\\\n");
+      printf("           /  \\\n");
+      printf("სევდა --> /void\\ სიყვარული ---> \n");
+      printf("         /______\\\n");
+      prizma++;
+      printf("drois borbali %d\n",prizma);
+    }
+
+    if (i == 1)
+    {
+      printf("          \\\--------/\n");
+      printf("           \\\ time /\n");
+      printf("გააკეთე <-  \\\ 18T/ <--- ტკივილი\n");
+      printf("   1  ქართა  \\\  /\n");
+      printf("     2  ველო  \\\/\n");
+
+      prizma++;
+      printf("drois borbali %d\n",prizma);
     }
 
   }
@@ -47,4 +61,7 @@ int main()
 
 10 დღიანი - სულების სამყაროში გადასვლით -
 სადღაც ვარ გზაში. მივხდები როცა ვიქნები ცაში.
+
+ველოს გარემონტება + მანქანის გარემონტება (მისია)
+:) დებილო ბეეე )))) მმმმ 
 */

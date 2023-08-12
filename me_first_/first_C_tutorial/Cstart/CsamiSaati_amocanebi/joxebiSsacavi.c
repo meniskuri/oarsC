@@ -58,7 +58,7 @@ int parametrebi_Brzanebis(char* brzaneba)
   len = strlen(brzaneba);
   // printf("len = %d \n",len);
 
-  for (int i = 0; i <= len; i++)
+    for (int i = 0; i <= len; i++)
   {
     // printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
     // printf("i = %d \n", i);
