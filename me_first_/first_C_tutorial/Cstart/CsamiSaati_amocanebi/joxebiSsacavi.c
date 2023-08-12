@@ -195,7 +195,7 @@ int main()
 {
   char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
   char file_name[]  = {"tavi1.txt"};   /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
-  int counter_while = 0;               /* ვაილ ციკლი რამდენჯერ გაეშვა */
+  int counter_while = 0;               /* ვაილ ციკლი რამდენჯერ გა1ეშვა */
   int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა */
   int result;                          /* მელონ ის შესამოწმებლადს result = strcmp(str1, str2);*/
   char str1[] = {"MELON"};
