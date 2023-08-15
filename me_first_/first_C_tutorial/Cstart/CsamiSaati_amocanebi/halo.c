@@ -274,6 +274,7 @@ int main()
     }
 
   }
+  // stucts 
 
   return 0;
 }
