@@ -146,6 +146,9 @@ int main(void)
         //----------------------------------------------------------------------------------
         DrawGame();
     }
+    // აქ ვარ <------------------------------------გაგჯაგაოიგდჯადოფჯაფია----====???////~~~~~აქ ვარ 
+    // failis chawera aq xom ar jobia? 
+     sheyvanaSaxelis();
     
     // De-Initialization
     //--------------------------------------------------------------------------------------
@@ -237,46 +240,29 @@ void mausiJoistiki(void)
 
 void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა 
 {
-
-    // 
     char brzaneba[51]; 
     char file_name[]  = {"tavi2.txt"};   // ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს 
+
+
+    // ვაილიდან გამოსვლა 
+    printf("=================== \n");
+    printf("vail cikli gagrdzeldes?? (y or n) \n");
+    gets(brzaneba);
+    
 
     // ფაილის შექმნა და ჩაწერა 
     FILE *chemiFailisPointeri;
     chemiFailisPointeri = fopen(file_name,"a");
-    if (counter)
+
     fprintf(chemiFailisPointeri,"%s","////////////////////// \n");
     fprintf(chemiFailisPointeri,"%d",counter_meatedi);
     fprintf(chemiFailisPointeri,"%d",counter);
+    fprintf(chemiFailisPointeri,"%s",brzaneba);
     fprintf(chemiFailisPointeri,"%s","////////////////////// \n");
+    
 
     fclose(chemiFailisPointeri);
-        
-
-    
-    /*
-    while(true)
-    {
-        printf("enter player name: \n");
-        gets(brzaneba);
-        
-        // ვაილიდან გამოსვლა 
-        printf("=================== \n");
-        printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
-        gets(brzaneba);
-
-        if (brzaneba[0] == 110)
-        {
-            printf("break \n");
-            break;
-        } else
-        {
-            printf("ვაილი გრძელდება \n");
-            // continue;
-        }
-    } */ 
-    
+            
 }
 
 void vashlisChama(void)
@@ -701,10 +687,11 @@ void DrawGame(void)
         }
         else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); 
         
+        /////////////////////////////////// aq var ////////////////////////////////// 
         if (game_over)
         {
             // tu tamashi wavage mashin shemyavs es (fails vxsni da vwer - rac minda imas. yalibi damchirdeba shesayvani saxelebis da ramdenjer aris programa gashvebuli)
-            sheyvanaSaxelis();
+            // sheyvanaSaxelis();
         }
         
     EndDrawing();
