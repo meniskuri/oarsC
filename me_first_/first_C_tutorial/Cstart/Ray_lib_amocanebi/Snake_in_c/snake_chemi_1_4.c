@@ -1,8 +1,8 @@
 /*******************************************************************************************
 *
 *   Kapana. Snake C Raylib
-*   ვ.1.2 (მაუსის კლიკებს დაყვება გველი)
-*
+*   ვ.1.4 (მაუსის კლიკებს დაყვება გველი)
+*   (Tavidan viwyeb)                                    
 ********************************************************************************************/
 
 #include <stdio.h>
@@ -14,8 +14,8 @@
 #define SNAKE_LENGTH   1000000
 // #define SNAKE_LENGTH   20
 
-const  int screenWidth   = 800;
-const  int screenHeight  = 450;
+const  int screenWidth   = 1200;
+const  int screenHeight  = 560;
 int    framesCounter     = 0;
 const  int fps_chemi     = 60;   // Set our game to run at 'fps_chemi' frames-per-second  
 float  iqsi              = 1.0;  // ჯერ არ ვიყენებ არაფერში 
@@ -237,14 +237,31 @@ void mausiJoistiki(void)
 
 void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა 
 {
-    char brzaneba[51];  
+
+    // 
+    char brzaneba[51]; 
+    char file_name[]  = {"tavi2.txt"};   // ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს 
+
+    // ფაილის შექმნა და ჩაწერა 
+    FILE *chemiFailisPointeri;
+    chemiFailisPointeri = fopen(file_name,"a");
+    if (counter)
+    fprintf(chemiFailisPointeri,"%s","////////////////////// \n");
+    fprintf(chemiFailisPointeri,"%d",counter_meatedi);
+    fprintf(chemiFailisPointeri,"%d",counter);
+    fprintf(chemiFailisPointeri,"%s","////////////////////// \n");
+
+    fclose(chemiFailisPointeri);
+        
+
     
+    /*
     while(true)
     {
         printf("enter player name: \n");
         gets(brzaneba);
         
-        /* ვაილიდან გამოსვლა */
+        // ვაილიდან გამოსვლა 
         printf("=================== \n");
         printf("ვაილ ციკლი გაგრძელდეს? (y or n) \n");
         gets(brzaneba);
@@ -258,7 +275,8 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
             printf("ვაილი გრძელდება \n");
             // continue;
         }
-    }
+    } */ 
+    
 }
 
 void vashlisChama(void)
@@ -271,7 +289,7 @@ void vashlisChama(void)
     {
         counter_vashlebi++;    
         VashliRandom();   
-        if (counter_vashlebi == SNAKE_LENGTH/2)
+        if (counter_vashlebi == SNAKE_LENGTH/2)// ver mivxdi??? )) << --- = shevamowmo es!  
         {
             // თამაში მოიგე 
             game_win = true;
@@ -556,6 +574,7 @@ void tavidanDawyeba(void)
 void gamortva(void)
 {
     SetExitKey(KEY_N);
+    
 }
 
 void DrawGame(void)
@@ -682,6 +701,12 @@ void DrawGame(void)
         }
         else if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY); 
         
+        if (game_over)
+        {
+            // tu tamashi wavage mashin shemyavs es (fails vxsni da vwer - rac minda imas. yalibi damchirdeba shesayvani saxelebis da ramdenjer aris programa gashvebuli)
+            sheyvanaSaxelis();
+        }
+        
     EndDrawing();
 }
 
@@ -698,4 +723,10 @@ erey-lib ამოცანების გადახედვა რათა
 /*
 გორგასლის 28 - ატომს :)) 
 spectrum lab 
+*/
+
+/*
+1 - failis gaketeba - rekordebi sia; 
+2 - tavi = dan dawyebisas bagis modzebna;
+3 - klaviaturidan martivad iklav tavs - ukan tu wamosvlaze acher - shemobrunebis algoritmi unda iyos
 */

@@ -33,3 +33,17 @@ wand.author:Kapana
 wand.owner:Kapana_White_Wizard_istari
 wand.soul:eagle
 wand.wand_id:4
+////////////////////// Tue Oct 03 13:19:56 2023
+
+wand.title:Kapantor
+wand.author:Kapana
+wand.owner:Kapana
+wand.soul:Dementor
+wand.wand_id:5
+////////////////////// Tue Oct 03 13:20:36 2023
+
+wand.title:Kapanatortetri
+wand.author:Kapana
+wand.owner:Kapana
+wand.soul:suliwminda
+wand.wand_id:6
