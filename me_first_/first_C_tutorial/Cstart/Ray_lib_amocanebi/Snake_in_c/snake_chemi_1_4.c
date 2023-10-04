@@ -86,6 +86,175 @@ float mandzili_bijebi = 0; // რამდენი ბიჯი დაწირ
 static bool mausi_var = false; 
 int mtvleli_mausis    = 0;
 
+
+
+
+
+
+/// failebze mushaoba da struqturebi 
+
+/* აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან */
+int parametrebi_Brzanebis(char* brzaneba)
+{
+  /*
+  ფუნქციის აღწერა:
+  აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
+  თუ არა აბრუნებს ლოგიკურ ნულიანს. ამოწმებს 2.3 ში წერტილ სიმბოლოს.
+  არ დაუშვებს ორ წერტილს. წერტილით დაწყებას.
+  ar viyeneb <---- rameshi gamoviyeno 
+  */
+
+  bool cifria = false; // თუ მასივში ციფრები წერია გათრუვდება
+  int len, counter_par = 0, counter_mdzime = 0;
+
+  len = strlen(brzaneba);
+  // printf("len = %d \n",len);
+
+    for (int i = 0; i <= len; i++)
+  {
+    // printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
+    // printf("i = %d \n", i);
+    if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
+    {
+      if ((brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46) || brzaneba[i] == 0)
+      {
+        cifria = true;
+      } else
+      {
+        cifria = false;
+        break;
+      }
+      if (brzaneba[i] == 46)
+      {
+        // ითვლის წერტილების რაოდენობას 3.3 ერთი წერტილია, 3.3.3 - ორი წერტილია. დაბლ რიცხვების შეყვანისთვის
+        counter_mdzime++;
+      }
+
+      if (counter_mdzime > 1)
+      {
+        // printf("counter_mdzime %d \n", counter_mdzime);
+        cifria = false;
+      }
+    }
+    counter_par++;
+  }
+  // printf("counter_par = %d \n",counter_par);
+  printf("cifria = %d \n", cifria);
+  return cifria;
+}
+
+/* ფაილში ლაინების რაოდენობის გაგება */
+int findLineNumber(char file_name[])
+{
+  /* extract character from file and store in chr
+  ვიყენებ /n ების დასათვლელად. ლაინების რაოდენობა რომ ვიცოდე
+  */
+  FILE *fileptr;
+  char chr;
+  int count_lines = 0; // ლაინების რაოდენობა
+
+  fileptr = fopen(file_name, "r");
+  chr = getc(fileptr);
+  while (chr != EOF)
+  {
+    //Count whenever new line is encountered
+    if (chr == '\n')
+    {
+      count_lines = count_lines + 1;
+    }
+    //take next character from file.
+    chr = getc(fileptr);
+  }
+  fclose(fileptr); //close file.
+
+  printf("failshi lainebis raodenoba = %d\n", count_lines);
+
+  return count_lines;
+}
+
+/* ფაილის ზომის გაგება */
+long int findSize(char file_name[])
+{
+  // opening the file in read mode
+  FILE *fp = fopen(file_name, "r");
+  // checking if the file exist or not
+  if (fp == NULL) {
+    printf("File Not Found!\n");
+    return -1;
+  }
+  // calculating the size of the file
+  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
+  long int res = ftell(fp); // ftell()
+  // closing the file
+  fclose(fp);
+
+  return res;
+}
+
+struct MagicWands {
+  char  title[50];
+  char  author[50];
+  char  owner[100];
+  char  soul[100];
+  int   wand_id;
+};
+
+void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_while)
+{
+  // Time function /////////////////
+  char buf[150];
+  time_t curtime;
+  struct tm *loc_time;
+  //Getting current time of system
+  curtime = time (NULL);
+  // Converting current time to local time
+  loc_time = localtime (&curtime);
+  // strftime (buf, LEN, "Today is %A, %b %d.\n", loc_time);
+  // fputs (buf, stdout);
+  // strftime (buf, LEN, "Time is %I:%M %p.\n", loc_time);
+  // fputs (buf, stdout);
+  // Displaying date and time in standard format
+  printf("%s", asctime(loc_time));
+
+  /* ფაილის შექმნა და ჩაწერა */
+  FILE *chemiFailisPointeri;
+  chemiFailisPointeri = fopen(file_name,"a");
+
+  fprintf(chemiFailisPointeri,"%s","////////////////////// ");
+  fprintf(chemiFailisPointeri,"%s\n", asctime(loc_time));
+
+  fprintf(chemiFailisPointeri,"%s","wand.title:");
+  fprintf(chemiFailisPointeri,"%s",wand.title);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.author:");
+  fprintf(chemiFailisPointeri,"%s",wand.author);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.owner:");
+  fprintf(chemiFailisPointeri,"%s",wand.owner);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.soul:");
+  fprintf(chemiFailisPointeri,"%s",wand.soul);
+  fprintf(chemiFailisPointeri,"%s","\n");
+  fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
+  fprintf(chemiFailisPointeri,"%d",wand.wand_id);
+  fprintf(chemiFailisPointeri,"%s","\n");
+
+  fclose(chemiFailisPointeri);
+}
+
+//////
+
+
+
+
+
+
+
+
+
+
+
+
 int main(void) 
 {   
     // 2დ კამერა ინიციალიზაცია 
@@ -190,6 +359,7 @@ void mausiJoistiki(void)
 {
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
     // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
+    // გრადუსების დაყენებაა მნიშვნელოვანი
     
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
@@ -249,12 +419,29 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
     printf("vail cikli gagrdzeldes?? (y or n) \n");
     gets(brzaneba);
     
+    // Time function /////////////////
+    char buf[150];
+    time_t curtime;
+    struct tm *loc_time;
+    //Getting current time of system
+    curtime = time (NULL);
+    // Converting current time to local time
+    loc_time = localtime (&curtime);
+    // strftime (buf, LEN, "Today is %A, %b %d.\n", loc_time);
+    // fputs (buf, stdout);
+    // strftime (buf, LEN, "Time is %I:%M %p.\n", loc_time);
+    // fputs (buf, stdout);
+    // Displaying date and time in standard format
+    printf("%s", asctime(loc_time));
+    
 
     // ფაილის შექმნა და ჩაწერა 
     FILE *chemiFailisPointeri;
     chemiFailisPointeri = fopen(file_name,"a");
 
     fprintf(chemiFailisPointeri,"%s","////////////////////// \n");
+    fprintf(chemiFailisPointeri,"%s","////////////////////// ");
+    fprintf(chemiFailisPointeri,"%s\n", asctime(loc_time));
     fprintf(chemiFailisPointeri,"%d",counter_meatedi);
     fprintf(chemiFailisPointeri,"%d",counter);
     fprintf(chemiFailisPointeri,"%s",brzaneba);
