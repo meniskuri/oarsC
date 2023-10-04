@@ -54,3 +54,10 @@ wand.author:4
 wand.owner:6
 wand.soul:7
 wand.wand_id:7
+////////////////////// Wed Oct 04 19:44:10 2023
+
+wand.title:purins
+wand.author:vugeb
+wand.owner:oms
+wand.soul:mushaobit
+wand.wand_id:8

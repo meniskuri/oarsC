@@ -939,7 +939,7 @@ void DrawGame(void)
         if (pause && game_over)
         {
             
-            DrawText("sheiyvanet yalibis monacemebi comsolit", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 80, GRAY);
+            DrawText("sheiyvanet yalibis monacemebi comsolit", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 80, BLUE);
             DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
             DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
             
@@ -986,4 +986,5 @@ spectrum lab
 6 - wvrilmanebia yoveltvis mnishvnelovani (aseve - marilivit aris mainc)
 7 -  F11 
 8 - gantirtva
-9 - 
+9 - სურვილი = კოდი დაწერე და დაიწერება შემდეგი სურვილი 
+*/
