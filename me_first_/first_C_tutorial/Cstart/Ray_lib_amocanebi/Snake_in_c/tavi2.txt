@@ -1,4 +1,7 @@
-////////////////////// 
-////////////////////// Wed Oct 04 13:50:50 2023
+////////////////////// Wed Oct 04 14:53:24 2023
 
-1102200time////////////////////// 
+wand.title:kap0
+wand.author:kap1
+wand.owner:kap2
+wand.soul:kap3
+wand.wand_id:0
