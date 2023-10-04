@@ -939,6 +939,7 @@ void DrawGame(void)
         if (pause && game_over)
         {
             
+            DrawText("sheiyvanet yalibis monacemebi comsolit", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 80, GRAY);
             DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
             DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
             
