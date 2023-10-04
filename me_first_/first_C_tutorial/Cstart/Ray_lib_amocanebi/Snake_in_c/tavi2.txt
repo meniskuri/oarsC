@@ -5,3 +5,38 @@ wand.author:kap1
 wand.owner:kap2
 wand.soul:kap3
 wand.wand_id:0
+////////////////////// Wed Oct 04 18:01:22 2023
+
+wand.title:
+wand.author:fi
+wand.owner:fi2
+wand.soul:fi3
+wand.wand_id:1
+////////////////////// Wed Oct 04 18:20:04 2023
+
+wand.title:KO
+wand.author:K1
+wand.owner:2
+wand.soul:3
+wand.wand_id:2
+////////////////////// Wed Oct 04 18:21:13 2023
+
+wand.title:U1
+wand.author:2
+wand.owner:3
+wand.soul:4
+wand.wand_id:3
+////////////////////// Wed Oct 04 18:31:41 2023
+
+wand.title:1
+wand.author:2
+wand.owner:3
+wand.soul:4
+wand.wand_id:4
+////////////////////// Wed Oct 04 18:35:58 2023
+
+wand.title:
+wand.author:
+wand.owner:
+wand.soul:
+wand.wand_id:5

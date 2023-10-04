@@ -27,6 +27,7 @@ float  iqsi              = 1.0;  // ჯერ არ ვიყენებ ა�
 
 int counter_meatedi      = 0;    // ყოველი მეათე ბიჯი ერთია აქ რაც გააკეთა გველის თავმა 
 int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
+int k = 0; // gadatvirtvashi da tavidan dawyebashi mtvlelia
 
 // გველი    
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
@@ -788,12 +789,25 @@ void tavisChama(void)
 
 void tamashisGadatvirtva(void)
 {
+    
+    if(k < 1){
+        //
+        printf("gadatvirtvashi var");
+    }
+    
+    k++;
     pause = true;
     game_over = true;
 }
 
 void tavidanDawyeba(void)
 {
+    if(k < 1){
+        //
+        printf("tavidanDawyeba var");
+    }
+    
+    k++;
     counter_vashlebi = 0;
     counter_meatedi = 0;
     counter = 0; 
@@ -924,9 +938,12 @@ void DrawGame(void)
         // if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);  
         if (pause && game_over)
         {
+            
             DrawText("GAME OVER", screenWidth/2 - MeasureText("GAME OVER", 40)/2, screenHeight/2 - 40, 40, RED);
             DrawText("tavidan? (y) or (n)", screenWidth/2 - MeasureText("tavidan? (y) or (n)", 40)/2, screenHeight/2 - 10, 40, RED);
+            
         }
+        
         else if (pause && game_win) 
         {
             DrawText("moige", screenWidth/2 - MeasureText("moige", 40)/2, screenHeight/2 - 40, 40, RED);
