@@ -981,4 +981,9 @@ spectrum lab
 1 - failis gaketeba - rekordebi sia; 
 2 - tavi = dan dawyebisas bagis modzebna;
 3 - klaviaturidan martivad iklav tavs - ukan tu wamosvlaze acher - shemobrunebis algoritmi unda iyos
-*/
+4 - yalibis cvlilebis mofiqreba
+5 - mausit modzraobis bagi davichire
+6 - wvrilmanebia yoveltvis mnishvnelovani (aseve - marilivit aris mainc)
+7 -  F11 
+8 - gantirtva
+9 - 
