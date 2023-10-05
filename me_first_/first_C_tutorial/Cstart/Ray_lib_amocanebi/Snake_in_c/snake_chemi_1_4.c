@@ -478,7 +478,7 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
 
   /* print MagicGameshot info and write to file (ფაილის შექმნა და ჩაწერა) */
   printMagicWandsInfo(wand1, file_name, counter_while);
-  lineNUMBER = findLineNumber(file_name);  
+  lineNUMBER = findLineNumber(file_name);  //
 }
 
 void vashlisChama(void)
