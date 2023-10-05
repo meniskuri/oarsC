@@ -405,8 +405,8 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   fprintf(chemiFailisPointeri,"%s","wand.rekordi:");
   fprintf(chemiFailisPointeri,"%s",wand.rekordi);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
-  fprintf(chemiFailisPointeri,"%d",wand.wand_id);
+  fprintf(chemiFailisPointeri,"%s","wand.ramdenjer_gaeshva_id:");
+  fprintf(chemiFailisPointeri,"%d",wand.ramdenjer_gaeshva_id);
   fprintf(chemiFailisPointeri,"%s","\n");
 
   fclose(chemiFailisPointeri);
@@ -451,29 +451,29 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   result = strcmp(brzaneba, str1);
   
   strcpy(wand1.player, brzaneba);
-  printf("enter wand.author \n");
+  printf("enter wand.vis_ebrdzvi \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
   
-  strcpy(wand1.author, brzaneba);
-  printf("enter wand.owner \n");
+  strcpy(wand1.vis_ebrdzvi, brzaneba);
+  printf("enter wand.qula \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
   
-  strcpy(wand1.owner, brzaneba);
-  printf("enter wand.soul \n");
+  strcpy(wand1.qula, brzaneba);
+  printf("enter wand.rekordi \n"); // <---------------- ricxvi unda iyos 
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
   
-  strcpy(wand1.soul, brzaneba);
+  strcpy(wand1.rekordi, brzaneba);
   printf("lineNUMBER = %d\n",lineNUMBER);
   if (lineNUMBER == 0)
   {
-    wand1.wand_id = 0;
+    wand1.ramdenjer_gaeshva_id = 0;
   }
   if (lineNUMBER % 7 == 0 && lineNUMBER != 0)
   {
-    wand1.wand_id = lineNUMBER / 7;
+    wand1.ramdenjer_gaeshva_id = lineNUMBER / 7;
   }
 
   /* print MagicGameshot info and write to file (ფაილის შექმნა და ჩაწერა) */

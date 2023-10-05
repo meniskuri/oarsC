@@ -1,0 +1,7 @@
+////////////////////// Thu Oct 05 17:31:11 2023
+
+wand.player:gioKap
+wand.vis_ebrdzvi:monobas
+wand.qula:100
+wand.rekordi:100
+wand.ramdenjer_gaeshva_id:0
