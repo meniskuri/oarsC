@@ -139,6 +139,14 @@ long int findSize(char file_name[])
   return res;
 }
 
+struct MagicGameshot {
+  char  player[50];
+  char  vis_ebrdzvi[50];
+  char  qula[100];
+  char  rekordi[100];
+  int   ramdenjer_gaeshva_id;
+};
+
 struct MagicWands {
   char  title[50];
   char  author[50];

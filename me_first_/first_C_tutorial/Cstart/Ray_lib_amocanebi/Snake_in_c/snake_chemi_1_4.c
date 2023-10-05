@@ -352,24 +352,24 @@ long int findSize(char file_name[])
   return res;
 }
 
-struct MagicWands {
-  char  title[50];
-  char  author[50];
-  char  owner[100];
-  char  soul[100];
-  int   wand_id;
-};
+//struct MagicWands {
+//  char  title[50];
+//  char  author[50];
+//  char  owner[100];
+//  char  soul[100];
+//  int   wand_id;
+// };
 
 struct MagicGameshot {
   char  player[50];
   char  vis_ebrdzvi[50];
-  char  ramdenjer[100];
-  char  soul[100];
-  int   wand_id;
+  char  qula[100];
+  char  rekordi[100];
+  int   ramdenjer_gaeshva_id;
 };
 
 
-void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_while)
+void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int counter_while)
 {
   // Time function /////////////////
   char buf[150];
@@ -393,17 +393,17 @@ void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_
   fprintf(chemiFailisPointeri,"%s","////////////////////// ");
   fprintf(chemiFailisPointeri,"%s\n", asctime(loc_time));
 
-  fprintf(chemiFailisPointeri,"%s","wand.title:");
-  fprintf(chemiFailisPointeri,"%s",wand.title);
+  fprintf(chemiFailisPointeri,"%s","wand.player:");
+  fprintf(chemiFailisPointeri,"%s",wand.player);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.author:");
-  fprintf(chemiFailisPointeri,"%s",wand.author);
+  fprintf(chemiFailisPointeri,"%s","wand.vis_ebrdzvi:");
+  fprintf(chemiFailisPointeri,"%s",wand.vis_ebrdzvi);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.owner:");
-  fprintf(chemiFailisPointeri,"%s",wand.owner);
+  fprintf(chemiFailisPointeri,"%s","wand.qula:");
+  fprintf(chemiFailisPointeri,"%s",wand.qula);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.soul:");
-  fprintf(chemiFailisPointeri,"%s",wand.soul);
+  fprintf(chemiFailisPointeri,"%s","wand.rekordi:");
+  fprintf(chemiFailisPointeri,"%s",wand.rekordi);
   fprintf(chemiFailisPointeri,"%s","\n");
   fprintf(chemiFailisPointeri,"%s","wand.wand_id:");
   fprintf(chemiFailisPointeri,"%d",wand.wand_id);
@@ -415,10 +415,6 @@ void printMagicWandsInfo (struct MagicWands wand, char file_name[], int counter_
 //////
 
 
-
-
-
-
 void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა 
 {
   char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
@@ -428,7 +424,7 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   int result;                          /* მელონ ის შესამოწმებლადს result = strcmp(str1, str2);*/
   char str1[] = {"MELON"};
 
-  struct MagicWands wand1;             /* Declare wand1 as Magicwands struct */
+  struct MagicGameshot wand1;             /* Declare wand1 as MagicGameshot struct */
   FILE *chemiFailisPointeri;
 
 
@@ -448,13 +444,13 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
     printf("lineNUMBER = %d\n", lineNUMBER);
   }
 
-  printf("ჯადოსნური ჯოხების საცავი \n");
+  printf("თამაშის შედეგები \n");
 
-  printf("enter wand.title \n");
+  printf("enter wand.player \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
   
-  strcpy(wand1.title, brzaneba);
+  strcpy(wand1.player, brzaneba);
   printf("enter wand.author \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
@@ -480,38 +476,10 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
     wand1.wand_id = lineNUMBER / 7;
   }
 
-  /* print MagicWands info and write to file (ფაილის შექმნა და ჩაწერა) */
+  /* print MagicGameshot info and write to file (ფაილის შექმნა და ჩაწერა) */
   printMagicWandsInfo(wand1, file_name, counter_while);
-  lineNUMBER = findLineNumber(file_name);
-  
+  lineNUMBER = findLineNumber(file_name);  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void vashlisChama(void)
 {
@@ -987,4 +955,11 @@ spectrum lab
 7 -  F11 
 8 - gantirtva
 9 - სურვილი = კოდი დაწერე და დაიწერება შემდეგი სურვილი 
+
+10 - დაწყნარდი.
+11 - ბევრი მუშაობა მოგიწევს.
+12 - ამით აანაზღაურებ ზარალს რომ ნახავენ რომ დღეში 7 - 8 საათი მუშაობ.
+13 - შენი ადგილი იცოდე.2 თვიანი წინასწარი გაქვს. 15 ნოემბრამდე უნდა გადაამწვანო გზა. სულ მწვანეზე გევლოსო ამაზე იყო ნათქვამი.
+14 - ყალიბები შევცვალო.
+15 - სწორ ადგილას დავწერო ყალიბის შევსების ინსტრუქცია ეკრანზე. 
 */
