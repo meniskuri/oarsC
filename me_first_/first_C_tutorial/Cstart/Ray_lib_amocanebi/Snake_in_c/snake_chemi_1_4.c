@@ -390,6 +390,7 @@ struct MagicGameshot {
 };
 
 
+
 void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int counter_while)
 {
   // Time function /////////////////
