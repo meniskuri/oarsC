@@ -1,7 +1,21 @@
-////////////////////// Thu Oct 05 17:31:11 2023
+////////////////////// Fri Oct 06 09:40:35 2023
 
-wand.player:gioKap
-wand.vis_ebrdzvi:monobas
-wand.qula:100
-wand.rekordi:100
+wand.player:gio
+wand.vis_ebrdzvi:papa
+wand.qula:31127428
+wand.rekordi:31127828
 wand.ramdenjer_gaeshva_id:0
+////////////////////// Fri Oct 06 09:41:33 2023
+
+wand.player:kap
+wand.vis_ebrdzvi:puta
+wand.qula:31127428
+wand.rekordi:31127828
+wand.ramdenjer_gaeshva_id:1
+////////////////////// Fri Oct 06 09:59:53 2023
+
+wand.player:kap
+wand.vis_ebrdzvi:kadirov
+wand.qula:1
+wand.rekordi:1
+wand.ramdenjer_gaeshva_id:2

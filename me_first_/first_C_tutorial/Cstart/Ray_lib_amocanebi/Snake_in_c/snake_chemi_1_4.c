@@ -197,6 +197,16 @@ void UpdateGame(void)
     tavisChama();
 }
 
+
+
+
+
+
+
+
+
+
+
 void mausiJoistiki(void)
 {
     // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
@@ -249,6 +259,17 @@ void mausiJoistiki(void)
 
     if (touchCounter > 0) touchCounter--;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -363,8 +384,8 @@ long int findSize(char file_name[])
 struct MagicGameshot {
   char  player[50];
   char  vis_ebrdzvi[50];
-  char  qula[100];
-  char  rekordi[100];
+  int   qula; 
+  int   rekordi; 
   int   ramdenjer_gaeshva_id;
 };
 
@@ -400,10 +421,10 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   fprintf(chemiFailisPointeri,"%s",wand.vis_ebrdzvi);
   fprintf(chemiFailisPointeri,"%s","\n");
   fprintf(chemiFailisPointeri,"%s","wand.qula:");
-  fprintf(chemiFailisPointeri,"%s",wand.qula);
+  fprintf(chemiFailisPointeri,"%d",wand.qula);
   fprintf(chemiFailisPointeri,"%s","\n");
   fprintf(chemiFailisPointeri,"%s","wand.rekordi:");
-  fprintf(chemiFailisPointeri,"%s",wand.rekordi);
+  fprintf(chemiFailisPointeri,"%d",wand.rekordi);
   fprintf(chemiFailisPointeri,"%s","\n");
   fprintf(chemiFailisPointeri,"%s","wand.ramdenjer_gaeshva_id:");
   fprintf(chemiFailisPointeri,"%d",wand.ramdenjer_gaeshva_id);
@@ -413,7 +434,6 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
 }
 
 //////
-
 
 void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა 
 {
@@ -449,23 +469,20 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   printf("enter wand.player \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
-  
   strcpy(wand1.player, brzaneba);
+  
   printf("enter wand.vis_ebrdzvi \n");
   gets(brzaneba);
   result = strcmp(brzaneba, str1);
-  
   strcpy(wand1.vis_ebrdzvi, brzaneba);
-  printf("enter wand.qula \n");
-  gets(brzaneba);
-  result = strcmp(brzaneba, str1);
   
-  strcpy(wand1.qula, brzaneba);
-  printf("enter wand.rekordi \n"); // <---------------- ricxvi unda iyos 
-  gets(brzaneba);
-  result = strcmp(brzaneba, str1);
+  wand1.qula = counter_vashlebi;
+  printf("enter wand.qula d\n",counter_vashlebi); // <---------------- ricxvi unda iyos
   
-  strcpy(wand1.rekordi, brzaneba);
+  wand1.rekordi = counter_vashlebi;
+  printf("enter wand.rekordi d\n",counter_vashlebi); // <---------------- ricxvi unda iyos 
+  
+  
   printf("lineNUMBER = %d\n",lineNUMBER);
   if (lineNUMBER == 0)
   {
@@ -480,6 +497,24 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   printMagicWandsInfo(wand1, file_name, counter_while);
   lineNUMBER = findLineNumber(file_name);  //
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void vashlisChama(void)
 {
@@ -501,6 +536,11 @@ void vashlisChama(void)
     }
 }
 
+
+
+
+
+
 void gvelisSiaruliKedlebshi(void)
 {
     if ((ballPosition.x - ballRadius) >= screenWidth)             // მარჯვნივ სიარული
@@ -520,6 +560,11 @@ void gvelisSiaruliKedlebshi(void)
         ballPosition.y = (screenHeight + ballRadius);
     }
 }
+
+
+
+
+
 
 void gvelisSiaruliANDpasuse(void)
 {
@@ -633,6 +678,12 @@ void gvelisSiaruliANDpasuse(void)
     }
 }
 
+
+
+
+
+
+
 void mimartulebebiKlaviaturidan(void)
 {
     if ((IsKeyDown(KEY_RIGHT) && marcxenaKlaviatura != true) || (marjvenaKlaviatura == true && marcxenaKlaviatura != true))
@@ -701,6 +752,19 @@ void mimartulebebiKlaviaturidan(void)
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 void VashliRandom(void)
 {   
     for (int i = 0; i <= 100; i++) // ვაშლი არ დაახტება თავზე და კუდზე გველს
@@ -733,6 +797,17 @@ void VashliRandom(void)
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 void tailDraw(void)
 {
     for (int i = counter_vashlebi; i > 0; i--) 
@@ -740,6 +815,15 @@ void tailDraw(void)
         DrawCircle(test_snake_modzraoba_x[i], test_snake_modzraoba_y[i], kudi_radius, colors[GetRandomValue(0, 10)]);   
     }
 }
+
+
+
+
+
+
+
+
+
 
 void tavisChama(void) 
 {    
@@ -755,6 +839,18 @@ void tavisChama(void)
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 void tamashisGadatvirtva(void)
 {
     
@@ -767,6 +863,16 @@ void tamashisGadatvirtva(void)
     pause = true;
     game_over = true;
 }
+
+
+
+
+
+
+
+
+
+
 
 void tavidanDawyeba(void)
 {
@@ -786,11 +892,24 @@ void tavidanDawyeba(void)
     game_win = false;
 }
 
+
+
+
+
+
+
 void gamortva(void)
 {
     SetExitKey(KEY_N);
     
 }
+
+
+
+
+
+
+
 
 void DrawGame(void)
 {
