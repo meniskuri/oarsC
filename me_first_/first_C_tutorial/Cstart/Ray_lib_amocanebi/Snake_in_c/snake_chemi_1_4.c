@@ -1083,3 +1083,8 @@ spectrum lab
 14 - ყალიბები შევცვალო.
 15 - სწორ ადგილას დავწერო ყალიბის შევსების ინსტრუქცია ეკრანზე. 
 */
+// ra j ]] ver vxdebi ver vxedav
+/*
+
+// 1.1 failis wakitxva rekordebis amogeba (unda gavaketo)
+// faiilis amokitxva da ragaceebis modzebna 
