@@ -4,6 +4,7 @@
 ----- snake V1-4 shi chamateba
 ---- mere gamortva da egetebi amokitxva shemowmebada ase shemdeg
 ----- ert ganzomilebiani matrica minda
+davtesto es kodic 
 */
 
 
@@ -42,7 +43,8 @@ int findLineNumber(char file_name[])
   }
   fclose(fileptr); //close file.
 
-  printf("failshi lainebis raodenoba = %d\n", count_lines);
+  printf("failshi lainebis raodenoba 11 = %d\n", count_lines);
+  printf("ch = %d\n", chr);
 
   return count_lines;
 }

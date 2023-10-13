@@ -27,7 +27,7 @@ float  iqsi              = 1.0;  // ჯერ არ ვიყენებ ა�
 
 int counter_meatedi      = 0;    // ყოველი მეათე ბიჯი ერთია აქ რაც გააკეთა გველის თავმა 
 int counter              = 0;    // რამდენი ბიჯი გააკეთა გველის თავმა მაგის მთვლელი 
-int k = 0; // gadatvirtvashi da tavidan dawyebashi mtvlelia
+int k                    = 0;    // gadatvirtvashi da tavidan dawyebashi mtvlelia
 
 // გველი    
 Vector2 ballPosition     = { (float)screenWidth/2, (float)screenHeight/2 }; 
@@ -36,12 +36,12 @@ const   float ballRadius = 10.0;
 const   float speed      = (int)ballRadius * 2;  // 20 step 
 float   speed2           = 0; 
 
-int tailPositionsX[SNAKE_LENGTH];   
-int tailPositionsY[SNAKE_LENGTH];    
+int         tailPositionsX[SNAKE_LENGTH];   
+int         tailPositionsY[SNAKE_LENGTH];    
 int test_snake_modzraoba_x[SNAKE_LENGTH]; 
 int test_snake_modzraoba_y[SNAKE_LENGTH]; 
-int test_snake_gadawera_x[SNAKE_LENGTH];
-int test_snake_gadawera_y[SNAKE_LENGTH];
+int  test_snake_gadawera_x[SNAKE_LENGTH];
+int  test_snake_gadawera_y[SNAKE_LENGTH];
 
 // ვაშლი
 Vector2 vashliPosition   = {0,0}; 
@@ -51,8 +51,8 @@ float   vashliRadius     = 10.0;
 int     counter_vashlebi = 0; 
 
 // კუდის ვექტორის
-Vector2 kudi        = {0,0}; 
-float   kudi_radius = ballRadius;
+Vector2 kudi             = {0,0}; 
+float   kudi_radius      = ballRadius;
 
 // ბულიანები
 static bool pause        = false;
@@ -899,7 +899,7 @@ void tavidanDawyeba(void)
 
 
 
-void gamortva(void)
+void gamortva(void) // aq racxa nitoa 
 {
     SetExitKey(KEY_N);
     
@@ -1084,7 +1084,10 @@ spectrum lab
 15 - სწორ ადგილას დავწერო ყალიბის შევსების ინსტრუქცია ეკრანზე. 
 */
 // ra j ]] ver vxdebi ver vxedav
-/*
 
 // 1.1 failis wakitxva rekordebis amogeba (unda gavaketo)
 // faiilis amokitxva da ragaceebis modzebna 
+
+
+
+// bevri bagebi da dasasalashinebeli ragaceebi maqvs 
