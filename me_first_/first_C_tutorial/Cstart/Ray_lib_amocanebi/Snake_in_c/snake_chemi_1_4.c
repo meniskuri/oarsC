@@ -424,9 +424,12 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   fprintf(chemiFailisPointeri,"%s","wand.qula:");
   fprintf(chemiFailisPointeri,"%d",wand.qula);
   fprintf(chemiFailisPointeri,"%s","\n");
+  
+  // aq mejic tachi mchirdeba 
   fprintf(chemiFailisPointeri,"%s","wand.rekordi:");
   fprintf(chemiFailisPointeri,"%d",wand.rekordi);
   fprintf(chemiFailisPointeri,"%s","\n");
+  
   fprintf(chemiFailisPointeri,"%s","wand.ramdenjer_gaeshva_id:");
   fprintf(chemiFailisPointeri,"%d",wand.ramdenjer_gaeshva_id);
   fprintf(chemiFailisPointeri,"%s","\n");

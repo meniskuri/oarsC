@@ -54,3 +54,10 @@ wand.vis_ebrdzvi:me
 wand.qula:5
 wand.rekordi:5
 wand.ramdenjer_gaeshva_id:7
+////////////////////// Sat Oct 14 17:35:27 2023
+
+wand.player:gio
+wand.vis_ebrdzvi:shota
+wand.qula:2
+wand.rekordi:2
+wand.ramdenjer_gaeshva_id:8

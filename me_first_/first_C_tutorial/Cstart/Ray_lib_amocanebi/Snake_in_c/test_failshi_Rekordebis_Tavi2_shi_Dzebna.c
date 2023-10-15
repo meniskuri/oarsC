@@ -1,37 +1,7 @@
-/*
-- testi snake_1_4 ისთვის
-- - ფაილში სადაც ინახება რეკორდების ბაზა უნდა შევიდეს და მოდძებნოს ის ადგილები სადაც რეკორდები წერია/
-- - - უნდა შექმნას სხვა მასივი და მასში ჩაწეროს
-- - შემდეგ კიდევ ბოლო პოზიციაზე დაწეროს რეკორდის რიცხვი
-- კარგი იქნება (თუ დაწერს რეკორდს და მიყწერს ნუმბერ აიდის და სახელს ვისი გაკეთებული იყო რეკორდი)
-- - (ჩაწერის ფუნქცია აღსადგენი მექნება მერე)
-
-... ES KODI KARGAD GAVARCHIO T S
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <unistd.h>
 #include <string.h>
-#include <time.h>
 
-/* ფაილში კონკრეტული სახელების მოძებნა რეკორდების სიისთვის ფუნქცია */
-int findRecordsINFile(char file_name[])
-{
-  // ფუნქციის აღწერა
-
-
-
-
-
-}
-
-
-
-
-/* ფაილში ლაინების რაოდენობის გაგება */
 int findLineNumber(char file_name[])
 {
   /* extract character from file and store in chr
@@ -43,7 +13,6 @@ int findLineNumber(char file_name[])
 
   fileptr = fopen(file_name, "r");
   chr = getc(fileptr);
-  printf("ch = %c\n", chr);
   while (chr != EOF)
   {
     //Count whenever new line is encountered
@@ -62,54 +31,37 @@ int findLineNumber(char file_name[])
   return count_lines;
 }
 
-/* ფაილის ზომის გაგება */
-long int findSize(char file_name[])
+void main()
 {
-  // opening the file in read mode
-  FILE *fp = fopen(file_name, "r");
-  // checking if the file exist or not
-  if (fp == NULL) {
-    printf("File Not Found!\n");
-    return -1;
-  }
-  // calculating the size of the file
-  fseek(fp, 0L, SEEK_END); // ეს რას ნიშნავს? fseek() <<<<
-  long int res = ftell(fp); // ftell()
-  // closing the file
-  fclose(fp);
+    char file_name[]  = {"test.txt"};
+    double Data[3];    // I'm interested in this information
+    char junk1, junk2; // junk variables to avoid first two characters
+    int lineNUMBER;
+    int jami;
 
-  return res;
-}
+    FILE * file = fopen("test.txt", "r"); // open file
 
-
-
-
-int main()
-{
-  char brzaneba[51];                   /* სტრინგი რომელიც შემყავს კლავიატურიდან */
-  char file_name[]  = {"tavi2.txt"};   /* ფაილი რომელზეც ვმუშაობ - ვწერ ჯოხების ინფოს */
-  int lineNUMBER;                      /* სამუშაო tavi1.txt ფაილში ლაინების რაოდენობა */
-  int result;                          /* მელონ ის შესამოწმებლადს result = strcmp(str1, str2);*/
-  char str1[] = {"MELON"};
-
-  /* ფაილის შემოწმება და პირველი ამოკითხვა */
-  if( access(file_name, F_OK ) == 0 )
-  {
-    printf("file exists \n");
     lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
-    printf("lineNUMBER = %d\n", lineNUMBER);
-    long int res = findSize(file_name);
-    if (res != -1)
+
+    for(int i = 0; i < lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
     {
-      printf("Size of the file is %ld bytes \n", res);
+        fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]); //store info in Data array
+        printf("%f\n", Data[i]); // print Data, just to check
     }
-  } else {
-    printf("ფაილი არ არსებობს \n");
-    // lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
-    // printf("lineNUMBER = %d\n", lineNUMBER);
-  }
+    fclose(file);
 
-  printf("test for snake_1_4 \n");
+    int Nx; // store data in respective variables
+    int Ny;
+    double T;
 
-  return 0;
+    Nx = Data[0];
+    Ny = Data[1];
+    T  = Data[2];
+
+    printf("Value of Nx is %d\n", Nx); // Print values to check
+    printf("Value of Ny is %d\n", Ny);
+    printf("Value of T is %f\n", T);
+    fclose(file);
+
+    // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
 }
