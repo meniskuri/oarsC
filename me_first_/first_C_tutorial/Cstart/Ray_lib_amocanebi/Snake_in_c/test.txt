@@ -1,4 +1,6 @@
-gio  = 2
-vaso = 4
-tata = 10
-keto = 8 
+gio.g g   = 2
+vaso.v v  = 4
+tata.t t  = 10
+keto.k k  = 8
+diana.d d = 3
+etuna.e e = 2 
