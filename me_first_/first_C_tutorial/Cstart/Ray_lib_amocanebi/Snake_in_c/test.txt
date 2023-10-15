@@ -1,3 +1,4 @@
 gio  = 2
 vaso = 4
 tata = 10
+keto = 8 

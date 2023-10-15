@@ -43,24 +43,32 @@ void main()
 
     lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
 
-    for(int i = 0; i < lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
+    for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
     {
+        //
+        /*if (lineNUMBER % 2 == 0 && lineNUMBER != 0){
         fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]); //store info in Data array
         printf("%f\n", Data[i]); // print Data, just to check
+      }*/
+      fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]); //store info in Data array
+      printf("data [i] = %f; i = %d;i % 2 = %d;\n", Data[i],i,i % 2); // print Data, just to check
     }
     fclose(file);
 
-    int Nx; // store data in respective variables
-    int Ny;
-    double T;
+    int GIO; // store data in respective variables
+    int VASO;
+    double TATA;
+    double KETO;
 
-    Nx = Data[0];
-    Ny = Data[1];
-    T  = Data[2];
+    GIO = Data[0];
+    VASO = Data[1];
+    TATA = Data[2];
+    KETO = Data[3];
 
-    printf("Value of Nx is %d\n", Nx); // Print values to check
-    printf("Value of Ny is %d\n", Ny);
-    printf("Value of T is %f\n", T);
+    printf("Value of GIO is %d\n", GIO); // Print values to check
+    printf("Value of VASO is %d\n", VASO);
+    printf("Value of TATA is %f\n", TATA);
+    printf("Value of KETO is %f\n", KETO);
     fclose(file);
 
     // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
