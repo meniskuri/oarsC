@@ -3,4 +3,4 @@ vaso.v v  = 4
 tata.t t  = 10
 keto.k k  = 8
 diana.d d = 3
-etuna.e e = 2 
+etuna.e e = 2 81731449000
