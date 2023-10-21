@@ -1,41 +1,79 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int main() {
-    int Nx = 0, Ny = 0;
-    double T = 0;
-    int has_Nx = 0, has_Ny = 0, has_T = 0;
-    char buf[80];
-    FILE *file;
+int findLineNumber(char file_name[])
+{
+  /* extract character from file and store in chr
+  ვიყენებ /n ების დასათვლელად. ლაინების რაოდენობა რომ ვიცოდე
+  */
+  FILE *fileptr;
+  char chr;
+  int count_lines = 0; // ლაინების რაოდენობა
 
-    if ((file = fopen("test.txt", "r")) == NULL) {
-        fprintf(stderr, "cannot open test.txt\n");
-        return 1;
+  fileptr = fopen(file_name, "r");
+  chr = getc(fileptr);
+  while (chr != EOF)
+  {
+    //Count whenever new line is encountered
+    if (chr == '\n')
+    {
+      count_lines = count_lines + 1;
     }
+    //take next character from file.
+    chr = getc(fileptr);
+  }
+  fclose(fileptr); //close file.
 
-    while (fgets(buf, sizeof buf, file)) {
-        if (buf[strspn(buf, " ")] == '\n')  /* accept blank lines */
-            continue;
+  printf("failshi lainebis raodenoba = %d\n", count_lines);
+  printf("ch = %d\n", chr);
 
-        if (sscanf(buf, " Nx = %d", &Nx) == 1)
-            has_Nx = 1;
-        else
-        if (sscanf(buf, " Ny = %d", &Ny) == 1)
-            has_Ny = 1;
-        else
-        if (sscanf(buf, " T = %lf", &T) == 1)
-            has_T = 1;
-        else
-            fprintf(stderr, "invalid line: %s", buf);
+  return count_lines;
+}
+
+void main()
+{
+    char file_name[]  = {"test.txt"};
+    double Data[1000];    // I'm interested in this information
+    char junk1, junk2, junk3; // junk variables to avoid first two characters
+    int lineNUMBER;
+    int jami;
+
+    FILE * file = fopen(file_name, "r"); // open file
+
+    lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
+
+    for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
+    {
+        //
+        /*if (lineNUMBER % 2 == 0 && lineNUMBER != 0){
+        fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]); //store info in Data array
+        printf("%f\n", Data[i]); // print Data, just to check
+      }*/
+      fscanf(file, "%s %s %s %lf\n", &junk1, &junk2, &junk3, &Data[i]); //store info in Data array
+      printf("data [i] = %f; i = %d;i procent gayofa 5 ze = %d;\n", Data[i],i,i % 5); // print Data, just to check
     }
     fclose(file);
 
-    // Print values to check
-    if (has_Nx)
-        printf("Value of Nx is %d\n", Nx);
-    if (has_Ny)
-        printf("Value of Ny is %d\n", Ny);
-    if (has_T)
-        printf("Value of T is %g\n", T);
-    return 0;
-  }
+    // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
+    file = fopen("test.txt", "a"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
+    for(int i = 0; i <= lineNUMBER; i++)
+    {
+      //
+      printf("dawere data i %f\n",Data[i]);
+      if (i % 2 == 0){
+        //
+        // fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]);
+        printf("dawere data %f\n",Data[i]);
+      }
+
+    }
+    fclose(file);
+
+}
+
+/*
+exla gavxsna chemi faili da amovikitxo rekordebi sanam ar damtavrdeba failis gaxsna nu sxva testi davwero?
+Tu aq? es kai testia meroe testi xom ar shevqmna? sheidzleba. chai dalie moifiqre
+
+*/

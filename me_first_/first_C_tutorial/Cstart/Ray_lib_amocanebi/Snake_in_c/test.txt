@@ -1,5 +1,5 @@
-gio.g g   = 2
-vaso.v v  = 4
+gio.g g   = 24
+vaso.v v  = 32
 tata.t t  = 10
 keto.k k  = 8
 diana.d d = 3
