@@ -35,6 +35,7 @@ int findLineNumber(char file_name[])
 
 void main()
 {
+    int kapi;
     char file_name[]  = {"test.txt"};
     char file_name2[]  = {"test2.txt"};
     double Data[1000];    // I'm interested in this information
@@ -62,7 +63,7 @@ void main()
 
     // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
     file = fopen("test.txt", "r"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
-    for(int i = 0; i <= lineNUMBER; i++)
+    for(int i = 0; i <= lineNUMBER+1; i++)
     {
       //
       if (i % 5 == 0){
@@ -70,9 +71,11 @@ void main()
         printf("lineNUMBER %d\n",lineNUMBER);
         printf("dawere yoveli mexute %f\n",Data[i+1]);
         fprintf(file,"%d",Data[i+1]);
+        kapi = i+1;
       }
 
     }
+    printf("i (kapi)= %d\n",kapi);
     fclose(file);
 
 }
