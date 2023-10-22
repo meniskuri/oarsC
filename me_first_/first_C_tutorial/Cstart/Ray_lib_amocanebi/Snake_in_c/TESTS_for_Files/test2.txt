@@ -1,6 +1,6 @@
-gio.g   = 1
-vaso.v  = 2
-tata.t  = 3
-keto.k  = 4
-diana.d = 5
-etuna.e = 6
+gio.g:1
+vaso.v:2
+tata.t:  3
+keto.k:  4
+diana.d: 5
+etuna.e: 6

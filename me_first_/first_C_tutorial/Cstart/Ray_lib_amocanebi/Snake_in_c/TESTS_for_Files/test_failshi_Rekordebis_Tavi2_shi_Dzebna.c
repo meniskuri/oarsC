@@ -36,6 +36,7 @@ int findLineNumber(char file_name[])
 void main()
 {
     char file_name[]  = {"test.txt"};
+    char file_name2[]  = {"test2.txt"};
     double Data[1000];    // I'm interested in this information
     char junk1, junk2, junk3; // junk variables to avoid first two characters
     int lineNUMBER;
@@ -45,28 +46,30 @@ void main()
 
     lineNUMBER = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
 
-    for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
+    for(int i = 0; i <= lineNUMBER+1; i++) // each loop will read new line of file; i<3 for 3 lines in file
     {
-      fscanf(file, "%s %s %s %lf\n", &junk1, &junk2,&junk3, &Data[i]); //store info in Data array
-      printf("data [i] = %f; i = %d;i procent gayofa 5 ze = %d;\n", Data[i],i,i % 5); // print Data, just to check
+      fscanf(file, "%s %s %s %lf\n", &junk1, &junk2,&junk3, &Data[i+1]); //store info in Data array
+      printf("data [i+1] = %f; i = %d;i procent gayofa 6 ze = %d;\n", Data[i],i,i % 6); // print Data, just to check
     }
 
     for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
     {
-      printf("data [i] = %f;\n", Data[i]); // print Data, just to check
+      printf("data [i+1] = %f;\n", Data[i+1]); // print Data, just to check
     }
 
     fclose(file);
+
 
     // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
     file = fopen("test.txt", "r"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
     for(int i = 0; i <= lineNUMBER; i++)
     {
       //
-      if (i % 2 == 0){
+      if (i % 5 == 0){
         //
-        printf("dawere yoveli meore %f\n",Data[i]);
-        fprintf(file,"%d",Data[i]+3);
+        printf("lineNUMBER %d\n",lineNUMBER);
+        printf("dawere yoveli mexute %f\n",Data[i+1]);
+        fprintf(file,"%d",Data[i+1]);
       }
 
     }
