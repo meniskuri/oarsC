@@ -31,6 +31,8 @@ int findLineNumber(char file_name[])
   return count_lines;
 }
 
+
+
 void main()
 {
     char file_name[]  = {"test.txt"};
@@ -45,41 +47,19 @@ void main()
 
     for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
     {
-        //
-        /*if (lineNUMBER % 2 == 0 && lineNUMBER != 0){
-        fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i]); //store info in Data array
-        printf("%f\n", Data[i]); // print Data, just to check
-      }*/
       fscanf(file, "%s %s %s %lf\n", &junk1, &junk2,&junk3, &Data[i]); //store info in Data array
       printf("data [i] = %f; i = %d;i procent gayofa 5 ze = %d;\n", Data[i],i,i % 5); // print Data, just to check
     }
-    fclose(file);
 
-    int GIO; // store data in respective variables
-    int VASO;
-    double TATA;
-    double KETO;
-    double DIANA;
-    double ETUNA;
-    int P = 3.14;
+    for(int i = 0; i <= lineNUMBER; i++) // each loop will read new line of file; i<3 for 3 lines in file
+    {
+      printf("data [i] = %f;\n", Data[i]); // print Data, just to check
+    }
 
-    GIO   = Data[0];
-    VASO  = Data[1];
-    TATA  = Data[2];
-    KETO  = Data[3];
-    DIANA = Data[4];
-    ETUNA = Data[5];
-
-    printf("Value of GIO is %d\n", GIO); // Print values to check
-    printf("Value of VASO is %d\n", VASO);
-    printf("Value of TATA is %f\n", TATA);
-    printf("Value of KETO is %f\n", KETO);
-    printf("Value of DIANA is %f\n", DIANA);
-    printf("Value of ETUNA is %f\n", ETUNA);
     fclose(file);
 
     // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
-    file = fopen("test.txt", "a"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
+    file = fopen("test.txt", "r"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
     for(int i = 0; i <= lineNUMBER; i++)
     {
       //
@@ -97,5 +77,6 @@ void main()
 /*
 exla gavxsna chemi faili da amovikitxo rekordebi sanam ar damtavrdeba failis gaxsna nu sxva testi davwero?
 Tu aq? es kai testia meroe testi xom ar shevqmna? sheidzleba. chai dalie moifiqre
+unda gavaketo amokitxvis programa
 
 */

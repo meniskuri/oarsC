@@ -1,6 +1,7 @@
-gio.g g   = 24
+gio.g g   = 1.9
 vaso.v v  = 32
 tata.t t  = 10
 keto.k k  = 8
 diana.d d = 3
-etuna.e e = 2 81731449000
+etuna.e e = 2
+tamri.t t = 1  
