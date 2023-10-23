@@ -1,0 +1,6 @@
+Mon Oct 23 16:30:03 2023
+wand.player : me
+wand.vis_ebrdzvi : c
+wand.qula : 2
+wand.rekordi:2
+wand.ramdenjer_gaeshva_id:0

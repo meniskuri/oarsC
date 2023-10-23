@@ -412,16 +412,15 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen(file_name,"a");
 
-  fprintf(chemiFailisPointeri,"%s","////////////////////// ");
-  fprintf(chemiFailisPointeri,"%s\n", asctime(loc_time));
-
-  fprintf(chemiFailisPointeri,"%s","wand.player:");
+  //fprintf(chemiFailisPointeri,"%s","////////////////////// ");
+  fprintf(chemiFailisPointeri,"%s", asctime(loc_time));
+  fprintf(chemiFailisPointeri,"%s","wand.player : ");
   fprintf(chemiFailisPointeri,"%s",wand.player);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.vis_ebrdzvi:");
+  fprintf(chemiFailisPointeri,"%s","wand.vis_ebrdzvi : ");
   fprintf(chemiFailisPointeri,"%s",wand.vis_ebrdzvi);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.qula:");
+  fprintf(chemiFailisPointeri,"%s","wand.qula : ");
   fprintf(chemiFailisPointeri,"%d",wand.qula);
   fprintf(chemiFailisPointeri,"%s","\n");
   
