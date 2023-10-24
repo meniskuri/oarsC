@@ -4,3 +4,9 @@ wand.vis_ebrdzvi : c
 wand.qula : 2
 wand.rekordi:2
 wand.ramdenjer_gaeshva_id:0
+Mon Oct 23 21:35:09 2023
+wand.player : 
+wand.vis_ebrdzvi : 
+wand.qula : 1
+wand.rekordi:1
+wand.ramdenjer_gaeshva_id:4262982
