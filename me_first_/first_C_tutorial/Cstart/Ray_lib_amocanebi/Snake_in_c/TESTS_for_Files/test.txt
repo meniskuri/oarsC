@@ -1,3 +1,4 @@
+///// oct 23 
 gio.g g   = 1
 vaso.v v  = 2
 tata.t t  = 3

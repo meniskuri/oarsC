@@ -412,12 +412,13 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   FILE *chemiFailisPointeri;
   chemiFailisPointeri = fopen(file_name,"a");
 
-  //fprintf(chemiFailisPointeri,"%s","////////////////////// ");
+  fprintf(chemiFailisPointeri,"%s","//////////////////////");
   fprintf(chemiFailisPointeri,"%s", asctime(loc_time));
-  fprintf(chemiFailisPointeri,"%s","wand.player : ");
+  
+  fprintf(chemiFailisPointeri,"%s","wand.player: ");
   fprintf(chemiFailisPointeri,"%s",wand.player);
   fprintf(chemiFailisPointeri,"%s","\n");
-  fprintf(chemiFailisPointeri,"%s","wand.vis_ebrdzvi : ");
+  fprintf(chemiFailisPointeri,"%s","wand.vis_ebrdzvi: ");
   fprintf(chemiFailisPointeri,"%s",wand.vis_ebrdzvi);
   fprintf(chemiFailisPointeri,"%s","\n");
   fprintf(chemiFailisPointeri,"%s","wand.qula : ");
@@ -425,11 +426,11 @@ void printMagicWandsInfo (struct MagicGameshot wand, char file_name[], int count
   fprintf(chemiFailisPointeri,"%s","\n");
   
   // aq mejic tachi mchirdeba 
-  fprintf(chemiFailisPointeri,"%s","wand.rekordi:");
+  fprintf(chemiFailisPointeri,"%s","wand.rekordi : ");
   fprintf(chemiFailisPointeri,"%d",wand.rekordi);
   fprintf(chemiFailisPointeri,"%s","\n");
   
-  fprintf(chemiFailisPointeri,"%s","wand.ramdenjer_gaeshva_id:");
+  fprintf(chemiFailisPointeri,"%s","wand.ramdenjer_gaeshva_id : ");
   fprintf(chemiFailisPointeri,"%d",wand.ramdenjer_gaeshva_id);
   fprintf(chemiFailisPointeri,"%s","\n");
 
@@ -491,9 +492,9 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   {
     wand1.ramdenjer_gaeshva_id = 0;
   }
-  if (lineNUMBER % 7 == 0 && lineNUMBER != 0)
+  if (lineNUMBER % 6 == 0 && lineNUMBER != 0)
   {
-    wand1.ramdenjer_gaeshva_id = lineNUMBER / 7;
+    wand1.ramdenjer_gaeshva_id = lineNUMBER / 6;
   }
 
   /* print MagicGameshot info and write to file (ფაილის შექმნა და ჩაწერა) */

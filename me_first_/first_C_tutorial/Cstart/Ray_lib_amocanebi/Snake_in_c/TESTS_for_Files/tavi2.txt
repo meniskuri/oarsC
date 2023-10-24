@@ -15,4 +15,16 @@ wand.player: meori
 wand.vis_ebrdzvi: gvelsori
 wand.qula : 3
 wand.rekordi : 4
-wand.ramdenjer_gaeshva_id : 1
+wand.ramdenjer_gaeshva_id : 2
+//////////////////////Tue Oct 24 17:40:13 2023
+wand.player: meori
+wand.vis_ebrdzvi: gvelsori
+wand.qula : 3
+wand.rekordi : 4
+wand.ramdenjer_gaeshva_id : 3
+//////////////////////Tue Oct 24 17:40:13 2023
+wand.player: meori
+wand.vis_ebrdzvi: gvelsori
+wand.qula : 19
+wand.rekordi : 19
+wand.ramdenjer_gaeshva_id : 4

@@ -8,7 +8,7 @@ int main() {
     char buf[80];
     FILE *file;
 
-    if ((file = fopen("test2.txt", "r")) == NULL) {
+    if ((file = fopen("test.txt", "r")) == NULL) {
         fprintf(stderr, "cannot open test.txt\n");
         return 1;
     }
