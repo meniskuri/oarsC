@@ -62,8 +62,18 @@ int main()
     }
     fclose(file);
 
-    // data2 masivis shevseba rekordebit da maximumis modzebna 
-
+    // data2 masivis shevseba rekordebit da maximumis modzebna
+    for(int i = 0; i <= lineNUMBER; i++)
+    {
+      if (i % 3 == 0)
+      {
+        Data2[i+1] = Data[i+1];
+      } else
+      {
+        Data2[i+1] = 0;
+      }
+      printf("Data2 = %f; i = %d; Data = %f\n",Data2[i+1],i, Data[i+1]);
+    }
 
     printf("//////////////////// \n");
 
