@@ -63,16 +63,16 @@ int main()
     fclose(file);
 
     // data2 masivis shevseba rekordebit da maximumis modzebna
-    for(int i = 0; i <= lineNUMBER; i++)
+    for(int i = 0; i <= lineNUMBER+1; i++)
     {
-      if (i % 3 == 0)
+      if (i!= 0 && (i % (5)== 0))
       {
-        Data2[i+1] = Data[i+1];
-      } else
-      {
-        Data2[i+1] = 0;
+        // rekordebs viwer pirveli masividan meoreshi
+        Data2[i] = Data[i+kapi];
+        printf("aq var kapi = %d\n",kapi);
+        kapi++;
       }
-      printf("Data2 = %f; i = %d; Data = %f\n",Data2[i+1],i, Data[i+1]);
+      printf("Data2 = %f; i = %d; Data = %f\n",Data2[i],i, Data[i]);
     }
 
     printf("//////////////////// \n");
