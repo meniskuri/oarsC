@@ -483,6 +483,8 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   wand1.qula = counter_vashlebi;
   printf("enter wand.qula d\n",counter_vashlebi); // <---------------- ricxvi unda iyos
   
+  // აქ ან ფუნქცია უნდა შემოვიტანო ან პირდაპირ კოდი. გახსნას ფაილი მოძებნოს რეკორდები შეადაროს ქაუნთერ ვაშლებს და ჩაწეროს counter.rekordebi ში
+  
   wand1.rekordi = counter_vashlebi;
   printf("enter wand.rekordi d\n",counter_vashlebi); // <---------------- ricxvi unda iyos 
   
