@@ -1,0 +1,7 @@
+////////////////////// Fri Oct 27 13:44:02 2023
+
+wand.title:anwylis
+wand.author:death
+wand.owner:kapana
+wand.soul:yorani
+wand.wand_id:0

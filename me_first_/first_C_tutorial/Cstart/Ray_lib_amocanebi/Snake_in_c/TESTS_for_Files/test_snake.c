@@ -83,36 +83,11 @@ int main()
         Data2[0] = Data2[i];
       }
     }
-    printf("Largest element = %.2lf\n", Data2[0]);
+    printf("Largest element = %f\n", Data2[0]);
 
     printf("//////////////////// \n");
-
-    // თავიდან გავხსნა ფაილი და დავამატო T + rame (lineNUMBER)
-    file = fopen("test.txt", "r"); // open file ჩაწერისთვის (პის ვუმატებ ყოველ მეორეს)
-    for(int i = 0; i <= lineNUMBER; i++)
-    {
-      if (((i % (5 + kapi)) == 0) && i != 0)
-      {
-        //printf("(kapi)= %d\n",kapi);
-        //printf("data [i+1] = %f;\n", Data[i+1]); // print Data, just to check
-        //printf("data [i+1] = %f; i = %d;i procent gayofa 4 ze = %d;\n", Data[i+1],i,(kapi)%4);
-        // kapi = kapi + 7;
-        //printf("(kapi)= %d\n",kapi);
-      }
-
-      if (i == 0 || i % 6 == 0)
-      {
-        //
-        printf("aq var\n");
-      }
-      printf("data [i+1] = %f; i = %d\n", Data[i+1],i);
-
     }
-
-    printf("(kapi bolos)= %d\n",kapi);
-    fclose(file);
     //printf("junk1 = %s",&junk3);
-}
 
 /*
 exla gavxsna chemi faili da amovikitxo rekordebi sanam ar damtavrdeba failis gaxsna nu sxva testi davwero?

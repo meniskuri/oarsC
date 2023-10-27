@@ -1,18 +1,18 @@
-//////////////////////Tue Oct 24 17:35:48 2023
+//////////////////////Thu Oct 26 01:40:32 2023
 wand.player: me
-wand.vis_ebrdzvi: lainebis_ganlagebas
-wand.qula : 1
-wand.rekordi : 1
+wand.vis_ebrdzvi: erorebs
+wand.qula : 2
+wand.rekordi : 2
 wand.ramdenjer_gaeshva_id : 0
-//////////////////////Tue Oct 24 17:37:13 2023
+//////////////////////Thu Oct 26 01:41:58 2023
 wand.player: me
-wand.vis_ebrdzvi: gvels
-wand.qula : 4
-wand.rekordi : 4
+wand.vis_ebrdzvi: ardanebeba
+wand.qula : 2
+wand.rekordi : 2
 wand.ramdenjer_gaeshva_id : 1
-//////////////////////Tue Oct 24 17:40:13 2023
-wand.player: meori
-wand.vis_ebrdzvi: gvelsori
-wand.qula : 3
-wand.rekordi : 4
-wand.ramdenjer_gaeshva_id : 1
+//////////////////////Thu Oct 26 01:44:33 2023
+wand.player: me
+wand.vis_ebrdzvi: shecdomebs
+wand.qula : 5
+wand.rekordi : 5
+wand.ramdenjer_gaeshva_id : 2
