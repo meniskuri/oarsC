@@ -1,24 +1,42 @@
-//////////////////////Fri Oct 27 15:15:39 2023
+//////////////////////Fri Oct 27 19:50:16 2023
+wand.player: tavi
+wand.vis_ebrdzvi: dan
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 0
+//////////////////////Fri Oct 27 20:04:32 2023
 wand.player: me
 wand.vis_ebrdzvi: mes
 wand.qula : 1
 wand.rekordi : 1
-wand.ramdenjer_gaeshva_id : 0
-//////////////////////Fri Oct 27 15:17:09 2023
+wand.ramdenjer_gaeshva_id : 1
+//////////////////////Fri Oct 27 20:05:54 2023
 wand.player: me
-wand.vis_ebrdzvi: lainebs
+wand.vis_ebrdzvi: mes
 wand.qula : 1
 wand.rekordi : 1
-wand.ramdenjer_gaeshva_id : 1
-//////////////////////Fri Oct 27 15:35:36 2023
-wand.player: me
-wand.vis_ebrdzvi: shecdomebs
-wand.qula : 3
-wand.rekordi : 3
 wand.ramdenjer_gaeshva_id : 2
-//////////////////////Fri Oct 27 15:37:07 2023
+//////////////////////Fri Oct 27 20:07:10 2023
 wand.player: me
-wand.vis_ebrdzvi: ricxvebs
+wand.vis_ebrdzvi: mes
 wand.qula : 1
 wand.rekordi : 1
 wand.ramdenjer_gaeshva_id : 3
+//////////////////////Fri Oct 27 20:08:12 2023
+wand.player: me
+wand.vis_ebrdzvi: mgonimivxdi
+wand.qula : 2
+wand.rekordi : 2
+wand.ramdenjer_gaeshva_id : 4
+//////////////////////Fri Oct 27 20:13:01 2023
+wand.player: ra 
+wand.vis_ebrdzvi: vqna
+wand.qula : 8
+wand.rekordi : 8
+wand.ramdenjer_gaeshva_id : 5
+//////////////////////Fri Oct 27 20:24:13 2023
+wand.player: ra
+wand.vis_ebrdzvi: xdeba
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 6

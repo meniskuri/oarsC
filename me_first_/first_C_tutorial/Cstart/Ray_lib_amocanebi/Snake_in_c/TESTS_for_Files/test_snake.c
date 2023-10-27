@@ -85,10 +85,11 @@ int main()
     }
     int test;
     test = Data2[0];
-    printf("Largest element = %lf\n", Data2[0]);
+    printf("Largest element = %d\n", Data2[0]);
     printf("Largest element = %lf\n", test);
 
     printf("//////////////////// \n");
+    printf("data 2 davbechdi ////// \n");
 }
 
 /*
