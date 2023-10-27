@@ -38,7 +38,7 @@ int main()
     int kapi = 0;
     char file_name[]  = {"tavi2.txt"};
     double Data[1000],Data2[1000];    // I'm interested in this information
-    double rekordi;
+    int rekordi;
     char junk1[80], junk2[80], junk3[80], junk4[80]; // junk variables to avoid first two characters
     int lineNUMBER;
     int jami;
@@ -74,7 +74,7 @@ int main()
         printf("aq var kapi = %d\n",kapi);
         kapi++;
       }
-      printf("Data2 = %f; i = %d; Data = %f\n",Data2[i],i, Data[i]);
+      printf("Data2 = %lf; i = %d; Data = %lf\n",Data2[i],i, Data[i]);
     }
     // max number from Data2 masivi
     for (int i = 1; i < lineNUMBER+1; ++i) {
@@ -83,11 +83,13 @@ int main()
         Data2[0] = Data2[i];
       }
     }
-    printf("Largest element = %f\n", Data2[0]);
+    int test;
+    test = Data2[0];
+    printf("Largest element = %lf\n", Data2[0]);
+    printf("Largest element = %lf\n", test);
 
     printf("//////////////////// \n");
-    }
-    //printf("junk1 = %s",&junk3);
+}
 
 /*
 exla gavxsna chemi faili da amovikitxo rekordebi sanam ar damtavrdeba failis gaxsna nu sxva testi davwero?

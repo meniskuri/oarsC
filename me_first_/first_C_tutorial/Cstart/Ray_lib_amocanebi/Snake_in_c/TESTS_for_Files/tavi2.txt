@@ -1,0 +1,12 @@
+//////////////////////Fri Oct 27 15:15:39 2023
+wand.player: me
+wand.vis_ebrdzvi: mes
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 0
+//////////////////////Fri Oct 27 15:17:09 2023
+wand.player: me
+wand.vis_ebrdzvi: lainebs
+wand.qula : 2
+wand.rekordi : 2
+wand.ramdenjer_gaeshva_id : 1

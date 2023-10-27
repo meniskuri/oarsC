@@ -203,62 +203,11 @@ void UpdateGame(void)
 
 
 
-// qvemot gadaitane es da abdeitis mere lainebze mushaoba modiodes da danarcheni funqciebi qvemot 
 
 
 
-void mausiJoistiki(void)
-{
-    // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
-    // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
-    // გრადუსების დაყენებაა მნიშვნელოვანი
-    
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        mtvleli_mausis  = 0;
-        mandzili_bijebi = 0;
-        A = 0;
-        B = 0;
-        C = 0;
-        a = 0;
-        b = 0;
-        
-        mausPosition = GetMousePosition();
-        DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
-        
-        A = abs(mausPosition.x - ballPosition.x); // x
-        B = abs(mausPosition.y - ballPosition.y); // y 
-        C = sqrt(pow(A,2) + pow(B,2));   
-        
-        mandzili_bijebi = (C / (2*ballRadius)); 
-        mandzili_bijebi = ceil(mandzili_bijebi);
-        mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
-        
-        a = A / mandzili_bijebi; // x ერთეულოვანი
-        b = B / mandzili_bijebi; // y ერთეულოვანი         
-       
-        mausi_var = true;
-        // pause = !pause;
-    }
-    mausColor = BEIGE;
-   
-    DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
-    DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
-    DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
-    DrawText(TextFormat("bijebi (target vs head) = %f", mandzili_bijebi - mtvleli_mausis), 100, 190, 20, RED);
-    DrawText(TextFormat("a.x = %f", a), 100, 210, 20, RED);
-    DrawText(TextFormat("b.y = %f", b), 100, 230, 20, RED);
-    
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
-    if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
-    if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))  mausColor = DARKBLUE;
 
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))   touchCounter = 10;
-    if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) touchCounter = 10;
-    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))  touchCounter = 10;
 
-    if (touchCounter > 0) touchCounter--;
-}
 
 
 
@@ -481,66 +430,12 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   strcpy(wand1.vis_ebrdzvi, brzaneba);
   
   wand1.qula = counter_vashlebi;
-  printf("enter wand.qula d\n",counter_vashlebi); // <---------------- ricxvi unda iyos
+  printf("enter wand.qula %d\n",counter_vashlebi); // <---------------- ricxvi unda iyos
   
   // აქ ან ფუნქცია უნდა შემოვიტანო ან პირდაპირ კოდი. გახსნას ფაილი მოძებნოს რეკორდები შეადაროს ქაუნთერ ვაშლებს და ჩაწეროს counter.rekordebi ში
-    int kapi = 0;
-    // char file_name[]  = {"tavi2.txt"};
-    double Data[1000],Data2[1000];    // I'm interested in this information
-    double rekordi;
-    char junk1[80], junk2[80], junk3[80], junk4[80]; // junk variables to avoid first two characters
-    int lineNUMBER2;
-    int jami;
-
-    FILE * file = fopen(file_name, "r"); // open file
-
-    lineNUMBER2 = findLineNumber(file_name); /* ლაინების რაოდენობა რომ ვიცოდე */
-
-    for(int i = 0; i <= lineNUMBER2; i++) // each loop will read new line of file; i<3 for 3 lines in file
-    {
-      if (i == 0 || i % 6 == 0)
-      {
-        // sataurs sxva wesit viwer failshi
-        fscanf(file, "%s %s %s %s %lf\n", &junk1, &junk2, &junk3,&junk4, &Data[i+1]);
-      } else {
-        // masivis shevseba sachiro infoti
-        fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i+1]);
-      }
-
-      // fscanf(file, "%s %s %lf\n", &junk1, &junk2, &Data[i+1]); //store info in Data array
-      // printf("data [i+1] = %f; i = %d;i procent gayofa 4 ze = %d;\n", Data[i+1],i,i % 4); // print Data, just to check
-    }
-    fclose(file);
-
-    printf("//////////////////// \n");
-    // data2 masivis shevseba rekordebit da maximumis modzebna
-    for(int i = 0; i <= lineNUMBER2+1; i++)
-    {
-      if (i!= 0 && (i % (5)== 0))
-      {
-        // rekordebs viwer pirveli masividan meoreshi
-        Data2[i] = Data[i+kapi];
-        printf("aq var kapi = %d\n",kapi);
-        kapi++;
-      }
-      printf("Data2 = %f; i = %d; Data = %f\n",Data2[i],i, Data[i]);
-    }
-    // max number from Data2 masivi
-    for (int i = 1; i < lineNUMBER2+1; ++i) {
-
-      if (Data2[0] < Data2[i]) {
-        Data2[0] = Data2[i];
-      }
-    }
-    printf("Largest element = %.2lf\n", Data2[0]);
-
-    printf("//////////////////// \n"); // ragac ar gamomdis xval vnaxav
-  
-  
-  
   
   wand1.rekordi = counter_vashlebi;
-  printf("enter wand.rekordi d\n",counter_vashlebi); // <---------------- ricxvi unda iyos 
+  printf("enter wand.rekordi %d\n",counter_vashlebi); // <---------------- ricxvi unda iyos 
   
   
   printf("lineNUMBER = %d\n",lineNUMBER);
@@ -561,7 +456,58 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
 
 
 
+void mausiJoistiki(void)
+{
+    // სამკუთხედების გამოთვლები A და B და ერთეულოვანი a და b ს მოძებნის ალგორითმი. 
+    // ასევე თარგეთამდე მანძილის და იტერაციების რაოდენობის გამოთვლა 
+    // გრადუსების დაყენებაა მნიშვნელოვანი
+    
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        mtvleli_mausis  = 0;
+        mandzili_bijebi = 0;
+        A = 0;
+        B = 0;
+        C = 0;
+        a = 0;
+        b = 0;
+        
+        mausPosition = GetMousePosition();
+        DrawLine(ballPosition.x, ballPosition.y, mausPosition.x, mausPosition.y, BLACK);
+        
+        A = abs(mausPosition.x - ballPosition.x); // x
+        B = abs(mausPosition.y - ballPosition.y); // y 
+        C = sqrt(pow(A,2) + pow(B,2));   
+        
+        mandzili_bijebi = (C / (2*ballRadius)); 
+        mandzili_bijebi = ceil(mandzili_bijebi);
+        mandzili_bijebi = abs(mandzili_bijebi); // დაცვად აყენია :)         
+        
+        a = A / mandzili_bijebi; // x ერთეულოვანი
+        b = B / mandzili_bijebi; // y ერთეულოვანი         
+       
+        mausi_var = true;
+        // pause = !pause;
+    }
+    mausColor = BEIGE;
+   
+    DrawText(TextFormat("A.x = %d", A), 100, 130, 20, RED);
+    DrawText(TextFormat("B.y = %d", B), 100, 150, 20, RED);
+    DrawText(TextFormat("C.hipotenoza (target vs head) = %f", C), 100, 170, 20, RED);
+    DrawText(TextFormat("bijebi (target vs head) = %f", mandzili_bijebi - mtvleli_mausis), 100, 190, 20, RED);
+    DrawText(TextFormat("a.x = %f", a), 100, 210, 20, RED);
+    DrawText(TextFormat("b.y = %f", b), 100, 230, 20, RED);
+    
+    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))   mausColor = MAROON;
+    if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) mausColor = LIME;
+    if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))  mausColor = DARKBLUE;
 
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))   touchCounter = 10;
+    if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) touchCounter = 10;
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))  touchCounter = 10;
+
+    if (touchCounter > 0) touchCounter--;
+}
 
 
 
