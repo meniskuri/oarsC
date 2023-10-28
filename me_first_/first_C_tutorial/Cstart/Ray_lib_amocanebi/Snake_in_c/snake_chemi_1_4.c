@@ -428,7 +428,17 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   printf("enter wand.qula %d\n",counter_vashlebi); // <---------------- ricxvi unda iyos
   
   // აქ ან ფუნქცია უნდა შემოვიტანო ან პირდაპირ კოდი. გახსნას ფაილი მოძებნოს რეკორდები შეადაროს ქაუნთერ ვაშლებს და ჩაწეროს counter.rekordebi ში
-  
+  int vato;
+  vato = failis_amokitxva("tavi2.txt");
+  printf("vato %d\n",vato);
+  if (vato < counter_vashlebi)
+  {
+    //
+    wand1.rekordi = counter_vashlebi;
+  }else{
+    //
+    wand1.rekordi = vato;
+  }
   
   
   
@@ -440,7 +450,7 @@ void sheyvanaSaxelis(void) // <------------------||||+ პრობლემა
   
   
   ///////////////////////////////////////////
-  wand1.rekordi = counter_vashlebi;
+//wand1.rekordi = counter_vashlebi;
   printf("enter wand.rekordi %d\n",counter_vashlebi); // <---------------- ricxvi unda iyos 
   
   
