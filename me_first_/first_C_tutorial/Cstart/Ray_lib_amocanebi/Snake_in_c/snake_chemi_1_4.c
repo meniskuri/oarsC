@@ -160,7 +160,9 @@ int main(void)
     // აქ ვარ <------------------------------------გაგჯაგაოიგდჯადოფჯაფია----====???////~~~~~აქ ვარ 
     // failis chawera aq xom ar jobia? 
      sheyvanaSaxelis();
-     failis_amokitxva();
+     int gio;
+     gio = failis_amokitxva("tavi2.txt");
+     printf("gio = %d\n",gio);
     
     // De-Initialization
     //--------------------------------------------------------------------------------------
@@ -205,12 +207,11 @@ void UpdateGame(void)
 
 
 
-
-void failis_amokitxva(void)
+int failis_amokitxva(char file_name[])
 {
     //
     int kapi = 0;
-    char file_name[]  = {"tavi2.txt"};
+    // char file_name[]  = {"tavi2.txt"};
     double Data[100000],Data2[100000];    // I'm interested in this information
     int rekordi;
     char junk1[80], junk2[80], junk3[80], junk4[80]; // junk variables to avoid first two characters
@@ -263,75 +264,10 @@ void failis_amokitxva(void)
     printf("Largest element = %lf\n", test);
 
     printf("//////////////////// \n");
-    
-    
-    
+    return test;   
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/// failebze mushaoba da struqturebi 
-
-/* აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან */
-int parametrebi_Brzanebis(char* brzaneba)
-{
-  /*
-  ფუნქციის აღწერა:
-  აბრუნებს ლოგიკურ ერთიანს თუ ჩარების მასივი შედგება მხოლოდ ციფრებისგან
-  თუ არა აბრუნებს ლოგიკურ ნულიანს. ამოწმებს 2.3 ში წერტილ სიმბოლოს.
-  არ დაუშვებს ორ წერტილს. წერტილით დაწყებას.
-  ar viyeneb <---- rameshi gamoviyeno 
-  */
-
-  bool cifria = false; // თუ მასივში ციფრები წერია გათრუვდება
-  int len, counter_par = 0, counter_mdzime = 0;
-
-  len = strlen(brzaneba);
-  // printf("len = %d \n",len);
-
-    for (int i = 0; i <= len; i++)
-  {
-    // printf("brzaneba(d)[%d] %d %c \n",i,brzaneba[i],brzaneba[i]);
-    // printf("i = %d \n", i);
-    if (brzaneba[0] >= 48 && brzaneba[0] <= 57)
-    {
-      if ((brzaneba[i] >= 48 && brzaneba[i] <= 57 || brzaneba[i] == 46) || brzaneba[i] == 0)
-      {
-        cifria = true;
-      } else
-      {
-        cifria = false;
-        break;
-      }
-      if (brzaneba[i] == 46)
-      {
-        // ითვლის წერტილების რაოდენობას 3.3 ერთი წერტილია, 3.3.3 - ორი წერტილია. დაბლ რიცხვების შეყვანისთვის
-        counter_mdzime++;
-      }
-
-      if (counter_mdzime > 1)
-      {
-        // printf("counter_mdzime %d \n", counter_mdzime);
-        cifria = false;
-      }
-    }
-    counter_par++;
-  }
-  // printf("counter_par = %d \n",counter_par);
-  printf("cifria = %d \n", cifria);
-  return cifria;
-}
 
 /* ფაილში ლაინების რაოდენობის გაგება */
 int findLineNumber(char file_name[])

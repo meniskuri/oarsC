@@ -40,3 +40,33 @@ wand.vis_ebrdzvi: xdeba
 wand.qula : 1
 wand.rekordi : 1
 wand.ramdenjer_gaeshva_id : 6
+//////////////////////Sat Oct 28 13:51:39 2023
+wand.player: me
+wand.vis_ebrdzvi: vato
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 7
+//////////////////////Sat Oct 28 13:52:51 2023
+wand.player: me
+wand.vis_ebrdzvi: gvels
+wand.qula : 4
+wand.rekordi : 4
+wand.ramdenjer_gaeshva_id : 8
+//////////////////////Sat Oct 28 13:53:30 2023
+wand.player: me
+wand.vis_ebrdzvi: gvels
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 9
+//////////////////////Sat Oct 28 13:55:13 2023
+wand.player: me
+wand.vis_ebrdzvi: funqciebs
+wand.qula : 2
+wand.rekordi : 2
+wand.ramdenjer_gaeshva_id : 10
+//////////////////////Sat Oct 28 13:56:04 2023
+wand.player: me
+wand.vis_ebrdzvi: beds
+wand.qula : 1
+wand.rekordi : 1
+wand.ramdenjer_gaeshva_id : 11

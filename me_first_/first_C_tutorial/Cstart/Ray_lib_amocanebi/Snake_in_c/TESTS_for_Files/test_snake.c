@@ -90,11 +90,17 @@ int main()
 
     printf("//////////////////// \n");
     printf("data 2 davbechdi ////// \n");
+    for(int i = 0; i <= lineNUMBER+1; i++)
+    {
+      //
+
+    }
 }
 
 /*
-exla gavxsna chemi faili da amovikitxo rekordebi sanam ar damtavrdeba failis gaxsna nu sxva testi davwero?
-Tu aq? es kai testia meroe testi xom ar shevqmna? sheidzleba. chai dalie moifiqre
-unda gavaketo amokitxvis programa
-
+snake_1_4 shi gadavitano cvlilebebi.
+mere am kods mivxedo.
+1. shevaqmnevino shemowmeba failis
+2. tu aris amoikitxos.gaigos zoma. da chaamatos axali tavi. bolos isev amoikitxos da modzebnos udidesi elementi.
+3. tu ar aris sheqmnas da mere amoikitxos.
 */
